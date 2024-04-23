@@ -4,13 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Finneh.XYZ</title>
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
         <link rel="stylesheet" href="css/main.css">
         <script src="js/main.js"></script>
     </head>
     <body>
         <nav>
+            <!--TODO: Sticky Navbar-->
             <ul class="nav" id="navbar">
+                <li>Finneh.XYZ</li>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#AboutMe">About Me</a></li>
                 <li><a href="#Projects">Projects</a></li>
@@ -18,22 +21,30 @@
             </ul>
         </nav>
         <section id="hero">
-            <img src="images/me.JPEG" alt="Me" width="400" height="400" class="profile">
+            <img src="images/me.JPEG" alt="Me" width="400" height="400"
+                class="profile">
             <div>
-                
+
                 <h1><a href="#">Finneh.XYZ</a></h1>
             </div>
             <div>
-                <p>A nerd with a passion for coding, and making things on the internet.</p>
+                <p>A nerd with a passion for coding, and making things on the
+                    internet.</p>
                 <div class="social-links">
-                    <a href="https://github.com/finneh4249" target="_blank"><i class="bx bxl-github"></i></a>
-                    <a href="https://twitter.com/melbPAT" target="_blank"><i class="bx bxl-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/ethancornwill/" target="_blank"><i class="bx bxl-linkedin"></i></a>
-                    <a href="https://cityloopers.com/discord" target="_blank"><i class="bx bxl-discord"></i></a>
+                    <a href="https://github.com/finneh4249" target="_blank"><i
+                            class="bx bxl-github"></i></a>
+                    <a href="https://twitter.com/melbPAT" target="_blank"><i
+                            class="bx bxl-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/ethancornwill/"
+                        target="_blank"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://cityloopers.com/discord" target="_blank"><i
+                            class="bx bxl-discord"></i></a>
                 </div>
             </div>
         </section>
+        <hr>
         <section id="AboutMe" class="grid">
+            <!--TODO: Make this look nice-->
             <h2>About Me</h2>
             <div class="grid-container">
                 <div class="box">
@@ -45,60 +56,81 @@
                 <div class="box">
                     <p>
                         I'm a nerd from Australia,<br>
-                        currently studying a Diploma of Information Technology at Coder Academy.<br>
+                        currently studying a Diploma of Information Technology
+                        at Coder Academy.<br>
                     </p>
                 </div>
                 <div class="box">
                     <p>
-                        I'm also a member of the <a href="https://cityloopers.com/discord" target="_blank">City Loopers</a> Minecraft server,<br>
-                        a community of friendly people who love to build and explore together.<br>
+                        I'm also a member of the <a
+                            href="https://cityloopers.com/discord"
+                            target="_blank">City Loopers</a> Minecraft
+                        server,<br>
+                        a community of friendly people who love to build and
+                        explore together.<br>
                     </p>
                 </div>
 
-        </section>
-        <hr>
-        <section id="Projects">
-            <h2>Projects</h2>
-            <div class="grid-container">
-                <div class="box">
-                    <h3><a href="https://github.com/finneh4249/pokerbo">PokerBo</a></h3>
-                    <p>A casino card game that is a mix of Poker and Sicbo, created
-                        with Javascript</p>
-                </div>
-                <div class="box">
-                    <h3><a href="https://github.com/cityloopers/CityLoopersMC">City
-                        Loopers</a></h3>
-                    <p>A Greylisted City build Minecraft server and Discord
-                        Community administrated by me</p>
-                </div>
-                <div class="box">
-                    <h3><a href="https://github.com/CityLoopers/Aometry">Aometry</a></h3>
-                    <p>A custom and modular discord bot framework build on
-                        Discord.JS v13.</p>
-                </div>
-            </div>
-        </section>
+            </section>
             <hr>
-        
-        <section id="Skills">
-            <h2>Skills</h2>
-            <div class="grid-container">
-                <div class="box">
-                    <p><i class="fab fa-js-square"></i> Javascript</p>
+            <section id="Projects">
+                <!--TODO: Make this look nice-->
+                <h2>Projects</h2>
+                <div class="grid-container">
+                    <div class="box">
+                        <h3><a
+                                href="https://github.com/finneh4249/pokerbo">PokerBo</a></h3>
+                        <p>A casino card game that is a mix of Poker and Sicbo,
+                            created
+                            with Javascript</p>
+                    </div>
+                    <div class="box">
+                        <h3><a
+                                href="https://github.com/cityloopers/CityLoopersMC">City
+                                Loopers</a></h3>
+                        <p>A Greylisted City build Minecraft server and Discord
+                            Community administrated by me</p>
+                    </div>
+                    <div class="box">
+                        <h3><a
+                                href="https://github.com/CityLoopers/Aometry">Aometry</a></h3>
+                        <p>A custom and modular discord bot framework build on
+                            Discord.JS v13.</p>
+                    </div>
                 </div>
-                <div class="box">
-                    <p><i class="fab fa-css3-alt"></i> CSS</p>
+            </section>
+            <hr>
+
+            <section id="Skills">
+                <h2>Skills</h2>
+                <style>
+            
+            .box h3 {
+                text-align: center;
+            }
+        </style>
+                <div class="grid-container">
+                    <div class="box">
+                        <i class='bx bxl-javascript'></i>
+                        <h3>Javascript</h3>
+                    </div>
+                    <div class="box">
+                        <i class="bx bxl-css3"></i>
+                        <h3>CSS</h3>
+                    </div>
+                    <div class="box">
+                        <i class="bx bxl-html5"></i>
+                        <h3>HTML</h3>
+                    </div>
+                    <div class="box">
+                        <i class="bx bx-brush"></i>
+                        <h3>Graphic Design</h3>
+                    </div>
+                    <div class="box">
+                        <i class="bx bxs-server"></i>
+                        <h3>Server Administration</h3>
+                    </div>
                 </div>
-                <div class="box">
-                    <p><i class="fab fa-html5"></i> HTML</p>
-                </div>
-                <div class="box">
-                    <p><i class="fas fa-paint-brush"></i> Graphic Design</p>
-                </div>
-                <div class="box">
-                    <p><i class="fas fa-server"></i> Server Administration</p>
-                </div>
-            </div>
-        </section>
-    </body>
-</html>
+            </section>
+        </body>
+    </html>

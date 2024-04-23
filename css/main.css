@@ -1,34 +1,34 @@
 :root {
 
     /** CSS PRIMARY COLORS */
---clr-primary-a0: #6200ee;
---clr-primary-a10: #510eba;
---clr-primary-a20: #3f1288;
---clr-primary-a30: #2e1259;
---clr-primary-a40: #1c0e2e;
-/** CSS ACCENT COLORS */
---clr-accent-a0: #00eeda;
---clr-accent-a10: #1ebaaa;
---clr-accent-a20: #22887d;
---clr-accent-a30: #1f5952;
---clr-accent-a40: #162e2b;
-/** CSS SEMANTIC COLORS */
---clr-danger-a0: #b41c2b;
---clr-success-a0: #009f42;
---clr-warning-a0: #cc8800;
---clr-info-a0: #388cfa;
-/** CSS NEUTRAL COLORS */
---clr-neutral-a0: #ffffff;
---clr-neutral-a10: #c6c6c6;
---clr-neutral-a20: #919191;
---clr-neutral-a30: #5e5e5e;
---clr-neutral-a40: #303030;
---clr-neutral-a50: #000000;
+    --clr-primary-a0: #6200ee;
+    --clr-primary-a10: #510eba;
+    --clr-primary-a20: #3f1288;
+    --clr-primary-a30: #2e1259;
+    --clr-primary-a40: #1c0e2e;
+    /** CSS ACCENT COLORS */
+    --clr-accent-a0: #00eeda;
+    --clr-accent-a10: #1ebaaa;
+    --clr-accent-a20: #22887d;
+    --clr-accent-a30: #1f5952;
+    --clr-accent-a40: #162e2b;
+    /** CSS SEMANTIC COLORS */
+    --clr-danger-a0: #b41c2b;
+    --clr-success-a0: #009f42;
+    --clr-warning-a0: #cc8800;
+    --clr-info-a0: #388cfa;
+    /** CSS NEUTRAL COLORS */
+    --clr-neutral-a0: #ffffff;
+    --clr-neutral-a10: #c6c6c6;
+    --clr-neutral-a20: #919191;
+    --clr-neutral-a30: #5e5e5e;
+    --clr-neutral-a40: #303030;
+    --clr-neutral-a50: #000000;
 }
 
 body {
     font-family: Arial, sans-serif;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .project {
@@ -54,14 +54,16 @@ body {
     align-items: center;
     height: 100vh;
     width: 100vw;
-    color: white; 
-    
+    color: white;
+
 }
+
 #hero h1 {
     font-size: 5em;
 
 }
-#hero p{
+
+#hero p {
     font-size: 2em;
 }
 
@@ -72,17 +74,13 @@ a {
 
 a {
     background:
-            linear-gradient(
-                    to right,
-                    rgb(255, 255, 255),
-                    rgb(255, 255, 255)
-            ),
-            linear-gradient(
-                    to right,
-                    rgb(99, 0, 238),
-                    rgb(99, 0, 238),
-                    rgb(99, 0, 238)
-            );
+        linear-gradient(to right,
+            rgb(255, 255, 255),
+            rgb(255, 255, 255)),
+        linear-gradient(to right,
+            rgb(99, 0, 238),
+            rgb(99, 0, 238),
+            rgb(99, 0, 238));
     background-size: 100% 3px, 0 3px;
     background-position: 100% 100%, 0 100%;
     background-repeat: no-repeat;
@@ -121,34 +119,39 @@ a:hover {
     flex-wrap: wrap;
     gap: 1rem;
 }
+
 .box {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-        background-color: var(--clr-neutral-a0);
-        width: calc(100% * (1/2) - 10px - 1px);
+    box-shadow: 0px 2px 4px -1px var(--clr-primary-a20),
+        0px 4px 5px 0px var(--clr-primary-a20),
+        0px 1px 10px 0px var(--clr-primary-a20);
+    background-color: var(--clr-neutral-a0);
+    width: calc(100% * (1/2) - 10px - 1px);
+    text-align: center;
 }
+
 @media (min-width: 1000px) {
     .box {
-      width: calc(100% * (1/4) - 10px - 1px);
+        width: calc(100% * (1/4) - 10px - 1px);
     }
-  }
-  .social-links{
+}
+
+.social-links {
     font-size: 2rem;
 
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
-#hero a {
-  text-decoration: none;
-  padding: 1rem;
 
-  color: var(--clr-neutral-a0)!important;
+#hero a {
+    text-decoration: none;
+    padding: 1rem;
+
+    color: var(--clr-neutral-a0) !important;
 }
 
 html {
@@ -179,5 +182,12 @@ hr {
 #hero .profile {
     border-radius: 50%;
     border: 5px solid white;
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.box i {
+    color: var(--clr-primary-a0);
+    font-size: 3rem;
+    display: block;
+    text-align: center;
 }
