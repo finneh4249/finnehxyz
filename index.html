@@ -10,18 +10,9 @@
         <script src="js/main.js"></script>
     </head>
     <body>
-        <nav>
-            <!--TODO: Sticky Navbar-->
-            <ul class="nav" id="navbar">
-                <li>Finneh.XYZ</li>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#AboutMe">About Me</a></li>
-                <li><a href="#Projects">Projects</a></li>
-                <li><a href="#Skills">Skills</a></li>
-            </ul>
-        </nav>
-        <section id="hero">
-            <img src="images/me.JPEG" alt="Me" width="400" height="400"
+        <section>
+            <div id="hero">
+                <img src="images/me.JPEG" alt="Me" width="400" height="400"
                 class="profile">
             <div>
 
@@ -30,6 +21,7 @@
             <div>
                 <p>A nerd with a passion for coding, and making things on the
                     internet.</p>
+                    </div>
                 <div class="social-links">
                     <a href="https://github.com/finneh4249" target="_blank"><i
                             class="bx bxl-github"></i></a>
@@ -41,33 +33,45 @@
                             class="bx bxl-discord"></i></a>
                 </div>
             </div>
+            
         </section>
+        <nav>
+            <!--TODO: Sticky Navbar-->
+            <ul class="nav" id="navbar">
+                <li><b>Finneh.XYZ</b></li>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#aboutme">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </nav>
         <hr>
-        <section id="AboutMe" class="grid">
+        <section id="aboutme" class="grid">
             <!--TODO: Make this look nice-->
-            <div class="grid-container">
-                <div class="hero">
+                <div class="box">
                     <div class="line"></div>
                     <h1>About Me</h1>
-                    <img src="images/me.JPEG" alt="Me" width="400" height="400"
-                class="profile">
-                </div>
-                <br>
-                <div class="box">
-                    <h1>About me</h1>
-                    <p>About me goes here or something like that Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta eius sapiente rem molestiae deserunt excepturi, ex animi illum amet quibusdam, nemo placeat impedit voluptates et provident eaque similique voluptatem blanditiis. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore totam quibusdam blanditiis vel placeat, provident molestiae iste aliquam velit, libero optio at ut veritatis assumenda voluptas asperiores inventore porro temporibus?
-                    Possimus nostrum animi enim ullam quaerat alias similique quae temporibus, blanditiis ipsa dolorum necessitatibus mollitia modi ipsum reiciendis voluptate tempora aspernatur est architecto! Dolore, eveniet ex? Quisquam dolores facere odio.
-                    Numquam nisi dignissimos accusamus repudiandae consequatur provident adipisci odio magni sint nulla, illo quo ea! Quibusdam numquam repellat, sunt nihil, voluptatem rerum, in quasi nobis deserunt at delectus accusantium molestias.
-                    Accusantium fuga temporibus fugiat, repellendus animi exercitationem, neque esse ipsa tempora saepe, excepturi ea nobis iure magnam eum ducimus. Id, cumque rerum! Quisquam blanditiis maxime ad assumenda aliquam dignissimos ut!</p>
-                </div>
+                     </div>
+
+                     <div class="grid-container">
+                        <br>
+                        <div class="box">
+                            <img src="images/me.JPEG" alt="Me" width="400" height="400"
+                        class="profile"> </div>
+                        <div class="clear-left"></div>
+                        <div class="box">
+                            <p>Hello! I'm Ethan. I am a student at City Loopers.</p>
+                        </div>
+                     </div>
+               
                
             </div>
 
 
             </section>
             <hr>
-            <section id="Projects">
-                <div class="hero">
+            <section id="projects">
+                <div class="box">
                     <div class="line"></div>
                     <h1>Projects</h1>
                 </div>
@@ -97,8 +101,8 @@
             </section>
             <hr>
 
-            <section id="Skills">
-                <div class="hero">
+            <section id="skills">
+                <div class="box">
                     <div class="line"></div>
                     <h1>Skills</h1>
                 </div>
