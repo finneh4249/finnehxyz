@@ -1,6 +1,6 @@
 window.onscroll = function() {
     var navbar = document.getElementById("navbar");
-    if (document.documentElement.scrollTop > 500) {
+    if (document.documentElement.scrollTop > 60) {
         navbar.classList.add("sticky");
     } else {
         navbar.classList.remove("sticky");

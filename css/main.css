@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 :root {
 
     /** CSS PRIMARY COLORS */
@@ -27,9 +29,11 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-    box-sizing: border-box;
+    padding: .5%;
+    margin:0;
+    font-family: 'Google Sans', 'Roboto', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
 }
 
 
@@ -63,9 +67,9 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
-    height: 100vh;
+    height: 120vh;
     color: white;
 }
 
@@ -155,9 +159,9 @@ a:hover {
     padding: 0;
     background-color: var(--clr-neutral-a0);
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
     text-align: center;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .nav li {
@@ -247,6 +251,8 @@ a:hover {
 
 html {
     scroll-behavior: smooth;
+    /* unknown property, ignored */
+
 }
 
 section:not(:first-of-type) {
@@ -261,7 +267,9 @@ section:not(:first-of-type) {
     right: 0;
     z-index: 999;
     border-radius: 20px;
-
+    width:80%!important;
+    background-color: rgba(255, 255, 255, .55);  
+    backdrop-filter: blur(10px);
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
 
 }
@@ -274,7 +282,7 @@ section:not(:first-of-type) {
     width: clamp(100px, 40vw, 400px);
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 .box i {
@@ -282,4 +290,27 @@ section:not(:first-of-type) {
     font-size: 3rem;
     display: block;
     text-align: center;
+}
+
+
+#hero .scroll-down {
+    margin-top: 3rem;
+   font-size:3rem;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.no-underline{
+    background-size: 0px!important;
+}
+
+.bounce{
+    animation: bounce 1.5s infinite ease-in-out;
 }
