@@ -181,6 +181,7 @@ a:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    flex-direction:column;
 }
 
 /* Box Styles */
@@ -199,17 +200,14 @@ a:hover {
     background-color: var(--clr-neutral-a0);
 }
 
-.box {
-    width: calc(100% * (1/2) - 10px - 1px);
+@media (min-width: 1000px){
+    .grid-container {
+        flex-direction: row;
+    }
 }
 
-@media (min-width: 1000px) {
-  .box {
-    width: calc(100% * (1/4) - 10px - 1px);
-  }
-  .hero ~ .box {
-    clear: left;
-  }
+.project-logo {
+    width: clamp(100px, 40vw, 400px);
 }
 
 .clear-left{
