@@ -1,3 +1,6 @@
+let section = document.querySelectorAll('section');
+let navLinks = document.querySelectorAll('nav a');
+
 window.onscroll = function() {
     var navbar = document.getElementById("navbar");
     if (document.documentElement.scrollTop > 60) {
@@ -5,23 +8,17 @@ window.onscroll = function() {
     } else {
         navbar.classList.remove("sticky");
     }
+
+    section.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
+
+        if(top >= offset && top < offset + height) {
+            navLinks.forEach(links => {
+                links.classList.remove('active');
+                document.querySelector('nav a[href*=' + id + ']').classList.add('active');
+            });}
+    })
 };
-
-//Scrollspy
-var navLinks = document.querySelectorAll(".nav a");
-
-function scrollSpy() {
-    for (var i = 0; i < navLinks.length; i++) {
-        var section = document.querySelector(navLinks[i].getAttribute("href"));
-        var top = section.offsetTop - 230;
-        if (document.documentElement.scrollTop >= top &&
-            document.documentElement.scrollTop < top + section.offsetHeight) {
-            navLinks[i].classList.add("active");
-        } else {
-            navLinks[i].classList.remove("active");
-        }
-    }
-}
-
-document.addEventListener("scroll", scrollSpy);
-
