@@ -254,6 +254,10 @@ section:not(:first-of-type) {
     padding-top: 60px;
 }
 
+.about-box {
+    padding: 1.5rem 3rem;
+}
+
 .sticky {
     position: fixed;
     top: 0;
@@ -331,7 +335,6 @@ section:not(:first-of-type) {
     }
 }
 .timeline, .timeline2 {
-
 .box img {
     margin: 0 auto;
     width: clamp(16px, 150px, 200px);
@@ -341,6 +344,7 @@ section:not(:first-of-type) {
 .timeline2 .box{
     height:max-content;
 }
+
 
 .timeline::after {
     content: '';
@@ -413,6 +417,18 @@ section:not(:first-of-type) {
   .timeline-circle{
     margin-left: 17%;
   }
+
+  #skills .box{
+    max-width: 25%; /* 33.33% / 3 = 10.1067% (3 decimals) */
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  .title-box {
+    max-width: 100% !important;
+    padding: 1.5rem 3rem;
+  }
+
 
   footer {
     background-color: #fafafa;
