@@ -8,20 +8,24 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/main.css" />
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/main.js"></script>
   </head>
 
   <body>
     <nav>
       <h3>Ethan Cornwill</h3>
+
+      <i id="hamburger" class="bx bx-menu" onclick="toggleNav(); this.classList.toggle('active')"></i>
       <!--TODO: Mobile Navbar-->
-
-      <a href="#hero">Home</a>
-      <a href="#aboutme">About Me</a>
-
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
+      <div id="nav-panel">
+        <a href="#hero">Home</a>
+        <a href="#aboutme">About Me</a>
+  
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+      </div>
+     
     </nav>
     <section>
       <div id="hero">

@@ -52,6 +52,12 @@ h1{
     margin-left: 3rem;
 
 }
+#nav-panel{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
 
 #aboutme{
     background-color: var(--clr-neutral-a40);
@@ -94,8 +100,9 @@ h1{
 
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: flex-start;
     align-items: center;
+    gap: 1rem;
     height: 100dvh;
     color: white;
 }
@@ -138,7 +145,7 @@ h1{
 
 
 #hero h1 {
-    font-size: 5em;
+    font-size: 5rem;
 
 }
 
@@ -150,9 +157,6 @@ h1{
 a {
     color: #6300EE;
     text-decoration: none;
-}
-
-a {
     background:
         linear-gradient(to right,
             rgb(255, 255, 255),
@@ -172,8 +176,8 @@ a:hover {
 }
 
 #hero a {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.75);
-    transition: background-size 400ms, color 400ms, text-shadow 400ms;
+    transition: background-size 400ms, color 400ms;
+    background: 0;
 }
 
 #hero a:hover {
@@ -281,21 +285,6 @@ section:not(:first-of-type) {
     padding: 1.5rem 3rem;
 }
 
-/* .sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    border-radius: 20px;
-    width:80%!important;
-    background-color: rgba(255, 255, 255, .55);  
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
-
-} */
-
-
 .profile {
     border-radius: 50%;
     border: 5px solid white;
@@ -341,7 +330,7 @@ section:not(:first-of-type) {
 .timeline-container{
     display: grid;
     grid-template-columns: 1fr 3fr;
-    margin: 1rem 3rem;
+    margin: 1rem;
     gap: 1rem;
 }
 
@@ -360,6 +349,14 @@ section:not(:first-of-type) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+}
+
+.company h3, .school h3{
+    margin-left: 1rem;
+}
+
+.company h5{
+    text-align: right;
 }
 .role{
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -405,12 +402,12 @@ section:not(:first-of-type) {
 
 .typewriter h1 {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
+    border-right: .15em solid var(--clr-primary-a0); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .05em; /* Adjust as needed */
+    letter-spacing: .02em; /* Adjust as needed */
     animation: 
-      typing 2.5s steps(40, end),
+      typing 1.5s steps(11, end),
       blink-caret .75s step-end infinite;
   }
   
@@ -423,7 +420,7 @@ section:not(:first-of-type) {
   /* The typewriter cursor effect */
   @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: orange; }
+    50% { border-color: var(--clr-primary-a0); }
   }
 
   .title-box {
@@ -435,7 +432,7 @@ section:not(:first-of-type) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
-    margin: 1rem 3rem;
+    margin: 1rem;
   }
 
   #projects{
@@ -492,22 +489,90 @@ section:not(:first-of-type) {
         text-align: center;
     }
 
-    .skills{
+    .skills, .grid-container{
         grid-template-columns: 1fr;
     }
+
     footer {
           flex-direction: column;
         }
+
+        #hero h1{
+            font-size: 3rem;
+        }
+        #hero p{
+            font-size: 1.5rem;
+        }
     
+}
+#hamburger{
+    display: none;
 }
 
 @media screen and (max-width: 1040px){
+
+    #nav-panel {
+        position: fixed;
+        left: 125%;
+        top: 8rem;
+        transition: 0.3s ease-in-out;
+        z-index: 99;
+        background-color: rgba(255,255,255,0.8);
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        text-align: center;
+        flex-direction: column;
+        border-radius: 1rem;
+        box-shadow:rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        backdrop-filter: blur(5px);
+      }
+
+      #nav-panel a{
+        background-color: var(--clr-primary-a30);
+        padding: 1rem;
+        color: white;
+        border-radius: 1rem;
+      }
+      #nav-panel::before {
+        content: "Ethan Cornwill";
+      }
+    
+      #nav-panel.active {
+        left: 70%;
+      }
+    
+      #hamburger.active {
+        transform: rotate(90deg);
+      }
+    
+      #hamburger {
+        background-color: var(--clr-primary-a0);
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        position: fixed;
+        padding: 0.5rem;
+        left: 85%;
+        top: 1rem;
+        display: block;
+        cursor: pointer;
+        z-index: 99;
+        border-radius: 50%;
+        transition: all 0.3s ease-in-out;
+      }
+
+
     .skills{
         grid-template-columns: 1fr 1fr;
     }
+    .grid-container{
+        grid-template-columns: 1fr;
+    }
 }
 @media (min-width: 1000px){
-    .grid-container {
-        flex-direction: row;
+    .timeline-container h2{
+        text-align: right;
+        align-self: center;
     }
 }

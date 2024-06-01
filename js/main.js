@@ -1,5 +1,6 @@
 let section = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('nav a');
+const hamburger = document.querySelector('#hamburger');
 
 window.onscroll = function() {
         section.forEach(sec => {
@@ -15,3 +16,15 @@ window.onscroll = function() {
             });}
     })
 };
+
+function toggleNav () {
+    
+    const navMenu = document.querySelector('#nav-panel')
+    // hamburger.classList.toggle('active')
+    navMenu.classList.toggle('active')
+  }
+
+//   function navInit() {
+//     hamburger.addEventListener('click', toggleNav)
+//   }
+//   navInit()
