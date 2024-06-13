@@ -1,0 +1,27 @@
+.grid-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.grid-container .box {
+  justify-content: space-around;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.no-underline {
+  background-size: 0px !important;
+}
+
+.bounce {
+  animation: bounce 1.5s infinite ease-in-out;
+}
