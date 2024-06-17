@@ -23,9 +23,9 @@
   font-size: 5rem;
 }
 
-#hero p {
-  font-size: 2em;
+#hero h2 {
   margin-left: 1rem;
+  text-align: center;
 }
 
 #hero a {
@@ -52,8 +52,8 @@
   border-right: 0.15em solid var(--clr-primary-a0); /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.02em; /* Adjust as needed */
-  animation: typing 1.5s steps(11, end), blink-caret 0.75s step-end infinite;
+  letter-spacing: 0.03em; /* Adjust as needed */
+  animation: typing 1.5s steps(11, end), blink-caret 1.5s ease-out infinite;
 }
 
 /* The typing effect */

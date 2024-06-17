@@ -7,11 +7,14 @@
 
 
 @layer main {
+    .school, .company{
+        max-width: 50dvw;
+    }
     #hamburger{
         display:none !important;
     }
     #aboutme {
-        background-color: var(--clr-neutral-a40);
+        background-color: var(--clr-primary-a40);
       }
       #aboutme h1 {
         color: var(--clr-neutral-a0);
@@ -81,7 +84,7 @@
         background-color: var(--clr-neutral-a0);
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
         padding: 1rem;
-        border-radius: 1rem;
+        border-radius: .5rem;
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 1rem;
@@ -97,11 +100,22 @@
         background-color: var(--clr-accent-a30);
         padding-bottom: 1rem;
       }
-      .skills {
+      .skills, .plang {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
         margin: 1rem;
+      }
+
+      #skills{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: var(--clr-accent-a20);
+        padding-bottom: 2rem;
+      }
+      #skills h1{
+        color: white;
       }
       
       #projects {
@@ -120,6 +134,9 @@
         gap: 4rem;
         width: 100%;
       }
+      .plang{
+        grid-template-columns: repeat(6, 1fr);
+    }
       
       @media screen and (max-width: 768px) {
         .timeline-container {
@@ -146,6 +163,9 @@
         }
         .grid-container {
           grid-template-columns: 1fr;
+        }
+        .plang{
+            grid-template-columns: repeat(3, 1fr);
         }
       }
       @media (min-width: 1000px) {

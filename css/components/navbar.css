@@ -3,6 +3,8 @@
     gap: 2rem;
     justify-content: center;
     align-items: center;
+    font-family: "Bricolage Grotesque", "Google Sans", "Roboto", "Helvetica Neue",
+    sans-serif;
 }
 
 #hamburger {
@@ -27,6 +29,7 @@ nav{
     display: inline-block;
     padding: 8px 16px;
     border-radius: 4px;
+
 }
 
 @media screen and (max-width: 1040px) {
