@@ -1,6 +1,6 @@
 import React from 'react';
-import TimelineItem from './professional-experience/TimelineItem';
-import experiences from '../data/experience.json';
+import TimelineItem from '../professional-experience/TimelineItem';
+import experiences from '../../data/experience.json';
 
 function ProfessionalExperience() {
   return (

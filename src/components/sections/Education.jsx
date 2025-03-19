@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import EducationItem from './education/EducationItem';
-import { fetchData } from '../utils/dataFetcher';
+import EducationItem from '../education/EducationItem';
+import { fetchData } from '../../utils/dataFetcher';
 
 function Education() {
   const [educationItems, setEducationItems] = useState([]);

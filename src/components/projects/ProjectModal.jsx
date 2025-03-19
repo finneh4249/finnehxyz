@@ -17,8 +17,12 @@ function ProjectModal({ project, isOpen, onClose }) {
     features = [],
     githubUrl = '',
     liveDemoUrl = '',
-    longDescription = ''
+    longDescription = '',
+    detailedDescription = ''
   } = safeProject;
+
+  // Use detailed description if available, otherwise fall back to regular description
+  const displayDescription = detailedDescription || longDescription || description;
 
   return (
     <AnimatePresence>
@@ -39,6 +43,7 @@ function ProjectModal({ project, isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={onClose}
           >
             <motion.div
               className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
@@ -89,7 +94,7 @@ function ProjectModal({ project, isOpen, onClose }) {
                   </div>
                 )}
                 
-                <p className="text-gray-700 dark:text-gray-300 mb-8">{longDescription || description}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-8">{displayDescription}</p>
                 
                 {/* Project features */}
                 {features && features.length > 0 && (

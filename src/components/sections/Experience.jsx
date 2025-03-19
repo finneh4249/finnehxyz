@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../utils/dataFetcher';
-import ExperienceItem from './experience/ExperienceItem'; // Assuming this exists like EducationItem
+import { fetchData } from '../../utils/dataFetcher';
+
+import TimelineItem from '../professional-experience/TimelineItem';
 
 function Experience() {
   const [experienceItems, setExperienceItems] = useState([]);
@@ -44,7 +45,7 @@ function Experience() {
           <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/80 via-blue-500/60 to-primary/30 -translate-x-1/2 rounded-full"></div>
           
           {experienceItems.map((item, index) => (
-            <ExperienceItem
+            <TimelineItem
               key={index}
               position={item.position}
               company={item.company}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import TypingEffect from './TypingEffect';
+import TypingEffect from '../TypingEffect';
 
 function Hero() {
   const heroRef = useRef(null);

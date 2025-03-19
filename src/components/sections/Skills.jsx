@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ToolCard from './skills/ToolCard';
-import SkillCard from './skills/SkillCard';
-import SearchFilter from './ui/SearchFilter';
-import { fetchData } from '../utils/dataFetcher';
+import ToolCard from '../skills/ToolCard';
+import SkillCard from '../skills/SkillCard';
+import SearchFilter from '../ui/SearchFilter';
+import { fetchData } from '../../utils/dataFetcher';
 
 // Category filter component with animations
 const CategoryFilters = ({ categories, activeCategory, onCategoryChange }) => (

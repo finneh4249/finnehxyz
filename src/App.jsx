@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import AboutMe from './components/AboutMe';
+import Hero from './components/sections/Hero.jsx';
+import AboutMe from './components/sections/AboutMe.jsx';
 import DarkModeListener from './components/DarkModeListener';
 import Footer from './components/Footer';
 import OptimizedImage from './components/OptimizedImage';
@@ -11,10 +11,11 @@ import LazyLoad from './components/LazyLoad';
 import { preloadAllData } from './utils/DataPreloader';
 import Analytics from './components/Analytics';
 import { getSectionMeta, getStructuredData } from './utils/seo';
-import Testimonials from './components/Testimonials';
+import Testimonials from './components/sections/Testimonials.jsx';
 import ErrorBoundary from './components/ErrorBoundary';
 import BackToTop from './components/ui/BackToTop';
-import Contact from './components/Contact.jsx'; // Make sure to include the file extension
+import Contact from './components/sections/Contact.jsx'; // Make sure to include the file extension
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Core components that are not lazy loaded for immediate display
 const MemoizedComponent = memo(({ children }) => children);
@@ -72,7 +73,7 @@ function App() {
 
   return (
     <ErrorBoundary componentName="Application Root">
-      <DarkModeListener>
+      <ThemeProvider>
         <ImageOptimizationProvider>
           <Helmet>
             <title>{seoMeta.title}</title>
@@ -108,7 +109,7 @@ function App() {
           {/* Optimized lazy loaded components with progressive loading */}
           <ErrorBoundary componentName="Professional Experience Section">
             <LazyLoad 
-              importPath="components/ProfessionalExperience"
+              importPath="components/sections/ProfessionalExperience"
               componentName="Professional Experience" 
               rootMargin="300px"
             />
@@ -116,7 +117,7 @@ function App() {
           
           <ErrorBoundary componentName="Education Section">
             <LazyLoad 
-              importPath="components/Education"
+              importPath="components/sections/Education"
               componentName="Education" 
               rootMargin="400px"
             />
@@ -124,7 +125,7 @@ function App() {
           
           <ErrorBoundary componentName="Skills Section">
             <LazyLoad 
-              importPath="components/Skills"
+              importPath="components/sections/Skills"
               componentName="Skills" 
               rootMargin="500px"
             />
@@ -132,7 +133,7 @@ function App() {
           
           <ErrorBoundary componentName="Projects Section">
             <LazyLoad 
-              importPath="components/Projects"
+              importPath="components/sections/Projects"
               componentName="Projects" 
               rootMargin="600px"
             />
@@ -147,7 +148,7 @@ function App() {
           
           <ErrorBoundary componentName="Contact Section">
             <LazyLoad 
-              importPath="components/Contact"
+              importPath="components/sections/Contact"
               componentName="Contact" 
               rootMargin="700px"
             />
@@ -160,7 +161,7 @@ function App() {
           </ErrorBoundary>
           <BackToTop />
         </ImageOptimizationProvider>
-      </DarkModeListener>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

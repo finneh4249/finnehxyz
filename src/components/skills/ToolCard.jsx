@@ -4,8 +4,11 @@ import { motion } from 'framer-motion';
 const ToolCard = memo(({ icon, name, color, proficiency, description, category }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [backHeight, setBackHeight] = useState(0);
+  const [frontHeight, setFrontHeight] = useState(120); // Default height
+  const [cardHeight, setCardHeight] = useState(120);
   const frontRef = useRef(null);
   const backRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
   
   // Process category to lowercase for CSS class compatibility
   const categoryClass = category ? category.toLowerCase() : '';
@@ -64,28 +67,64 @@ const ToolCard = memo(({ icon, name, color, proficiency, description, category }
     return "bg-orange-400";
   };
   
-  // Measure back content height
+  // Measure and set both front and back content heights on mount
   useEffect(() => {
     if (backRef.current && frontRef.current) {
-      const backContentHeight = backRef.current.scrollHeight;
+      // Get heights of front and back content plus padding
+      const backContentHeight = backRef.current.scrollHeight + 20; // Add extra padding
       const frontContentHeight = frontRef.current.scrollHeight;
-      // Add extra padding (10px) to ensure text doesn't get cut off
-      setBackHeight(Math.max(backContentHeight, frontContentHeight) + 10);
+      
+      // Set initial heights
+      setFrontHeight(frontContentHeight);
+      setBackHeight(Math.max(backContentHeight, frontContentHeight));
+      setCardHeight(frontContentHeight);
     }
   }, [description]);
+
+  // Handle mouse enter with immediate response
+  const handleMouseEnter = () => {
+    // Clear any pending timeouts to prevent conflicts
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    
+    setIsHovered(true);
+    setCardHeight(backHeight);
+  };
+  
+  // Handle mouse leave with slight delay to prevent jitter
+  const handleMouseLeave = () => {
+    // Add a small delay before collapsing to prevent jitter
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsHovered(false);
+      setCardHeight(frontHeight);
+    }, 50);
+  };
+  
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
   
   return (
     <div className="group perspective-card">
       <div 
         className={`relative w-full transition-all duration-300 cursor-pointer ${categoryClass ? `tool-card ${categoryClass}` : ''}`}
         style={{ 
-          height: isHovered && backHeight > 0 ? `${backHeight}px` : '120px',
-          transformStyle: 'preserve-3d' 
+          height: `${cardHeight}px`,
+          transformStyle: 'preserve-3d',
+          transitionProperty: 'height, transform',
+          transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
         }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onFocus={() => setIsHovered(true)}
-        onBlur={() => setIsHovered(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleMouseEnter}
+        onBlur={handleMouseLeave}
         tabIndex={0}
         aria-label={`View ${name} details`}
       >
@@ -160,6 +199,15 @@ const ToolCard = memo(({ icon, name, color, proficiency, description, category }
       <style jsx>{`
         .dark .tool-icon {
           color: var(--icon-color-dark, var(--icon-color));
+        }
+        
+        .perspective-card {
+          perspective: 1000px;
+        }
+        
+        .backface-hidden {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
       `}</style>
     </div>

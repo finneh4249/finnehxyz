@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fetchData } from '../utils/dataFetcher';
+import { fetchData } from '../../utils/dataFetcher';
 
 function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);

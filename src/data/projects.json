@@ -7,6 +7,7 @@
     "githubUrl": "https://github.com/finneh4249/pokerbo",
     "liveDemoUrl": "https://finneh.xyz/pokerbo",
     "featured": true,
+    "date": 1708243200000,
     "technologies": ["JavaScript", "HTML5", "CSS3"],
     "tags": [{"name": "JavaScript", "badgeClass": "badge-primary"}]
   },
@@ -18,6 +19,7 @@
     "githubUrl": "https://github.com/cityloopers/CityLoopersMC",
     "liveDemoUrl": "https://cityloopers.com",
     "featured": false,
+    "date": 1709683200000,
     "technologies": ["Java", "Spigot", "Discord.js"],
     "tags": [{"name": "Minecraft", "badgeClass": "badge-secondary"}]
   },
@@ -26,6 +28,7 @@
     "description": "A custom and modular discord bot framework build on Discord.JS v13.",
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
     "githubUrl": "https://github.com/CityLoopers/Aometry",
+    "date": 1625270400000,
     "tags": [{"name": "Discord.js", "badgeClass": "badge-accent"}]
   },
   {
@@ -33,6 +36,7 @@
     "description": "A terminal application that allows users to view and track Formula 1 race results. It interacts with an SQLite database to store and retrieve data.",
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/F1-Results-Tracker",
     "githubUrl": "https://github.com/finneh4249/F1-Results-Tracker",
+    "date": 1720396800000,
     "tags": [{"name": "Python", "badgeClass": "badge-info"}, {"name": "SQLite", "badgeClass": "badge-success"}]
   },
   {
@@ -40,6 +44,7 @@
     "description": "A modern weather application that provides real-time weather updates and forecasts with features like current conditions, hourly forecasts, and location search.",
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/hackathon",
     "githubUrl": "https://github.com/finneh4249/hackathon",
+    "date": 1734124800000,
     "tags": [{"name": "Weather App", "badgeClass": "badge-primary"}, {"name": "Team Project", "badgeClass": "badge-secondary"}]
   },
   {
@@ -47,6 +52,7 @@
     "description": "An educational project recreating the NP# POS system used by McDonald's Australia, built with HTML, CSS, and JavaScript for learning purposes.",
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/OpenNewPOS6",
     "githubUrl": "https://github.com/finneh4249/OpenNewPOS6",
+    "date": 1732320000000,
     "tags": [{"name": "HTML/CSS", "badgeClass": "badge-warning"}, {"name": "JavaScript", "badgeClass": "badge-primary"}]
   },
   {
@@ -54,13 +60,25 @@
     "description": "A full-stack solution for a smoothie & açaí shop, designed to enhance the online ordering experience for health-conscious customers.",
     "image": "https://repository-images.githubusercontent.com/640027341/cdd6e617-a936-47d3-bc91-14cc88c9d20b",
     "githubUrl": "https://github.com/merry-berry-acai",
-    "tags": [{"name": "Full-stack", "badgeClass": "badge-accent"}, {"name": "E-commerce", "badgeClass": "badge-info"}]
+    "date": 1739664000000,
+    "tags": [{"name": "Full-stack", "badgeClass": "badge-accent"}, {"name": "E-commerce", "badgeClass": "badge-info"}, {"name": "Team Project", "badgeClass": "badge-secondary"}]
   },
   {
     "title": "MunchRun",
     "description": "A food delivery platform for Melbourne with zero commission for restaurants, fair compensation for drivers, and transparent pricing for customers.",
     "image": "https://repository-images.githubusercontent.com/627035887/ba268172-7344-41f1-b4b0-9e8f0705208d",
     "githubUrl": "https://github.com/munchrun-app",
-    "tags": [{"name": "App Development", "badgeClass": "badge-secondary"}, {"name": "Food Delivery", "badgeClass": "badge-success"}]
+    "date": 1586822400000,
+    "tags": [{"name": "App Development", "badgeClass": "badge-secondary"}, {"name": "Food Delivery", "badgeClass": "badge-success"}, {"name": "Team Project", "badgeClass": "badge-secondary"}]
+  },
+  {
+    "title": "EdgeBrowser",
+    "description": "A custom web browser built with Visual Basic in 2012, showcasing my early programming experience with Windows desktop applications",
+    "detailedDescription": "EdgeBrowser was one of my first significant programming projects, created in 2012 when I went by the username 'Edge' (long before Microsoft's browser of the same name). Built using Visual Basic and Windows Forms, this application demonstrates my early interest in desktop application development and user interface design. Though simple by today's standards, it implemented core browsing functionality, navigation controls, and bookmark management. This project holds special significance in my portfolio as it marks the beginning of my programming journey over a decade ago. I plan to revisit this concept with modern technologies to implement features like tabbed browsing, enhanced security, and a more refined UI experience.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/FinnehPleh/EdgeBrowser",
+    "githubUrl": "https://github.com/FinnehPleh/EdgeBrowser",
+    "date": 1345766400000,
+    "technologies": ["Visual Basic", "Windows Forms", ".NET Framework"],
+    "tags": [{"name": "Visual Basic", "badgeClass": "badge-warning"}, {"name": "Legacy", "badgeClass": "badge-neutral"}, {"name": "Desktop App", "badgeClass": "badge-info"}]
   }
 ]
