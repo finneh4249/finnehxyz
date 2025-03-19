@@ -69,7 +69,7 @@ function Hero() {
           <div className="avatar relative transform transition-all duration-500 hover:scale-105 hover:rotate-3">
             <div className="w-48 h-48 md:w-64 md:h-64 rounded-full ring ring-primary ring-offset-4 ring-offset-base-100 mx-auto shadow-xl overflow-hidden">
               <img
-                src="images/me.JPEG"
+                src="images/me.jpeg"
                 alt="Ethan Cornwill"
                 className="object-cover w-full h-full"
                 loading="eager" // Prioritize image loading
