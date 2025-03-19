@@ -14,6 +14,7 @@ import { getSectionMeta, getStructuredData } from './utils/seo';
 import Testimonials from './components/Testimonials';
 import ErrorBoundary from './components/ErrorBoundary';
 import BackToTop from './components/ui/BackToTop';
+import Contact from './components/Contact.jsx'; // Make sure to include the file extension
 
 // Core components that are not lazy loaded for immediate display
 const MemoizedComponent = memo(({ children }) => children);
@@ -109,9 +110,6 @@ function App() {
             <LazyLoad 
               importPath="components/ProfessionalExperience"
               componentName="Professional Experience" 
-              preloadData={true}
-              dataKey="experience"
-              dataPath="experience.json"
               rootMargin="300px"
             />
           </ErrorBoundary>
@@ -120,9 +118,6 @@ function App() {
             <LazyLoad 
               importPath="components/Education"
               componentName="Education" 
-              preloadData={true}
-              dataKey="education"
-              dataPath="education.json"
               rootMargin="400px"
             />
           </ErrorBoundary>
@@ -131,9 +126,6 @@ function App() {
             <LazyLoad 
               importPath="components/Skills"
               componentName="Skills" 
-              preloadData={true}
-              dataKey="skills"
-              dataPath="skills.json"
               rootMargin="500px"
             />
           </ErrorBoundary>
@@ -142,9 +134,6 @@ function App() {
             <LazyLoad 
               importPath="components/Projects"
               componentName="Projects" 
-              preloadData={true}
-              dataKey="projects"
-              dataPath="projects.json"
               rootMargin="600px"
             />
           </ErrorBoundary>
