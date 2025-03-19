@@ -109,7 +109,7 @@ function App() {
           {/* Optimized lazy loaded components with progressive loading */}
           <ErrorBoundary componentName="Professional Experience Section">
             <LazyLoad 
-              importPath="components/sections/ProfessionalExperience"
+              componentKey="ProfessionalExperience"
               componentName="Professional Experience" 
               rootMargin="300px"
             />
@@ -117,7 +117,7 @@ function App() {
           
           <ErrorBoundary componentName="Education Section">
             <LazyLoad 
-              importPath="components/sections/Education"
+              componentKey="Education"
               componentName="Education" 
               rootMargin="400px"
             />
@@ -125,7 +125,7 @@ function App() {
           
           <ErrorBoundary componentName="Skills Section">
             <LazyLoad 
-              importPath="components/sections/Skills"
+              componentKey="Skills"
               componentName="Skills" 
               rootMargin="500px"
             />
@@ -133,7 +133,7 @@ function App() {
           
           <ErrorBoundary componentName="Projects Section">
             <LazyLoad 
-              importPath="components/sections/Projects"
+              componentKey="Projects"
               componentName="Projects" 
               rootMargin="600px"
             />
@@ -148,7 +148,7 @@ function App() {
           
           <ErrorBoundary componentName="Contact Section">
             <LazyLoad 
-              importPath="components/sections/Contact"
+              componentKey="Contact"
               componentName="Contact" 
               rootMargin="700px"
             />

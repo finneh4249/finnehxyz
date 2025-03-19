@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useRef, memo } from 'react';
+import React, { Suspense, lazy, memo } from 'react';
 
 // Enhanced loading spinner with progress indication
 const EnhancedLoading = memo(({ componentName }) => (
@@ -9,74 +9,30 @@ const EnhancedLoading = memo(({ componentName }) => (
 ));
 
 /**
- * Optimized lazy loading component with viewport detection
- * @param {string} importPath - Path to component to lazy load
- * @param {string} componentName - Name of component (for loading state)
- * @param {number} threshold - Viewport intersection threshold (0-1)
- * @param {number} rootMargin - Additional margin around viewport
+ * Simplified lazy loading component
+ * Instead of dynamic path construction, this uses component mapping
+ * @param {string} componentKey - The key of the component to load
+ * @param {string} componentName - Display name for loading state
  */
-const LazyLoad = ({ 
-  importPath, 
-  componentName, 
-  threshold = 0.1, 
-  rootMargin = '200px',
-  preloadData = false,
-  dataKey = null, 
-  dataPath = null,
-  ...props 
-}) => {
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const containerRef = useRef(null);
+const LazyLoad = ({ componentKey, componentName, ...props }) => {
+  // Define a mapping of component keys to lazy-loaded components
+  const componentMap = {
+    // Add your components here
+    Projects: lazy(() => import('../components/sections/Projects')),
+    ProfessionalExperience: lazy(() => import('../components/sections/ProfessionalExperience')),
+    Education: lazy(() => import('../components/sections/Education')),
+    Skills: lazy(() => import('../components/sections/Skills')),
+    Contact: lazy(() => import('../components/sections/Contact')),
+  };
 
-  // Use dynamic import with webpack chunk naming
-  const Component = lazy(() => {
-    // If preloading data is enabled, preload the data first
-    if (preloadData && dataKey && dataPath) {
-      return import(/* webpackPreload: true */ '../utils/DataPreloader')
-        .then(module => module.preloadData(dataKey, dataPath))
-        .then(() => import(/* webpackChunkName: "[request]" */ `../${importPath}`));
-    }
-    return import(/* webpackChunkName: "[request]" */ `../${importPath}`);
-  });
-
-  useEffect(() => {
-    // If IntersectionObserver is available, use it for better performance
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setShouldLoad(true);
-            observer.disconnect();
-          }
-        },
-        {
-          rootMargin,
-          threshold
-        }
-      );
-      
-      if (containerRef.current) {
-        observer.observe(containerRef.current);
-      }
-      
-      return () => observer.disconnect();
-    } else {
-      // Fallback for browsers without IntersectionObserver
-      setShouldLoad(true);
-    }
-  }, [rootMargin, threshold]);
+  // Get the requested component or use a fallback
+  const Component = componentMap[componentKey] || (() => <div>Component not found</div>);
 
   return (
-    <div ref={containerRef} className="lazy-load-container">
-      {shouldLoad ? (
-        <Suspense fallback={<EnhancedLoading componentName={componentName} />}>
-          <Component {...props} />
-        </Suspense>
-      ) : (
-        <div className="min-h-[200px] flex items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-primary/30 border-t-primary animate-spin"></div>
-        </div>
-      )}
+    <div className="lazy-load-container">
+      <Suspense fallback={<EnhancedLoading componentName={componentName} />}>
+        <Component {...props} />
+      </Suspense>
     </div>
   );
 };
