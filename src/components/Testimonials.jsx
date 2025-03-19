@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { trackEvent } from './Analytics';
 import SocialShareButtons from './SocialShareButtons';
+import OptimizedImage from './OptimizedImage';
 
 // Sample testimonial data - replace with actual data
 const testimonialData = [
@@ -211,15 +212,14 @@ const TestimonialCard = ({ data, isActive }) => {
           <div className="flex-shrink-0">
             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-blue-500">
               {data.image ? (
-                <img 
+                <OptimizedImage 
                   src={data.image} 
                   alt={data.name} 
                   className="w-full h-full object-cover"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/150?text=' + encodeURIComponent(data.name.charAt(0));
-                  }}
+                  width={64}
+                  height={64}
+                  placeholderSrc="/images/testimonial-placeholder.jpg"
+                  srcSets={[48, 96, 128]}
                 />
               ) : (
                 <div className="w-full h-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-xl font-bold text-blue-600 dark:text-blue-300">
