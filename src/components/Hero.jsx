@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import AnimatedTechCube from './AnimatedTechCube';
 import TypingEffect from './TypingEffect';
 
 function Hero() {
