@@ -5,16 +5,391 @@
     <link rel="icon" type="image/svg+xml" href="/images/me.JPEG" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ethan Cornwill | Web Developer & Team Leader</title>
-<meta name="description" content="Professional portfolio of Ethan Cornwill, a web developer with management experience building user-focused digital solutions." />
+    <meta name="description" content="Professional portfolio of Ethan Cornwill, a web developer with management experience building user-focused digital solutions." />
     <meta name="keywords" content="Ethan Cornwill, web developer, portfolio, team leader, digital solutions, user-focused design" />
     <meta name="author" content="Ethan Cornwill" />
     <meta property="og:title" content="Ethan Cornwill | Web Developer & Team Leader" />
     <meta property="og:description" content="Professional portfolio of Ethan Cornwill, a web developer with management experience building user-focused digital solutions." />
     <meta property="og:image" content="/images/me.JPEG" />
     <meta property="og:url" content="https://finneh.xyz" />
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      
+      .site-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+      }
+      
+      /* Both sites take up the full width and height */
+      .site-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      
+      /* Old site is on bottom layer */
+      .site-old {
+        z-index: 1;
+      }
+      
+      /* New site is on top layer, but will be clipped */
+      .site-new {
+        z-index: 2;
+        /* Initially show the right half of the screen */
+        clip-path: inset(0 0 0 50%);
+      }
+      
+      /* Slider divider */
+      .slider-divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 10px;
+        background-color: #0078d7;
+        cursor: ew-resize;
+        z-index: 10; /* Above both sites */
+        left: 50%; /* Start at 50% */
+        transform: translateX(-5px); /* Center the divider */
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        transition: background-color 0.2s;
+      }
+      
+      .slider-handle {
+        position: absolute;
+        height: 80px;
+        width: 80px;
+        background-color: #0078d7;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: ew-resize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        transition: transform 0.2s;
+        z-index: 20;
+      }
+      
+      .slider-handle:hover,
+      .slider-divider.active .slider-handle {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+      
+      .slider-handle::before,
+      .slider-handle::after {
+        content: '';
+        position: absolute;
+        height: 25px;
+        width: 4px;
+        background-color: white;
+      }
+      
+      .slider-handle::before {
+        transform: translateX(-8px) rotate(30deg);
+      }
+      
+      .slider-handle::after {
+        transform: translateX(8px) rotate(-30deg);
+      }
+      
+      .site-label {
+        position: absolute;
+        top: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        pointer-events: none;
+      }
+      
+      .old-label {
+        left: 20px;
+        z-index: 3;
+      }
+      
+      .new-label {
+        right: 20px;
+        z-index: 3;
+      }
+      
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: white;
+        pointer-events: auto; /* Explicitly enable pointer events */
+      }
+      
+      .instructions {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 100;
+        text-align: center;
+        pointer-events: none;
+        opacity: 0.8;
+        transition: opacity 0.5s ease;
+      }
+      
+      .instructions.hide {
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="site-container">
+      <!-- Old site (bottom layer, always fully visible) -->
+      <div class="site-panel site-old">
+        <iframe id="old-site-frame" src="./old-site.html"></iframe>
+      </div>
+      
+      <!-- New site (top layer, clipped to show only right portion) -->
+      <div class="site-panel site-new">
+        <div id="root"></div>
+      </div>
+      
+      <!-- Draggable divider -->
+      <div class="slider-divider" id="slider-divider">
+        <div class="slider-handle"></div>
+      </div>
+      
+      <!-- Site labels -->
+      <div class="site-label old-label">Old Site</div>
+      <div class="site-label new-label">New Site</div>
+      
+      <!-- Instructions overlay -->
+      <div class="instructions" id="instructions">
+        Drag the slider to compare old and new sites
+      </div>
+    </div>
+    
     <script type="module" src="/src/main.jsx"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get elements
+        const container = document.querySelector('.site-container');
+        const divider = document.getElementById('slider-divider');
+        const oldSite = document.querySelector('.site-old');
+        const newSite = document.querySelector('.site-new');
+        const oldSiteFrame = document.getElementById('old-site-frame');
+        const instructions = document.getElementById('instructions');
+        
+        // Variables
+        let isDragging = false;
+        let hasInteracted = false;
+        let isScrollingSynced = false;
+        
+        // Initialize position to 50%
+        updatePosition(0.5);
+        
+        // Update position and clip-path
+        function updatePosition(position) {
+          // Constrain position
+          position = Math.max(0.05, Math.min(0.95, position));
+          
+          // Update divider position
+          divider.style.left = `${position * 100}%`;
+          
+          // Update clip-path to reveal the new site only on the right portion
+          newSite.style.clipPath = `inset(0 0 0 ${position * 100}%)`;
+          
+          // Hide instructions after first interaction
+          if (!hasInteracted) {
+            hasInteracted = true;
+            setTimeout(() => instructions.classList.add('hide'), 1000);
+          }
+        }
+        
+        // Improved start dragging - track the initiator for better event handling
+        function startDragging(e) {
+          isDragging = true;
+          divider.classList.add('active');
+          document.body.style.cursor = 'ew-resize';
+          document.body.style.userSelect = 'none';
+          
+          // Immediately update position to pointer location for better UX
+          const containerRect = container.getBoundingClientRect();
+          const pageX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+          const position = (pageX - containerRect.left) / containerRect.width;
+          updatePosition(position);
+          
+          if (e.cancelable) e.preventDefault();
+        }
+        
+        // Handle dragging - now much simpler and more direct
+        function handleDragging(e) {
+          if (!isDragging) return;
+          
+          const containerRect = container.getBoundingClientRect();
+          const pageX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+          
+          // Direct position calculation
+          const position = (pageX - containerRect.left) / containerRect.width;
+          updatePosition(position);
+          
+          // Prevent default to avoid unwanted behaviors
+          if (e.cancelable) e.preventDefault();
+        }
+        
+        // Stop dragging
+        function stopDragging() {
+          if (!isDragging) return;
+          isDragging = false;
+          divider.classList.remove('active');
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+        }
+        
+        // Improved scroll synchronization using requestAnimationFrame for smoother performance
+        let scrollSyncAnimationFrame = null;
+        
+        function syncScroll(source, target) {
+          // Cancel any pending sync to prevent multiple syncs running
+          if (scrollSyncAnimationFrame) {
+            cancelAnimationFrame(scrollSyncAnimationFrame);
+          }
+          
+          if (isScrollingSynced) return;
+          isScrollingSynced = true;
+          
+          // Use requestAnimationFrame for smoother sync
+          scrollSyncAnimationFrame = requestAnimationFrame(() => {
+            // Get current scroll positions
+            const sourceTop = source.scrollTop;
+            const sourceLeft = source.scrollLeft;
+            
+            // Calculate percentage position rather than absolute position
+            const sourceHeight = source.scrollHeight - source.clientHeight;
+            const targetHeight = target.scrollHeight - target.clientHeight;
+            
+            // Apply percentage-based scrolling for better handling of different content heights
+            if (sourceHeight > 0 && targetHeight > 0) {
+              const scrollPercentage = sourceTop / sourceHeight;
+              target.scrollTop = scrollPercentage * targetHeight;
+            } else {
+              target.scrollTop = sourceTop;
+            }
+            
+            target.scrollLeft = sourceLeft;
+            
+            // Reset sync flag after a short delay
+            setTimeout(() => {
+              isScrollingSynced = false;
+            }, 100); // Longer delay to prevent rapid oscillation
+          });
+        }
+        
+        // Event listeners for mouse interactions - now assigned to document for better coverage
+        divider.addEventListener('mousedown', startDragging);
+        document.addEventListener('mousemove', handleDragging); // Listen on entire document
+        document.addEventListener('mouseup', stopDragging);
+        document.addEventListener('mouseleave', stopDragging);
+        
+        // Touch events
+        divider.addEventListener('touchstart', startDragging, { passive: false });
+        document.addEventListener('touchmove', handleDragging, { passive: false });
+        document.addEventListener('touchend', stopDragging);
+        document.addEventListener('touchcancel', stopDragging);
+        
+        // Enhanced scroll sync for React site
+        newSite.addEventListener('scroll', function() {
+          syncScroll(newSite, oldSite);
+        });
+        
+        // Set up synchronization for iframe
+        oldSiteFrame.addEventListener('load', function() {
+          try {
+            const iframeDoc = oldSiteFrame.contentDocument || oldSiteFrame.contentWindow.document;
+            
+            // Add robust event listener to the iframe
+            if (iframeDoc) {
+              // Initial sync
+              setTimeout(() => syncScroll(newSite, oldSite), 500);
+              
+              // Add scroll listener to iframe document
+              iframeDoc.addEventListener('scroll', function() {
+                syncScroll(oldSite, newSite);
+              });
+              
+              // Alternative approach: listen to the iframe window's scroll event
+              oldSiteFrame.contentWindow.addEventListener('scroll', function() {
+                syncScroll(oldSite, newSite);
+              });
+              
+              // Also watch for wheel events to catch scrolling that might not trigger scroll events
+              iframeDoc.addEventListener('wheel', function() {
+                requestAnimationFrame(() => {
+                  syncScroll(oldSite, newSite);
+                });
+              });
+            }
+            
+            // Sync iframe directly with parent
+            oldSite.addEventListener('scroll', function() {
+              // When old site scrolls, sync to the new site
+              syncScroll(oldSite, newSite);
+              
+              // Also sync the iframe's scroll position directly
+              if (iframeDoc && iframeDoc.documentElement) {
+                iframeDoc.documentElement.scrollTop = oldSite.scrollTop;
+              }
+            });
+          } catch (e) {
+            console.warn('Cannot access iframe content for scroll sync:', e);
+            
+            // Fallback: just listen to the oldSite container's scroll
+            oldSite.addEventListener('scroll', function() {
+              syncScroll(oldSite, newSite);
+            });
+          }
+        });
+        
+        // Resize observer to handle content size changes
+        const resizeObserver = new ResizeObserver(() => {
+          // Resync scroll positions after resize
+          syncScroll(newSite, oldSite);
+        });
+        
+        resizeObserver.observe(newSite);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          const STEP = 0.02; // 2% step
+          let currentPos = parseFloat(divider.style.left) / 100 || 0.5;
+          
+          if (e.key === 'ArrowLeft') {
+            updatePosition(currentPos - STEP);
+            e.preventDefault();
+          } else if (e.key === 'ArrowRight') {
+            updatePosition(currentPos + STEP);
+            e.preventDefault();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
