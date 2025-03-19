@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import EducationItem from './education/EducationItem';
-import { getData } from '../utils/DataPreloader';
+import { fetchData } from '../utils/dataFetcher';
 
 function Education() {
   const [educationItems, setEducationItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getData('education', 'education.json')
-      .then(data => {
-        setEducationItems(data);
+    async function loadEducation() {
+      try {
+        const data = await fetchData('/data/education.json');
+        if (data) {
+          setEducationItems(data);
+        } else {
+          throw new Error('Failed to load education data');
+        }
+      } catch (err) {
+        console.error("Failed to load education data:", err);
+        throw err; // Propagate to ErrorBoundary
+      } finally {
         setLoading(false);
-      })
-      .catch(error => {
-        console.error("Failed to load education data:", error);
-        setLoading(false);
-      });
+      }
+    }
+    
+    loadEducation();
   }, []);
 
   if (loading) {
