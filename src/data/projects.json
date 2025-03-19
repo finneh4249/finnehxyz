@@ -1,0 +1,66 @@
+[
+  {
+    "title": "PokerBo",
+    "description": "A casino card game that is a mix of Poker and Sicbo, created with Javascript",
+    "detailedDescription": "PokerBo combines elements of traditional poker with the dice game Sicbo, creating a unique gambling experience. The game features a custom-built user interface and betting system, all implemented in vanilla JavaScript.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/Finneh4249/PokerBo",
+    "githubUrl": "https://github.com/finneh4249/pokerbo",
+    "liveDemoUrl": "https://finneh.xyz/pokerbo",
+    "featured": true,
+    "technologies": ["JavaScript", "HTML5", "CSS3"],
+    "tags": [{"name": "JavaScript", "badgeClass": "badge-primary"}]
+  },
+  {
+    "title": "City Loopers",
+    "description": "A Greylisted City build Minecraft server and Discord Community administrated by me",
+    "detailedDescription": "City Loopers is a community-driven Minecraft server focused on urban city building. It features custom plugins, an active Discord community, and dedicated server management. I handle technical administration and community moderation.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/CityLoopersMC",
+    "githubUrl": "https://github.com/cityloopers/CityLoopersMC",
+    "liveDemoUrl": "https://cityloopers.com",
+    "featured": false,
+    "technologies": ["Java", "Spigot", "Discord.js"],
+    "tags": [{"name": "Minecraft", "badgeClass": "badge-secondary"}]
+  },
+  {
+    "title": "Aometry",
+    "description": "A custom and modular discord bot framework build on Discord.JS v13.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
+    "githubUrl": "https://github.com/CityLoopers/Aometry",
+    "tags": [{"name": "Discord.js", "badgeClass": "badge-accent"}]
+  },
+  {
+    "title": "F1 Results Tracker",
+    "description": "A terminal application that allows users to view and track Formula 1 race results. It interacts with an SQLite database to store and retrieve data.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/F1-Results-Tracker",
+    "githubUrl": "https://github.com/finneh4249/F1-Results-Tracker",
+    "tags": [{"name": "Python", "badgeClass": "badge-info"}, {"name": "SQLite", "badgeClass": "badge-success"}]
+  },
+  {
+    "title": "WeatherWise",
+    "description": "A modern weather application that provides real-time weather updates and forecasts with features like current conditions, hourly forecasts, and location search.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/hackathon",
+    "githubUrl": "https://github.com/finneh4249/hackathon",
+    "tags": [{"name": "Weather App", "badgeClass": "badge-primary"}, {"name": "Team Project", "badgeClass": "badge-secondary"}]
+  },
+  {
+    "title": "OpenNewPOS6",
+    "description": "An educational project recreating the NP# POS system used by McDonald's Australia, built with HTML, CSS, and JavaScript for learning purposes.",
+    "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/OpenNewPOS6",
+    "githubUrl": "https://github.com/finneh4249/OpenNewPOS6",
+    "tags": [{"name": "HTML/CSS", "badgeClass": "badge-warning"}, {"name": "JavaScript", "badgeClass": "badge-primary"}]
+  },
+  {
+    "title": "Merry Berry Acai",
+    "description": "A full-stack solution for a smoothie & açaí shop, designed to enhance the online ordering experience for health-conscious customers.",
+    "image": "https://repository-images.githubusercontent.com/640027341/cdd6e617-a936-47d3-bc91-14cc88c9d20b",
+    "githubUrl": "https://github.com/merry-berry-acai",
+    "tags": [{"name": "Full-stack", "badgeClass": "badge-accent"}, {"name": "E-commerce", "badgeClass": "badge-info"}]
+  },
+  {
+    "title": "MunchRun",
+    "description": "A food delivery platform for Melbourne with zero commission for restaurants, fair compensation for drivers, and transparent pricing for customers.",
+    "image": "https://repository-images.githubusercontent.com/627035887/ba268172-7344-41f1-b4b0-9e8f0705208d",
+    "githubUrl": "https://github.com/munchrun-app",
+    "tags": [{"name": "App Development", "badgeClass": "badge-secondary"}, {"name": "Food Delivery", "badgeClass": "badge-success"}]
+  }
+]
