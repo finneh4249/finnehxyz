@@ -1,0 +1,224 @@
+{
+  "tools": [
+    { 
+      "icon": "bxl-html5", 
+      "name": "HTML", 
+      "color": "text-orange-500", 
+      "category": "Frontend",
+      "proficiency": 90, 
+      "description": "Semantic markup, accessibility, SEO optimization"
+    },
+    { 
+      "icon": "bxl-css3", 
+      "name": "CSS", 
+      "color": "text-blue-500", 
+      "category": "Frontend",
+      "proficiency": 85,
+      "description": "Responsive design, animations, modern layouts"
+    },
+    { 
+      "icon": "bxl-javascript", 
+      "name": "JavaScript", 
+      "color": "text-yellow-500", 
+      "category": "Frontend",
+      "proficiency": 80,
+      "description": "ES6+, DOM manipulation, async programming"
+    },
+    { 
+      "icon": "bxl-nodejs", 
+      "name": "Node.js", 
+      "color": "text-green-500", 
+      "category": "Backend",
+      "proficiency": 75,
+      "description": "Server-side JS, API development, Express"
+    },
+    { 
+      "icon": "bxl-python", 
+      "name": "Python", 
+      "color": "text-blue-600", 
+      "category": "Backend",
+      "proficiency": 65,
+      "description": "Data processing, scripting, automation"
+    },
+    { 
+      "icon": "bxl-java", 
+      "name": "Java", 
+      "color": "text-red-500", 
+      "category": "Backend",
+      "proficiency": 60,
+      "description": "OOP principles, basic application development"
+    },
+    { 
+      "icon": "bxl-docker", 
+      "name": "Docker", 
+      "color": "text-blue-400", 
+      "category": "DevOps",
+      "proficiency": 70,
+      "description": "Containerization, image building, compose"
+    },
+    { 
+      "icon": "bxl-git", 
+      "name": "Git", 
+      "color": "text-orange-600", 
+      "category": "DevOps", 
+      "proficiency": 85, 
+      "description": "Version control, branching strategies, collaboration" 
+    },
+    { 
+      "icon": "bxl-figma", 
+      "name": "Figma", 
+      "color": "text-purple-500", 
+      "category": "Design", 
+      "proficiency": 75, 
+      "description": "UI design, prototyping, asset export" 
+    },
+    { 
+      "icon": "bxl-tux", 
+      "name": "Linux", 
+      "color": "text-gray-800", 
+      "category": "DevOps", 
+      "proficiency": 70, 
+      "description": "Shell scripting, system administration" 
+    },
+    { 
+      "icon": "bxl-visual-studio", 
+      "name": "VS Code", 
+      "color": "text-blue-500", 
+      "category": "Tools", 
+      "proficiency": 90, 
+      "description": "Extensions, debugging, customization" 
+    },
+    { 
+      "icon": "bxl-mongodb", 
+      "name": "MongoDB", 
+      "color": "text-green-500", 
+      "category": "Database", 
+      "proficiency": 75, 
+      "description": "Document databases, aggregations, Atlas" 
+    },
+    { 
+      "icon": "bxl-postgresql", 
+      "name": "PostgreSQL", 
+      "color": "text-blue-400", 
+      "category": "Database", 
+      "proficiency": 70, 
+      "description": "Relational databases, SQL, optimization" 
+    },
+    { 
+      "icon": "bxl-flutter", 
+      "name": "Flutter", 
+      "color": "text-blue-400", 
+      "category": "Mobile", 
+      "proficiency": 50, 
+      "description": "Cross-platform mobile development" 
+    },
+    { 
+      "icon": "bxs-diamond", 
+      "name": "Ruby", 
+      "color": "text-red-500", 
+      "category": "Backend", 
+      "proficiency": 50, 
+      "description": "Basic syntax, Ruby on Rails concepts" 
+    },
+    { 
+      "icon": "bxl-sass", 
+      "name": "Sass", 
+      "color": "text-pink-500", 
+      "category": "Frontend", 
+      "proficiency": 80, 
+      "description": "CSS preprocessing, mixins, variables" 
+    },
+    { 
+      "icon": "bxl-tailwind-css", 
+      "name": "Tailwind CSS", 
+      "color": "text-blue-400", 
+      "category": "Frontend", 
+      "proficiency": 85, 
+      "description": "Utility classes, responsive design, customization" 
+    },
+    { 
+      "icon": "bxl-angular", 
+      "name": "Angular", 
+      "color": "text-red-600", 
+      "category": "Frontend", 
+      "proficiency": 60, 
+      "description": "Components, services, RxJS basics" 
+    },
+    { 
+      "icon": "bxl-vuejs", 
+      "name": "VueJS", 
+      "color": "text-green-500", 
+      "category": "Frontend", 
+      "proficiency": 65, 
+      "description": "Vue components, routing, Composition API" 
+    },
+    { 
+      "icon": "bxl-react", 
+      "name": "React", 
+      "color": "text-blue-500", 
+      "category": "Frontend", 
+      "proficiency": 85, 
+      "description": "Component lifecycle, hooks, state management" 
+    },
+    { 
+      "icon": "bxl-c-plus-plus", 
+      "name": "C++", 
+      "color": "text-blue-500", 
+      "category": "Backend", 
+      "proficiency": 50, 
+      "description": "Basic syntax and algorithms" 
+    },
+    { 
+      "icon": "bxl-flask", 
+      "name": "Flask", 
+      "color": "text-gray-800", 
+      "category": "Backend", 
+      "proficiency": 70, 
+      "description": "API development, routing, extensions" 
+    }
+  ],
+  "skills": [
+    {
+      "icon": "bxl-javascript",
+      "title": "Web Development",
+      "color": "text-yellow-500",
+      "category": "Technical",
+      "description": "Proficient in HTML, CSS, and JavaScript, I craft responsive and visually appealing websites. I'm also diving into frameworks like React to build more dynamic user interfaces."
+    },
+    {
+      "icon": "bxl-nodejs",
+      "title": "Back-End Knowledge",
+      "color": "text-green-500",
+      "category": "Technical",
+      "description": "With a solid understanding of Node.js and databases, I can handle server-side tasks and ensure that data flows seamlessly."
+    },
+    {
+      "icon": "bx-bug",
+      "title": "Problem Solving",
+      "color": "text-red-500",
+      "category": "Soft Skills",
+      "description": "My experience in fast-paced restaurant environments has sharpened my ability to think on my feet and find effective solutions to complex challenges."
+    },
+    {
+      "icon": "bxs-group",
+      "title": "Team Leadership",
+      "color": "text-blue-500",
+      "category": "Leadership",
+      "description": "Managing teams at McDonald's and Taco Bell has taught me the importance of clear communication, delegation, and motivation to achieve common goals."
+    },
+    {
+      "icon": "bx-happy",
+      "title": "Customer Service",
+      "color": "text-yellow-400",
+      "category": "Soft Skills",
+      "description": "Years of customer interaction have honed my skills in understanding client needs and delivering beyond expectations."
+    },
+    {
+      "icon": "bx-book",
+      "title": "Continuous Learning",
+      "color": "text-purple-500",
+      "category": "Soft Skills",
+      "description": "Currently pursuing a Diploma of Information Technology, I'm committed to staying abreast of the latest industry trends and technologies."
+    }
+  ]
+}
