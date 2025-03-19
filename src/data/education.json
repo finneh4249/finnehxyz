@@ -1,0 +1,66 @@
+[
+  {
+    "year": "2024",
+    "institution": "Coder Academy",
+    "program": "Diploma of Information Technology - Web Dev",
+    "description": "Full-time study program focused on modern web development technologies and practices.",
+    "logoSrc": "./images/coder_academy.png",
+    "logoAlt": "Coder Academy"
+  },
+  {
+    "year": "2024",
+    "institution": "Life Saving First Aid",
+    "program": "First Aid",
+    "logoSrc": "./images/life_saving_first_aid.jpg",
+    "logoAlt": "Life Saving First Aid"
+  },
+  {
+    "year": "2021",
+    "institution": "St John Ambulance Victoria",
+    "program": "First Aid",
+    "logoSrc": "./images/stjohns.jpg",
+    "logoAlt": "St John Ambulance Victoria"
+  },
+  {
+    "year": "2020",
+    "institution":"Club Training Australia",
+    "program": "Food Safety Supervisor",
+    "logoSrc": "./images/club_training_aus.jpg",
+    "logoAlt": "Club Training Australia"
+  },
+  {
+    "year": "2020",
+    "institution": "iTFE",
+    "program": "Responsible Service of Alcohol",
+    "logoSrc": "./images/itfe.jpg",
+    "logoAlt": "iTFE"
+  },
+  {
+    "year": "2017",
+    "institution": "Accredited First Aid Courses",
+    "program": "First Aid",
+    "logoSrc": "./images/afac.webp",
+    "logoAlt": "Accredited First Aid Courses"
+  },
+  {
+    "year": "2017",
+    "institution": "McDonald's RTO",
+    "program": "Certificate III in Retail",
+    "logoSrc": "./images/mc_logo.png",
+    "logoAlt": "McDonald's RTO"
+  },
+  {
+    "year": "2017",
+    "institution": "Distance Education Centre Victoria",
+    "program": "VCE Year 12",
+    "logoSrc": "./images/vsv.png",
+    "logoAlt": "Distance Education Centre Victoria"
+  },
+  {
+    "year": "2015",
+    "institution": "Sage Institute of Fitness",
+    "program": "Certificate III in Community Activity Programming",
+    "logoSrc": "./images/siof.jpg",
+    "logoAlt": "Sage Institute of Fitness"
+  }
+]
