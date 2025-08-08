@@ -1,22 +1,36 @@
 [
   {
+    "yearRange": "2023 - Present",
+    "company": "MagnetLab",
+    "roles": [
+      {
+        "title": "Co-Founder & Lead Engineer",
+        "period": "January 2023 – Present",
+        "isCurrent": true,
+        "description": "- Led the end-to-end technical strategy and hands-on development of an innovative AI development framework (SPARC).\n- Architected and implemented core platform features, established Git workflows with CI/CD pipelines, and built a reusable component library to accelerate development.\n- Focused on building AI-native systems and workflows that function as operational assets, enabling deployment of solutions in days, not months."
+      }
+    ],
+    "logoSrc": "images/magnetlab.png",
+    "logoAlt": "MagnetLab"
+  },
+  {
     "yearRange": "2022 - Now",
     "company": "McDonald's",
     "employer": "DirectWest Pty Ltd",
     "roles": [
-      { 
-        "title": "OTP Manager", 
-        "period": "March 2024 - Present", 
+      {
+        "title": "OTP Manager",
+        "period": "March 2024 - Present",
         "isCurrent": true,
         "description": "- Conducted monthly OTP Tech Travel Path audits, identifying and resolving issues to maintain 99% technology uptime.\n- Utilised resources and technical knowledge to troubleshoot POS system errors, minimising customer wait times.\n- Proactively identified and resolved network connectivity issues, preventing potential disruptions to restaurant operations."
       },
-      { 
-        "title": "Assistant Business Manager", 
+      {
+        "title": "Assistant Business Manager",
         "period": "August 2022 - March 2024",
         "description": "Successfully implemented strategies to drive sales, optimize team performance, and maintain exceptional QSC&V standards, ensuring a positive customer experience and achieving business objectives."
       },
-      { 
-        "title": "Department Manager", 
+      {
+        "title": "Department Manager",
         "period": "June 2022 - August 2022",
         "description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
       }
@@ -29,8 +43,8 @@
     "company": "Taco Bell",
     "employer": "Collins Foods Ltd",
     "roles": [
-      { 
-        "title": "Assistant Restaurant Manager", 
+      {
+        "title": "Assistant Restaurant Manager",
         "period": "June 2020 - June 2022",
         "description": "- Directed daily restaurant operations, staff training, and inventory management\n- Successfully launched two new store locations, establishing operational procedures and training new team members\n- Implemented cost-saving measures that reduced food waste by 15% while maintaining quality standards\n- Developed and executed staff schedules to optimize labor costs while ensuring excellent customer service\n- Consistently achieved above-target scores on food safety audits and customer satisfaction metrics"
       }
@@ -43,23 +57,23 @@
     "company": "McDonald's",
     "employer": "J. Sadler Investments",
     "roles": [
-      { 
-        "title": "Department Manager", 
+      {
+        "title": "Department Manager",
         "period": "July 2019 - May 2020",
         "description": "Managed front counter and drive-thru operations, leading a team of 15+ crew members."
       },
-      { 
-        "title": "Shift Supervisor", 
+      {
+        "title": "Shift Supervisor",
         "period": "May 2018 - July 2019",
         "description": "Successfully completed all required training, including Leadership Transitions, First Aid, and Fire Training, demonstrating readiness to lead shifts and ensure operational efficiency. Supervised and motivated crew members, ensuring adherence to McDonald's procedures, QSC&V standard."
       },
-      { 
-        "title": "Area Manager", 
+      {
+        "title": "Area Manager",
         "period": "December 2017 - May 2018",
         "description": "- Supervised specific restaurant areas including kitchen, drive-thru, and dining room operations\n- Ensured compliance with food safety standards and operational procedures while maintaining quality\n- Trained and mentored new team members, improving overall service speed and accuracy\n- Assisted in inventory management and implemented strategies to reduce product waste\n- Collaborated with other area managers to ensure smooth transitions between shifts and consistent customer experience"
       },
-      { 
-        "title": "Crew Member", 
+      {
+        "title": "Crew Member",
         "period": "August 2015 - December 2017",
         "description": "- Consistently delivered excellent customer service while maintaining efficiency in a fast-paced environment\n- Mastered multiple stations including food preparation, order assembly, drive-thru, and front counter\n- Trained new crew members on operational procedures and customer service standards\n- Maintained a clean and organized work environment in compliance with food safety regulations\n- Demonstrated flexibility by handling varied responsibilities and peak-hour rushes with professionalism"
       }
