@@ -1,11 +1,11 @@
 [
   {
-    "yearRange": "2023 - Present",
+    "yearRange": "2021 - Now",
     "company": "MagnetLab",
     "roles": [
       {
         "title": "Co-Founder & Lead Engineer",
-        "period": "January 2023 – Present",
+        "period": "March 2021 – Present",
         "isCurrent": true,
         "description": "- Co-founded an AI automation company, building intelligent systems to solve real-world business problems.\n- Architected and developed SPARC, a proprietary AI-assisted development framework that enables the delivery of high-quality, fully documented websites in as little as three days.\n- Built and deployed a suite of custom AI agents to automate entire business workflows, from lead intake to social media content creation."
       }
@@ -19,7 +19,7 @@
     "employer": "DirectWest Pty Ltd",
     "roles": [
       {
-        "title": "On-site Technical Owner",
+        "title": "Operations Technology Platform (OTP) Manager",
         "period": "March 2024 - Present",
         "isCurrent": true,
         "description": "- Acted as the primary on-site technical owner for a multi-million dollar business, responsible for maintaining critical technology infrastructure.\n- Conducted regular tech audits and preventative maintenance, achieving over 99% uptime for POS and network systems.\n- Provided rapid-response troubleshooting for technical failures, minimizing downtime and protecting revenue."
