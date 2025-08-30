@@ -97,7 +97,7 @@ Modifying Styles
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👨‍💻 Author
-Ethan Cornwill - Web Developer & Team Leader
+Ethan Cornwill - Technical Lead & Software Engineer
 
 Portfolio: [finneh.xyz](https://finneh.xyz)
 LinkedIn: [in/ethancornwill](https://linkedin.com/in/ethancornwill)

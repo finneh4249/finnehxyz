@@ -90,8 +90,8 @@ function Hero() {
         {/* Updated USP statement with more personable tone */}
         <div className="mb-6 animate-fadeIn" style={{animationDelay: "0.15s"}}>
           <p className="text-lg md:text-xl text-base-content/90 max-w-2xl mx-auto">
-            I bring <span className="text-primary font-medium">real-world leadership</span> to 
-            <span className="text-secondary font-medium"> code that matters</span> — because great tech needs both!
+            A <span className="text-primary font-medium">Technical Lead</span> who bridges the gap between
+            <span className="text-secondary font-medium"> real-world business problems and elegant technical solutions.</span>
           </p>
         </div>
         
@@ -99,12 +99,11 @@ function Hero() {
           <h2 className="text-xl md:text-2xl text-base-content/80 max-w-2xl mx-auto h-12">
             <TypingEffect
               strings={[
-                "Former restaurant manager turned coder",
-                "I speak both tech and business fluently", 
-                "I make websites that solve real problems",
-                "Your friendly neighborhood developer",
-                "I know what makes users and teams click",
-                "Turning coffee into code with a purpose",
+                "Technical Lead & Software Engineer",
+                "I build intelligent systems that work hard",
+                "Expert in AI and full-stack development",
+                "Bridging business problems & technical solutions",
+                "Turning complex requirements into elegant code",
               ]}
               typingSpeed={80}
               deletingSpeed={40}
@@ -114,8 +113,8 @@ function Hero() {
 
 
           <div className="mt-4 flex flex-wrap justify-center gap-2 px-2">
-            <div className="badge badge-primary">Web Developer</div>
-            <div className="badge badge-secondary">People Person</div>
+            <div className="badge badge-primary">Technical Lead</div>
+            <div className="badge badge-secondary">AI Developer</div>
             <div className="badge badge-accent">Problem Solver</div>
           </div>
         </div>

@@ -13,89 +13,55 @@ function AboutMe() {
         
         <div className="card bg-base-100 shadow-xl max-w-4xl mx-auto">
           <div className="card-body p-8 md:p-10">
-            <h3 className="card-title text-2xl mb-4 text-primary">My Unique Approach</h3>
+            <h3 className="card-title text-2xl mb-4 text-primary">A Hybrid Problem-Solver</h3>
             
-            {/* USP Highlight Box */}
             <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-5 rounded-lg border-l-4 border-primary mb-6">
               <p className="font-medium text-base-content">
-                I bring a rare combination of <span className="text-primary">customer-focused management experience</span> and 
-                <span className="text-secondary"> technical development skills</span> that allows me to build solutions 
-                with both the end-user and business objectives in mind.
+                I am a Technical Lead who bridges the critical gap between real-world business problems and elegant technical solutions. My unique value comes from combining a decade of hands-on management experience with deep, self-taught expertise in AI and full-stack development.
               </p>
             </div>
             
             <div className="space-y-4 text-base-content/80 leading-relaxed">
               <p>
-                I'm a dedicated professional with a vibrant background in restaurant
-                management and a burgeoning passion for all things tech. Currently,
-                I'm diving deep into the world of web development, pursuing a
-                diploma in Information Technology at Coder Academy.
+                For over nine years, I managed teams and systems for a multi-million dollar business. This wasn't just about operations; it was a front-row seat to the inefficiencies, technical failures, and urgent customer needs that businesses face every day. I became the on-site technical owner, measurably improving uptime and reducing support costs, which solidified my understanding of business impact.
               </p>
 
               <p>
-                My journey began in the bustling environment of McDonald's, where I
-                climbed the ranks from a Crew Member to a Department Manager. This path taught me 
-                invaluable skills that translate directly to web development:
+                This experience became the 'why' behind my transition into technology. My passion for solving these problems led me to co-found MagnetLab, an R&D lab where I architected and built a powerful suite of AI-native systems. My 13 years of open-source experience provided the discipline and foundation for this work.
               </p>
               
-              {/* Skills Translation Section */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
                 <div className="card bg-base-200 shadow-sm">
                   <div className="card-body p-4">
                     <h4 className="text-lg font-semibold flex items-center">
-                      <i className="bx bx-group text-primary mr-2"></i> Team Leadership
+                      <i className="bx bx-rocket text-primary mr-2"></i> The "Why": Business Acumen
                     </h4>
-                    <p className="text-sm">Coordinating cross-functional teams translates to managing development workflows and stakeholder expectations.</p>
+                    <p className="text-sm">My management background gives me a deep understanding of operational challenges and what users truly need from a technical solution.</p>
                   </div>
                 </div>
                 
                 <div className="card bg-base-200 shadow-sm">
                   <div className="card-body p-4">
                     <h4 className="text-lg font-semibold flex items-center">
-                      <i className="bx bx-target-lock text-primary mr-2"></i> Operational Excellence
+                      <i className="bx bx-code-alt text-secondary mr-2"></i> The "How": Technical Leadership
                     </h4>
-                    <p className="text-sm">Implementing efficient processes in high-pressure environments is similar to optimizing code for performance and scalability.</p>
-                  </div>
-                </div>
-                
-                <div className="card bg-base-200 shadow-sm">
-                  <div className="card-body p-4">
-                    <h4 className="text-lg font-semibold flex items-center">
-                      <i className="bx bx-user-voice text-primary mr-2"></i> Customer Insight
-                    </h4>
-                    <p className="text-sm">Years of direct customer interaction provides deep understanding of user needs and experience design.</p>
-                  </div>
-                </div>
-                
-                <div className="card bg-base-200 shadow-sm">
-                  <div className="card-body p-4">
-                    <h4 className="text-lg font-semibold flex items-center">
-                      <i className="bx bx-bulb text-primary mr-2"></i> Problem Solving
-                    </h4>
-                    <p className="text-sm">Adapting to rapidly changing situations aligns with the iterative nature of development and debugging.</p>
+                    <p className="text-sm">As a hands-on developer, I build the systems that solve those challenges, leading projects from concept to deployment.</p>
                   </div>
                 </div>
               </div>
 
               <p>
-                After a fulfilling stint at Taco Bell Australia as an Assistant
-                Restaurant Manager, I decided it was time to switch gears. The tech
-                world called to me, and I answered by enrolling in a rigorous
-                program focused on web development. It's a thrilling new chapter
-                where I get to blend my analytical skills with creative
-                problem-solving.
+                At MagnetLab, I developed the <strong className="text-secondary">SPARC framework</strong>, an AI-assisted system that automates the software development lifecycle. This allows me to build and deploy production-ready, fully-documented websites in a fraction of the traditional time.
               </p>
 
               <p className="font-medium">
-                What makes me different? I don't just build applications – I create solutions with the end-to-end 
-                perspective of someone who has managed real-world operations and understands what makes teams 
-                and customers tick.
+                I'm not just a developer who writes code. I'm a partner in building value, creating technical assets that are designed from the ground up to solve business problems and drive growth.
               </p>
             </div>
             
             <div className="card-actions justify-end mt-6">
-              <a href="#skills" className="btn btn-primary">
-                Check out my skills <i className="bx bx-right-arrow-alt ml-2"></i>
+              <a href="#projects" className="btn btn-primary">
+                See my work in action <i className="bx bx-right-arrow-alt ml-2"></i>
               </a>
             </div>
           </div>
