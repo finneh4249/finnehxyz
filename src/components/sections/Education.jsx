@@ -50,6 +50,7 @@ function Education() {
               institution={item.institution}
               program={item.program}
               description={item.description}
+              gpa={item.gpa}
               logoSrc={item.logoSrc}
               logoAlt={item.logoAlt}
               isLast={index === educationItems.length - 1}
