@@ -1,13 +1,13 @@
 [
   {
-    "yearRange": "2023 - Present",
+    "yearRange": "2021 - Now",
     "company": "MagnetLab",
     "roles": [
       {
         "title": "Co-Founder & Lead Engineer",
-        "period": "January 2023 – Present",
+        "period": "March 2021 – Present",
         "isCurrent": true,
-        "description": "- Co-founded MagnetLab, an AI automation company focused on building intelligent systems and automated business workflows for clients.\n- Led the end-to-end technical strategy and hands-on development of the company's proprietary AI framework, SPARC.\n- Architected SPARC as a multi-LLM 'pair programming' system to deliver high-quality, fully documented websites and applications in as little as three days, eliminating typical technical debt.\n- Engineered custom AI agents capable of automating complex business processes, such as natural language lead qualification and automated proposal generation.\n- Established the company's complete technical foundation, including implementing Git workflows with CI/CD pipelines and creating a reusable component library to accelerate development."
+        "description": "- Co-founded an AI automation company, building intelligent systems to solve real-world business problems.\n- Architected and developed SPARC, a proprietary AI-assisted development framework that enables the delivery of high-quality, fully documented websites in as little as three days.\n- Built and deployed a suite of custom AI agents to automate entire business workflows, from lead intake to social media content creation."
       }
     ],
     "logoSrc": "images/magnetlab.png",
@@ -19,66 +19,32 @@
     "employer": "DirectWest Pty Ltd",
     "roles": [
       {
-        "title": "OTP Manager",
+        "title": "Operations Technology Platform (OTP) Manager",
         "period": "March 2024 - Present",
         "isCurrent": true,
-        "description": "- Conducted monthly OTP Tech Travel Path audits, identifying and resolving issues to maintain 99% technology uptime.\n- Utilised resources and technical knowledge to troubleshoot POS system errors, minimising customer wait times.\n- Proactively identified and resolved network connectivity issues, preventing potential disruptions to restaurant operations."
+        "description": "- Acted as the primary on-site technical owner for a multi-million dollar business, responsible for maintaining critical technology infrastructure.\n- Conducted regular tech audits and preventative maintenance, achieving over 99% uptime for POS and network systems.\n- Provided rapid-response troubleshooting for technical failures, minimizing downtime and protecting revenue."
       },
       {
-        "title": "Assistant Business Manager",
-        "period": "August 2022 - March 2024",
-        "description": "Successfully implemented strategies to drive sales, optimize team performance, and maintain exceptional QSC&V standards, ensuring a positive customer experience and achieving business objectives."
-      },
-      {
-        "title": "Department Manager",
-        "period": "June 2022 - August 2022",
-        "description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
+        "title": "Operational Management",
+        "period": "June 2022 - March 2024",
+        "description": "Gained front-lines experience with real-world inefficiency, technical failures, and urgent customer needs, informing a pragmatic approach to software development and problem-solving."
       }
     ],
     "logoSrc": "images/mc_logo.png",
     "logoAlt": "McDonald's"
   },
   {
-    "yearRange": "2020 - 2022",
-    "company": "Taco Bell",
-    "employer": "Collins Foods Ltd",
+    "yearRange": "2015 - 2022",
+    "company": "Hospitality Management",
+    "employer": "Taco Bell & McDonald's",
     "roles": [
       {
-        "title": "Assistant Restaurant Manager",
-        "period": "June 2020 - June 2022",
-        "description": "- Directed daily restaurant operations, staff training, and inventory management\n- Successfully launched two new store locations, establishing operational procedures and training new team members\n- Implemented cost-saving measures that reduced food waste by 15% while maintaining quality standards\n- Developed and executed staff schedules to optimize labor costs while ensuring excellent customer service\n- Consistently achieved above-target scores on food safety audits and customer satisfaction metrics"
+        "title": "Team & Systems Leadership",
+        "period": "June 2015 - June 2022",
+        "description": "Led teams and managed systems in high-pressure, customer-facing environments. This experience provided a deep understanding of operational efficiency, user experience, and the direct business impact of technology."
       }
     ],
-    "logoSrc": "images/taco_bell.png",
-    "logoAlt": "Taco Bell"
-  },
-  {
-    "yearRange": "2015 - 2020",
-    "company": "McDonald's",
-    "employer": "J. Sadler Investments",
-    "roles": [
-      {
-        "title": "Department Manager",
-        "period": "July 2019 - May 2020",
-        "description": "Managed front counter and drive-thru operations, leading a team of 15+ crew members."
-      },
-      {
-        "title": "Shift Supervisor",
-        "period": "May 2018 - July 2019",
-        "description": "Successfully completed all required training, including Leadership Transitions, First Aid, and Fire Training, demonstrating readiness to lead shifts and ensure operational efficiency. Supervised and motivated crew members, ensuring adherence to McDonald's procedures, QSC&V standard."
-      },
-      {
-        "title": "Area Manager",
-        "period": "December 2017 - May 2018",
-        "description": "- Supervised specific restaurant areas including kitchen, drive-thru, and dining room operations\n- Ensured compliance with food safety standards and operational procedures while maintaining quality\n- Trained and mentored new team members, improving overall service speed and accuracy\n- Assisted in inventory management and implemented strategies to reduce product waste\n- Collaborated with other area managers to ensure smooth transitions between shifts and consistent customer experience"
-      },
-      {
-        "title": "Crew Member",
-        "period": "August 2015 - December 2017",
-        "description": "- Consistently delivered excellent customer service while maintaining efficiency in a fast-paced environment\n- Mastered multiple stations including food preparation, order assembly, drive-thru, and front counter\n- Trained new crew members on operational procedures and customer service standards\n- Maintained a clean and organized work environment in compliance with food safety regulations\n- Demonstrated flexibility by handling varied responsibilities and peak-hour rushes with professionalism"
-      }
-    ],
-    "logoSrc": "images/mc_logo.png",
-    "logoAlt": "McDonald's"
+    "logoSrcs": ["images/mc_logo.png", "images/taco_bell.png"],
+    "logoAlt": "Hospitality Management"
   }
 ]

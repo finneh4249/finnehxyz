@@ -6,6 +6,7 @@ const EducationItem = ({
   institution, 
   program, 
   description, 
+  gpa,
   logoSrc, 
   logoAlt, 
   isLast,
@@ -57,6 +58,12 @@ const EducationItem = ({
             <h3 className="text-xl font-bold text-gray-900 dark:text-white">{institution}</h3>
             <h4 className="text-lg font-semibold text-secondary dark:text-indigo-300 mb-2">{program}</h4>
             
+            {gpa && (
+              <div className="text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">
+                GPA: {gpa}
+              </div>
+            )}
+
             {description && (
               <div className="text-sm text-gray-600 dark:text-gray-300">
                 {description}
