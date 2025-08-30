@@ -19,7 +19,7 @@
     "employer": "DirectWest Pty Ltd",
     "roles": [
       {
-        "title": "Operations Technology Platform (OTP) Manager",
+        "title": "On-site Technical Owner",
         "period": "March 2024 - Present",
         "isCurrent": true,
         "description": "- Acted as the primary on-site technical owner for a multi-million dollar business, responsible for maintaining critical technology infrastructure.\n- Conducted regular tech audits and preventative maintenance, achieving over 99% uptime for POS and network systems.\n- Provided rapid-response troubleshooting for technical failures, minimizing downtime and protecting revenue."
@@ -44,7 +44,7 @@
         "description": "Led teams and managed systems in high-pressure, customer-facing environments. This experience provided a deep understanding of operational efficiency, user experience, and the direct business impact of technology."
       }
     ],
-    "logoSrc": "images/mc_logo.png",
+    "logoSrcs": ["images/mc_logo.png", "images/taco_bell.png"],
     "logoAlt": "Hospitality Management"
   }
 ]

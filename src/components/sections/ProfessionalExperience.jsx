@@ -24,6 +24,7 @@ function ProfessionalExperience() {
               employer={exp.employer}
               roles={exp.roles}
               logoSrc={exp.logoSrc}
+              logoSrcs={exp.logoSrcs}
               logoAlt={exp.logoAlt}
               isLast={index === experiences.length - 1}
               isFirst={index === 0}

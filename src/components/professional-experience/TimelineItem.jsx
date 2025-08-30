@@ -7,6 +7,7 @@ const TimelineItem = ({
   employer, 
   roles, 
   logoSrc, 
+  logoSrcs,
   logoAlt, 
   isLast,
   isFirst 
@@ -44,12 +45,26 @@ const TimelineItem = ({
       >
         <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
           {/* Company Logo */}
-          <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-white dark:bg-slate-700 p-2 shadow-md">
-            <img 
-              src={logoSrc} 
-              alt={logoAlt} 
-              className="w-full h-full object-contain"
-            />
+          <div className="w-24 h-16 flex-shrink-0 flex items-center justify-center gap-2">
+            {logoSrcs && Array.isArray(logoSrcs) ? (
+              logoSrcs.map((src, index) => (
+                <div key={index} className="w-12 h-12 rounded-full overflow-hidden bg-white dark:bg-slate-700 p-1 shadow-md">
+                  <img
+                    src={src}
+                    alt={`${logoAlt} ${index + 1}`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))
+            ) : (
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-white dark:bg-slate-700 p-2 shadow-md">
+                <img
+                  src={logoSrc}
+                  alt={logoAlt}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            )}
           </div>
           
           {/* Content */}
