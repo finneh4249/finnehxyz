@@ -1,5 +1,20 @@
 [
   {
+    "title": "SPARC",
+    "description": "An AI-native development engine that automates the entire software development lifecycle.",
+    "detailedDescription": "SPARC (Specification, Planning, Auto-Coding, Refinement, Completion) is an AI-native development engine that orchestrates multiple LLM agents to automate the entire software development lifecycle. It has been used to ship multiple production projects, including this portfolio website, demonstrating its capability to reduce development time from days to hours while producing consistent, documented, and testable code.",
+    "image": "/images/magnetlab.png",
+    "liveDemoUrl": "https://finneh.xyz",
+    "featured": true,
+    "date": 1609459200000,
+    "technologies": ["AI", "React", "Vite", "TailwindCSS", "JavaScript", "DevOps"],
+    "tags": [
+      {"name": "AI", "badgeClass": "badge-primary"},
+      {"name": "Automation", "badgeClass": "badge-accent"},
+      {"name": "Development Tool", "badgeClass": "badge-info"}
+    ]
+  },
+  {
     "title": "PokerBo",
     "description": "A casino card game that is a mix of Poker and Sicbo, created with Javascript",
     "detailedDescription": "PokerBo combines elements of traditional poker with the dice game Sicbo, creating a unique gambling experience. The game features a custom-built user interface and betting system, all implemented in vanilla JavaScript.",
