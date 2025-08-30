@@ -7,7 +7,7 @@
         "title": "Co-Founder & Lead Engineer",
         "period": "January 2023 – Present",
         "isCurrent": true,
-        "description": "- Led the end-to-end technical strategy and hands-on development of an innovative AI development framework (SPARC).\n- Architected and implemented core platform features, established Git workflows with CI/CD pipelines, and built a reusable component library to accelerate development.\n- Focused on building AI-native systems and workflows that function as operational assets, enabling deployment of solutions in days, not months."
+        "description": "- Co-founded MagnetLab, an AI automation company focused on building intelligent systems and automated business workflows for clients.\n- Led the end-to-end technical strategy and hands-on development of the company's proprietary AI framework, SPARC.\n- Architected SPARC as a multi-LLM 'pair programming' system to deliver high-quality, fully documented websites and applications in as little as three days, eliminating typical technical debt.\n- Engineered custom AI agents capable of automating complex business processes, such as natural language lead qualification and automated proposal generation.\n- Established the company's complete technical foundation, including implementing Git workflows with CI/CD pipelines and creating a reusable component library to accelerate development."
       }
     ],
     "logoSrc": "images/magnetlab.png",
