@@ -1,123 +1,123 @@
 [
-  {
-    "yearRange": "2025",
-    "company": "ALDI Stores Australia",
-    "roles": [
-      {
-        "title": "Duty Store Manager",
-        "period": "October 2025 - Present",
-        "isCurrent": true,
-        "description": "Managing daily operations for one of Australia's leading discount grocery retailers, focusing on operational efficiency, team leadership, and customer service excellence in a fast-paced retail environment."
-      }
-    ],
-    "logoSrc": "images/aldi.png",
-    "logoAlt": "ALDI Stores Australia"
-  },
-  {
-    "yearRange": "2025",
-    "company": "Axion",
-    "roles": [
-      {
-        "title": "Founder & Lead Engineer",
-        "period": "October 2025 - Present",
-        "isCurrent": true,
-        "description": "Founded Axion to build next-generation AI-powered solutions and development frameworks. Leading technical architecture and product development for innovative software solutions that bridge the gap between cutting-edge AI technology and practical business applications."
-      }
-    ],
-    "logoSrc": "images/axion.png",
-    "logoAlt": "Axion"
-  },
-  {
-    "yearRange": "2024 - 2025",
-    "company": "DataAnnotation",
-    "roles": [
-      {
-        "title": "AI Code Analyst / Software Developer – AI Trainer",
-        "period": "May 2024 - Present",
-        "isCurrent": true,
-        "description": "- Evaluated and refactored AI-generated code in multiple languages (including Python and JavaScript) to improve logic, enforce best practices, and ensure correctness.\n- Assessed and rated the quality of Large Language Model (LLM) responses against complex rubrics, comparing multiple outputs for accuracy, helpfulness, and safety.\n- Developed targeted coding challenges and unit tests designed to evaluate the reasoning and real-world problem-solving capabilities of AI models.\n- Analyzed and debugged complex functions to identify logic errors and tested the model's ability to correctly utilize real-world tools like APIs and command-line interfaces."
-      }
-    ],
-    "logoSrc": "images/dataannotation.jpeg",
-    "logoAlt": "DataAnnotation"
-  },
-  {
-    "yearRange": "2025",
-    "company": "MagnetLab",
-    "roles": [
-      {
-        "title": "Lead Software Engineer | AI Systems",
-        "period": "March 2025 - September 2025",
-        "isCurrent": false,
-        "description": "- Architected and built the \"Magnet AI Agents\" platform, deploying bespoke voice and chat agents that automate client intake, qualify leads, and resolve support tickets, directly reducing non-billable hours for service-based businesses.\n- Led the development of the \"Magnet CRM,\" white-label, all-in-one sales OS designed to be fully branded and launched for clients in under 7 days.\n- Engineered and implemented the proprietary SPARC methodology, an AI-assisted development workflow that reduces build times for complex web applications by up to 75% compared to traditional agency models.\n- Directed the technical vision for all client projects and internal ventures, ensuring every system built is scalable, secure, and focused on delivering measurable business outcomes."
-      }
-    ],
-    "logoSrc": "images/magnetlab.png",
-    "logoAlt": "MagnetLab"
-  },
-  {
-    "yearRange": "2022 - 2025",
-    "company": "McDonald's",
-    "employer": "DirectWest Pty Ltd",
-    "roles": [
-      {
-        "title": "Operations Technology Platform (OTP) Manager",
-        "period": "March 2024 - October 2025",
-        "isCurrent": false,
-        "description": "- Conducted monthly OTP Tech Travel Path audits, identifying and resolving issues to maintain 99% technology uptime.\n- Utilized resources and technical knowledge to troubleshoot POS system errors, minimizing customer wait times.\n- Proactively identified and resolved network connectivity issues, preventing potential disruptions to restaurant operations."
-      },
-      {
-        "title": "Assistant Business Manager",
-        "period": "August 2022 - March 2024",
-        "isCurrent": false,
-        "description": "Successfully implemented strategies to drive sales, optimize team performance, and maintain exceptional QSC&V standards, ensuring a positive customer experience and achieving business objectives."
-      },
-      {
-        "title": "Department Manager",
-        "period": "June 2022 - August 2022",
-        "isCurrent": false,
-        "description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
-      },
-      {
-        "title": "Department Manager",
-        "period": "July 2019 - April 2020",
-        "isCurrent": false,
-        "description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
-      },
-      {
-        "title": "Shift Supervisor",
-        "period": "May 2018 - July 2019",
-        "isCurrent": false,
-        "description": "Successfully completed all required training, including Leadership Transitions, First Aid, and Fire Training, demonstrating readiness to lead shifts and ensure operational efficiency. Supervised and motivated crew members, ensuring adherence to McDonald's procedures and QSC&V standards."
-      },
-      {
-        "title": "Area Manager",
-        "period": "December 2017 - May 2018",
-        "isCurrent": false,
-        "description": "Managed multiple operational areas within the restaurant, coordinating between departments and ensuring smooth daily operations while maintaining high standards of service quality."
-      },
-      {
-        "title": "Crew Member",
-        "period": "August 2015 - December 2017",
-        "isCurrent": false,
-        "description": "Gained foundational experience in fast-paced food service operations, developing strong teamwork, communication, and customer service skills while maintaining food safety standards."
-      }
-    ],
-    "logoSrc": "images/mc_logo.png",
-    "logoAlt": "McDonald's"
-  },
-  {
-    "yearRange": "2020 - 2022",
-    "company": "Taco Bell Australia",
-    "roles": [
-      {
-        "title": "Assistant Restaurant Manager",
-        "period": "June 2020 - June 2022",
-        "isCurrent": false,
-        "description": "- Managed daily operations for the busiest Taco Bell restaurant in the country, consistently achieving top-tier results across all major KPIs, including customer satisfaction, speed of service, and labor management.\n- Directed the successful launch of two new restaurant locations, establishing foundational operating procedures and recruiting and training new-hire teams of up to 70 staff members from the ground up.\n- Recognized with over 12 performance awards for operational excellence; implemented inventory control measures that reduced food waste by 15%."
-      }
-    ],
-    "logoSrc": "images/taco_bell.png",
-    "logoAlt": "Taco Bell Australia"
-  }
+{
+"yearRange": "2025",
+"company": "ALDI Stores Australia",
+"roles": [
+{
+"title": "Duty Store Manager",
+"period": "October 2025 - Present",
+"isCurrent": true,
+"description": "Managing daily operations for one of Australia's leading discount grocery retailers, focusing on operational efficiency, team leadership, and customer service excellence in a fast-paced retail environment."
+}
+],
+"logoSrc": "images/aldi.png",
+"logoAlt": "ALDI Stores Australia"
+},
+{
+"yearRange": "2025",
+"company": "Axion — Technical Venture Framework (Concept Stage)",
+"roles": [
+{
+"title": "Founder & Lead Engineer",
+"period": "Oct 2025 – Present",
+"isCurrent": true,
+"description": "Axion is my applied R&D initiative exploring the intersection of AI-assisted development, venture incubation, and ethical innovation. Architecting and building proof-of-concept products such as Nexus and the SPARC framework. Developing human-in-the-loop AI workflows to enhance developer productivity and maintain design quality. Experimenting with small-team collaboration models that emphasize motivation, accountability, and autonomy. Currently in concept stage, Axion serves as a launchpad for future ventures and a real-world testbed for scalable AI-native systems."
+}
+],
+"logoSrc": "images/axion.png",
+"logoAlt": "Axion"
+},
+{
+"yearRange": "2024 - 2025",
+"company": "DataAnnotation",
+"roles": [
+{
+"title": "AI Code Analyst / Software Developer – AI Trainer",
+"period": "May 2024 - Present",
+"isCurrent": true,
+"description": "- Evaluated and refactored AI-generated code in multiple languages (including Python and JavaScript) to improve logic, enforce best practices, and ensure correctness.\n- Assessed and rated the quality of Large Language Model (LLM) responses against complex rubrics, comparing multiple outputs for accuracy, helpfulness, and safety.\n- Developed targeted coding challenges and unit tests designed to evaluate the reasoning and real-world problem-solving capabilities of AI models.\n- Analyzed and debugged complex functions to identify logic errors and tested the model's ability to correctly utilize real-world tools like APIs and command-line interfaces."
+}
+],
+"logoSrc": "images/dataannotation.jpeg",
+"logoAlt": "DataAnnotation"
+},
+{
+"yearRange": "2025",
+"company": "MagnetLab",
+"roles": [
+{
+"title": "Lead Software Engineer | AI Systems",
+"period": "March 2025 - September 2025",
+"isCurrent": false,
+"description": "- Architected and built the Magnet AI Agents platform, deploying bespoke voice and chat agents that automate client intake, qualify leads, and resolve support tickets, directly reducing non-billable hours for service-based businesses.\n- Led the development of the Magnet CRM, white-label, all-in-one sales OS designed to be fully branded and launched for clients in under 7 days.\n- Engineered and implemented the proprietary SPARC methodology, an AI-assisted development workflow that reduces build times for complex web applications by up to 75% compared to traditional agency models.\n- Directed the technical vision for all client projects and internal ventures, ensuring every system built is scalable, secure, and focused on delivering measurable business outcomes."
+}
+],
+"logoSrc": "images/magnetlab.png",
+"logoAlt": "MagnetLab"
+},
+{
+"yearRange": "2022 - 2025",
+"company": "McDonald's",
+"employer": "DirectWest Pty Ltd",
+"roles": [
+{
+"title": "Operations Technology Platform (OTP) Manager",
+"period": "March 2024 - October 2025",
+"isCurrent": false,
+"description": "- Conducted monthly OTP Tech Travel Path audits, identifying and resolving issues to maintain 99% technology uptime.\n- Utilized resources and technical knowledge to troubleshoot POS system errors, minimizing customer wait times.\n- Proactively identified and resolved network connectivity issues, preventing potential disruptions to restaurant operations."
+},
+{
+"title": "Assistant Business Manager",
+"period": "August 2022 - March 2024",
+"isCurrent": false,
+"description": "Successfully implemented strategies to drive sales, optimize team performance, and maintain exceptional QSC&V standards, ensuring a positive customer experience and achieving business objectives."
+},
+{
+"title": "Department Manager",
+"period": "June 2022 - August 2022",
+"isCurrent": false,
+"description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
+},
+{
+"title": "Department Manager",
+"period": "July 2019 - April 2020",
+"isCurrent": false,
+"description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
+},
+{
+"title": "Shift Supervisor",
+"period": "May 2018 - July 2019",
+"isCurrent": false,
+"description": "Successfully completed all required training, including Leadership Transitions, First Aid, and Fire Training, demonstrating readiness to lead shifts and ensure operational efficiency. Supervised and motivated crew members, ensuring adherence to McDonald's procedures and QSC&V standards."
+},
+{
+"title": "Area Manager",
+"period": "December 2017 - May 2018",
+"isCurrent": false,
+"description": "Managed multiple operational areas within the restaurant, coordinating between departments and ensuring smooth daily operations while maintaining high standards of service quality."
+},
+{
+"title": "Crew Member",
+"period": "August 2015 - December 2017",
+"isCurrent": false,
+"description": "Gained foundational experience in fast-paced food service operations, developing strong teamwork, communication, and customer service skills while maintaining food safety standards."
+}
+],
+"logoSrc": "images/mc_logo.png",
+"logoAlt": "McDonald's"
+},
+{
+"yearRange": "2020 - 2022",
+"company": "Taco Bell Australia",
+"roles": [
+{
+"title": "Assistant Restaurant Manager",
+"period": "June 2020 - June 2022",
+"isCurrent": false,
+"description": "- Managed daily operations for the busiest Taco Bell restaurant in the country, consistently achieving top-tier results across all major KPIs, including customer satisfaction, speed of service, and labor management.\n- Directed the successful launch of two new restaurant locations, establishing foundational operating procedures and recruiting and training new-hire teams of up to 70 staff members from the ground up.\n- Recognized with over 12 performance awards for operational excellence; implemented inventory control measures that reduced food waste by 15%."
+}
+],
+"logoSrc": "images/taco_bell.png",
+"logoAlt": "Taco Bell Australia"
+}
 ]

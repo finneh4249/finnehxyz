@@ -1,4 +1,26 @@
 [
+{
+"title": "SPARC Framework (2025)",
+"description": "AI-assisted development workflow",
+"detailedDescription": "A proprietary orchestration system designed to automate key stages of the software development lifecycle. SPARC reduces build times by up to 75% while maintaining documentation quality and version control integrity.",
+"image": "images/axion.png",
+"githubUrl": "https://github.com/Finneh4249/SPARC-Framework",
+"featured": true,
+"date": 1728946800000,
+"technologies": ["AI Agents", "React", "Node.js", "SPARC Methodology"],
+"tags": [{"name": "AI", "badgeClass": "badge-secondary"}, {"name": "Framework", "badgeClass": "badge-primary"}]
+},
+{
+"title": "Nexus (Prototype, 2025)",
+"description": "Financial wellness platform for couples",
+"detailedDescription": "A next-generation web application that helps couples track, plan, and manage shared finances with empathy and transparency. Focused on user-centered design, ethical data handling, and meaningful engagement.",
+"image": "images/axion.png",
+"githubUrl": "https://github.com/Finneh4249/Nexus-App",
+"featured": true,
+"date": 1728946800000,
+"technologies": ["Full-Stack", "FinTech", "UX/UI"],
+"tags": [{"name": "FinTech", "badgeClass": "badge-success"}, {"name": "Web App", "badgeClass": "badge-info"}]
+},
   {
     "title": "PokerBo",
     "description": "A casino card game that is a mix of Poker and Sicbo, created with Javascript",
