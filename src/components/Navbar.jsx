@@ -95,7 +95,7 @@ function Navbar({ activeSection }) {
           
           {/* Mobile Navigation Button and Theme Switcher */}
           <div className="flex items-center lg:hidden">
-            ]
+            
             <ThemeSwitcher />
             
             <button 
