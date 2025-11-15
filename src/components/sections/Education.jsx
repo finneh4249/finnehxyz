@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import EducationItem from '../education/EducationItem';
 import { fetchData } from '../../utils/dataFetcher';
 
@@ -31,18 +32,33 @@ function Education() {
   }
 
   return (
-    <section id="education" className="py-20 bg-indigo-50/70 dark:bg-indigo-950/90">
-      <div className="container mx-auto px-4 md:px-6">
-        <h1 className="text-3xl font-bold text-center mb-12 pb-4 border-b-2 border-secondary/30 relative">
-          <span className="relative z-10 px-4 text-gray-800 dark:text-white">
-            Education
-          </span>
-          <div className="absolute h-1 w-24 bg-gradient-to-r from-secondary to-indigo-500 left-1/2 -translate-x-1/2 bottom-0"></div>
-        </h1>
+    <section id="education" className="py-20 bg-neo-orange relative overflow-hidden">
+      {/* Chaotic brutal decorative elements */}
+      <div className="absolute top-20 left-5 w-40 h-40 border-brutal-thick border-black bg-neo-pink rotate-12"></div>
+      <div className="absolute top-40 right-10 w-24 h-60 border-brutal border-black bg-neo-blue -rotate-6"></div>
+      <div className="absolute bottom-32 left-20 w-56 h-32 border-brutal-thick border-black bg-neo-green rotate-3"></div>
+      <div className="absolute bottom-20 right-32 w-32 h-32 border-brutal border-black bg-neo-purple -rotate-12"></div>
+      <div className="absolute top-1/3 right-1/4 w-20 h-20 border-brutal border-black bg-neo-yellow rotate-45"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 relative"
+        >
+          <div className="flex items-center gap-6 flex-wrap">
+            <h2 className="text-6xl md:text-7xl font-bold uppercase tracking-tight -rotate-2">
+              Education
+            </h2>
+            <div className="brutal-btn brutal-pink px-6 py-3 rotate-3">
+              LEARNING
+            </div>
+          </div>
+          <div className="h-2 w-48 bg-black mt-6 -rotate-1"></div>
+        </motion.div>
 
-        <div className="timeline max-w-4xl mx-auto flex flex-col relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-secondary/80 via-indigo-500/60 to-secondary/30 -translate-x-1/2 rounded-full"></div>
-          
+        <div className="max-w-6xl mx-auto space-y-8">
           {educationItems.map((item, index) => (
             <EducationItem
               key={index}
@@ -53,6 +69,7 @@ function Education() {
               gpa={item.gpa}
               logoSrc={item.logoSrc}
               logoAlt={item.logoAlt}
+              index={index}
               isLast={index === educationItems.length - 1}
               isFirst={index === 0}
             />

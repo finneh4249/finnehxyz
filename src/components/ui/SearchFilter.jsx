@@ -119,125 +119,125 @@ function SearchFilter({
         )}
       </div>
       
-      {/* Improved Proficiency Range Slider */}
+      {/* Neo-Brutal Proficiency Range Slider */}
       {includeRangeSlider && (
         <motion.div 
-          className="w-full bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-700"
+          className="w-full brutal-card bg-white dark:bg-base-200 p-6 shadow-brutal-lg -rotate-1"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           transition={{ duration: 0.3 }}
         >
-          <div className="mb-2">
-            <div className="flex justify-between items-center mb-1">
-              <span className="font-medium text-sm text-gray-700 dark:text-gray-300">
+          <div className="mb-4">
+            <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+              <span className="font-bold text-lg uppercase tracking-tight">
                 Proficiency Level: 
-                <span className={`ml-2 font-bold ${
-                  proficiencyRange === 0 ? 'text-gray-500' :
-                  proficiencyRange < 50 ? 'text-amber-500' :
-                  proficiencyRange < 75 ? 'text-emerald-500' :
-                  'text-indigo-500'
+                <span className={`ml-2 brutal-btn px-4 py-2 text-sm inline-block rotate-2 ${
+                  proficiencyRange === 0 ? 'brutal-yellow' :
+                  proficiencyRange < 50 ? 'bg-neo-orange border-brutal border-black' :
+                  proficiencyRange < 75 ? 'brutal-green' :
+                  'bg-neo-blue border-brutal border-black'
                 }`}>
                   {getProficiencyLabel(proficiencyRange)}
                 </span>
               </span>
               {proficiencyRange > 0 && (
-                <button 
+                <motion.button 
                   onClick={() => setProficiencyRange(0)} 
-                  className={`text-xs px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors ${
-                    purpleTheme ? 'text-purple-500' : 'text-emerald-500'
-                  }`}
+                  className="brutal-btn brutal-pink px-4 py-2 text-sm -rotate-2"
+                  whileHover={{ scale: 1.05, rotate: 0 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Reset
-                </button>
+                  RESET
+                </motion.button>
               )}
             </div>
             
-            {/* Quick selection buttons */}
-            <div className="flex flex-wrap gap-2 mb-3">
+            {/* Quick selection buttons - Neo-brutal */}
+            <div className="flex flex-wrap gap-3 mb-6">
               {[
-                { label: "All", value: 0 },
-                { label: "Beginner+", value: 25 },
-                { label: "Intermediate+", value: 50 },
-                { label: "Advanced+", value: 75 },
-                { label: "Expert", value: 90 }
-              ].map(preset => (
-                <button
+                { label: "All", value: 0, color: 'brutal-yellow', rotation: 'rotate-1' },
+                { label: "Beginner+", value: 25, color: 'bg-neo-orange border-brutal border-black', rotation: '-rotate-2' },
+                { label: "Intermediate+", value: 50, color: 'brutal-green', rotation: 'rotate-2' },
+                { label: "Advanced+", value: 75, color: 'bg-neo-blue border-brutal border-black', rotation: '-rotate-1' },
+                { label: "Expert", value: 90, color: 'bg-neo-purple border-brutal border-black', rotation: 'rotate-3' }
+              ].map((preset, idx) => (
+                <motion.button
                   key={preset.value}
                   onClick={() => handleProficiencyPreset(preset.value)}
-                  className={`text-xs px-3 py-1.5 rounded-full transition-all ${
+                  className={`brutal-btn px-4 py-2 text-sm font-bold uppercase ${preset.rotation} ${
                     proficiencyRange === preset.value
-                      ? purpleTheme 
-                        ? 'bg-purple-500 text-white' 
-                        : 'bg-emerald-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? preset.color + ' shadow-brutal'
+                      : 'bg-white dark:bg-base-300 border-brutal border-black opacity-70'
                   }`}
+                  whileHover={{ scale: 1.05, rotate: 0 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {preset.label}
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>
           
-          {/* Custom slider with markers */}
-          <div className="relative mt-6 mb-2 px-2">
-      
-            
-            {/* Enhanced slider */}
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="5"
-              value={proficiencyRange}
-              onChange={(e) => setProficiencyRange(parseInt(e.target.value, 10))}
-              onMouseDown={() => setIsSliderActive(true)}
-              onMouseUp={() => setIsSliderActive(false)}
-              onTouchStart={() => setIsSliderActive(true)}
-              onTouchEnd={() => setIsSliderActive(false)}
-              className="w-full h-2 rounded-lg appearance-none cursor-pointer"
-              style={{
-                background: `linear-gradient(to right, ${getSliderColor(proficiencyRange)} ${proficiencyRange}%, #e5e7eb ${proficiencyRange}%)`,
-              }}
-              aria-label="Proficiency level filter"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow={proficiencyRange}
-              aria-valuetext={`${proficiencyRange}% proficiency and above`}
-            />
-            
-            {/* Tooltip when slider is active */}
-            {isSliderActive && (
-              <motion.div 
-                className="absolute -mt-12 px-2 py-1 rounded bg-gray-800 text-white text-xs transform -translate-x-1/2"
-                style={{ left: `${proficiencyRange}%` }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                {proficiencyRange}%
-              </motion.div>
-            )}
+          {/* Neo-brutal slider */}
+          <div className="relative mb-6 px-2">
+            <div className="brutal-card bg-white dark:bg-base-300 p-4 rotate-1">
+              {/* Enhanced slider */}
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="5"
+                value={proficiencyRange}
+                onChange={(e) => setProficiencyRange(parseInt(e.target.value, 10))}
+                onMouseDown={() => setIsSliderActive(true)}
+                onMouseUp={() => setIsSliderActive(false)}
+                onTouchStart={() => setIsSliderActive(true)}
+                onTouchEnd={() => setIsSliderActive(false)}
+                className="w-full h-3 appearance-none cursor-pointer border-brutal border-black"
+                style={{
+                  background: `linear-gradient(to right, ${getSliderColor(proficiencyRange)} ${proficiencyRange}%, #FFE600 ${proficiencyRange}%)`,
+                }}
+                aria-label="Proficiency level filter"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow={proficiencyRange}
+                aria-valuetext={`${proficiencyRange}% proficiency and above`}
+              />
+              
+              {/* Tooltip when slider is active */}
+              {isSliderActive && (
+                <motion.div 
+                  className="absolute -mt-16 brutal-btn brutal-pink px-3 py-2 text-sm font-bold transform -translate-x-1/2 -rotate-6"
+                  style={{ left: `${proficiencyRange}%` }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  {proficiencyRange}%
+                </motion.div>
+              )}
+            </div>
           </div>
           
-          {/* Proficiency level descriptions */}
-          <div className="flex justify-between mt-2 text-[11px] text-gray-500">
-            <span className="flex flex-col items-center">
-              <span className="w-3 h-3 rounded-full bg-orange-400 mb-1"></span>
+          {/* Proficiency level descriptions - Neo-brutal */}
+          <div className="flex justify-between flex-wrap gap-2 text-xs font-bold uppercase">
+            <span className="flex flex-col items-center gap-1">
+              <span className="w-6 h-6 border-brutal border-black bg-neo-orange shadow-brutal-sm"></span>
               Beginner
             </span>
-            <span className="flex flex-col items-center">
-              <span className="w-3 h-3 rounded-full bg-yellow-400 mb-1"></span>
+            <span className="flex flex-col items-center gap-1">
+              <span className="w-6 h-6 border-brutal border-black bg-neo-yellow shadow-brutal-sm"></span>
               Basic
             </span>
-            <span className="flex flex-col items-center">
-              <span className="w-3 h-3 rounded-full bg-lime-400 mb-1"></span>
+            <span className="flex flex-col items-center gap-1">
+              <span className="w-6 h-6 border-brutal border-black bg-neo-green shadow-brutal-sm"></span>
               Intermediate
             </span>
-            <span className="flex flex-col items-center">
-              <span className="w-3 h-3 rounded-full bg-green-400 mb-1"></span>
+            <span className="flex flex-col items-center gap-1">
+              <span className="w-6 h-6 border-brutal border-black bg-neo-blue shadow-brutal-sm"></span>
               Advanced
             </span>
-            <span className="flex flex-col items-center">
-              <span className="w-3 h-3 rounded-full bg-emerald-600 mb-1"></span>
+            <span className="flex flex-col items-center gap-1">
+              <span className="w-6 h-6 border-brutal border-black bg-neo-purple shadow-brutal-sm"></span>
               Expert
             </span>
           </div>

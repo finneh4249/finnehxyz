@@ -34,95 +34,124 @@ function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-20 bg-gray-50/70 dark:bg-gray-900/40">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl font-bold text-center mb-12 pb-4 border-b-2 border-gray-300/30 relative">
-          <span className="relative z-10 px-4 text-gray-800 dark:text-white">
-            Testimonials
-          </span>
-          <div className="absolute h-1 w-24 bg-gradient-to-r from-blue-500 to-violet-500 left-1/2 -translate-x-1/2 bottom-0"></div>
-        </h2>
+    <section id="testimonials" className="py-20 bg-neo-green relative overflow-hidden">
+      {/* Chaotic decorative elements */}
+      <div className="absolute top-10 left-10 w-36 h-48 bg-neo-yellow border-brutal-thick border-black shadow-brutal-lg -rotate-6"></div>
+      <div className="absolute bottom-10 right-10 w-48 h-32 bg-neo-pink border-brutal border-black shadow-brutal rotate-12"></div>
+      <div className="absolute top-1/2 right-20 w-24 h-60 bg-neo-blue border-brutal-thick border-black shadow-brutal rotate-6"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-32 h-28 bg-neo-purple border-brutal border-black shadow-brutal -rotate-12"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="flex items-center justify-center gap-6 flex-wrap mb-6">
+            <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-2">
+              Testimonials
+            </h2>
+            <div className="brutal-btn brutal-pink px-6 py-3 rotate-3">
+              REVIEWS
+            </div>
+          </div>
+          <div className="h-3 w-64 bg-black mx-auto rotate-1"></div>
+        </motion.div>
 
         {/* Display testimonials if available */}
         {testimonials.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                className="bg-white dark:bg-gray-800/50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200/50 dark:border-gray-700/30"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex items-center mb-4">
-                  {testimonial.avatar ? (
-                    <img
-                      src={testimonial.avatar}
-                      alt={`${testimonial.name}'s avatar`}
-                      className="w-12 h-12 rounded-full mr-4 object-cover"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=blue&color=fff`;
-                      }}
-                    />
-                  ) : (
-                    <div className="w-12 h-12 rounded-full mr-4 bg-blue-200 flex items-center justify-center text-blue-800">
-                      {testimonial.name.split(' ').map(word => word[0]).join('')}
+            {testimonials.map((testimonial, index) => {
+              const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
+              const rotation = rotations[index % rotations.length];
+              
+              return (
+                <motion.div
+                  key={index}
+                  className={`brutal-card bg-white dark:bg-base-200 ${rotation} hover:rotate-0 transition-all`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="p-6">
+                    <div className="flex items-center mb-4">
+                      {testimonial.avatar ? (
+                        <div className="w-16 h-16 border-brutal border-black mr-4 overflow-hidden bg-white">
+                          <img
+                            src={testimonial.avatar}
+                            alt={`${testimonial.name}'s avatar`}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=FFE600&color=000`;
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-16 h-16 border-brutal border-black mr-4 bg-neo-blue flex items-center justify-center font-bold text-xl">
+                          {testimonial.name.split(' ').map(word => word[0]).join('')}
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="font-bold text-lg uppercase">{testimonial.name}</h3>
+                        <p className="text-sm font-bold">{testimonial.position}</p>
+                        {testimonial.company && (
+                          <p className="text-xs font-bold opacity-75">{testimonial.company}</p>
+                        )}
+                      </div>
                     </div>
-                  )}
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-200">{testimonial.position}</p>
-                    {testimonial.company && (
-                      <p className="text-xs text-gray-500 dark:text-gray-300/70">{testimonial.company}</p>
-                    )}
+                    <p className="font-medium leading-relaxed border-l-brutal border-black pl-4">"{testimonial.testimonial}"</p>
                   </div>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 italic">"{testimonial.testimonial}"</p>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         ) : (
           /* Coming Soon placeholder when no testimonials are available */
           <motion.div 
-            className="max-w-3xl mx-auto mb-16 p-8 rounded-xl bg-white dark:bg-gray-800/50 shadow-md border border-gray-200 dark:border-gray-700 text-center"
+            className="max-w-3xl mx-auto mb-16 brutal-card bg-white dark:bg-base-200 rotate-1 hover:rotate-0 transition-all"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="bx bx-message-square-dots text-blue-500 text-3xl"></i>
+            <div className="p-12 text-center">
+              <div className="w-24 h-24 bg-neo-yellow border-brutal-thick border-black flex items-center justify-center mx-auto mb-6 rotate-12">
+                <i className="bx bx-message-square-dots text-5xl"></i>
+              </div>
+              <h3 className="text-3xl font-bold uppercase mb-4">Testimonials Coming Soon</h3>
+              <p className="text-lg font-medium mb-0">
+                I'm currently collecting feedback from clients and colleagues I've worked with.
+                <br />Check back soon to see what others have to say about working with me!
+              </p>
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Testimonials Coming Soon</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-0">
-              I'm currently collecting feedback from clients and colleagues I've worked with.
-              <br />Check back soon to see what others have to say about working with me!
-            </p>
           </motion.div>
         )}
         
         {/* CTA Section - always visible */}
         <motion.div 
-          className="max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-violet-50 dark:from-blue-900/20 dark:to-violet-900/20 p-8 rounded-xl border border-blue-200 dark:border-blue-700"
+          className="max-w-3xl mx-auto brutal-card bg-neo-blue -rotate-1 hover:rotate-0 transition-all"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white">Worked with me before?</h3>
-          <p className="text-center text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-            I'd love to hear about your experience working with me. Your feedback helps me improve and assists others in making informed decisions.
-          </p>
-          <div className="flex justify-center">
-            <a 
-              href="mailto:mail@finneh.xyz?subject=Testimonial for Ethan Cornwill&body=Hi Ethan, I'd like to share my experience working with you..."
-              className="btn bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 text-white border-none"
-            >
-              <i className="bx bx-message-square-dots mr-2"></i>
-              Share Your Experience
-            </a>
+          <div className="p-12">
+            <h3 className="text-3xl font-bold uppercase text-center mb-4">Worked with me before?</h3>
+            <p className="text-center text-lg font-medium max-w-2xl mx-auto mb-8">
+              I'd love to hear about your experience working with me. Your feedback helps me improve and assists others in making informed decisions.
+            </p>
+            <div className="flex justify-center">
+              <a 
+                href="mailto:mail@finneh.xyz?subject=Testimonial for Ethan Cornwill&body=Hi Ethan, I'd like to share my experience working with you..."
+                className="brutal-btn brutal-yellow px-8 py-4 text-lg rotate-2 hover:rotate-0 transition-all inline-flex items-center gap-2"
+              >
+                <i className="bx bx-message-square-dots text-2xl"></i>
+                <span className="font-bold uppercase">Share Your Experience</span>
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

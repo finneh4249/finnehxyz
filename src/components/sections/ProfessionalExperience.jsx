@@ -1,39 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import TimelineItem from '../professional-experience/TimelineItem';
-import experiences from '../../data/experience.json';
 
-function ProfessionalExperience() {
+const ProfessionalExperience = () => {
+  const [experienceData, setExperienceData] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/experience.json')
+      .then(response => response.json())
+      .then(data => setExperienceData(data))
+      .catch(error => console.error('Error loading experience data:', error));
+  }, []);
+
   return (
-    <section id="professionalExperience" className="py-20 bg-slate-50 dark:bg-slate-950/90">
-      <div className="container mx-auto px-4 md:px-6">
-        <h1 className="text-3xl font-bold text-center mb-12 pb-4 border-b-2 border-primary/30 relative">
-          <span className="relative z-10 px-4 text-gray-800 dark:text-white">
-            Professional Experience
-          </span>
-          <div className="absolute h-1 w-24 bg-gradient-to-r from-primary to-secondary left-1/2 -translate-x-1/2 bottom-0"></div>
-        </h1>
+    <section id="experience" className="py-20 bg-base-100 dark:bg-base-100 relative overflow-hidden">
+      {/* Wild asymmetric brutal decorations */}
+      <div className="absolute top-10 right-5 w-52 h-40 border-brutal-thick border-black bg-neo-yellow -rotate-12"></div>
+      <div className="absolute top-60 left-10 w-40 h-64 border-brutal border-black bg-neo-purple rotate-6"></div>
+      <div className="absolute bottom-40 right-20 w-36 h-36 border-brutal-thick border-black bg-neo-pink -rotate-3"></div>
+      <div className="absolute bottom-20 left-32 w-48 h-28 border-brutal border-black bg-neo-blue rotate-12"></div>
+      <div className="absolute top-1/3 left-1/4 w-24 h-24 border-brutal border-black bg-neo-green rotate-45"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 relative"
+        >
+          <div className="flex items-center gap-6 flex-wrap justify-end">
+            <div className="brutal-btn brutal-blue px-6 py-3 -rotate-3">
+              WORK
+            </div>
+            <h2 className="text-6xl md:text-7xl font-bold uppercase tracking-tight rotate-2">
+              Experience
+            </h2>
+          </div>
+          <div className="h-2 w-48 bg-black mt-6 ml-auto rotate-1"></div>
+        </motion.div>
 
-        <div className="timeline max-w-4xl mx-auto flex flex-col relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/80 via-secondary/60 to-primary/30 -translate-x-1/2 rounded-full"></div>
-          
-          {experiences.map((exp, index) => (
-            <TimelineItem
+        <div className="max-w-6xl mx-auto space-y-8">
+          {experienceData.map((item, index) => (
+            <TimelineItem 
               key={index}
-              yearRange={exp.yearRange}
-              company={exp.company}
-              employer={exp.employer}
-              roles={exp.roles}
-              logoSrc={exp.logoSrc}
-              logoSrcs={exp.logoSrcs}
-              logoAlt={exp.logoAlt}
-              isLast={index === experiences.length - 1}
+              yearRange={item.yearRange}
+              company={item.company}
+              employer={item.employer}
+              roles={item.roles}
+              logoSrc={item.logoSrc}
+              logoSrcs={item.logoSrcs}
+              logoAlt={item.logoAlt}
+              index={index}
               isFirst={index === 0}
+              isLast={index === experienceData.length - 1}
             />
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default ProfessionalExperience;

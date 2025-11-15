@@ -1,16 +1,14 @@
 import React, { useState, useEffect, memo } from 'react';
 
-const ScrollProgressBar = ({ className = '', height = '2px' }) => {
+const ScrollProgressBar = ({ className = '', height = '6px' }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   
   useEffect(() => {
     const calculateScrollProgress = () => {
-      // Use requestAnimationFrame for smoother progress updates
       requestAnimationFrame(() => {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         
-        // Calculate percentage scrolled
         if (scrollHeight > 0) {
           const scrollPercentage = (scrollTop / scrollHeight) * 100;
           setScrollProgress(scrollPercentage);
@@ -18,10 +16,7 @@ const ScrollProgressBar = ({ className = '', height = '2px' }) => {
       });
     };
     
-    // Initial calculation
     calculateScrollProgress();
-    
-    // Add scroll event listener with passive option for better performance
     window.addEventListener('scroll', calculateScrollProgress, { passive: true });
     
     return () => {
@@ -32,8 +27,11 @@ const ScrollProgressBar = ({ className = '', height = '2px' }) => {
   return (
     <div className={`w-full ${className}`} style={{ height }}>
       <div 
-        className="h-full bg-primary transition-transform duration-75 origin-left"
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+        className="h-full bg-neo-yellow border-b-brutal border-black transition-transform duration-75 origin-left"
+        style={{ 
+          transform: `scaleX(${scrollProgress / 100})`,
+          boxShadow: scrollProgress > 0 ? '0 2px 0 0 #000' : 'none'
+        }}
         role="progressbar"
         aria-valuenow={Math.round(scrollProgress)}
         aria-valuemin="0"
@@ -43,5 +41,4 @@ const ScrollProgressBar = ({ className = '', height = '2px' }) => {
   );
 };
 
-// Memoize to prevent unnecessary re-renders
 export default memo(ScrollProgressBar);

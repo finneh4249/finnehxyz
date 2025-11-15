@@ -8,96 +8,129 @@ const TimelineItem = ({
   roles, 
   logoSrc, 
   logoSrcs,
-  logoAlt, 
+  logoAlt,
+  index,
   isLast,
   isFirst 
 }) => {
+  // Alternate between left and right with more chaos
+  const isEven = index % 2 === 0;
+  const rotations = ['rotate-2', '-rotate-1', 'rotate-1', '-rotate-2'];
+  const rotation = rotations[index % rotations.length];
+  const colors = ['neo-pink', 'neo-blue', 'neo-green', 'neo-yellow', 'neo-purple'];
+  const yearColor = colors[index % colors.length];
+
   return (
     <motion.div 
-      className="timeline-item relative mb-16 last:mb-0"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className={`relative mb-12 ${isEven ? 'md:mr-0 md:ml-auto' : 'md:mr-auto md:ml-0'} max-w-4xl`}
+      initial={{ opacity: 0, x: isEven ? 100 : -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8, type: "spring" }}
     >
-      {/* Year marker */}
-      <div className="flex justify-center mb-6">
+      <div className={`flex ${isEven ? 'flex-row-reverse' : 'flex-row'} gap-6 items-start`}>
+        {/* Year Range Badge - Floating & Rotated */}
         <motion.div 
-          className="year-marker bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full px-6 py-2 z-10 shadow-lg"
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          className={`brutal-btn brutal-${yearColor} px-6 py-4 flex-shrink-0 ${rotation} shadow-brutal-lg z-20 relative`}
+          whileHover={{ scale: 1.1, rotate: isEven ? 5 : -5 }}
+          transition={{ type: "spring", stiffness: 400 }}
         >
-          {yearRange}
+          <div className="text-xl font-bold uppercase tracking-tighter leading-tight text-center">
+            {yearRange.split('-').map((year, i) => (
+              <div key={i}>{year.trim()}</div>
+            ))}
+          </div>
         </motion.div>
-      </div>
 
-      {/* Timeline node */}
-      <div className="absolute left-1/2 -translate-x-1/2 h-5 w-5 rounded-full bg-white dark:bg-slate-800 border-4 border-primary z-10"></div>
-
-      {/* Content Card */}
-      <motion.div 
-        className="bg-white dark:bg-slate-800 dark:!bg-slate-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 backdrop-blur-sm"
-        style={{ backgroundColor: 'var(--bg-card-color, white)' }}
-        whileHover={{ y: -5 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-          {/* Company Logo */}
-          <div className="w-24 h-16 flex-shrink-0 flex items-center justify-center gap-2">
+        {/* Content Card - Asymmetric & Wild */}
+        <motion.div 
+          className={`brutal-card bg-white dark:bg-base-200 flex-grow relative`}
+          style={{ overflow: 'visible' }}
+          whileHover={{ y: -8 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          {/* Logo(s) - Chaotic positioning with more space */}
+          <div className={`absolute ${isEven ? '-left-8' : '-right-8'} -top-8 z-30 flex ${isEven ? 'flex-row' : 'flex-row-reverse'} gap-2`}>
             {logoSrcs && Array.isArray(logoSrcs) ? (
-              logoSrcs.map((src, index) => (
-                <div key={index} className="w-12 h-12 rounded-full overflow-hidden bg-white dark:bg-slate-700 p-1 shadow-md">
+              logoSrcs.map((src, idx) => (
+                <motion.div 
+                  key={idx}
+                  className={`w-24 h-24 border-brutal-thick border-black bg-white dark:bg-base-100 p-2 shadow-brutal ${idx === 0 ? 'rotate-6' : '-rotate-6'}`}
+                  whileHover={{ rotate: idx === 0 ? -6 : 6, scale: 1.1 }}
+                >
                   <img
                     src={src}
-                    alt={`${logoAlt} ${index + 1}`}
+                    alt={`${logoAlt} ${idx + 1}`}
                     className="w-full h-full object-contain"
                   />
-                </div>
+                </motion.div>
               ))
             ) : (
-              <div className="w-16 h-16 rounded-full overflow-hidden bg-white dark:bg-slate-700 p-2 shadow-md">
+              <motion.div 
+                className="w-28 h-28 border-brutal-thick border-black bg-white dark:bg-base-100 p-3 shadow-brutal -rotate-6"
+                whileHover={{ rotate: 6, scale: 1.1 }}
+              >
                 <img
                   src={logoSrc}
                   alt={logoAlt}
                   className="w-full h-full object-contain"
                 />
-              </div>
+              </motion.div>
             )}
           </div>
-          
-          {/* Content */}
-          <div className="flex-grow">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">{company}</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{employer}</p>
+
+          <div className="p-8 pt-20 relative z-10">
+            <div className="mb-6">
+              <h3 className="text-4xl font-bold uppercase mb-2 tracking-tight -rotate-1">
+                {company}
+              </h3>
+              <p className="text-lg font-bold rotate-1">{employer}</p>
+            </div>
             
-            {/* Roles */}
-            <div className="space-y-6">
-              {roles.map((role, idx) => (
-                <div key={idx} className="role-item">
-                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
-                    <h4 className={`font-semibold ${role.isCurrent ? 'text-primary' : 'text-gray-800 dark:text-gray-200'}`}>
-                      {role.title}
-                    </h4>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 md:before:content-['•'] md:before:mx-2 md:before:text-gray-400">
-                      {role.period}
-                    </span>
-                    {role.isCurrent && (
-                      <span className="bg-primary/20 text-primary text-xs px-2 py-1 rounded-full font-medium inline-block w-fit">
-                        Current
-                      </span>
+            {/* Roles - Stacked with decorative elements */}
+            <div className="space-y-8">
+              {roles.map((role, idx) => {
+                const roleColors = ['neo-blue', 'neo-pink', 'neo-yellow', 'neo-green'];
+                const roleColor = roleColors[idx % roleColors.length];
+                
+                return (
+                  <div key={idx} className="relative">
+                    {/* Decorative side bar */}
+                    <div className={`absolute -left-4 top-0 bottom-0 w-2 bg-${roleColor} -rotate-2`}></div>
+                    
+                    <div className="pl-6">
+                      <div className="flex flex-wrap items-center gap-3 mb-3">
+                        <h4 className="font-bold text-2xl uppercase tracking-tight">
+                          {role.title}
+                        </h4>
+                        {role.isCurrent && (
+                          <span className="brutal-btn brutal-yellow px-4 py-2 text-xs rotate-3">
+                            CURRENT
+                          </span>
+                        )}
+                      </div>
+                      <div className="brutal-btn bg-base-200 dark:bg-base-300 border-black px-4 py-2 inline-block mb-3 text-sm -rotate-1">
+                        {role.period}
+                      </div>
+                      <div className="text-base font-medium leading-relaxed border-l-brutal border-black pl-4 rotate-1">
+                        {role.description}
+                      </div>
+                    </div>
+
+                    {/* Decorative corner accent */}
+                    {idx === roles.length - 1 && (
+                      <div className={`absolute ${isEven ? 'top-4 left-0' : 'top-4 right-0'} w-12 h-12 border-brutal border-black bg-${roleColor} rotate-45`}></div>
                     )}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
-                    {role.description}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
-        </div>
-      </motion.div>
+
+          {/* Large decorative corner element - outside card */}
+          <div className={`absolute ${isEven ? '-bottom-4 -right-4' : '-bottom-4 -left-4'} w-20 h-20 border-brutal-thick border-black bg-${yearColor} rotate-12 -z-10`}></div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 };

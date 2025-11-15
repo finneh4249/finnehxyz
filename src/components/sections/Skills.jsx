@@ -5,26 +5,33 @@ import SkillCard from '../skills/SkillCard';
 import SearchFilter from '../ui/SearchFilter';
 import { fetchData } from '../../utils/dataFetcher';
 
-// Category filter component with animations
-const CategoryFilters = ({ categories, activeCategory, onCategoryChange }) => (
-  <div className="flex flex-wrap justify-center gap-2 mb-8">
-    {categories.map(category => (
-      <motion.button
-        key={category}
-        className={`btn btn-sm ${
-          activeCategory === category 
-            ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white border-none' 
-            : 'btn-outline border-purple-400 text-purple-700 dark:text-purple-300'
-        }`}
-        onClick={() => onCategoryChange(category)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {category}
-      </motion.button>
-    ))}
-  </div>
-);
+// Category filter component with neo-brutalist styling
+const CategoryFilters = ({ categories, activeCategory, onCategoryChange }) => {
+  const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
+  
+  return (
+    <div className="flex flex-wrap justify-center gap-3 mb-8">
+      {categories.map((category, index) => {
+        const rotation = rotations[index % rotations.length];
+        return (
+          <motion.button
+            key={category}
+            className={`brutal-btn px-5 py-3 text-sm ${rotation} hover:rotate-0 transition-all ${
+              activeCategory === category 
+                ? 'brutal-yellow' 
+                : 'bg-white dark:bg-base-200'
+            }`}
+            onClick={() => onCategoryChange(category)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {category}
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+};
 
 function Skills() {
   // State for filters and search
@@ -124,22 +131,37 @@ function Skills() {
   }
 
   return (
-    <section id="skills" className="py-20 bg-purple-50/70 dark:bg-purple-950/90">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="skills" className="py-20 bg-neo-purple relative overflow-hidden">
+      {/* Chaotic decorative elements */}
+      <div className="absolute top-10 right-10 w-48 h-36 bg-neo-orange border-brutal-thick border-black shadow-brutal-lg rotate-12"></div>
+      <div className="absolute bottom-20 left-10 w-32 h-52 bg-neo-yellow border-brutal border-black shadow-brutal -rotate-6"></div>
+      <div className="absolute top-1/3 left-1/4 w-28 h-28 bg-neo-pink border-brutal-thick border-black shadow-brutal rotate-45"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-40 h-24 bg-neo-blue border-brutal border-black shadow-brutal -rotate-12"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Languages & Tools Section */}
         <div className="mb-20">
-          <h1 className="text-3xl font-bold text-center mb-12 pb-4 border-b-2 border-purple-300/30 relative">
-            <span className="relative z-10 px-4 text-gray-800 dark:text-white">
-              Languages & Tools
-            </span>
-            <div className="absolute h-1 w-24 bg-gradient-to-r from-purple-500 to-fuchsia-500 left-1/2 -translate-x-1/2 bottom-0"></div>
-          </h1>
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <div className="flex items-center justify-center gap-6 flex-wrap mb-6">
+              <div className="brutal-btn brutal-orange px-6 py-3 -rotate-2">
+                TOOLS
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tight rotate-1">
+                Languages & Tools
+              </h1>
+            </div>
+            <div className="h-3 w-56 bg-black mx-auto -rotate-1"></div>
+          </motion.div>
           
-          <div className="text-center mb-6 text-sm text-gray-600 dark:text-gray-300">
-            <p>Hover over the cards to see proficiency levels and details</p>
+          <div className="text-center mb-6 brutal-btn brutal-yellow px-6 py-3 inline-block rotate-2 text-base">
+            HOVER TO SEE PROFICIENCY LEVELS
           </div>
           
-          {/* Add SearchFilter with proficiency range slider */}
           <SearchFilter 
             placeholder="Search tools..."
             onFilterChange={handleToolFilterChange}
@@ -154,35 +176,43 @@ function Skills() {
             onCategoryChange={setActiveToolCategory} 
           />
           
-          {/* Display tools */}
           {filteredTools.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-stretch">
-              {filteredTools.map((tool, index) => (
-                <ToolCard
-                  key={index}
-                  icon={tool.icon}
-                  name={tool.name}
-                  color={tool.color}
-                  category={tool.category}
-                  proficiency={tool.proficiency || 50}
-                  description={tool.description || ""}
-                />
-              ))}
+              {filteredTools.map((tool, index) => {
+                // Create chaotic positioning by varying card sizes and rotations
+                const rotations = ['-rotate-1', 'rotate-2', '-rotate-2', 'rotate-1', 'rotate-3', '-rotate-3'];
+                const rotation = rotations[index % rotations.length];
+                
+                return (
+                  <div key={index} className={`${rotation}`} style={{ 
+                    gridColumn: index % 7 === 0 ? 'span 2' : 'span 1',
+                  }}>
+                    <ToolCard
+                      icon={tool.icon}
+                      name={tool.name}
+                      color={tool.color}
+                      category={tool.category}
+                      proficiency={tool.proficiency || 50}
+                      description={tool.description || ""}
+                    />
+                  </div>
+                );
+              })}
             </div>
           ) : (
-            <div className="text-center py-8">
-              <p className="text-lg text-gray-600 dark:text-gray-300">No matching tools found.</p>
+            <div className="text-center py-8 brutal-card bg-white dark:bg-base-200 rotate-1">
+              <p className="text-xl font-bold uppercase mb-4">No matching tools found.</p>
               <motion.button 
-                className="btn btn-sm border-purple-400 text-purple-700 dark:border-purple-500 dark:text-purple-200 mt-4"
+                className="brutal-btn brutal-yellow px-6 py-3 -rotate-2"
                 onClick={() => {
                   setToolSearch("");
                   setActiveToolCategory("All");
                   setProficiencyLevel(0);
                 }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, rotate: 0 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Reset filters
+                Reset Filters
               </motion.button>
             </div>
           )}
@@ -190,14 +220,23 @@ function Skills() {
 
         {/* Skills Section */}
         <div>
-          <h1 className="text-3xl font-bold text-center mb-12 pb-4 border-b-2 border-purple-300/30 relative">
-            <span className="relative z-10 px-4 text-gray-800 dark:text-white">
-              Skills
-            </span>
-            <div className="absolute h-1 w-24 bg-gradient-to-r from-purple-500 to-fuchsia-500 left-1/2 -translate-x-1/2 bottom-0"></div>
-          </h1>
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <div className="flex items-center justify-center gap-6 flex-wrap mb-6">
+              <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-1">
+                Skills
+              </h1>
+              <div className="brutal-btn brutal-pink px-6 py-3 rotate-3">
+                EXPERTISE
+              </div>
+            </div>
+            <div className="h-3 w-48 bg-black mx-auto rotate-1"></div>
+          </motion.div>
           
-          {/* SearchFilter for skills */}
           <SearchFilter 
             placeholder="Search skills..."
             onFilterChange={handleSkillFilterChange}
@@ -211,33 +250,43 @@ function Skills() {
             onCategoryChange={setActiveSkillCategory} 
           />
           
-          {/* Display skills */}
           {filteredSkills.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredSkills.map((skill, index) => (
-                <SkillCard
-                  key={index}
-                  icon={skill.icon}
-                  title={skill.title}
-                  description={skill.description}
-                  color={skill.color}
-                  category={skill.category}
-                />
-              ))}
+              {filteredSkills.map((skill, index) => {
+                // Chaotic layout - some cards span multiple columns
+                const rotations = ['rotate-1', '-rotate-2', 'rotate-2', '-rotate-1', 'rotate-3', '-rotate-3'];
+                const rotation = rotations[index % rotations.length];
+                const isWide = index % 5 === 0; // Every 5th card is wide
+                
+                return (
+                  <div 
+                    key={index} 
+                    className={`${rotation} ${isWide ? 'md:col-span-2 lg:col-span-2' : ''}`}
+                  >
+                    <SkillCard
+                      icon={skill.icon}
+                      title={skill.title}
+                      description={skill.description}
+                      color={skill.color}
+                      category={skill.category}
+                    />
+                  </div>
+                );
+              })}
             </div>
           ) : (
-            <div className="text-center py-8">
-              <p className="text-lg text-base-content/60">No matching skills found.</p>
+            <div className="text-center py-8 brutal-card bg-white dark:bg-base-200 -rotate-1">
+              <p className="text-xl font-bold uppercase mb-4">No matching skills found.</p>
               <motion.button 
-                className="btn btn-sm border-purple-400 text-purple-700 dark:text-purple-300 mt-4"
+                className="brutal-btn brutal-yellow px-6 py-3 rotate-2"
                 onClick={() => {
                   setSkillSearch("");
                   setActiveSkillCategory("All");
                 }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, rotate: 0 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Reset filters
+                Reset Filters
               </motion.button>
             </div>
           )}
