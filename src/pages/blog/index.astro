@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSectionMeta } from '../../utils/seo';
+
+const seoMeta = getSectionMeta('blog');
+
+// Get all blog posts
+const posts = await Astro.glob('./*.mdx');
+
+// Sort by date (newest first) and filter published posts
+const sortedPosts = posts
+  .filter(post => post.frontmatter.published !== false)
+  .sort((a, b) => 
+    new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+  );
+
+// Format date helper
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<BaseLayout title={seoMeta.title} description={seoMeta.description}>
+  <div class="min-h-screen bg-white dark:bg-gray-900 py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-black mb-4 text-black dark:text-white" style="text-shadow: 3px 3px 0 #FFE600;">
+          📝 Blog
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+          Thoughts on AI engineering, prompt architecture, and building production systems that actually ship.
+        </p>
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div class="grid gap-8 md:grid-cols-2">
+        {sortedPosts.map((post) => (
+          <article class="brutal-card bg-white dark:bg-gray-800 p-8 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group border-4 border-black dark:border-white">
+            <a href={post.url} class="block">
+              
+              <!-- Date -->
+              <div class="flex items-center gap-2 mb-4 text-sm font-bold">
+                <i class='bx bx-calendar text-2xl' style="color: #FF006E;"></i>
+                <time datetime={post.frontmatter.date} class="text-black dark:text-white">
+                  {formatDate(post.frontmatter.date)}
+                </time>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-3xl font-black mb-4 leading-tight group-hover:text-pink-600 transition-colors text-black dark:text-white">
+                {post.frontmatter.title}
+              </h2>
+
+              <!-- Description -->
+              <p class="mb-6 text-lg leading-relaxed text-gray-800 dark:text-gray-200 line-clamp-3">
+                {post.frontmatter.description}
+              </p>
+
+              <!-- Tags -->
+              {post.frontmatter.tags && (
+                <div class="flex flex-wrap gap-2 mb-6">
+                  {post.frontmatter.tags.slice(0, 3).map((tag: string) => (
+                    <span class="px-3 py-1 bg-yellow-400 text-black text-xs font-bold border-2 border-black uppercase tracking-wide">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <!-- Read More -->
+              <div class="flex items-center gap-2 font-bold group-hover:gap-4 transition-all text-lg" style="color: #FF006E;">
+                <span>Read Article</span>
+                <i class='bx bx-right-arrow-alt text-2xl'></i>
+              </div>
+
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-20">
+          <p class="text-2xl text-gray-700 dark:text-gray-300">No blog posts yet. Check back soon!</p>
+        </div>
+      )}
+
+      <!-- Back Home -->
+      <div class="text-center mt-16">
+        <a 
+          href="/"
+          class="inline-block text-lg underline text-black dark:text-white hover:text-pink-600 transition-colors"
+        >
+          ← Back to Portfolio
+        </a>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

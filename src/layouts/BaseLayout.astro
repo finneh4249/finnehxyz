@@ -1,0 +1,78 @@
+---
+import '../index.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+}
+
+const {
+  title = "Ethan Cornwill | Technical Lead & AI Developer",
+  description = "Ethan Cornwill — Technical Lead & AI Developer. Bridging operational leadership and software engineering to build scalable, intelligent systems.",
+  image = "/images/me.jpeg",
+  url = "https://finneh.xyz"
+} = Astro.props;
+
+// Structured data for SEO
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ethan Cornwill",
+  jobTitle: "Technical Lead & AI Developer",
+  url: url,
+  image: image,
+  sameAs: [
+    "https://github.com/finneh4249",
+    "https://twitter.com/melbPAT",
+    "https://www.linkedin.com/in/ethancornwill/"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ethan Cornwill Portfolio",
+  url: url
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/images/me.jpeg" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Ethan Cornwill, web developer, portfolio, team leader, digital solutions, user-focused design" />
+    <meta name="author" content="Ethan Cornwill" />
+    <meta name="google-adsense-account" content="ca-pub-1380962808933314">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
