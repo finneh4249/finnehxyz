@@ -1,17 +1,20 @@
 {
-  "name": "react-app",
+  "name": "portfolio-astro",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "predev": "node scripts/ensure-data-files.cjs",
-    "dev": "vite",
-    "build": "npm run predev && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "tailwindcss": "tailwindcss init -p"
+    "dev": "npm run predev && astro dev",
+    "build": "npm run predev && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.10",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.15.7",
     "boxicons": "^2.1.4",
     "formik": "^2.4.6",
     "framer-motion": "^12.5.0",
