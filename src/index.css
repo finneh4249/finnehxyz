@@ -1,180 +1,190 @@
 @import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Add smooth scrolling behavior */
+/* NEO-BRUTALIST BASE STYLES */
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4rem; /* Adds padding for fixed header */
+    scroll-padding-top: 5rem;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
   }
   
-  /* Ensure theme transitions are smooth but not too slow */
+  body {
+    background: var(--fallback-b1, oklch(var(--b1)));
+    color: var(--fallback-bc, oklch(var(--bc)));
+  }
+  
   :root {
-    transition: background-color 0.2s ease, color 0.2s ease;
-    --card-bg-light: white;
-    --card-bg-dark: rgb(17 24 39);
-    --icon-color: inherit;
-    --icon-color-dark: inherit;
+    --card-bg-light: #FAFAFA;
+    --card-bg-dark: #1A1A1A;
   }
   
-  /* Add will-change hints for elements that animate */
-  .will-change-transform {
-    will-change: transform;
+  /* Dark mode specific fixes */
+  .dark {
+    background-color: #0A0A0A;
+    color: #FAFAFA;
+  }
+  
+  .dark .brutal-card {
+    background-color: #1A1A1A;
+  }
+  
+  /* Neo-brutalist typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Remove all rounded corners */
+  * {
+    border-radius: 0 !important;
   }
 }
 
-/* Hero section special styling */
-.hero-gradient {
-  background: linear-gradient(135deg, 
-    var(--b3) 0%,
-    var(--b2) 100%);
-  position: relative;
+/* NEO-BRUTALIST COMPONENTS */
+@layer components {
+  /* Brutal Card */
+  .brutal-card {
+    @apply border-brutal border-black bg-white dark:bg-base-200 shadow-brutal;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .brutal-card:hover {
+    @apply shadow-brutal-lg;
+    transform: translate(-2px, -2px);
+  }
+  
+  /* Brutal Button */
+  .brutal-btn {
+    @apply border-brutal border-black font-bold uppercase px-6 py-3 
+           transition-all duration-200 cursor-pointer;
+  }
+  
+  .brutal-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px 0px #000;
+  }
+  
+  .brutal-btn:active {
+    transform: translate(0, 0);
+    box-shadow: 3px 3px 0px 0px #000;
+  }
+  
+  /* Brutal Input */
+  .brutal-input {
+    @apply border-brutal border-black px-4 py-3 bg-white dark:bg-base-200
+           focus:outline-none focus:shadow-brutal;
+  }
+  
+  /* Color variants */
+  .brutal-yellow {
+    @apply bg-neo-yellow;
+    color: #000 !important;
+  }
+  
+  .brutal-pink {
+    @apply bg-neo-pink text-white;
+  }
+  
+  .brutal-blue {
+    @apply bg-neo-blue text-white;
+  }
+  
+  .brutal-green {
+    @apply bg-neo-green;
+    color: #000 !important;
+  }
+  
+  .brutal-purple {
+    @apply bg-neo-purple text-white;
+  }
+  
+  .brutal-orange {
+    @apply bg-neo-orange text-white;
+  }
+  
+  /* Ensure child elements also get proper text color */
+  .brutal-yellow *,
+  .brutal-green * {
+    color: #000 !important;
+  }
+  
+  .brutal-pink *,
+  .brutal-blue *,
+  .brutal-purple *,
+  .brutal-orange * {
+    color: #fff !important;
+  }
 }
 
-/* Geometric pattern background - using more visible pattern but optimized */
-.bg-pattern {
-  background-image: 
-    radial-gradient(circle, var(--p) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Perspective for 3D effects */
-.perspective-500 {
-  perspective: 500px;
-}
-
-.transform-style-3d {
-  transform-style: preserve-3d;
-}
-
-/* 3D card flip classes */
-.perspective-card {
-  perspective: 1000px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-/* Make card transitions smooth */
-.card-transition {
-  transition: transform 0.6s, height 0.3s;
-}
-
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-
-/* Animation keyframes - simplified to reduce repaints */
+/* NEO-BRUTALIST ANIMATIONS */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Much slower and simpler pulse animation */
-@keyframes pulseVerySlow {
-  0% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.02); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 0.6; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
 
-@keyframes scrollDotAnimation {
-  0% { transform: translateY(-3px); opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { transform: translateY(3px); opacity: 0.5; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px) rotate(-5deg); }
+  20%, 40%, 60%, 80% { transform: translateX(10px) rotate(5deg); }
 }
 
 .animate-fadeIn {
   opacity: 0;
-  animation: fadeIn 0.8s ease-out forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
-.animate-float {
-  animation: float 7s ease-in-out infinite;
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
 }
 
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradientFlow 15s ease infinite;
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out;
 }
 
-.animate-pulse-slow {
-  animation: pulse 4s ease-in-out infinite;
+/* Utility Classes */
+.text-shadow-brutal {
+  text-shadow: 4px 4px 0px #000;
 }
 
-.animate-pulse-very-slow {
-  animation: pulseVerySlow 15s ease-in-out infinite;
+/* Neo-brutalist section spacing */
+section {
+  padding: 4rem 0;
 }
 
-.animate-blink {
-  animation: blink 1s step-end infinite;
-}
-
-/* Scroll dot animation */
-.animate-scroll-dot {
-  animation: scrollDotAnimation 1.5s ease-in-out infinite;
-}
-
-/* Scroll animations */
-.animate-in-view {
-  animation: slideInFromBottom 0.6s ease-out forwards;
-}
-
-.animate-in-view.from-left {
-  animation: slideInFromLeft 0.6s ease-out forwards;
-}
-
-.animate-in-view.from-right {
-  animation: slideInFromRight 0.6s ease-out forwards;
-}
-
-/* Apply scroll animations to specific elements */
-.scroll-animate {
-  opacity: 0;
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-/* Canvas overlay styles */
-.particle-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Scroll indicator styling */
-.scroll-indicator {
-  transition: transform 0.3s ease;
-}
-
-.scroll-indicator:hover {
-  transform: translateY(-3px);
+/* Override daisy rounded corners */
+.btn, .input, .card, .badge, .avatar > div {
+  border-radius: 0 !important;
 }
 
 /* Add these rules to ensure dark mode cards */
@@ -419,16 +429,89 @@ i.bx.text-black {
   color: var(--icon-color-dark) !important;
 }
 
-.dark .skill-icon {
-  color: var(--icon-color-dark) !important;
+/* Neo-brutalist Swiper Customization */
+.featured-projects-swiper .swiper-button-next,
+.featured-projects-swiper .swiper-button-prev {
+  background-color: #FFE600;
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0px 0px #000;
+  width: 50px;
+  height: 50px;
+  color: #000;
+  font-weight: bold;
 }
 
-/* Additional wrapper for jsx/emotion styles to work properly */
-.icon-wrapper {
-  color: inherit;
+.featured-projects-swiper .swiper-button-next:hover,
+.featured-projects-swiper .swiper-button-prev:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px 0px #000;
 }
 
-/* Remove any circular dependencies */
+.featured-projects-swiper .swiper-button-next::after,
+.featured-projects-swiper .swiper-button-prev::after {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.featured-projects-swiper .swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 3px solid #000;
+  opacity: 1;
+}
+
+.featured-projects-swiper .swiper-pagination-bullet-active {
+  background: #FFE600;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0px 0px #000;
+}
+
+/* Neo-brutalist form inputs */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+textarea,
+select {
+  border: 4px solid #000 !important;
+  background: #fff;
+  padding: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: 6px 6px 0px 0px #000 !important;
+  transform: translate(-2px, -2px);
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="search"],
+.dark textarea,
+.dark select {
+  background: var(--base-200);
+  color: var(--neutral);
+}
+
+/* Neo-brutalist modals */
+.modal-box {
+  border: 6px solid #000 !important;
+  box-shadow: 12px 12px 0px 0px #000 !important;
+  background: #fff;
+  padding: 2rem;
+}
+
+.dark .modal-box {
+  background: var(--base-200);
+}
+
+/* Icon colors remain consistent */
 i.bx {
   color: inherit;
 }
