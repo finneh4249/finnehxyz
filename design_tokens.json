@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "name": "FinnehXYZ Neo-Brutalist System",
+    "version": "1.0.0",
+    "last_updated": "2025-11-19"
+  },
+  "theme": {
+    "colors": {
+      "base": {
+        "light": "#FAFAFA",
+        "dark": "#0A0A0A",
+        "pure-white": "#FFFFFF",
+        "pure-black": "#000000"
+      },
+      "palette": {
+        "neo-yellow": "#FFE600",
+        "neo-pink": "#FF006E",
+        "neo-blue": "#00B4D8",
+        "neo-green": "#06FFA5",
+        "neo-purple": "#B75CFF",
+        "neo-orange": "#FF6B35"
+      },
+      "semantic": {
+        "primary": "{theme.colors.palette.neo-pink}",
+        "secondary": "{theme.colors.palette.neo-blue}",
+        "accent": "{theme.colors.palette.neo-yellow}",
+        "success": "{theme.colors.palette.neo-green}",
+        "warning": "{theme.colors.palette.neo-orange}",
+        "error": "{theme.colors.palette.neo-pink}",
+        "text": {
+          "primary": "{theme.colors.base.pure-black}",
+          "inverse": "{theme.colors.base.pure-white}"
+        }
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "display": ["Space Grotesk", "system-ui", "sans-serif"],
+        "mono": ["Space Mono", "monospace"],
+        "body": ["Space Grotesk", "system-ui", "sans-serif"]
+      },
+      "fontWeight": {
+        "regular": 400,
+        "medium": 500,
+        "bold": 700,
+        "black": 900
+      }
+    },
+    "borders": {
+      "width": {
+        "default": "3px",
+        "thick": "6px"
+      },
+      "radius": {
+        "none": "0px"
+      }
+    },
+    "shadows": {
+      "hard-sm": "4px 4px 0px 0px #000000",
+      "hard-md": "6px 6px 0px 0px #000000",
+      "hard-lg": "10px 10px 0px 0px #000000",
+      "hard-xl": "15px 15px 0px 0px #000000"
+    },
+    "animation": {
+      "timing": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      "duration": {
+        "fast": "200ms",
+        "normal": "300ms",
+        "slow": "500ms"
+      }
+    }
+  }
+}
