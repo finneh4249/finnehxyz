@@ -1,0 +1,220 @@
+---
+---
+
+<dialog id="project-modal" class="modal p-0 bg-transparent backdrop:bg-black/80">
+  <div class="modal-box max-w-4xl w-full bg-white dark:bg-base-200 p-0 overflow-hidden relative border-3 border-black shadow-brutal-xl m-4 rounded-none">
+    <div class="relative h-64 md:h-80 bg-gray-200 overflow-hidden border-b-3 border-black">
+      <img
+        id="modal-image"
+        src=""
+        alt=""
+        class="w-full h-full object-cover"
+      />
+      <button
+        id="modal-close"
+        class="absolute top-4 right-4 brutal-btn bg-white text-black w-10 h-10 flex items-center justify-center z-10 hover:rotate-90 transition-transform duration-300 rounded-none border-3 border-black"
+        aria-label="Close modal"
+      >
+        <i class="bx bx-x text-2xl"></i>
+      </button>
+    </div>
+    
+    <div class="p-8">
+      <div class="flex flex-wrap justify-between items-start gap-4 mb-6">
+        <div>
+          <h2 id="modal-title" class="text-4xl font-bold uppercase mb-2 leading-tight"></h2>
+          <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+        </div>
+        
+        <div class="flex gap-3">
+          <a 
+            id="modal-live"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brutal-btn brutal-blue px-5 py-2 text-sm font-bold uppercase hover:-translate-y-1 transition-transform hidden"
+          >
+            Live Demo
+          </a>
+          <a 
+            id="modal-github"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brutal-btn bg-black text-white px-5 py-2 text-sm font-bold uppercase hover:-translate-y-1 transition-transform hidden"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black inline-block">Overview</h3>
+          <p id="modal-description" class="text-lg leading-relaxed mb-6"></p>
+          
+          <div id="modal-challenges-container" class="hidden">
+            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black inline-block">Challenges</h3>
+            <p id="modal-challenges" class="mb-6 leading-relaxed"></p>
+          </div>
+          
+          <div id="modal-outcomes-container" class="hidden">
+            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black inline-block">Outcomes</h3>
+            <p id="modal-outcomes" class="mb-6 leading-relaxed"></p>
+          </div>
+        </div>
+        
+        <div class="bg-base-100 dark:bg-base-300 p-6 border-brutal border-black h-fit">
+          <h3 class="text-xl font-bold uppercase mb-4">Technologies</h3>
+          <div id="modal-tech" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal[open] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-box {
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .modal[open] .modal-box {
+    transform: scale(1);
+  }
+</style>
+
+<script>
+  function initProjectModal() {
+    const dialog = document.getElementById('project-modal') as HTMLDialogElement;
+    const closeBtn = document.getElementById('modal-close');
+    
+    // Elements to update
+    const img = document.getElementById('modal-image') as HTMLImageElement;
+    const title = document.getElementById('modal-title');
+    const desc = document.getElementById('modal-description');
+    const tagsContainer = document.getElementById('modal-tags');
+    const techContainer = document.getElementById('modal-tech');
+    const liveBtn = document.getElementById('modal-live') as HTMLAnchorElement;
+    const githubBtn = document.getElementById('modal-github') as HTMLAnchorElement;
+    const challengesContainer = document.getElementById('modal-challenges-container');
+    const challenges = document.getElementById('modal-challenges');
+    const outcomesContainer = document.getElementById('modal-outcomes-container');
+    const outcomes = document.getElementById('modal-outcomes');
+
+    // Close handler
+    const closeDialog = () => {
+      dialog.close();
+      document.body.style.overflow = '';
+    };
+
+    closeBtn?.addEventListener('click', closeDialog);
+    dialog?.addEventListener('click', (e) => {
+      if (e.target === dialog) closeDialog();
+    });
+
+    // Open handler event
+    document.addEventListener('openProjectModal', (e: any) => {
+      const project = e.detail;
+      if (!project || !dialog) return;
+
+      // Update content
+      if (img) {
+        img.src = project.image || '';
+        img.alt = project.title || 'Project Image';
+      }
+      
+      if (title) title.textContent = project.title || '';
+      if (desc) desc.textContent = project.description || '';
+      
+      // Tags
+      if (tagsContainer) {
+        tagsContainer.innerHTML = '';
+        if (project.tags && Array.isArray(project.tags)) {
+          project.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = 'px-3 py-1 bg-white text-black border-3 border-black text-xs font-bold uppercase rounded-none';
+            span.textContent = tag.name;
+            tagsContainer.appendChild(span);
+          });
+        }
+      }
+
+      // Tech
+      if (techContainer) {
+        techContainer.innerHTML = '';
+        if (project.technologies && Array.isArray(project.technologies)) {
+          project.technologies.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'px-3 py-1 bg-white dark:bg-base-100 border-3 border-black text-xs font-bold uppercase rounded-none';
+            span.textContent = tech;
+            techContainer.appendChild(span);
+          });
+        }
+      }
+
+      // Links
+      if (liveBtn) {
+        if (project.liveDemoUrl) {
+          liveBtn.href = project.liveDemoUrl;
+          liveBtn.classList.remove('hidden');
+        } else {
+          liveBtn.classList.add('hidden');
+        }
+      }
+
+      if (githubBtn) {
+        if (project.githubUrl) {
+          githubBtn.href = project.githubUrl;
+          githubBtn.classList.remove('hidden');
+        } else {
+          githubBtn.classList.add('hidden');
+        }
+      }
+      
+      // Details
+      if (challengesContainer && challenges) {
+        if (project.challenges) {
+          challenges.textContent = project.challenges;
+          challengesContainer.classList.remove('hidden');
+        } else {
+          challengesContainer.classList.add('hidden');
+        }
+      }
+      
+      if (outcomesContainer && outcomes) {
+        if (project.outcomes) {
+          outcomes.textContent = project.outcomes;
+          outcomesContainer.classList.remove('hidden');
+        } else {
+          outcomesContainer.classList.add('hidden');
+        }
+      }
+
+      document.body.style.overflow = 'hidden';
+      dialog.showModal();
+    });
+  }
+
+  initProjectModal();
+  document.addEventListener('astro:page-load', initProjectModal);
+</script>

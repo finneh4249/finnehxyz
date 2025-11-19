@@ -1,0 +1,42 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  color: string;
+  category?: string;
+}
+
+import { getNeoColor } from '../../utils/colorMapping';
+
+const { icon, title, description, color, category } = Astro.props;
+
+const cardColor = getNeoColor(title);
+---
+
+<div
+  class="brutal-card cursor-pointer hover:scale-[1.02] transition-transform duration-300 animate-on-scroll slide-up"
+>
+  <div class="border-b-brutal border-black p-4" style={`background-color: ${cardColor};`}>
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 bg-black border-2 border-black flex items-center justify-center">
+        <i class:list={["bx text-2xl text-white", icon]}></i>
+      </div>
+      <h3 class="text-xl font-bold uppercase text-black">{title}</h3>
+    </div>
+  </div>
+  
+  <div class="p-6 bg-white dark:bg-base-200">
+    {category && (
+      <div class="mb-3">
+        <span class="bg-black text-white px-3 py-1 font-bold uppercase text-xs border-2 border-black">
+          {category}
+        </span>
+      </div>
+    )}
+    
+    <p class="text-base font-medium text-base-content">
+      {description}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+---
+import CompanyRole from './CompanyRole.astro';
+
+interface Role {
+  title: string;
+  period: string;
+  isCurrent?: boolean;
+  description?: string;
+}
+
+interface Props {
+  yearRange: string;
+  company: string;
+  employer?: string;
+  roles: Role[];
+  logoSrc?: string;
+  logoSrcs?: string[];
+  logoAlt: string;
+  index: number;
+  isFirst?: boolean;
+  isLast?: boolean;
+}
+
+const { 
+  yearRange, 
+  company, 
+  employer, 
+  roles, 
+  logoSrc, 
+  logoSrcs, 
+  logoAlt, 
+  index,
+} = Astro.props;
+
+const isEven = index % 2 === 0;
+const colors = ['neo-pink', 'neo-blue', 'neo-green', 'neo-yellow', 'neo-purple'];
+const accentColor = colors[index % colors.length];
+---
+
+<div class={`relative mb-20 w-full max-w-5xl mx-auto ${isEven ? 'md:mr-auto' : 'md:ml-auto'} animate-on-scroll slide-up`}>
+  
+  <div class={`flex flex-col md:flex-row ${isEven ? '' : 'md:flex-row-reverse'} gap-6 md:gap-10`}>
+    
+    <!-- Left Column: Year & Logo -->
+    <div class="flex flex-row md:flex-col gap-4 items-center md:items-center shrink-0 z-20 w-full md:w-32 justify-between md:justify-start">
+      <!-- Year Badge -->
+      <div class={`bg-${accentColor} border-3 border-black dark:border-white px-4 py-2 shadow-brutal dark:shadow-[6px_6px_0px_0px_#ffffff] text-center w-auto md:w-full transform -rotate-2`}>
+        <span class="text-lg font-black block text-black">{yearRange}</span>
+      </div>
+
+      <!-- Logo(s) -->
+      <div class="flex flex-row md:flex-col gap-2">
+        {logoSrcs && logoSrcs.length > 0 ? (
+          logoSrcs.map((src, idx) => (
+            <div class="w-16 h-16 md:w-24 md:h-24 bg-white border-3 border-black dark:border-white p-2 shadow-brutal dark:shadow-[6px_6px_0px_0px_#ffffff] flex items-center justify-center hover:scale-105 transition-transform">
+              <img src={src} alt={`${logoAlt} ${idx + 1}`} class="w-full h-full object-contain" />
+            </div>
+          ))
+        ) : (
+          <div class="w-16 h-16 md:w-24 md:h-24 bg-white border-3 border-black dark:border-white p-2 shadow-brutal dark:shadow-[6px_6px_0px_0px_#ffffff] flex items-center justify-center hover:scale-105 transition-transform">
+            <img src={logoSrc} alt={logoAlt} class="w-full h-full object-contain" />
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Right Column: Content Card -->
+    <div class="relative flex-grow w-full group">
+      <!-- Decorative Underlay -->
+      <div class="absolute inset-0 bg-black dark:bg-white translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 z-0 transition-transform group-hover:translate-x-3 group-hover:translate-y-3"></div>
+      
+      <!-- Main Card -->
+      <div class="relative bg-white dark:bg-zinc-900 border-3 border-black dark:border-white p-6 md:p-8 z-10">
+        <div class="border-b-3 border-black dark:border-white pb-4 mb-6">
+          <h3 class="text-3xl md:text-4xl font-black uppercase leading-none mb-2 text-black dark:text-white">{company}</h3>
+          {employer && <div class="text-xl font-bold text-gray-600 dark:text-gray-400">{employer}</div>}
+        </div>
+
+        <div class="space-y-8">
+          {roles.map((role, idx) => (
+            <div class="relative pl-6 border-l-4 border-black dark:border-white">
+               <!-- Decorative dot for timeline -->
+               <div class={`absolute -left-[11px] top-0 w-5 h-5 border-3 border-black dark:border-white bg-${accentColor}`}></div>
+               
+               <CompanyRole 
+                  title={role.title} 
+                  period={role.period} 
+                  isCurrent={role.isCurrent} 
+                  description={role.description} 
+                  isLast={idx === roles.length - 1} 
+               />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

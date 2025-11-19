@@ -1,0 +1,127 @@
+---
+interface Props {
+  placeholder?: string;
+  purpleTheme?: boolean;
+  includeRangeSlider?: boolean;
+  className?: string;
+  sortOptions?: { value: string; label: string }[];
+  filterOptions?: { value: string; label: string }[];
+}
+
+const { 
+  placeholder = "Search...", 
+  purpleTheme = false, 
+  includeRangeSlider = false,
+  className = "",
+  sortOptions = [],
+  filterOptions = []
+} = Astro.props;
+
+const themeColor = purpleTheme ? "bg-neo-purple" : "bg-neo-blue";
+---
+
+<div class:list={["brutal-card p-6 rotate-1", themeColor, "border-brutal-thick border-black shadow-brutal-lg max-w-4xl mx-auto z-20 relative", className]}>
+  <div class="flex flex-col gap-4">
+    <!-- Search Input -->
+    <div class="relative">
+      <i class='bx bx-search absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl text-black'></i>
+      <input
+        type="text"
+        id="search-input"
+        placeholder={placeholder}
+        class="w-full pl-12 pr-4 py-3 text-lg font-bold border-4 border-black shadow-brutal focus:outline-none focus:shadow-brutal-lg transition-all placeholder-gray-500 text-black"
+      />
+    </div>
+
+    <!-- Filters Row -->
+    {(sortOptions.length > 0 || filterOptions.length > 0 || includeRangeSlider) && (
+      <div class="flex flex-wrap gap-4 items-center justify-between bg-white p-4 border-2 border-black">
+        
+        <div class="flex flex-wrap gap-4 w-full md:w-auto">
+          {sortOptions.length > 0 && (
+            <select 
+              id="sort-select"
+              class="brutal-select px-4 py-2 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-brutal text-black"
+            >
+              {sortOptions.map(option => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          )}
+          
+          {filterOptions.length > 0 && (
+            <select 
+              id="filter-select"
+              class="brutal-select px-4 py-2 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-brutal text-black"
+            >
+              <option value="">All Tags</option>
+              {filterOptions.map(option => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          )}
+        </div>
+
+        {includeRangeSlider && (
+          <div class="flex items-center gap-3 w-full md:w-auto min-w-[200px]">
+            <span class="font-bold text-sm uppercase text-black">Proficiency:</span>
+            <input 
+              type="range" 
+              id="range-slider"
+              min="0" 
+              max="100" 
+              step="10" 
+              value="0"
+              class="w-full h-3 bg-gray-200 rounded-none appearance-none border-2 border-black accent-black"
+            />
+            <span id="range-value" class="font-bold text-black w-8">0%</span>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</div>
+
+<script>
+  function initSearchFilter() {
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+    const filterSelect = document.getElementById('filter-select') as HTMLSelectElement;
+    const rangeSlider = document.getElementById('range-slider') as HTMLInputElement;
+    const rangeValue = document.getElementById('range-value');
+
+    const dispatchFilterChange = () => {
+      const event = new CustomEvent('filterChange', {
+        detail: {
+          searchTerm: searchInput?.value || '',
+          sortBy: sortSelect?.value || '',
+          filterBy: filterSelect?.value || '',
+          proficiencyRange: rangeSlider ? parseInt(rangeSlider.value) : 0
+        }
+      });
+      document.dispatchEvent(event);
+    };
+
+    if (searchInput) {
+      searchInput.addEventListener('input', dispatchFilterChange);
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', dispatchFilterChange);
+    }
+
+    if (filterSelect) {
+      filterSelect.addEventListener('change', dispatchFilterChange);
+    }
+
+    if (rangeSlider && rangeValue) {
+      rangeSlider.addEventListener('input', (e) => {
+        rangeValue.textContent = (e.target as HTMLInputElement).value + '%';
+        dispatchFilterChange();
+      });
+    }
+  }
+
+  initSearchFilter();
+  document.addEventListener('astro:page-load', initSearchFilter);
+</script>

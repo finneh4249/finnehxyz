@@ -1,0 +1,140 @@
+---
+---
+<script>
+  function initEasterEggs() {
+    // Console ASCII Art
+    console.log('%c' + `
+  ███████╗████████╗██╗  ██╗ █████╗ ███╗   ██╗
+  ██╔════╝╚══██╔══╝██║  ██║██╔══██╗████╗  ██║
+  █████╗     ██║   ███████║███████║██╔██╗ ██║
+  ██╔══╝     ██║   ██╔══██║██╔══██║██║╚██╗██║
+  ███████╗   ██║   ██║  ██║██║  ██║██║ ╚████║
+  ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+    `, 'color: #FFE600; font-weight: bold; font-size: 12px;');
+    
+    console.log('%c🚀 AI Engineer & Systems Architect', 'color: #FF006E; font-weight: bold; font-size: 16px;');
+    console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #00B4D8;');
+    console.log('%c👋 Hey developer! Nice to see you checking the code.', 'color: #06FFA5; font-weight: bold; font-size: 14px;');
+    console.log('%c', '');
+    console.log('%c💡 Quick Facts:', 'color: #FFE600; font-weight: bold; font-size: 14px;');
+    console.log('%c  • Built with AI-human collaboration', 'color: #fff; font-size: 11px;');
+    console.log('%c  • SPARC prompt library = systematic AI collaboration', 'color: #fff; font-size: 11px;');
+    console.log('%c  • Neo-brutalism = no border-radius allowed', 'color: #fff; font-size: 11px;');
+    console.log('%c', '');
+    console.log('%c🎮 Easter Eggs (9 to find):', 'color: #FF6B35; font-weight: bold; font-size: 14px;');
+    console.log('%c  • Try the Konami code (↑↑↓↓←→←→BA)', 'color: #fff; font-size: 11px;');
+    console.log('%c  • Double-click my name in the navbar', 'color: #fff; font-size: 11px;');
+    console.log('%c  • Click the transparency card in About section', 'color: #fff; font-size: 11px;');
+    console.log('%c  • Hold Shift and move your mouse', 'color: #fff; font-size: 11px;');
+    console.log('%c  • Type hireethan() to see my pitch', 'color: #fff; font-size: 11px;');
+    console.log('%c  • ...and 4 more hidden around the site 🔍', 'color: #fff; font-size: 11px;');
+    console.log('%c', '');
+    console.log('%c🎁 Find all 9 to unlock something special...', 'color: #B75CFF; font-size: 12px; font-style: italic;');
+    console.log('%c', '');
+    console.log('%c📧 Contact: mail@finneh.xyz', 'color: #B75CFF; font-size: 12px;');
+    console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #00B4D8;');
+
+    // Global Window Function
+    (window as any).hireethan = () => {
+      console.clear();
+      console.log('%c🎉 YOU FOUND THE SECRET COMMAND! 🎉', 'color: #FFE600; font-size: 24px; font-weight: bold;');
+      console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #00B4D8;');
+      console.log('%c', '');
+      console.log('%c📧 Ready to hire me?', 'color: #FF006E; font-size: 16px; font-weight: bold;');
+      console.log('%c', '');
+      console.log('%c   📮 Email: mail@finneh.xyz', 'color: #FFE600; font-size: 14px; font-weight: bold;');
+      console.log('%c   💼 LinkedIn: linkedin.com/in/ethancornwill', 'color: #00B4D8; font-size: 13px;');
+      console.log('%c   🐙 GitHub: github.com/finneh4249', 'color: #B75CFF; font-size: 13px;');
+      console.log('%c', '');
+      console.log('%c🎯 What I bring:', 'color: #FF6B35; font-size: 14px; font-weight: bold;');
+      console.log('%c   ✨ Production AI systems', 'color: #fff; font-size: 12px;');
+      console.log('%c   ⚡ Prompt architecture for production (SPARC)', 'color: #fff; font-size: 12px;');
+      console.log('%c   🤖 LLM training expertise', 'color: #fff; font-size: 12px;');
+      console.log('%c   🏗️  Full-stack + AI integration', 'color: #fff; font-size: 12px;');
+      console.log('%c', '');
+      console.log('%c🟢 Status: OPEN TO OPPORTUNITIES', 'color: #06FFA5; font-size: 14px; font-weight: bold;');
+      console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #00B4D8;');
+      return '🎊 Email me at mail@finneh.xyz';
+    };
+
+    // Konami Code
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+    let konamiActivated = false;
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIndex] || e.key.toLowerCase() === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          activateKonami();
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    function activateKonami() {
+      if (konamiActivated) return;
+      konamiActivated = true;
+
+      console.log('%c🎮 KONAMI CODE ACTIVATED! 🎮', 'color: #FFE600; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 0px #000;');
+      console.log('%cYou\'ve unlocked: MATRIX MODE', 'color: #FF006E; font-size: 12px;');
+      
+      // Matrix Rain Effect
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;opacity:0.15';
+      document.body.appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const chars = 'ETHANCORNWILLAIスパーク01';
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+      
+      const draw = () => {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#06FFA5';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      };
+      
+      const interval = setInterval(draw, 33);
+      
+      // Notification
+      const notification = document.createElement('div');
+      notification.innerHTML = `
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#FFE600;color:#000;padding:2rem 3rem;border:6px solid #000;box-shadow:12px 12px 0px 0px #000;z-index:10000;font-weight:bold;text-align:center;font-size:24px;text-transform:uppercase;">
+          🎮 KONAMI CODE ACTIVATED! 🎮
+          <div style="font-size:14px;margin-top:10px;">Matrix Mode Enabled</div>
+        </div>
+      `;
+      document.body.appendChild(notification);
+      
+      const cleanup = () => {
+        notification.remove();
+        clearInterval(interval);
+        canvas.remove();
+        konamiActivated = false;
+      };
+      
+      notification.addEventListener('click', cleanup);
+      setTimeout(cleanup, 5000);
+    }
+  }
+
+  initEasterEggs();
+  document.addEventListener('astro:page-load', initEasterEggs);
+</script>

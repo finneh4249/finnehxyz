@@ -1,0 +1,46 @@
+---
+interface Props {
+  className?: string;
+  height?: string;
+}
+
+const { className = '', height = '6px' } = Astro.props;
+---
+
+<div class:list={["w-full", className]} style={{ height }}>
+  <div 
+    id="scroll-progress"
+    class="h-full bg-neo-yellow border-b-brutal border-black transition-transform duration-75 origin-left scale-x-0"
+    role="progressbar"
+    aria-valuenow="0"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  ></div>
+</div>
+
+<script>
+  function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    const calculateScrollProgress = () => {
+      requestAnimationFrame(() => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        
+        if (scrollHeight > 0) {
+          const scrollPercentage = (scrollTop / scrollHeight);
+          progressBar.style.transform = `scaleX(${scrollPercentage})`;
+          progressBar.style.boxShadow = scrollPercentage > 0 ? '0 2px 0 0 #000' : 'none';
+          progressBar.setAttribute('aria-valuenow', Math.round(scrollPercentage * 100).toString());
+        }
+      });
+    };
+
+    window.addEventListener('scroll', calculateScrollProgress, { passive: true });
+    calculateScrollProgress(); // Initial check
+  }
+
+  initScrollProgress();
+  document.addEventListener('astro:page-load', initScrollProgress);
+</script>

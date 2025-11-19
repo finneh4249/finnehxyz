@@ -1,0 +1,235 @@
+---
+---
+
+<section id="contact" class="py-20 bg-neo-green relative overflow-hidden">
+  <!-- Chaotic decorative elements -->
+  <div class="absolute top-10 left-10 w-44 h-36 bg-neo-yellow border-brutal-thick border-black shadow-brutal-lg rotate-12"></div>
+  <div class="absolute bottom-10 right-10 w-32 h-48 bg-neo-pink border-brutal border-black shadow-brutal -rotate-6"></div>
+  <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-neo-blue border-brutal-thick border-black shadow-brutal rotate-45"></div>
+  <div class="absolute bottom-1/3 left-1/3 w-36 h-20 bg-neo-purple border-brutal border-black shadow-brutal -rotate-12"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="mb-12 animate-on-scroll slide-up">
+      <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
+        <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white">
+          LET'S BUILD
+        </div>
+        <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-1 text-black">
+          Contact
+        </h2>
+      </div>
+      <div class="h-3 w-48 bg-black mx-auto -rotate-1"></div>
+    </div>
+    
+    <p class="text-center text-xl font-bold max-w-2xl mx-auto mb-12 -rotate-1 text-base-content">
+      Need an AI engineer who actually ships production systems?
+    </p>
+    
+    <p class="text-center text-lg max-w-2xl mx-auto mb-8 text-base-content">
+      I'm currently in retail management at Aldi while actively seeking AI engineering roles. 
+      Available to start with standard notice period.
+    </p>
+    
+    <p class="text-center text-xl font-bold mb-12 rotate-1 text-base-content">
+      Let's talk:{' '}
+      <a 
+        href="mailto:mail@finneh.xyz" 
+        class="underline hover:scale-105 inline-block transition-transform text-neo-pink"
+      >
+        mail@finneh.xyz
+      </a>
+    </p>
+    
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+      <!-- Form - takes 2 columns -->
+      <div class="md:col-span-2 animate-on-scroll slide-right">
+        <div class="brutal-card rotate-1 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-lg">
+          <div class="p-6 md:p-8 bg-white dark:bg-base-200">
+            
+            <div id="success-message" class="bg-white border-3 border-black shadow-brutal p-8 text-center hidden">
+              <div class="flex flex-col items-center">
+                <div class="w-20 h-20 bg-neo-yellow border-3 border-black flex items-center justify-center mb-4 rotate-12">
+                  <span class="text-4xl font-bold text-neo-green">✓</span>
+                </div>
+                <h3 class="text-2xl font-bold uppercase mb-2 text-neo-green">Message Sent!</h3>
+                <p class="text-lg font-medium text-black">Thanks! I'll get back to you soon.</p>
+              </div>
+            </div>
+
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="form-control w-full">
+                  <label class="label font-bold text-lg uppercase mb-2 text-base-content">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    class="brutal-input w-full bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                
+                <div class="form-control w-full">
+                  <label class="label font-bold text-lg uppercase mb-2 text-base-content">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    class="brutal-input w-full bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div class="form-control w-full">
+                <label class="label font-bold text-lg uppercase mb-2 text-base-content">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  class="brutal-input w-full bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
+                  placeholder="What's this about?"
+                  required
+                />
+              </div>
+              
+              <div class="form-control w-full">
+                <label class="label font-bold text-lg uppercase mb-2 text-base-content">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  class="brutal-input w-full h-40 resize-none bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
+                  placeholder="Tell me about your project..."
+                  required
+                ></textarea>
+              </div>
+              
+              <div id="error-message" class="bg-black border-3 border-black p-4 font-bold -rotate-1 text-neo-pink hidden">
+                ⚠ Failed to send message. Please try again later.
+              </div>
+              
+              <div class="flex justify-center mt-8">
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="brutal-btn brutal-yellow px-12 py-4 text-xl rotate-2 hover:rotate-0 transition-all text-black disabled:opacity-50 disabled:cursor-not-allowed rounded-none border-3 border-black shadow-brutal-md"
+                >
+                  SEND MESSAGE
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact cards - stacked in 1 column -->
+      <div class="space-y-6 animate-on-scroll slide-left">
+        <div class="brutal-card bg-white dark:bg-base-200 -rotate-2 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-md">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-neo-pink border-3 border-black mx-auto mb-4 flex items-center justify-center rotate-6 rounded-none">
+              <span class="text-3xl">📧</span>
+            </div>
+            <h3 class="text-xl font-bold uppercase mb-2 text-base-content">Email</h3>
+            <a 
+              href="mailto:mail@finneh.xyz" 
+              class="font-bold hover:scale-105 inline-block transition-transform text-base-content"
+            >
+              mail@finneh.xyz
+            </a>
+          </div>
+        </div>
+        
+        <div class="brutal-card bg-white dark:bg-base-200 rotate-2 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-md">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-neo-blue border-3 border-black mx-auto mb-4 flex items-center justify-center -rotate-6 rounded-none">
+              <i class="bx bxl-linkedin text-3xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold uppercase mb-2 text-base-content">LinkedIn</h3>
+            <a 
+              href="https://www.linkedin.com/in/ethancornwill/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="font-bold hover:scale-105 inline-block transition-transform text-base-content"
+            >
+              Connect
+            </a>
+          </div>
+        </div>
+        
+        <div class="brutal-card bg-white dark:bg-base-200 -rotate-2 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-md">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-black border-3 border-black mx-auto mb-4 flex items-center justify-center rotate-6 rounded-none">
+              <i class="bx bxl-github text-3xl text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold uppercase mb-2 text-base-content">GitHub</h3>
+            <a 
+              href="https://github.com/finneh4249" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="font-bold hover:scale-105 inline-block transition-transform text-base-content"
+            >
+              Follow
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initContact() {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const successMsg = document.getElementById('success-message');
+    const errorMsg = document.getElementById('error-message');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (submitBtn) {
+          submitBtn.textContent = 'SENDING...';
+          (submitBtn as HTMLButtonElement).disabled = true;
+        }
+        errorMsg?.classList.add('hidden');
+
+        try {
+          // Simulate network request
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          // Success
+          form.classList.add('hidden');
+          successMsg?.classList.remove('hidden');
+          form.reset();
+          
+          // Reset after 5 seconds
+          setTimeout(() => {
+            successMsg?.classList.add('hidden');
+            form.classList.remove('hidden');
+            if (submitBtn) {
+              submitBtn.textContent = 'SEND MESSAGE';
+              (submitBtn as HTMLButtonElement).disabled = false;
+            }
+          }, 5000);
+          
+        } catch (err) {
+          console.error('Form error:', err);
+          errorMsg?.classList.remove('hidden');
+          if (submitBtn) {
+            submitBtn.textContent = 'SEND MESSAGE';
+            (submitBtn as HTMLButtonElement).disabled = false;
+          }
+        }
+      });
+    }
+  }
+
+  initContact();
+  document.addEventListener('astro:page-load', initContact);
+</script>

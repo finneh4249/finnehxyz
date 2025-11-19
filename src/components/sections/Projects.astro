@@ -1,0 +1,237 @@
+---
+import ProjectModal from '../projects/ProjectModal.astro';
+import SearchFilter from '../ui/SearchFilter.astro';
+import projectsData from '../../data/projects.json';
+
+// Extract unique tags
+const allTags = new Set();
+projectsData.forEach(project => {
+  if (project.tags) {
+    project.tags.forEach(tag => allTags.add(tag.name));
+  }
+});
+
+const filterOptions = Array.from(allTags).sort().map(tag => ({ value: tag as string, label: tag as string }));
+
+const sortOptions = [
+  { value: 'latest', label: 'Latest First' },
+  { value: 'oldest', label: 'Oldest First' },
+  { value: 'nameAsc', label: 'Name (A-Z)' },
+  { value: 'nameDesc', label: 'Name (Z-A)' }
+];
+
+const featuredProjects = projectsData.filter(p => p.featured);
+const otherProjects = projectsData.filter(p => !p.featured);
+
+const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', 'bg-neo-purple', 'bg-neo-orange'];
+---
+
+<section id="projects" class="py-20 bg-neo-pink relative overflow-hidden">
+  <!-- Wild chaotic decorative elements -->
+  <div class="absolute top-10 right-10 w-48 h-32 bg-neo-yellow border-brutal-thick border-black shadow-brutal-lg rotate-12"></div>
+  <div class="absolute bottom-20 left-10 w-32 h-52 bg-neo-green border-brutal border-black shadow-brutal -rotate-6"></div>
+  <div class="absolute top-1/3 left-1/4 w-24 h-24 bg-neo-blue border-brutal-thick border-black shadow-brutal rotate-45"></div>
+  <div class="absolute bottom-1/3 right-1/4 w-40 h-28 bg-neo-purple border-brutal border-black shadow-brutal -rotate-12"></div>
+  
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <div class="mb-16 animate-on-scroll slide-up">
+      <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
+        <div class="brutal-btn brutal-green px-6 py-3 -rotate-2 text-white">
+          MY WORK
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tight rotate-1 text-white">
+          Projects
+        </h1>
+      </div>
+      <div class="h-3 w-56 bg-black mx-auto rotate-1"></div>
+    </div>
+
+    <!-- Featured projects carousel (CSS Scroll Snap) -->
+    {featuredProjects.length > 0 && (
+      <div class="mb-16">
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8 scrollbar-hide">
+          {featuredProjects.map((project) => (
+            <div
+              class="snap-center flex-shrink-0 w-full md:w-[80vw] lg:w-[60vw] relative h-[400px] cursor-pointer brutal-card border-3 border-black shadow-brutal-lg rounded-none overflow-hidden project-card"
+              data-project={JSON.stringify(project)}
+            >
+              <img
+                src={project.image} 
+                alt={`${project.title} Preview`}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/80 flex flex-col justify-end p-8 hover:bg-black/70 transition-colors">
+                <div class="bg-neo-yellow border-brutal border-black shadow-brutal p-4 mb-4 inline-block">
+                  <h2 class="text-3xl font-bold uppercase text-black">{project.title}</h2>
+                </div>
+                <p class="text-white text-lg mb-4 font-medium line-clamp-2">{project.description}</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  {(project.technologies ?? []).map((tech) => (
+                    <span class="bg-white text-black border-3 border-white px-3 py-1 font-bold uppercase text-sm rounded-none">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div class="flex flex-wrap gap-3">
+                  <button class="brutal-btn brutal-pink px-4 py-2 text-white border-3 border-black rounded-none shadow-brutal-sm">
+                    Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- All projects grid -->
+    <div>
+      <h3 class="text-3xl md:text-4xl font-bold uppercase mb-8 -rotate-1 inline-block text-white">
+        All Projects
+        <div class="h-2 w-full bg-neo-yellow border-brutal border-black mt-2 rotate-1"></div>
+      </h3>
+      
+      <div class="mb-8">
+        <SearchFilter 
+          sortOptions={sortOptions}
+          filterOptions={filterOptions}
+        />
+      </div>
+
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {otherProjects.map((project, index) => {
+          const rot = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'][index % 4];
+          const color = colors[index % colors.length];
+          const cornerColor = colors[(index + 2) % colors.length];
+          const formattedDate = project.date ? new Date(project.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' }) : null;
+
+          return (
+            <div
+              class:list={["brutal-card border-3 border-black shadow-brutal-md rounded-none cursor-pointer hover:rotate-0 transition-all hover:scale-105 hover:-translate-y-1 project-item", rot]}
+              data-project={JSON.stringify(project)}
+              data-title={project.title.toLowerCase()}
+              data-description={project.description.toLowerCase()}
+              data-technologies={JSON.stringify(project.technologies || [])}
+              data-tags={JSON.stringify(project.tags || [])}
+              data-date={project.date ? new Date(project.date).getTime() : 0}
+            >
+              <figure class="border-b-brutal border-black relative">
+                <img
+                  src={project.image}
+                  alt={`${project.title} Preview`}
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                  onerror={`this.onerror=null;this.src='https://placehold.co/600x400/FFE600/000000?text=${encodeURIComponent(project.title)}'`}
+                />
+                <div class:list={["absolute top-2 right-2 w-12 h-12 border-brutal border-black rotate-45", colors[index % colors.length]]}></div>
+              </figure>
+              <div class="p-6 bg-white dark:bg-base-200 relative">
+                <h2 class="text-2xl font-bold uppercase mb-3 text-black">{project.title}</h2>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {project.tags.map((tag, idx) => (
+                    <div
+                      class:list={["border-3 border-black px-3 py-1 font-bold uppercase text-sm rotate-1 text-black rounded-none", colors[idx % colors.length]]}
+                    >
+                      {tag.name}
+                    </div>
+                  ))}
+                </div>
+                {formattedDate && (
+                  <div class="text-sm font-bold mb-3 text-base-content">
+                    📅 {formattedDate}
+                  </div>
+                )}
+                <p class="text-base mb-4 font-medium line-clamp-3 text-base-content">{project.description}</p>
+                
+                <div class:list={["absolute -bottom-2 -right-2 w-8 h-8 border-brutal border-black -rotate-12 z-0", cornerColor]}></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
+      <div id="no-projects-found" class="brutal-card bg-white dark:bg-base-200 p-12 text-center rotate-1 hidden">
+        <p class="text-2xl font-bold uppercase text-black">No projects found 😢</p>
+        <p class="text-base mt-4 text-base-content">Try adjusting your search or filters</p>
+      </div>
+    </div>
+
+    <ProjectModal />
+  </div>
+</section>
+
+<script>
+  function initProjects() {
+    const projectItems = document.querySelectorAll('.project-item');
+    const noProjectsMsg = document.getElementById('no-projects-found');
+    const projectsGrid = document.getElementById('projects-grid');
+    
+    // Filter logic
+    document.addEventListener('filterChange', (e: any) => {
+      const { searchTerm, sortBy, filterBy } = e.detail;
+      const term = searchTerm.toLowerCase();
+      
+      // Convert NodeList to Array for sorting
+      const itemsArray = Array.from(projectItems) as HTMLElement[];
+      let visibleCount = 0;
+
+      // Filter
+      itemsArray.forEach(item => {
+        const title = item.dataset.title || '';
+        const description = item.dataset.description || '';
+        const techs = JSON.parse(item.dataset.technologies || '[]');
+        const tags = JSON.parse(item.dataset.tags || '[]');
+        
+        const matchesSearch = title.includes(term) || 
+                              description.includes(term) || 
+                              techs.some((t: string) => t.toLowerCase().includes(term)) ||
+                              tags.some((t: any) => t.name.toLowerCase().includes(term));
+                              
+        const matchesTag = !filterBy || tags.some((t: any) => t.name === filterBy);
+        
+        if (matchesSearch && matchesTag) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Sort (only visible items effectively, but reordering DOM)
+      itemsArray.sort((a, b) => {
+        const dateA = parseInt(a.dataset.date || '0');
+        const dateB = parseInt(b.dataset.date || '0');
+        const titleA = a.dataset.title || '';
+        const titleB = b.dataset.title || '';
+
+        switch (sortBy) {
+          case 'latest': return dateB - dateA;
+          case 'oldest': return dateA - dateB;
+          case 'nameAsc': return titleA.localeCompare(titleB);
+          case 'nameDesc': return titleB.localeCompare(titleA);
+          default: return 0;
+        }
+      });
+
+      // Re-append sorted items
+      itemsArray.forEach(item => projectsGrid?.appendChild(item));
+
+      if (noProjectsMsg) {
+        noProjectsMsg.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+
+    // Modal Logic
+    document.querySelectorAll('.project-card, .project-item').forEach(card => {
+      card.addEventListener('click', () => {
+        const projectData = JSON.parse((card as HTMLElement).dataset.project || '{}');
+        const event = new CustomEvent('openProjectModal', { detail: projectData });
+        document.dispatchEvent(event);
+      });
+    });
+  }
+
+  initProjects();
+  document.addEventListener('astro:page-load', initProjects);
+</script>

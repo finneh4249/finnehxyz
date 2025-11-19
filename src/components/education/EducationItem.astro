@@ -1,0 +1,73 @@
+---
+interface Props {
+  year: string;
+  institution: string;
+  program: string;
+  description?: string;
+  gpa?: string;
+  logoSrc: string;
+  logoAlt: string;
+  index: number;
+  isLast?: boolean;
+  isFirst?: boolean;
+}
+
+const { 
+  year, 
+  institution, 
+  program, 
+  description, 
+  gpa, 
+  logoSrc, 
+  logoAlt, 
+  index 
+} = Astro.props;
+
+const isEven = index % 2 === 0;
+const colors = ['neo-blue', 'neo-pink', 'neo-yellow', 'neo-green', 'neo-purple'];
+const cardColor = colors[index % colors.length];
+---
+
+<div class={`relative mb-16 md:mb-24 w-full max-w-4xl mx-auto ${isEven ? 'md:mr-auto' : 'md:ml-auto'} animate-on-scroll slide-up`}>
+  <!-- Mobile: Stacked. Desktop: Row -->
+  <div class={`flex flex-col md:flex-row ${isEven ? '' : 'md:flex-row-reverse'} gap-6 md:gap-8 items-start md:items-stretch`}>
+    
+    <!-- Year & Logo Column -->
+    <div class="flex flex-row md:flex-col gap-4 items-center md:items-center shrink-0 z-20 w-full md:w-auto justify-between md:justify-start">
+       <!-- Year Badge -->
+       <div class={`brutal-btn bg-white text-black border-3 border-black dark:border-white px-4 py-2 md:px-6 md:py-4 shadow-brutal dark:shadow-[6px_6px_0px_0px_#ffffff] rotate-2 hover:rotate-0 transition-transform`}>
+          <span class="text-xl md:text-2xl font-black">{year}</span>
+       </div>
+       
+       <!-- Logo Box -->
+       <div class="w-20 h-20 md:w-28 md:h-28 bg-white border-3 border-black dark:border-white p-2 shadow-brutal dark:shadow-[6px_6px_0px_0px_#ffffff] -rotate-2 hover:rotate-0 transition-transform flex items-center justify-center">
+          <img src={logoSrc} alt={logoAlt} class="w-full h-full object-contain" />
+       </div>
+    </div>
+
+    <!-- Content Card -->
+    <div class="relative w-full group">
+       <!-- Decorative background shadow/offset -->
+       <div class={`absolute inset-0 border-3 border-black dark:border-white bg-${cardColor} translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4 z-0 transition-transform group-hover:translate-x-3 group-hover:translate-y-3`}></div>
+       
+       <!-- Main Card Content -->
+       <div class="relative bg-white dark:bg-zinc-900 border-3 border-black dark:border-white p-6 md:p-8 z-10 h-full flex flex-col justify-center">
+          <h3 class="text-2xl md:text-3xl font-black uppercase leading-tight mb-2">{institution}</h3>
+          <h4 class="text-lg md:text-xl font-bold mb-4 text-gray-700 dark:text-gray-300">{program}</h4>
+          
+          {gpa && (
+            <div class="inline-block bg-black text-white px-3 py-1 text-sm font-bold mb-4 -rotate-1 self-start border-2 border-transparent">
+              GPA: {gpa}
+            </div>
+          )}
+          
+          {description && (
+            <p class="text-base md:text-lg font-medium leading-relaxed border-l-4 border-black dark:border-white pl-4">
+              {description}
+            </p>
+          )}
+       </div>
+    </div>
+
+  </div>
+</div>

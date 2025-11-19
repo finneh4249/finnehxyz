@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  period: string;
+  description?: string;
+  isCurrent?: boolean;
+  isLast?: boolean;
+}
+
+const { title, period, description, isCurrent = false, isLast = false } = Astro.props;
+
+// Helper function to process description lines
+const processDescription = (text: string) => {
+  if (!text) return [];
+  return text.split('\n').map(line => ({
+    isBullet: line.startsWith('- '),
+    content: line.startsWith('- ') ? line.substring(2) : line
+  }));
+};
+
+const descriptionLines = processDescription(description || '');
+---
+
+<div class="role relative pl-7 pb-2 group">
+  <!-- Role dot indicator with pulsing effect for current role -->
+  <div class:list={[
+    "absolute left-0 top-3 w-4 h-4 border-3",
+    isCurrent ? "bg-neo-yellow border-black animate-pulse" : "bg-white border-black"
+  ]}>
+    <!-- Inner square for current role -->
+    {isCurrent && (
+      <span class="absolute inset-0.5 bg-black/30"></span>
+    )}
+  </div>
+  
+  <!-- Connector line between roles -->
+  {!isLast && (
+    <div class="absolute left-1.5 top-7 bottom-0 w-1 bg-black"></div>
+  )}
+  
+  <div class="brutal-card group-hover:translate-x-1 transition-all duration-200 bg-white dark:bg-base-100">
+    <div class="p-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h4 class="font-display font-bold text-lg uppercase text-base-content">{title}</h4>
+        
+        <div class="flex items-center flex-wrap gap-2">
+          {isCurrent && (
+            <span class="border-3 border-black bg-neo-yellow text-black px-2 py-0.5 text-xs font-bold uppercase">Current</span>
+          )}
+          <p class:list={[
+            "text-sm",
+            isCurrent ? "text-accent-focus font-medium" : "text-base-content/70"
+          ]}>
+            {period}
+          </p>
+        </div>
+      </div>
+      
+      <!-- Role description with better typography -->
+      {description && (
+        <div class="mt-4 text-sm font-medium text-base-content border-t-3 border-black pt-4 leading-relaxed space-y-2">
+          {descriptionLines.map((line) => (
+            line.isBullet ? (
+              <div class="flex items-start">
+                <span class="mr-3 mt-1.5 w-2 h-2 bg-neo-pink border border-black flex-shrink-0"></span>
+                <span>{line.content}</span>
+              </div>
+            ) : (
+              <p>{line.content}</p>
+            )
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</div>

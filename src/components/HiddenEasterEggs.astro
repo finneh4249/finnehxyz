@@ -1,0 +1,148 @@
+---
+---
+<div id="hidden-eggs-container"></div>
+
+<script>
+  function initHiddenEggs() {
+    const container = document.getElementById('hidden-eggs-container');
+    if (!container) return;
+
+    // --- 1. Floating Emoji ---
+    const emojis = ['🚀', '🤖', '⚡', '🔥', '💜', '🎯', '✨', '🎨', '🎮', '💻'];
+    
+    const emojiInterval = setInterval(() => {
+      if (Math.random() > 0.98) { // 2% chance every 5s
+        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        const el = document.createElement('div');
+        el.textContent = emoji;
+        el.style.cssText = `
+          position: fixed;
+          left: ${Math.random() * (window.innerWidth - 50)}px;
+          top: ${Math.random() * (window.innerHeight - 50)}px;
+          font-size: 48px;
+          z-index: 9999;
+          pointer-events: none;
+          filter: drop-shadow(0 0 10px rgba(255, 230, 0, 0.5));
+          transition: all 0.5s ease-out;
+          opacity: 0;
+          transform: scale(0) rotate(0deg);
+        `;
+        document.body.appendChild(el);
+        
+        // Animate in
+        requestAnimationFrame(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'scale(1) rotate(360deg)';
+        });
+        
+        // Remove after animation
+        setTimeout(() => {
+          el.style.opacity = '0';
+          el.style.transform = 'scale(0) rotate(720deg)';
+          setTimeout(() => el.remove(), 500);
+        }, 3000);
+      }
+    }, 5000);
+
+
+    // --- 2. Speed Scroll Detector ---
+    let lastScrollY = window.scrollY;
+    let lastScrollTime = Date.now();
+    let scrollTimeout: any;
+    let speedMsg: HTMLDivElement | null = null;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const currentTime = Date.now();
+      const timeDiff = currentTime - lastScrollTime;
+      const scrollDiff = Math.abs(currentScrollY - lastScrollY);
+      
+      if (timeDiff > 0) {
+        const speed = scrollDiff / timeDiff;
+        
+        if (speed > 5) { // Fast scroll detected
+          if (!speedMsg) {
+            speedMsg = document.createElement('div');
+            speedMsg.textContent = '⚡ Woah! Slow down speed demon! ⚡';
+            speedMsg.style.cssText = `
+              position: fixed; top: 100px; left: 50%; transform: translateX(-50%) translateY(-50px);
+              z-index: 10000; background-color: #FFE600; color: #000;
+              padding: 1rem 2rem; border: 4px solid #000; box-shadow: 6px 6px 0px 0px #000;
+              font-weight: bold; font-size: 18px; text-transform: uppercase;
+              pointer-events: none; opacity: 0; transition: all 0.3s ease;
+            `;
+            document.body.appendChild(speedMsg);
+            
+            requestAnimationFrame(() => {
+              if (speedMsg) {
+                speedMsg.style.opacity = '1';
+                speedMsg.style.transform = 'translateX(-50%) translateY(0)';
+              }
+            });
+          }
+          
+          if (scrollTimeout) clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (speedMsg) {
+              speedMsg.style.opacity = '0';
+              speedMsg.style.transform = 'translateX(-50%) translateY(-50px)';
+              setTimeout(() => {
+                speedMsg?.remove();
+                speedMsg = null;
+              }, 300);
+            }
+          }, 2000);
+        }
+      }
+      
+      lastScrollY = currentScrollY;
+      lastScrollTime = currentTime;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+
+    // --- 3. Cursor Trail (Shift Key) ---
+    let isTrailActive = false;
+    const trailColors = ['#FFE600', '#FF006E', '#00B4D8', '#06FFA5', '#B75CFF'];
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Shift') isTrailActive = true;
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'Shift') isTrailActive = false;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isTrailActive) {
+        const dot = document.createElement('div');
+        const color = trailColors[Math.floor(Math.random() * trailColors.length)];
+        dot.style.cssText = `
+          position: fixed; left: ${e.clientX - 10}px; top: ${e.clientY - 10}px;
+          width: 20px; height: 20px; border-radius: 50%; background-color: ${color};
+          pointer-events: none; z-index: 9998; border: 2px solid #000;
+          transition: all 0.5s ease; opacity: 1; transform: scale(1);
+        `;
+        document.body.appendChild(dot);
+        
+        requestAnimationFrame(() => {
+          dot.style.opacity = '0';
+          dot.style.transform = 'scale(0)';
+        });
+        
+        setTimeout(() => dot.remove(), 500);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Cleanup function (optional since scripts rerun on page load)
+    // But good practice if we had a destroy method
+  }
+
+  initHiddenEggs();
+  document.addEventListener('astro:page-load', initHiddenEggs);
+</script>

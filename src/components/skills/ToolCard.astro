@@ -1,0 +1,75 @@
+---
+interface Props {
+  icon: string;
+  name: string;
+  color: string;
+  proficiency?: number;
+  description?: string;
+  category?: string;
+}
+
+const { icon, name, color, proficiency = 50, description, category } = Astro.props;
+
+const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', 'bg-neo-purple', 'bg-neo-orange'];
+const colorIndex = Math.abs(name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % colors.length;
+const cardColor = colors[colorIndex];
+
+const getProficiencyLevel = (percent: number) => {
+  if (percent >= 90) return "Expert";
+  if (percent >= 75) return "Advanced";
+  if (percent >= 60) return "Intermediate";
+  return "Beginner";
+};
+---
+
+<div 
+  class="brutal-card cursor-pointer overflow-hidden tool-card-container hover:scale-[1.05] transition-transform duration-300"
+  data-name={name}
+  data-category={category}
+  data-proficiency={proficiency}
+  title={description}
+>
+  <!-- Front Face (Default) -->
+  <div class:list={[cardColor, "p-6 flex flex-col items-center justify-center h-32 tool-card-front transition-opacity duration-300"]}>
+    <i class:list={["bx text-5xl mb-2", icon]}></i>
+    <h3 class="font-bold text-center uppercase text-sm text-black">{name}</h3>
+  </div>
+
+  <!-- Back Face (Hover) - Handled via CSS/JS toggling classes or pure CSS hover -->
+  <div class="bg-white dark:bg-base-200 p-4 h-32 flex flex-col justify-between tool-card-back absolute inset-0 opacity-0 transition-opacity duration-300">
+    <div>
+      <h3 class="font-bold text-center uppercase text-sm mb-2 text-base-content">{name}</h3>
+      
+      {category && (
+        <div class="mb-2 text-center">
+          <span class="bg-black text-white px-2 py-0.5 text-xs font-bold uppercase border border-black">
+            {category}
+          </span>
+        </div>
+      )}
+    </div>
+    
+    <div>
+      <div class="w-full bg-gray-300 dark:bg-gray-700 h-3 mb-1 border-2 border-black">
+        <div 
+          class:list={[cardColor, "h-full border-r-2 border-black transition-all duration-500"]}
+          style={{ width: `${proficiency}%` }}
+        ></div>
+      </div>
+      
+      <div class="flex justify-between text-xs font-bold text-base-content">
+        <span>{getProficiencyLevel(proficiency)}</span>
+        <span>{proficiency}%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tool-card-container:hover .tool-card-front {
+    opacity: 0;
+  }
+  .tool-card-container:hover .tool-card-back {
+    opacity: 1;
+  }
+</style>

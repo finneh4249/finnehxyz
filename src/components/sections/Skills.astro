@@ -1,0 +1,267 @@
+---
+import ToolCard from '../skills/ToolCard.astro';
+import SkillCard from '../skills/SkillCard.astro';
+import SearchFilter from '../ui/SearchFilter.astro';
+import skillsData from '../../data/skills.json';
+
+const toolCategories = ["All", ...new Set(skillsData.tools.map(tool => tool.category))];
+const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.category))];
+
+const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
+---
+
+<section id="skills" class="py-20 bg-neo-purple relative overflow-hidden">
+  <!-- Chaotic decorative elements -->
+  <div class="absolute top-10 right-10 w-48 h-36 bg-neo-orange border-brutal-thick border-black shadow-brutal-lg rotate-12"></div>
+  <div class="absolute bottom-20 left-10 w-32 h-52 bg-neo-yellow border-brutal border-black shadow-brutal -rotate-6"></div>
+  <div class="absolute top-1/3 left-1/4 w-28 h-28 bg-neo-pink border-brutal-thick border-black shadow-brutal rotate-45"></div>
+  <div class="absolute bottom-1/3 right-1/4 w-40 h-24 bg-neo-blue border-brutal border-black shadow-brutal -rotate-12"></div>
+  
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <!-- Languages & Tools Section -->
+    <div class="mb-20">
+      <div class="mb-12 animate-on-scroll slide-up">
+        <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
+          <div class="brutal-btn brutal-orange px-6 py-3 -rotate-2 text-white">
+            TOOLS
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tight rotate-1 text-white">
+            Languages & Tools
+          </h1>
+        </div>
+        <div class="h-3 w-56 bg-black mx-auto -rotate-1"></div>
+      </div>
+      
+      <div class="text-center mb-6 brutal-btn brutal-yellow px-6 py-3 inline-block rotate-2 text-base text-black">
+        HOVER TO SEE PROFICIENCY LEVELS
+      </div>
+      
+      
+      <!-- Category Filters -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8" id="tool-categories">
+        {toolCategories.map((category, index) => (
+          <button
+            class:list={[
+              "brutal-btn px-5 py-3 text-sm hover:rotate-0 transition-all category-btn",
+              rotations[index % rotations.length],
+              category === "All" ? "brutal-yellow" : "bg-white dark:bg-base-200"
+            ]}
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+      
+      <div id="tools-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-stretch">
+        {skillsData.tools.map((tool, index) => {
+          const rot = ['-rotate-1', 'rotate-2', '-rotate-2', 'rotate-1', 'rotate-3', '-rotate-3'][index % 6];
+          return (
+            <div 
+              class:list={["tool-item", rot]}
+              style={{ gridColumn: index % 7 === 0 ? 'span 2' : 'span 1' }}
+              data-name={tool.name.toLowerCase()}
+              data-category={tool.category}
+              data-proficiency={tool.proficiency}
+            >
+              <ToolCard
+                icon={tool.icon}
+                name={tool.name}
+                color={tool.color}
+                category={tool.category}
+                proficiency={tool.proficiency}
+                description={tool.description}
+              />
+            </div>
+          );
+        })}
+      </div>
+      
+      <div id="no-tools-found" class="text-center py-8 brutal-card bg-white dark:bg-base-200 rotate-1 hidden">
+        <p class="text-xl font-bold uppercase mb-4">No matching tools found.</p>
+        <button id="reset-tools" class="brutal-btn brutal-yellow px-6 py-3 -rotate-2">
+          Reset Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div>
+      <div class="mb-12 animate-on-scroll slide-up">
+        <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
+          <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-1 text-white">
+            Skills
+          </h1>
+          <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white">
+            EXPERTISE
+          </div>
+        </div>
+        <div class="h-3 w-48 bg-black mx-auto rotate-1"></div>
+      </div>
+      
+      <!-- Note: We could add a second search filter here for skills specifically if needed, 
+           but for simplicity in Astro + Vanilla JS, reusing the main filter logic or keeping it static might be better.
+           For now, I'll omit a second search bar to avoid event conflict complexity in this iteration, 
+           or assume the search bar at top filters both? 
+           Actually, the React version had two search bars. I'll implement logic for category filtering here at least.
+      -->
+      
+      <div class="flex flex-wrap justify-center gap-3 mb-8" id="skill-categories">
+        {skillCategories.map((category, index) => (
+          <button
+            class:list={[
+              "brutal-btn px-5 py-3 text-sm hover:rotate-0 transition-all skill-category-btn",
+              rotations[index % rotations.length],
+              category === "All" ? "brutal-yellow" : "bg-white dark:bg-base-200"
+            ]}
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+      
+      <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {skillsData.skills.map((skill, index) => {
+          const rot = ['rotate-1', '-rotate-2', 'rotate-2', '-rotate-1', 'rotate-3', '-rotate-3'][index % 6];
+          const isWide = index % 5 === 0;
+          return (
+            <div 
+              class:list={["skill-item", rot, isWide ? "md:col-span-2 lg:col-span-2" : ""]}
+              data-category={skill.category}
+              data-title={skill.title.toLowerCase()}
+              data-description={skill.description.toLowerCase()}
+            >
+              <SkillCard
+                icon={skill.icon}
+                title={skill.title}
+                description={skill.description}
+                color={skill.color}
+                category={skill.category}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initSkills() {
+    // Tool Filters
+    const toolItems = document.querySelectorAll('.tool-item');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const noToolsMsg = document.getElementById('no-tools-found');
+    const resetToolsBtn = document.getElementById('reset-tools');
+    
+    let currentToolCategory = 'All';
+    let currentSearchTerm = '';
+    let currentProficiency = 0;
+
+    function filterTools() {
+      let visibleCount = 0;
+      
+      toolItems.forEach(item => {
+        const el = item as HTMLElement;
+        const name = el.dataset.name || '';
+        const category = el.dataset.category || '';
+        const proficiency = parseInt(el.dataset.proficiency || '0');
+        
+        const matchesCategory = currentToolCategory === 'All' || category === currentToolCategory;
+        const matchesSearch = name.includes(currentSearchTerm.toLowerCase());
+        const matchesProficiency = proficiency >= currentProficiency;
+        
+        if (matchesCategory && matchesSearch && matchesProficiency) {
+          el.style.display = '';
+          visibleCount++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+      
+      if (noToolsMsg) {
+        noToolsMsg.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    // Category Click
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update UI
+        categoryBtns.forEach(b => {
+          b.classList.remove('brutal-yellow');
+          b.classList.add('bg-white', 'dark:bg-base-200');
+        });
+        btn.classList.add('brutal-yellow');
+        btn.classList.remove('bg-white', 'dark:bg-base-200');
+        
+        currentToolCategory = (btn as HTMLElement).dataset.category || 'All';
+        filterTools();
+      });
+    });
+
+    // Search Filter Event
+    document.addEventListener('filterChange', (e: any) => {
+      const { searchTerm, proficiencyRange } = e.detail;
+      
+      if (searchTerm !== undefined) currentSearchTerm = searchTerm;
+      if (proficiencyRange !== undefined) currentProficiency = proficiencyRange;
+      
+      filterTools();
+    });
+
+    // Reset Button
+    resetToolsBtn?.addEventListener('click', () => {
+      currentToolCategory = 'All';
+      currentSearchTerm = '';
+      currentProficiency = 0;
+      
+      // Reset UI
+      categoryBtns.forEach(b => {
+        if ((b as HTMLElement).dataset.category === 'All') {
+          b.classList.add('brutal-yellow');
+          b.classList.remove('bg-white', 'dark:bg-base-200');
+        } else {
+          b.classList.remove('brutal-yellow');
+          b.classList.add('bg-white', 'dark:bg-base-200');
+        }
+      });
+      
+      // We should technically reset the SearchFilter component UI too, 
+      // but cross-component communication back to UI is harder in vanilla.
+      // For now, we reset the filtering logic.
+      
+      filterTools();
+    });
+
+    // Skill Filters (Category Only for simplicity in this version)
+    const skillItems = document.querySelectorAll('.skill-item');
+    const skillCategoryBtns = document.querySelectorAll('.skill-category-btn');
+    
+    skillCategoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        skillCategoryBtns.forEach(b => {
+          b.classList.remove('brutal-yellow');
+          b.classList.add('bg-white', 'dark:bg-base-200');
+        });
+        btn.classList.add('brutal-yellow');
+        btn.classList.remove('bg-white', 'dark:bg-base-200');
+        
+        const cat = (btn as HTMLElement).dataset.category || 'All';
+        
+        skillItems.forEach(item => {
+          const el = item as HTMLElement;
+          if (cat === 'All' || el.dataset.category === cat) {
+            el.style.display = '';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  initSkills();
+  document.addEventListener('astro:page-load', initSkills);
+</script>

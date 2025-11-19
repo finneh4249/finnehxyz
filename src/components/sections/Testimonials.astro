@@ -1,0 +1,102 @@
+---
+import testimonialsData from '../../data/testimonials.json';
+
+// Safe check for testimonials data
+const testimonials = Array.isArray(testimonialsData) ? testimonialsData : [];
+---
+
+<section id="testimonials" class="py-20 bg-neo-green relative overflow-hidden">
+  <!-- Chaotic decorative elements -->
+  <div class="absolute top-10 left-10 w-36 h-48 bg-neo-yellow border-brutal-thick border-black shadow-brutal-lg -rotate-6"></div>
+  <div class="absolute bottom-10 right-10 w-48 h-32 bg-neo-pink border-brutal border-black shadow-brutal rotate-12"></div>
+  <div class="absolute top-1/2 right-20 w-24 h-60 bg-neo-blue border-brutal-thick border-black shadow-brutal rotate-6"></div>
+  <div class="absolute bottom-1/3 left-1/4 w-32 h-28 bg-neo-purple border-brutal border-black shadow-brutal -rotate-12"></div>
+  
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <div class="mb-16 animate-on-scroll slide-up">
+      <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
+        <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-2 text-black">
+          Testimonials
+        </h2>
+        <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white">
+          REVIEWS
+        </div>
+      </div>
+      <div class="h-3 w-64 bg-black mx-auto rotate-1"></div>
+    </div>
+
+    {testimonials.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {testimonials.map((testimonial, index) => {
+          const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
+          const rotation = rotations[index % rotations.length];
+          
+          return (
+            <div 
+              class:list={["brutal-card bg-white dark:bg-base-200 hover:rotate-0 transition-all animate-on-scroll slide-up", rotation]}
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
+              <div class="p-6">
+                <div class="flex items-center mb-4">
+                  {testimonial.avatar ? (
+                    <div class="w-16 h-16 border-brutal border-black mr-4 overflow-hidden bg-white">
+                      <img
+                        src={testimonial.avatar}
+                        alt={`${testimonial.name}'s avatar`}
+                        class="w-full h-full object-cover"
+                        onerror={`this.onerror=null;this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=FFE600&color=000'`}
+                      />
+                    </div>
+                  ) : (
+                    <div class="w-16 h-16 border-brutal border-black mr-4 bg-neo-blue flex items-center justify-center font-bold text-xl text-white">
+                      {testimonial.name.split(' ').map(word => word[0]).join('')}
+                    </div>
+                  )}
+                  <div>
+                    <h3 class="font-bold text-lg uppercase text-black">{testimonial.name}</h3>
+                    <p class="text-sm font-bold text-base-content">{testimonial.position}</p>
+                    {testimonial.company && (
+                      <p class="text-xs font-bold opacity-75 text-base-content">{testimonial.company}</p>
+                    )}
+                  </div>
+                </div>
+                <p class="font-medium leading-relaxed border-l-brutal border-black pl-4 text-base-content">"{testimonial.testimonial}"</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="max-w-3xl mx-auto mb-16 brutal-card bg-white dark:bg-base-200 rotate-1 hover:rotate-0 transition-all animate-on-scroll slide-up">
+        <div class="p-12 text-center">
+          <div class="w-24 h-24 bg-neo-yellow border-brutal-thick border-black flex items-center justify-center mx-auto mb-6 rotate-12">
+            <i class="bx bx-message-square-dots text-5xl text-black"></i>
+          </div>
+          <h3 class="text-3xl font-bold uppercase mb-4 text-black">Testimonials Coming Soon</h3>
+          <p class="text-lg font-medium mb-0 text-base-content">
+            I'm currently collecting feedback from clients and colleagues I've worked with.
+            <br />Check back soon to see what others have to say about working with me!
+          </p>
+        </div>
+      </div>
+    )}
+    
+    <div class="max-w-3xl mx-auto brutal-card bg-neo-blue -rotate-1 hover:rotate-0 transition-all animate-on-scroll slide-up">
+      <div class="p-12">
+        <h3 class="text-3xl font-bold uppercase text-center mb-4 text-white">Worked with me before?</h3>
+        <p class="text-center text-lg font-medium max-w-2xl mx-auto mb-8 text-white">
+          I'd love to hear about your experience working with me. Your feedback helps me improve and assists others in making informed decisions.
+        </p>
+        <div class="flex justify-center">
+          <a 
+            href="mailto:mail@finneh.xyz?subject=Testimonial for Ethan Cornwill&body=Hi Ethan, I'd like to share my experience working with you..."
+            class="brutal-btn brutal-yellow px-8 py-4 text-lg rotate-2 hover:rotate-0 transition-all inline-flex items-center gap-2 text-black"
+          >
+            <i class="bx bx-message-square-dots text-2xl"></i>
+            <span class="font-bold uppercase">Share Your Experience</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
