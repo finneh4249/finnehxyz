@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const errorMessages = [
+    "OOPS! THIS PAGE TOOK A PERMANENT VACATION",
+    "404: PAGE WENT TO GET MILK AND NEVER CAME BACK",
+    "ERROR: THIS URL IS AS REAL AS MY WILL TO LIVE",
+    "CONGRATULATIONS! YOU FOUND THE SECRET NOTHING PAGE",
+    "THIS PAGE IS IN ANOTHER CASTLE",
+    "404: SCHRÖDINGER'S PAGE (IT DOESN'T EXIST)",
+    "HOUSTON, WE HAVE A PROBLEM (IT'S YOU)",
+    "THIS PAGE WAS ABDUCTED BY ALIENS",
+    "404: COMPUTER SAYS NO",
+    "LOOKS LIKE YOU TYPED WITH YOUR ELBOWS",
+    "THIS PAGE IS PLAYING HIDE AND SEEK (AND WINNING)",
+    "ERROR 404: REALITY NOT FOUND",
+    "THE DOG ATE THIS WEBPAGE",
+    "THIS IS NOT THE PAGE YOU ARE LOOKING FOR 👋",
+    "404: PAGE DELETED BY THANOS SNAP",
+    "SYSTEM FAILURE: USER ERROR DETECTED",
+    "THIS PAGE IS CURRENTLY IN THE BACKROOMS",
+    "404: I'M SORRY DAVE, I'M AFRAID I CAN'T DO THAT",
+    "PAGE NOT FOUND: HAVE YOU TRIED TURNING IT OFF AND ON?",
+    "THIS LINK IS BROKEN, JUST LIKE MY DREAMS",
+    "404: PAGE IS ON A COFFEE BREAK",
+    "NOTHING TO SEE HERE, MOVE ALONG CITIZEN",
+    "ERROR: PAGE RAN OUT OF PIXELS",
+    "THIS PAGE GHOSTED YOU",
+    "404: SERVER HAMSTERS STOPPED RUNNING",
+    "YOU'VE REACHED THE END OF THE INTERNET",
+    "THIS PAGE IS A LIE (THE CAKE IS TOO)",
+    "404: PAGE NOT FOUND (IT'S PROBABLY YOUR FAULT)",
+    "ERROR: QUANTUM FLUCTUATION DETECTED",
+    "THIS PAGE WAS SACRIFICED TO THE CODE GODS",
+    "404: INSERT COIN TO CONTINUE",
+    "PAGE LOADING... JUST KIDDING, IT'S GONE",
+];
+
+const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+---
+
+<BaseLayout title="404 - NOPE, NOT HERE">
+  <link slot="head" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+  <div class="overflow-x-hidden">
+    
+    <!-- Chaotic Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <!-- Rotating Square -->
+      <div class="absolute top-10 left-10 w-32 h-32 bg-yellow-400 border-4 border-black dark:border-white animate-spin-slow" style="animation-duration: 8s;"></div>
+      
+      <!-- Bouncing Circle -->
+      <div class="absolute top-20 right-20 w-24 h-24 bg-pink-500 border-4 border-black dark:border-white rounded-full animate-bounce"></div>
+      
+      <!-- Pulsing Triangle -->
+      <div class="absolute bottom-20 left-1/4 w-0 h-0 border-l-[60px] border-l-transparent border-r-[60px] border-r-transparent border-b-[100px] border-b-blue-400 animate-pulse"></div>
+      
+      <!-- Floating Rectangle -->
+      <div class="absolute bottom-32 right-1/4 w-40 h-20 bg-green-400 border-4 border-black dark:border-white transform rotate-12 animate-float"></div>
+      
+      <!-- Random Dots -->
+      <div class="absolute top-1/3 left-1/3 w-8 h-8 bg-purple-500 border-4 border-black dark:border-white rounded-full"></div>
+      <div class="absolute top-2/3 right-1/3 w-12 h-12 bg-orange-400 border-4 border-black dark:border-white"></div>
+      <div class="absolute top-1/2 left-1/2 w-6 h-6 bg-red-500 border-4 border-black dark:border-white rounded-full"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center p-4 relative z-10">
+      <div class="max-w-4xl w-full">
+        
+        <!-- Error Code Badge -->
+        <div class="flex justify-center mb-8 animate-wiggle">
+          <div class="bg-black dark:bg-white text-white dark:text-black px-8 py-4 border-4 border-black dark:border-white transform -rotate-3 shadow-brutal">
+            <span class="text-3xl font-black">ERROR_CODE: 404</span>
+          </div>
+        </div>
+
+        <!-- Main Error Card -->
+        <div class="bg-white dark:bg-gray-800 border-8 border-black dark:border-white p-8 md:p-12 shadow-brutal-xl transform hover:rotate-1 transition-all duration-300 mb-8">
+          
+          <!-- Giant 404 -->
+          <div class="text-center mb-8">
+            <h1 class="text-[150px] md:text-[250px] font-black leading-none mb-0" style="text-shadow: 8px 8px 0 #FFE600, 16px 16px 0 #FF006E;">
+              404
+            </h1>
+          </div>
+
+          <!-- Random Error Message -->
+          <div class="bg-pink-500 border-4 border-black dark:border-white p-6 mb-8 transform -rotate-1">
+            <p class="text-2xl md:text-3xl font-black text-white text-center uppercase">
+              {randomMessage}
+            </p>
+          </div>
+
+          <!-- Explanation Box -->
+          <div class="bg-yellow-400 border-4 border-black dark:border-white p-6 mb-8 transform rotate-1">
+            <p class="text-xl font-bold text-black text-center">
+              Either this page never existed, or it rage-quit and deleted itself. 
+              <br class="hidden md:block"/>
+              Either way, it's gone. Like really gone.
+            </p>
+          </div>
+
+          <!-- Fun Facts Section -->
+          <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-blue-400 border-4 border-black dark:border-white p-4 text-center transform -rotate-2 hover:rotate-0 transition-transform">
+              <i class='bx bx-confused text-5xl mb-2'></i>
+              <p class="font-black text-lg">YOU ARE LOST</p>
+            </div>
+            <div class="bg-green-400 border-4 border-black dark:border-white p-4 text-center hover:-rotate-2 transition-transform">
+              <i class='bx bx-ghost text-5xl mb-2'></i>
+              <p class="font-black text-lg">PAGE IS DEAD</p>
+            </div>
+            <div class="bg-purple-400 border-4 border-black dark:border-white p-4 text-center transform rotate-2 hover:rotate-0 transition-transform">
+              <i class='bx bx-dizzy text-5xl mb-2'></i>
+              <p class="font-black text-lg">BRAIN HURTS</p>
+            </div>
+          </div>
+
+          <!-- Helpful Suggestions -->
+          <div class="bg-orange-400 border-4 border-black dark:border-white p-6 mb-8">
+            <h2 class="text-2xl font-black mb-4 text-black">WHAT YOU CAN DO:</h2>
+            <ul class="space-y-2 text-lg font-bold text-black">
+              <li>✓ Panic (recommended)</li>
+              <li>✓ Check if you typed the URL after 3 beers</li>
+              <li>✓ Blame your browser</li>
+              <li>✓ Click one of the buttons below</li>
+              <li>✓ Question your life choices</li>
+            </ul>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
+            <a 
+              href="/" 
+              class="group relative inline-block flex-1 sm:flex-initial"
+            >
+              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-yellow-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
+              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-yellow-400 transition-colors">
+                <i class='bx bx-home-alt text-2xl'></i>
+                GO HOME
+              </span>
+            </a>
+
+            <button 
+              onclick="history.back()" 
+              class="group relative inline-block flex-1 sm:flex-initial"
+            >
+              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-pink-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
+              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-pink-500 transition-colors">
+                <i class='bx bx-left-arrow-alt text-2xl'></i>
+                GO BACK
+              </span>
+            </button>
+
+            <a 
+              href="/blog" 
+              class="group relative inline-block flex-1 sm:flex-initial"
+            >
+              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-blue-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
+              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-blue-400 transition-colors">
+                <i class='bx bx-book-reader text-2xl'></i>
+                READ BLOG
+              </span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Snarky Footer Message -->
+        <div class="text-center">
+          <div class="inline-block bg-black dark:bg-white text-white dark:text-black px-6 py-3 border-4 border-black dark:border-white transform rotate-2">
+            <p class="text-lg font-black">
+              🎪 LOST? CONFUSED? SAME. 🎪
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Animated Marquee Footer -->
+    <div class="fixed bottom-0 left-0 w-full bg-black dark:bg-white border-t-8 border-black dark:border-white overflow-hidden py-4 z-20">
+      <div class="whitespace-nowrap animate-marquee">
+        <span class="mx-8 text-2xl font-black text-white dark:text-black">
+          ⚠️ 404 ERROR ⚠️ PAGE NOT FOUND ⚠️ NOTHING TO SEE HERE ⚠️ MOVE ALONG ⚠️ YOU'RE LOST ⚠️ TURN BACK ⚠️ ABORT MISSION ⚠️
+        </span>
+        <span class="mx-8 text-2xl font-black text-white dark:text-black">
+          ⚠️ 404 ERROR ⚠️ PAGE NOT FOUND ⚠️ NOTHING TO SEE HERE ⚠️ MOVE ALONG ⚠️ YOU'RE LOST ⚠️ TURN BACK ⚠️ ABORT MISSION ⚠️
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <style is:global>
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(12deg); }
+        50% { transform: translateY(-20px) rotate(12deg); }
+      }
+
+      @keyframes wiggle {
+        0%, 100% { transform: rotate(-3deg); }
+        50% { transform: rotate(3deg); }
+      }
+
+      .animate-marquee {
+        animation: marquee 20s linear infinite;
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .animate-wiggle {
+        animation: wiggle 2s ease-in-out infinite;
+      }
+
+      .animate-spin-slow {
+        animation: spin 8s linear infinite;
+      }
+
+      .shadow-brutal {
+        box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      .dark .shadow-brutal {
+        box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 1);
+      }
+
+      .shadow-brutal-xl {
+        box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      .dark .shadow-brutal-xl {
+        box-shadow: 12px 12px 0px 0px rgba(255, 255, 255, 1);
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    </style>
+
+    <script>
+      // Random rotation on load
+      document.addEventListener('DOMContentLoaded', () => {
+        const card = document.querySelector('.bg-white.dark\\:bg-gray-800') as HTMLElement;
+        if (card) {
+          const randomRotation = (Math.random() - 0.5) * 3;
+          card.style.transform = `rotate(${randomRotation}deg)`;
+        }
+
+        // Easter egg: Konami code
+        let konamiCode: string[] = [];
+        const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        
+        document.addEventListener('keydown', (e) => {
+          konamiCode.push(e.key);
+          konamiCode = konamiCode.slice(-10);
+          
+          if (konamiCode.join(',') === konamiPattern.join(',')) {
+            alert('🎮 KONAMI CODE ACTIVATED! But this page is still 404. Nice try though! 🎮');
+            window.location.href = '/';
+          }
+        });
+      });
+    </script>
+</BaseLayout>

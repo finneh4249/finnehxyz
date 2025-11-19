@@ -1,8 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AppWrapper from '../components/AppWrapper';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import AboutMe from '../components/sections/AboutMe.astro';
+import ProfessionalExperience from '../components/sections/ProfessionalExperience.astro';
+import Education from '../components/sections/Education.astro';
+import Skills from '../components/sections/Skills.astro';
+import Projects from '../components/sections/Projects.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Contact from '../components/sections/Contact.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/ui/BackToTop.astro';
+import EasterEggs from '../components/EasterEggs.astro';
+import HiddenEasterEggs from '../components/HiddenEasterEggs.astro';
 ---
 
 <BaseLayout>
-  <AppWrapper client:only="react" />
+  <EasterEggs />
+  <HiddenEasterEggs />
+  
+  <Navbar />
+  
+  <main>
+    <Hero />
+    <AboutMe />
+    <ProfessionalExperience />
+    <Education />
+    <Skills />
+    <Projects />
+    <Testimonials />
+    <Contact />
+  </main>
+
+  <Footer />
+  <BackToTop />
 </BaseLayout>

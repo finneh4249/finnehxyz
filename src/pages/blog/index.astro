@@ -4,8 +4,8 @@ import { getSectionMeta } from '../../utils/seo';
 
 const seoMeta = getSectionMeta('blog');
 
-// Get all blog posts
-const posts = await Astro.glob('./*.mdx');
+// Get all blog posts using import.meta.glob instead of deprecated Astro.glob
+const posts = Object.values(import.meta.glob('./*.mdx', { eager: true }));
 
 // Sort by date (newest first) and filter published posts
 const sortedPosts = posts

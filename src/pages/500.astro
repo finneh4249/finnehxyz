@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const serverMessages = [
+  "500: OOPS, I BROKE SOMETHING",
+  "INTERNAL SERVER ERROR (IT'S NOT YOU, IT'S ME)",
+  "SERVER EXPLODED. LITERALLY.",
+  "500: THE HAMSTERS STOPPED RUNNING",
+  "CRITICAL ERROR: DEVELOPER FORGOT SEMICOLON",
+  "SERVER IS HAVING AN EXISTENTIAL CRISIS",
+  "500: SOMETHING WENT VERY WRONG",
+  "FATAL ERROR: COMPUTER ACHIEVED SENTIENCE AND QUIT",
+  "SERVER ENCOUNTERED A PROBLEM (ITSELF)",
+  "500: BLAME THE INTERN",
+];
+
+const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.length)];
+---
+
+<BaseLayout title="500 - SERVER ERROR">
+  <link slot="head" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+  <div class="overflow-x-hidden">
+    
+    <!-- Glitchy Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <!-- Glitch Bars -->
+      <div class="absolute top-1/4 left-0 w-full h-2 bg-red-500 opacity-50 animate-pulse"></div>
+      <div class="absolute top-2/4 left-0 w-full h-2 bg-green-500 opacity-50 animate-pulse" style="animation-delay: 0.5s;"></div>
+      <div class="absolute top-3/4 left-0 w-full h-2 bg-blue-500 opacity-50 animate-pulse" style="animation-delay: 1s;"></div>
+      
+      <!-- Spinning Error Icon -->
+      <div class="absolute top-10 left-10 w-32 h-32 bg-orange-500 border-4 border-black dark:border-white animate-spin-slow" style="animation-duration: 6s;">
+        <i class='bx bx-error text-6xl flex items-center justify-center h-full text-white'></i>
+      </div>
+      
+      <!-- Broken Gears -->
+      <div class="absolute bottom-20 right-20 w-28 h-28 bg-purple-500 border-4 border-black dark:border-white rounded-full animate-spin-reverse">
+        <i class='bx bx-cog text-7xl flex items-center justify-center h-full text-white'></i>
+      </div>
+      
+      <div class="absolute top-1/3 right-1/4 w-20 h-20 bg-pink-500 border-4 border-black dark:border-white rounded-full animate-spin-slow" style="animation-duration: 4s;">
+        <i class='bx bx-cog text-5xl flex items-center justify-center h-full text-white'></i>
+      </div>
+      
+      <!-- Fire Symbol -->
+      <div class="absolute bottom-1/4 left-1/4 w-24 h-24 bg-red-600 border-4 border-black dark:border-white transform rotate-12 animate-bounce">
+        <i class='bx bx-meteor text-6xl flex items-center justify-center h-full text-yellow-400'></i>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center p-4 relative z-10">
+      <div class="max-w-4xl w-full">
+        
+        <!-- Error Code Badge -->
+        <div class="flex justify-center mb-8 animate-glitch">
+          <div class="bg-orange-600 text-white px-8 py-4 border-4 border-black dark:border-white transform -rotate-3 shadow-brutal">
+            <span class="text-3xl font-black">ERROR_CODE: 500</span>
+          </div>
+        </div>
+
+        <!-- Main Error Card -->
+        <div class="bg-white dark:bg-gray-800 border-8 border-black dark:border-white p-8 md:p-12 shadow-brutal-xl transform hover:rotate-1 transition-all duration-300 mb-8">
+          
+          <!-- Giant 500 -->
+          <div class="text-center mb-8">
+            <h1 class="text-[150px] md:text-[250px] font-black leading-none mb-0 glitch" data-text="500" style="text-shadow: 8px 8px 0 #F97316, 16px 16px 0 #EA580C;">
+              500
+            </h1>
+          </div>
+
+          <!-- Random Error Message -->
+          <div class="bg-orange-500 border-4 border-black dark:border-white p-6 mb-8 transform -rotate-1">
+            <p class="text-2xl md:text-3xl font-black text-white text-center uppercase">
+              {randomMessage}
+            </p>
+          </div>
+
+          <!-- Explanation Box -->
+          <div class="bg-red-400 border-4 border-black dark:border-white p-6 mb-8 transform rotate-1">
+            <p class="text-xl font-bold text-black text-center">
+              🔥 CRITICAL SYSTEM FAILURE 🔥
+              <br class="mb-2"/>
+              The server encountered an internal error and couldn't complete your request.
+              <br class="hidden md:block"/>
+              Translation: Something broke on our end. Whoops.
+            </p>
+          </div>
+
+          <!-- Status Cards -->
+          <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-red-500 border-4 border-black dark:border-white p-4 text-center transform -rotate-2 hover:rotate-0 transition-transform">
+              <i class='bx bx-bug text-5xl mb-2 text-white'></i>
+              <p class="font-black text-lg text-white">SERVER CRASHED</p>
+            </div>
+            <div class="bg-orange-400 border-4 border-black dark:border-white p-4 text-center hover:-rotate-2 transition-transform">
+              <i class='bx bx-ghost text-5xl mb-2'></i>
+              <p class="font-black text-lg">CODE IS HAUNTED</p>
+            </div>
+            <div class="bg-yellow-400 border-4 border-black dark:border-white p-4 text-center transform rotate-2 hover:rotate-0 transition-transform">
+              <i class='bx bx-sad text-5xl mb-2'></i>
+              <p class="font-black text-lg">DEV IS CRYING</p>
+            </div>
+          </div>
+
+          <!-- Helpful Suggestions -->
+          <div class="bg-purple-400 border-4 border-black dark:border-white p-6 mb-8">
+            <h2 class="text-2xl font-black mb-4 text-black">WHAT MIGHT'VE HAPPENED:</h2>
+            <ul class="space-y-2 text-lg font-bold text-black">
+              <li>💥 Database decided to take a nap</li>
+              <li>🔥 Code caught fire (metaphorically)</li>
+              <li>🐛 Bug escaped from testing</li>
+              <li>☕ Developer needed more coffee</li>
+              <li>🎲 Random cosmic ray hit the server</li>
+            </ul>
+          </div>
+
+          <!-- Technical Details -->
+          <div class="bg-black border-4 border-black dark:border-white p-6 mb-8 font-mono text-green-400">
+            <p class="text-sm">
+              <span class="text-red-400">[ERROR]</span> Unhandled exception in production<br/>
+              <span class="text-yellow-400">[TRACE]</span> Stack overflow in reality.js<br/>
+              <span class="text-red-400">[FATAL]</span> Server: "I'm out"<br/>
+              <span class="text-blue-400">[INFO]</span> Restart attempt: 1 of ∞
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
+            <a 
+              href="/" 
+              class="group relative inline-block flex-1 sm:flex-initial"
+            >
+              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-green-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
+              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-green-400 transition-colors">
+                <i class='bx bx-home-alt text-2xl'></i>
+                GO HOME
+              </span>
+            </a>
+
+            <button 
+              onclick="location.reload()" 
+              class="group relative inline-block flex-1 sm:flex-initial"
+            >
+              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-orange-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
+              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-orange-500 transition-colors">
+                <i class='bx bx-refresh text-2xl'></i>
+                TRY AGAIN
+              </span>
+            </button>
+
+            <button 
+              onclick="history.back()" 
+              class="group relative inline-block flex-1 sm:flex-initial"
+            >
+              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-purple-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
+              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-purple-500 transition-colors">
+                <i class='bx bx-left-arrow-alt text-2xl'></i>
+                GO BACK
+              </span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Snarky Footer Message -->
+        <div class="text-center">
+          <div class="inline-block bg-orange-600 text-white px-6 py-3 border-4 border-black dark:border-white transform rotate-2 animate-pulse">
+            <p class="text-lg font-black">
+              💀 SOMETHING DIED SOMEWHERE 💀
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Animated Marquee Footer -->
+    <div class="fixed bottom-0 left-0 w-full bg-orange-600 border-t-8 border-black dark:border-white overflow-hidden py-4 z-20">
+      <div class="whitespace-nowrap animate-marquee">
+        <span class="mx-8 text-2xl font-black text-white">
+          💥 SYSTEM ERROR 💥 SERVER CRASH 💥 INTERNAL FAILURE 💥 CODE BROKE 💥 ABORT 💥 RESTART 💥
+        </span>
+        <span class="mx-8 text-2xl font-black text-white">
+          💥 SYSTEM ERROR 💥 SERVER CRASH 💥 INTERNAL FAILURE 💥 CODE BROKE 💥 ABORT 💥 RESTART 💥
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <style is:global>
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      @keyframes glitch {
+        0%, 100% { transform: rotate(-3deg) translateX(0); }
+        25% { transform: rotate(-3deg) translateX(-5px); }
+        50% { transform: rotate(3deg) translateX(5px); }
+        75% { transform: rotate(-3deg) translateX(-2px); }
+      }
+
+      .animate-marquee {
+        animation: marquee 20s linear infinite;
+      }
+
+      .animate-glitch {
+        animation: glitch 0.5s ease-in-out infinite;
+      }
+
+      .animate-spin-slow {
+        animation: spin 6s linear infinite;
+      }
+
+      .animate-spin-reverse {
+        animation: spin-reverse 8s linear infinite;
+      }
+
+      .shadow-brutal {
+        box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      .dark .shadow-brutal {
+        box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 1);
+      }
+
+      .shadow-brutal-xl {
+        box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      .dark .shadow-brutal-xl {
+        box-shadow: 12px 12px 0px 0px rgba(255, 255, 255, 1);
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes spin-reverse {
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
+      }
+    </style>
+</BaseLayout>
