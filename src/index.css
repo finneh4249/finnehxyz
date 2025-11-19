@@ -5,7 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NEO-BRUTALIST BASE STYLES */
+/* 1. BASE LAYER */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -14,136 +14,170 @@
   }
   
   body {
-    background: var(--fallback-b1, oklch(var(--b1)));
-    color: var(--fallback-bc, oklch(var(--bc)));
+    @apply bg-neo-bg text-neo-black;
   }
   
-  :root {
-    --card-bg-light: #FAFAFA;
-    --card-bg-dark: #1A1A1A;
-  }
-  
-  /* Dark mode specific fixes */
-  .dark {
-    background-color: #0A0A0A;
-    color: #FAFAFA;
-  }
-  
-  .dark .brutal-card {
-    background-color: #1A1A1A;
+  /* Dark mode overrides */
+  :root[class~="dark"] body {
+    @apply bg-neo-dark text-neo-white;
   }
   
   /* Neo-brutalist typography */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+    @apply font-display font-bold uppercase tracking-tight;
   }
   
-  /* Remove all rounded corners */
-  * {
-    border-radius: 0 !important;
+  /* Enforce No-Radius Globally */
+  *, ::before, ::after {
+    border-radius: 0px;
   }
 }
 
-/* NEO-BRUTALIST COMPONENTS */
+/* 2. COMPONENTS LAYER */
 @layer components {
+  /* --- Core Neo-Brutalist Components --- */
+  
   /* Brutal Card */
   .brutal-card {
-    @apply border-brutal border-black bg-white dark:bg-base-200 shadow-brutal;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    @apply border-3 border-neo-black bg-neo-white shadow-brutal-md transition-transform duration-200 ease-brutal;
   }
   
   .brutal-card:hover {
-    @apply shadow-brutal-lg;
-    transform: translate(-2px, -2px);
+    @apply -translate-x-0.5 -translate-y-0.5 shadow-brutal-lg;
+  }
+  
+  .dark .brutal-card {
+    @apply bg-neo-dark border-neo-white shadow-brutal-dark-md;
   }
   
   /* Brutal Button */
   .brutal-btn {
-    @apply border-brutal border-black font-bold uppercase px-6 py-3 
-           transition-all duration-200 cursor-pointer;
+    @apply border-3 border-neo-black font-bold uppercase px-6 py-3 
+           transition-all duration-200 cursor-pointer select-none inline-flex items-center justify-center;
   }
   
   .brutal-btn:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0px 0px #000;
+    @apply -translate-x-1 -translate-y-1 shadow-brutal-lg;
   }
   
   .brutal-btn:active {
-    transform: translate(0, 0);
-    box-shadow: 3px 3px 0px 0px #000;
+    @apply translate-x-0 translate-y-0 shadow-brutal-sm;
   }
-  
+
   /* Brutal Input */
   .brutal-input {
-    @apply border-brutal border-black px-4 py-3 bg-white dark:bg-base-200
-           focus:outline-none focus:shadow-brutal;
+    @apply border-3 border-neo-black px-4 py-3 bg-neo-white dark:bg-base-200 w-full
+           focus:outline-none focus:shadow-brutal-md transition-all duration-200;
   }
   
-  /* Color variants */
-  .brutal-yellow {
-    @apply bg-neo-yellow;
-    color: #000 !important;
+  /* Neo-brutalist form inputs (Generic overrides) */
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  textarea,
+  select {
+    @apply border-3 border-neo-black bg-neo-white p-3 font-medium transition-all duration-200;
   }
-  
-  .brutal-pink {
-    @apply bg-neo-pink text-white;
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="search"]:focus,
+  textarea:focus,
+  select:focus {
+    @apply outline-none shadow-brutal-md -translate-x-0.5 -translate-y-0.5;
   }
-  
-  .brutal-blue {
-    @apply bg-neo-blue text-white;
+
+  .dark input[type="text"],
+  .dark input[type="email"],
+  .dark input[type="search"],
+  .dark textarea,
+  .dark select {
+    @apply bg-base-200 text-neo-white;
   }
-  
-  .brutal-green {
-    @apply bg-neo-green;
-    color: #000 !important;
+
+  /* Modal Box */
+  .modal-box {
+    @apply border-6 border-neo-black shadow-brutal-xl bg-neo-white p-8 dark:bg-base-200;
   }
+
+  /* --- Legacy Color Utilities (Refactored to use tokens) --- */
+  /* Kept for backward compatibility with existing Astro components */
+  .brutal-yellow { @apply bg-neo-yellow text-black; }
+  .brutal-pink { @apply bg-neo-pink text-white; }
+  .brutal-blue { @apply bg-neo-blue text-white; }
+  .brutal-green { @apply bg-neo-green text-black; }
+  .brutal-purple { @apply bg-neo-purple text-white; }
+  .brutal-orange { @apply bg-neo-orange text-white; }
   
-  .brutal-purple {
-    @apply bg-neo-purple text-white;
+  /* Ensure child elements inherit text color for these util classes */
+  .brutal-yellow *, .brutal-green * { color: black; }
+  .brutal-pink *, .brutal-blue *, .brutal-purple *, .brutal-orange * { color: white; }
+
+  /* --- Tool Cards & Skills (Preserved) --- */
+  .tool-card {
+    @apply bg-white dark:bg-gray-800 shadow-md transition-all duration-200 overflow-hidden;
   }
+  .tool-card.frontend { @apply border-l-4 border-blue-500; }
+  .tool-card.backend { @apply border-l-4 border-green-500; }
+  .tool-card.database { @apply border-l-4 border-yellow-500; }
+  .tool-card.devops { @apply border-l-4 border-purple-500; }
+  .tool-card.design { @apply border-l-4 border-pink-500; }
+  .tool-card.mobile { @apply border-l-4 border-orange-500; }
   
-  .brutal-orange {
-    @apply bg-neo-orange text-white;
-  }
+  .dark .tool-card { @apply bg-gray-800; }
+
+  .skill-badge { @apply px-3 py-1 text-sm font-medium; }
+  .skill-badge.frontend { @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300; }
+  .skill-badge.backend { @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300; }
+  .skill-badge.database { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300; }
+  .skill-badge.devops { @apply bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300; }
+  .skill-badge.design { @apply bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300; }
+  .skill-badge.mobile { @apply bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300; }
+
+  .progress-bar { @apply h-2 bg-gray-200 dark:bg-gray-700 overflow-hidden; }
+  .progress-bar .progress { @apply h-full transition-all duration-300; }
+  .progress-bar .progress.frontend { @apply bg-blue-500; }
+  .progress-bar .progress.backend { @apply bg-green-500; }
+  .progress-bar .progress.database { @apply bg-yellow-500; }
+  .progress-bar .progress.devops { @apply bg-purple-500; }
+  .progress-bar .progress.design { @apply bg-pink-500; }
+  .progress-bar .progress.mobile { @apply bg-orange-500; }
   
-  /* Ensure child elements also get proper text color */
-  .brutal-yellow *,
-  .brutal-green * {
-    color: #000 !important;
-  }
+  .dark .skill-card { @apply bg-gray-800 border-gray-700; }
   
-  .brutal-pink *,
-  .brutal-blue *,
-  .brutal-purple *,
-  .brutal-orange * {
-    color: #fff !important;
+  .category-label { @apply px-2 py-0.5 text-xs font-medium; }
+  .category-label.frontend { @apply bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300; }
+  .category-label.backend { @apply bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300; }
+  .category-label.database { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300; }
+  .category-label.devops { @apply bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300; }
+  .category-label.design { @apply bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300; }
+  .category-label.mobile { @apply bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300; }
+}
+
+/* 3. UTILITIES & ANIMATIONS */
+@layer utilities {
+  .text-shadow-brutal {
+    text-shadow: 4px 4px 0px #000;
   }
 }
 
-/* NEO-BRUTALIST ANIMATIONS */
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-30px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(30px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-
 @keyframes glitch {
   0% { transform: translate(0); }
   20% { transform: translate(-2px, 2px); }
@@ -152,299 +186,37 @@
   80% { transform: translate(2px, -2px); }
   100% { transform: translate(0); }
 }
-
 @keyframes shake {
   0%, 100% { transform: translateX(0) rotate(0deg); }
   10%, 30%, 50%, 70%, 90% { transform: translateX(-10px) rotate(-5deg); }
   20%, 40%, 60%, 80% { transform: translateX(10px) rotate(5deg); }
 }
 
-.animate-fadeIn {
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out forwards;
-}
+.animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
+.animate-bounce { animation: bounce 2s ease-in-out infinite; }
+.animate-glitch { animation: glitch 0.3s ease-in-out; }
 
-.animate-bounce {
-  animation: bounce 2s ease-in-out infinite;
-}
-
-.animate-glitch {
-  animation: glitch 0.3s ease-in-out;
-}
-
-/* Utility Classes */
-.text-shadow-brutal {
-  text-shadow: 4px 4px 0px #000;
-}
-
-/* Neo-brutalist section spacing */
+/* Section Spacing */
 section {
   padding: 4rem 0;
 }
 
-/* Override daisy rounded corners */
-.btn, .input, .card, .badge, .avatar > div {
-  border-radius: 0 !important;
-}
-
-/* Add these rules to ensure dark mode cards */
-.dark .card,
-.dark [class*="bg-white"] {
-  background-color: var(--card-bg-dark) !important;
-}
-
-/* Make professional experience darker */
-.dark #professionalExperience {
-  background-color: rgba(15, 23, 42, 0.95) !important;
-}
-
-/* Additional card fixes */
-.dark .bg-white {
-  background-color: var(--card-bg-dark) !important;
-}
-
-/* Custom scrollbar for tool cards */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 4px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.5);
-  border-radius: 2px;
-}
-
-.dark .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(209, 213, 219, 0.3);
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: rgba(107, 114, 128, 0.7);
-}
-
-/* Custom Card Styling - Fix for Tool Cards and Skills Cards */
-@layer components {
-  /* Tool Card styling */
-  .tool-card {
-    @apply bg-white dark:bg-gray-800 shadow-md rounded-lg transition-all duration-200 overflow-hidden;
-  }
-
-  /* Tool Card color variants */
-  .tool-card.frontend {
-    @apply border-l-4 border-blue-500;
-  }
-  
-  .tool-card.backend {
-    @apply border-l-4 border-green-500;
-  }
-  
-  .tool-card.database {
-    @apply border-l-4 border-yellow-500;
-  }
-  
-  .tool-card.devops {
-    @apply border-l-4 border-purple-500;
-  }
-  
-  .tool-card.design {
-    @apply border-l-4 border-pink-500;
-  }
-  
-  .tool-card.mobile {
-    @apply border-l-4 border-orange-500;
-  }
-
-  /* Skill badge/pill styling */
-  .skill-badge {
-    @apply px-3 py-1 rounded-full text-sm font-medium;
-  }
-  
-  /* Skill badge color variants by category */
-  .skill-badge.frontend {
-    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
-  }
-  
-  .skill-badge.backend {
-    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
-  }
-  
-  .skill-badge.database {
-    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300;
-  }
-  
-  .skill-badge.devops {
-    @apply bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300;
-  }
-  
-  .skill-badge.design {
-    @apply bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300;
-  }
-  
-  .skill-badge.mobile {
-    @apply bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300;
-  }
-  
-  /* Progress bar colors */
-  .progress-bar {
-    @apply h-2 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden;
-  }
-  
-  .progress-bar .progress {
-    @apply h-full transition-all duration-300;
-  }
-  
-  .progress-bar .progress.frontend {
-    @apply bg-blue-500;
-  }
-  
-  .progress-bar .progress.backend {
-    @apply bg-green-500;
-  }
-  
-  .progress-bar .progress.database {
-    @apply bg-yellow-500;
-  }
-  
-  .progress-bar .progress.devops {
-    @apply bg-purple-500;
-  }
-  
-  .progress-bar .progress.design {
-    @apply bg-pink-500;
-  }
-  
-  .progress-bar .progress.mobile {
-    @apply bg-orange-500;
-  }
-}
-
-/* Fix for skill cards in dark mode */
-.dark .skill-card {
-  @apply bg-gray-800 border-gray-700;
-}
-
-/* Fix for tool cards in dark mode */
-.dark .tool-card {
-  @apply bg-gray-800;
-}
-
-/* Tool category label colors */
-.category-label {
-  @apply px-2 py-0.5 text-xs font-medium rounded;
-}
-
-.category-label.frontend {
-  @apply bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300;
-}
-
-.category-label.backend {
-  @apply bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300;
-}
-
-.category-label.database {
-  @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300;
-}
-
-.category-label.devops {
-  @apply bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300;
-}
-
-.category-label.design {
-  @apply bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300;
-}
-
-.category-label.mobile {
-  @apply bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300;
-}
-
-/* Ensure boxicons colors are applied with higher specificity */
+/* Boxicons specificity */
 .bx[class*="bxl-"], 
 .bx[class*="bx-"], 
 .bx[class*="bxs-"] {
-  /* This ensures icon colors are prioritized */
   color: inherit;
 }
 
-/* Replace circular @apply rules with direct CSS color properties */
-i.bx.text-blue-400, i.bx.text-blue-500, i.bx.text-blue-600 { 
-  color: rgb(59, 130, 246); /* blue-500 */ 
-}
-.dark i.bx.text-blue-400, .dark i.bx.text-blue-500, .dark i.bx.text-blue-600 { 
-  color: rgb(96, 165, 250); /* blue-400 */
-}
-
-i.bx.text-red-500, i.bx.text-red-600 { 
-  color: rgb(239, 68, 68); /* red-500 */ 
-}
-.dark i.bx.text-red-500, .dark i.bx.text-red-600 { 
-  color: rgb(248, 113, 113); /* red-400 */
-}
-
-i.bx.text-green-500 { 
-  color: rgb(34, 197, 94); /* green-500 */ 
-}
-.dark i.bx.text-green-500 { 
-  color: rgb(74, 222, 128); /* green-400 */
-}
-
-i.bx.text-yellow-400, i.bx.text-yellow-500 { 
-  color: rgb(234, 179, 8); /* yellow-500 */ 
-}
-.dark i.bx.text-yellow-400, .dark i.bx.text-yellow-500 { 
-  color: rgb(250, 204, 21); /* yellow-400 */
-}
-
-i.bx.text-purple-500 { 
-  color: rgb(168, 85, 247); /* purple-500 */ 
-}
-.dark i.bx.text-purple-500 { 
-  color: rgb(192, 132, 252); /* purple-400 */
-}
-
-i.bx.text-pink-500 { 
-  color: rgb(236, 72, 153); /* pink-500 */ 
-}
-.dark i.bx.text-pink-500 { 
-  color: rgb(244, 114, 182); /* pink-400 */
-}
-
-i.bx.text-orange-500, i.bx.text-orange-600 { 
-  color: rgb(249, 115, 22); /* orange-500 */ 
-}
-.dark i.bx.text-orange-500, .dark i.bx.text-orange-600 { 
-  color: rgb(251, 146, 60); /* orange-400 */
-}
-
-i.bx.text-black { 
-  color: rgb(17, 24, 39); /* gray-900 */ 
-}
-.dark i.bx.text-black { 
-  color: rgb(255, 255, 255); /* white */
-}
-
-.dark .tool-icon {
-  color: var(--icon-color-dark) !important;
-}
-
-/* Neo-brutalist Swiper Customization */
+/* Swiper Customization - Neo-Brutalist */
 .featured-projects-swiper .swiper-button-next,
 .featured-projects-swiper .swiper-button-prev {
-  background-color: #FFE600;
-  border: 4px solid #000;
-  box-shadow: 6px 6px 0px 0px #000;
-  width: 50px;
-  height: 50px;
-  color: #000;
-  font-weight: bold;
+  @apply bg-neo-yellow border-3 border-neo-black shadow-brutal text-neo-black font-bold w-12 h-12;
 }
 
 .featured-projects-swiper .swiper-button-next:hover,
 .featured-projects-swiper .swiper-button-prev:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0px 0px #000;
+  @apply -translate-x-0.5 -translate-y-0.5 shadow-brutal-lg;
 }
 
 .featured-projects-swiper .swiper-button-next::after,
@@ -462,56 +234,27 @@ i.bx.text-black {
 }
 
 .featured-projects-swiper .swiper-pagination-bullet-active {
-  background: #FFE600;
-  border: 3px solid #000;
-  box-shadow: 3px 3px 0px 0px #000;
+  @apply bg-neo-yellow border-3 border-neo-black shadow-brutal-sm;
 }
 
-/* Neo-brutalist form inputs */
-input[type="text"],
-input[type="email"],
-input[type="search"],
-textarea,
-select {
-  border: 4px solid #000 !important;
-  background: #fff;
-  padding: 12px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="search"]:focus,
-textarea:focus,
-select:focus {
-  outline: none !important;
-  box-shadow: 6px 6px 0px 0px #000 !important;
-  transform: translate(-2px, -2px);
-}
-
-.dark input[type="text"],
-.dark input[type="email"],
-.dark input[type="search"],
-.dark textarea,
-.dark select {
-  background: var(--base-200);
-  color: var(--neutral);
-}
-
-/* Neo-brutalist modals */
-.modal-box {
-  border: 6px solid #000 !important;
-  box-shadow: 12px 12px 0px 0px #000 !important;
-  background: #fff;
-  padding: 2rem;
-}
-
-.dark .modal-box {
-  background: var(--base-200);
-}
-
-/* Icon colors remain consistent */
-i.bx {
-  color: inherit;
+/* 4. ACCESSIBILITY & MOTION CONTROL */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-shake,
+  .animate-bounce,
+  .animate-glitch {
+    animation: none !important;
+  }
+  
+  .brutal-card:hover,
+  .brutal-btn:hover {
+    transform: none !important;
+    box-shadow: none !important; 
+  }
 }

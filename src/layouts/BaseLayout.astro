@@ -71,8 +71,39 @@ const websiteSchema = {
     
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+
+    <script is:inline>
+      // Theme Initialization
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = savedTheme || systemTheme;
+        
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
+    <!-- Google Analytics -->
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID: import.meta.env.VITE_GA_MEASUREMENT_ID }}>
+      if (import.meta.env.PROD && GA_MEASUREMENT_ID) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID);
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-white dark:bg-base-200 text-base-content transition-colors duration-300">
     <slot />
   </body>
 </html>
