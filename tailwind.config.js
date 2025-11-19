@@ -51,39 +51,5 @@ export default {
       }
     },
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: [
-      {
-        light: {
-          "primary": "#FF006E",
-          "secondary": "#00B4D8", 
-          "accent": "#FFE600",
-          "neutral": "#0A0A0A",
-          "base-100": "#FAFAFA",
-          "base-200": "#F0F0F0",
-          "base-300": "#E0E0E0",
-          "info": "#00B4D8",
-          "success": "#06FFA5",
-          "warning": "#FFE600",
-          "error": "#FF006E",
-        },
-      },
-      {
-        dark: {
-          "primary": "#FF006E",
-          "secondary": "#00B4D8", 
-          "accent": "#FFE600",
-          "neutral": "#FAFAFA",
-          "base-100": "#0A0A0A",
-          "base-200": "#1A1A1A",
-          "base-300": "#2A2A2A",
-          "info": "#00B4D8",
-          "success": "#06FFA5",
-          "warning": "#FFE600",
-          "error": "#FF006E",
-        },
-      },
-    ],
-  },
+  plugins: [],
 }

@@ -126,34 +126,34 @@ const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', '
                 />
                 <div class:list={["absolute top-2 right-2 w-12 h-12 border-brutal border-black rotate-45", colors[index % colors.length]]}></div>
               </figure>
-              <div class="p-6 bg-white dark:bg-base-200 relative">
-                <h2 class="text-2xl font-bold uppercase mb-3 text-black">{project.title}</h2>
+              <div class="p-6 bg-white dark:bg-zinc-900 relative">
+                <h2 class="text-2xl font-bold uppercase mb-3 text-black dark:text-white">{project.title}</h2>
                 <div class="flex flex-wrap gap-2 mb-3">
                   {project.tags.map((tag, idx) => (
                     <div
-                      class:list={["border-3 border-black px-3 py-1 font-bold uppercase text-sm rotate-1 text-black rounded-none", colors[idx % colors.length]]}
+                      class:list={["border-3 border-black dark:border-white px-3 py-1 font-bold uppercase text-sm rotate-1 text-black dark:text-white rounded-none", colors[idx % colors.length]]}
                     >
                       {tag.name}
                     </div>
                   ))}
                 </div>
                 {formattedDate && (
-                  <div class="text-sm font-bold mb-3 text-base-content">
+                  <div class="text-sm font-bold mb-3 text-gray-700 dark:text-gray-300">
                     📅 {formattedDate}
                   </div>
                 )}
-                <p class="text-base mb-4 font-medium line-clamp-3 text-base-content">{project.description}</p>
+                <p class="text-base mb-4 font-medium line-clamp-3 text-gray-700 dark:text-gray-300">{project.description}</p>
                 
-                <div class:list={["absolute -bottom-2 -right-2 w-8 h-8 border-brutal border-black -rotate-12 z-0", cornerColor]}></div>
+                <div class:list={["absolute -bottom-2 -right-2 w-8 h-8 border-brutal border-black dark:border-white -rotate-12 z-0", cornerColor]}></div>
               </div>
             </div>
           );
         })}
       </div>
       
-      <div id="no-projects-found" class="brutal-card bg-white dark:bg-base-200 p-12 text-center rotate-1 hidden">
-        <p class="text-2xl font-bold uppercase text-black">No projects found 😢</p>
-        <p class="text-base mt-4 text-base-content">Try adjusting your search or filters</p>
+      <div id="no-projects-found" class="brutal-card bg-white dark:bg-zinc-900 p-12 text-center rotate-1 hidden">
+        <p class="text-2xl font-bold uppercase text-black dark:text-white">No projects found 😢</p>
+        <p class="text-base mt-4 text-gray-700 dark:text-gray-300">Try adjusting your search or filters</p>
       </div>
     </div>
 

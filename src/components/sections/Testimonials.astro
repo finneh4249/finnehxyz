@@ -1,8 +1,16 @@
 ---
 import testimonialsData from '../../data/testimonials.json';
 
+interface Testimonial {
+  name: string;
+  position: string;
+  company?: string;
+  testimonial: string;
+  avatar?: string;
+}
+
 // Safe check for testimonials data
-const testimonials = Array.isArray(testimonialsData) ? testimonialsData : [];
+const testimonials = (Array.isArray(testimonialsData) ? testimonialsData : []) as Testimonial[];
 ---
 
 <section id="testimonials" class="py-20 bg-neo-green relative overflow-hidden">
@@ -33,7 +41,7 @@ const testimonials = Array.isArray(testimonialsData) ? testimonialsData : [];
           
           return (
             <div 
-              class:list={["brutal-card bg-white dark:bg-base-200 hover:rotate-0 transition-all animate-on-scroll slide-up", rotation]}
+              class:list={["brutal-card bg-white dark:bg-zinc-900 hover:rotate-0 transition-all animate-on-scroll slide-up", rotation]}
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               <div class="p-6">
@@ -53,27 +61,27 @@ const testimonials = Array.isArray(testimonialsData) ? testimonialsData : [];
                     </div>
                   )}
                   <div>
-                    <h3 class="font-bold text-lg uppercase text-black">{testimonial.name}</h3>
-                    <p class="text-sm font-bold text-base-content">{testimonial.position}</p>
+                    <h3 class="font-bold text-lg uppercase text-black dark:text-white">{testimonial.name}</h3>
+                    <p class="text-sm font-bold text-gray-700 dark:text-gray-300">{testimonial.position}</p>
                     {testimonial.company && (
-                      <p class="text-xs font-bold opacity-75 text-base-content">{testimonial.company}</p>
+                      <p class="text-xs font-bold opacity-75 text-gray-600 dark:text-gray-400">{testimonial.company}</p>
                     )}
                   </div>
                 </div>
-                <p class="font-medium leading-relaxed border-l-brutal border-black pl-4 text-base-content">"{testimonial.testimonial}"</p>
+                <p class="font-medium leading-relaxed border-l-brutal border-black pl-4 text-black dark:text-white">"{testimonial.testimonial}"</p>
               </div>
             </div>
           );
         })}
       </div>
     ) : (
-      <div class="max-w-3xl mx-auto mb-16 brutal-card bg-white dark:bg-base-200 rotate-1 hover:rotate-0 transition-all animate-on-scroll slide-up">
+      <div class="max-w-3xl mx-auto mb-16 brutal-card bg-white dark:bg-zinc-900 rotate-1 hover:rotate-0 transition-all animate-on-scroll slide-up">
         <div class="p-12 text-center">
           <div class="w-24 h-24 bg-neo-yellow border-brutal-thick border-black flex items-center justify-center mx-auto mb-6 rotate-12">
             <i class="bx bx-message-square-dots text-5xl text-black"></i>
           </div>
-          <h3 class="text-3xl font-bold uppercase mb-4 text-black">Testimonials Coming Soon</h3>
-          <p class="text-lg font-medium mb-0 text-base-content">
+          <h3 class="text-3xl font-bold uppercase mb-4 text-black dark:text-white">Testimonials Coming Soon</h3>
+          <p class="text-lg font-medium mb-0 text-black dark:text-white">
             I'm currently collecting feedback from clients and colleagues I've worked with.
             <br />Check back soon to see what others have to say about working with me!
           </p>

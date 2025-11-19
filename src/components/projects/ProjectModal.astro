@@ -2,8 +2,8 @@
 ---
 
 <dialog id="project-modal" class="modal p-0 bg-transparent backdrop:bg-black/80">
-  <div class="modal-box max-w-4xl w-full bg-white dark:bg-base-200 p-0 overflow-hidden relative border-3 border-black shadow-brutal-xl m-4 rounded-none">
-    <div class="relative h-64 md:h-80 bg-gray-200 overflow-hidden border-b-3 border-black">
+  <div class="modal-box max-w-4xl w-full bg-white dark:bg-zinc-900 p-0 overflow-hidden relative border-3 border-black dark:border-white shadow-brutal-xl m-4 rounded-none">
+    <div class="relative h-64 md:h-80 bg-gray-200 overflow-hidden border-b-3 border-black dark:border-white">
       <img
         id="modal-image"
         src=""
@@ -12,7 +12,7 @@
       />
       <button
         id="modal-close"
-        class="absolute top-4 right-4 brutal-btn bg-white text-black w-10 h-10 flex items-center justify-center z-10 hover:rotate-90 transition-transform duration-300 rounded-none border-3 border-black"
+        class="absolute top-4 right-4 brutal-btn bg-white text-black w-10 h-10 flex items-center justify-center z-10 hover:rotate-90 transition-transform duration-300 rounded-none border-3 border-black dark:border-white"
         aria-label="Close modal"
       >
         <i class="bx bx-x text-2xl"></i>
@@ -22,7 +22,7 @@
     <div class="p-8">
       <div class="flex flex-wrap justify-between items-start gap-4 mb-6">
         <div>
-          <h2 id="modal-title" class="text-4xl font-bold uppercase mb-2 leading-tight"></h2>
+          <h2 id="modal-title" class="text-4xl font-bold uppercase mb-2 leading-tight text-black dark:text-white"></h2>
           <div id="modal-tags" class="flex flex-wrap gap-2"></div>
         </div>
         
@@ -50,22 +50,22 @@
       
       <div class="grid md:grid-cols-3 gap-8">
         <div class="md:col-span-2">
-          <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black inline-block">Overview</h3>
-          <p id="modal-description" class="text-lg leading-relaxed mb-6"></p>
+          <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black dark:border-white inline-block text-black dark:text-white">Overview</h3>
+          <p id="modal-description" class="text-lg leading-relaxed mb-6 text-gray-700 dark:text-gray-300"></p>
           
           <div id="modal-challenges-container" class="hidden">
-            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black inline-block">Challenges</h3>
-            <p id="modal-challenges" class="mb-6 leading-relaxed"></p>
+            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black dark:border-white inline-block text-black dark:text-white">Challenges</h3>
+            <p id="modal-challenges" class="mb-6 leading-relaxed text-gray-700 dark:text-gray-300"></p>
           </div>
           
           <div id="modal-outcomes-container" class="hidden">
-            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black inline-block">Outcomes</h3>
-            <p id="modal-outcomes" class="mb-6 leading-relaxed"></p>
+            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black dark:border-white inline-block text-black dark:text-white">Outcomes</h3>
+            <p id="modal-outcomes" class="mb-6 leading-relaxed text-gray-700 dark:text-gray-300"></p>
           </div>
         </div>
         
-        <div class="bg-base-100 dark:bg-base-300 p-6 border-brutal border-black h-fit">
-          <h3 class="text-xl font-bold uppercase mb-4">Technologies</h3>
+        <div class="bg-white dark:bg-zinc-950 p-6 border-brutal border-black dark:border-white h-fit">
+          <h3 class="text-xl font-bold uppercase mb-4 text-black dark:text-white">Technologies</h3>
           <div id="modal-tech" class="flex flex-wrap gap-2"></div>
         </div>
       </div>
@@ -165,7 +165,7 @@
         if (project.technologies && Array.isArray(project.technologies)) {
           project.technologies.forEach(tech => {
             const span = document.createElement('span');
-            span.className = 'px-3 py-1 bg-white dark:bg-base-100 border-3 border-black text-xs font-bold uppercase rounded-none';
+            span.className = 'px-3 py-1 bg-white dark:bg-zinc-900 border-3 border-black dark:border-white text-xs font-bold uppercase rounded-none text-black dark:text-white';
             span.textContent = tech;
             techContainer.appendChild(span);
           });

@@ -22,7 +22,7 @@ const { activeSection } = Astro.props;
 
 <nav
   id="main-nav"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b-3 border-black bg-base-100"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b-3 border-black bg-white dark:bg-zinc-950"
 >
   <ScrollProgressBar className="absolute top-0 left-0" />
   
@@ -45,7 +45,7 @@ const { activeSection } = Astro.props;
             href={link.type === 'page' ? link.href : `#${link.id}`}
             class:list={[
               "brutal-btn px-4 py-2 text-sm nav-link",
-              activeSection === link.id ? 'brutal-yellow' : 'bg-white dark:bg-base-200'
+              activeSection === link.id ? 'brutal-yellow' : 'bg-white dark:bg-zinc-900'
             ]}
             data-id={link.id}
           >
@@ -62,7 +62,7 @@ const { activeSection } = Astro.props;
         
         <button 
           id="mobile-menu-toggle"
-          class="brutal-btn bg-white dark:bg-base-200 w-12 h-12 flex items-center justify-center"
+          class="brutal-btn bg-white dark:bg-zinc-900 w-12 h-12 flex items-center justify-center"
           aria-label="Toggle menu"
           aria-expanded="false"
         >
@@ -104,11 +104,11 @@ const { activeSection } = Astro.props;
     <!-- Menu Panel -->
     <div
       id="mobile-menu-panel"
-      class="absolute right-0 top-0 h-full w-80 max-w-full bg-base-100 border-l-3 border-black shadow-brutal-xl transform translate-x-full transition-transform duration-300"
+      class="absolute right-0 top-0 h-full w-80 max-w-full bg-white dark:bg-zinc-950 border-l-3 border-black shadow-brutal-xl transform translate-x-full transition-transform duration-300"
     >
       <div class="p-6">
         <div class="flex justify-between items-center mb-8 pb-4 border-b-3 border-black">
-          <h3 class="text-2xl font-bold uppercase">Menu</h3>
+          <h3 class="text-2xl font-bold uppercase text-black dark:text-white">Menu</h3>
           <button 
             id="mobile-menu-close"
             class="brutal-btn brutal-pink w-12 h-12 flex items-center justify-center"
@@ -127,7 +127,7 @@ const { activeSection } = Astro.props;
                 href={link.type === 'page' ? link.href : `#${link.id}`}
                 class:list={[
                   "brutal-btn w-full text-left block mobile-nav-link",
-                  activeSection === link.id ? 'brutal-yellow' : 'bg-white dark:bg-base-200'
+                  activeSection === link.id ? 'brutal-yellow' : 'bg-white dark:bg-zinc-900'
                 ]}
               >
                 {link.label}
@@ -179,7 +179,7 @@ const { activeSection } = Astro.props;
         panel.classList.remove('translate-x-full');
         
         toggleBtn.classList.add('brutal-pink');
-        toggleBtn.classList.remove('bg-white', 'dark:bg-base-200');
+        toggleBtn.classList.remove('bg-white', 'dark:bg-zinc-900');
         
         menuIcon?.classList.add('hidden');
         closeIcon?.classList.remove('hidden');
@@ -191,7 +191,7 @@ const { activeSection } = Astro.props;
         panel.classList.add('translate-x-full');
         
         toggleBtn.classList.remove('brutal-pink');
-        toggleBtn.classList.add('bg-white', 'dark:bg-base-200');
+        toggleBtn.classList.add('bg-white', 'dark:bg-zinc-900');
         
         menuIcon?.classList.remove('hidden');
         closeIcon?.classList.add('hidden');
@@ -236,10 +236,10 @@ const { activeSection } = Astro.props;
         const href = link.getAttribute('href');
         if (href === `#${id}`) {
           link.classList.add('brutal-yellow');
-          link.classList.remove('bg-white', 'dark:bg-base-200');
+          link.classList.remove('bg-white', 'dark:bg-zinc-900');
         } else {
           link.classList.remove('brutal-yellow');
-          link.classList.add('bg-white', 'dark:bg-base-200');
+          link.classList.add('bg-white', 'dark:bg-zinc-900');
         }
       });
     }

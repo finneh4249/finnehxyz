@@ -44,7 +44,7 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
             class:list={[
               "brutal-btn px-5 py-3 text-sm hover:rotate-0 transition-all category-btn",
               rotations[index % rotations.length],
-              category === "All" ? "brutal-yellow" : "bg-white dark:bg-base-200"
+              category === "All" ? "brutal-yellow" : "bg-white dark:bg-zinc-900"
             ]}
             data-category={category}
           >
@@ -77,7 +77,7 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
         })}
       </div>
       
-      <div id="no-tools-found" class="text-center py-8 brutal-card bg-white dark:bg-base-200 rotate-1 hidden">
+      <div id="no-tools-found" class="text-center py-8 brutal-card bg-white dark:bg-zinc-900 rotate-1 hidden">
         <p class="text-xl font-bold uppercase mb-4">No matching tools found.</p>
         <button id="reset-tools" class="brutal-btn brutal-yellow px-6 py-3 -rotate-2">
           Reset Filters
@@ -112,7 +112,7 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
             class:list={[
               "brutal-btn px-5 py-3 text-sm hover:rotate-0 transition-all skill-category-btn",
               rotations[index % rotations.length],
-              category === "All" ? "brutal-yellow" : "bg-white dark:bg-base-200"
+              category === "All" ? "brutal-yellow" : "bg-white dark:bg-zinc-900"
             ]}
             data-category={category}
           >
@@ -191,10 +191,10 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
         // Update UI
         categoryBtns.forEach(b => {
           b.classList.remove('brutal-yellow');
-          b.classList.add('bg-white', 'dark:bg-base-200');
+          b.classList.add('bg-white', 'dark:bg-zinc-900');
         });
         btn.classList.add('brutal-yellow');
-        btn.classList.remove('bg-white', 'dark:bg-base-200');
+        btn.classList.remove('bg-white', 'dark:bg-zinc-900');
         
         currentToolCategory = (btn as HTMLElement).dataset.category || 'All';
         filterTools();
@@ -221,10 +221,10 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
       categoryBtns.forEach(b => {
         if ((b as HTMLElement).dataset.category === 'All') {
           b.classList.add('brutal-yellow');
-          b.classList.remove('bg-white', 'dark:bg-base-200');
+          b.classList.remove('bg-white', 'dark:bg-zinc-900');
         } else {
           b.classList.remove('brutal-yellow');
-          b.classList.add('bg-white', 'dark:bg-base-200');
+          b.classList.add('bg-white', 'dark:bg-zinc-900');
         }
       });
       
@@ -243,10 +243,10 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
       btn.addEventListener('click', () => {
         skillCategoryBtns.forEach(b => {
           b.classList.remove('brutal-yellow');
-          b.classList.add('bg-white', 'dark:bg-base-200');
+          b.classList.add('bg-white', 'dark:bg-zinc-900');
         });
         btn.classList.add('brutal-yellow');
-        btn.classList.remove('bg-white', 'dark:bg-base-200');
+        btn.classList.remove('bg-white', 'dark:bg-zinc-900');
         
         const cat = (btn as HTMLElement).dataset.category || 'All';
         

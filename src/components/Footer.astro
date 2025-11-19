@@ -4,7 +4,7 @@ import SocialShareButtons from './SocialShareButtons.astro';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-base-100 border-t-3 border-black pt-16 pb-8 relative overflow-hidden">
+<footer class="bg-white dark:bg-zinc-950 border-t-3 border-black pt-16 pb-8 relative overflow-hidden">
   <!-- Wild asymmetric decorative elements -->
   <div class="absolute top-0 left-0 w-48 h-40 bg-neo-purple border-r-6 border-b-6 border-black rotate-6"></div>
   <div class="absolute bottom-0 right-0 w-40 h-56 bg-neo-orange border-l-6 border-t-6 border-black -rotate-6"></div>
@@ -15,7 +15,7 @@ const currentYear = new Date().getFullYear();
     <div class="grid md:grid-cols-2 gap-12 mb-12">
       <!-- Left side - Info -->
       <div class="space-y-6 animate-on-scroll slide-right">
-        <div class="brutal-card bg-white dark:bg-base-200 -rotate-1 hover:rotate-0 transition-all">
+        <div class="brutal-card bg-white dark:bg-zinc-900 -rotate-1 hover:rotate-0 transition-all">
           <div class="p-6">
             <h2 class="text-4xl font-bold uppercase mb-2 tracking-tight">Ethan Cornwill</h2>
             <p class="text-xl font-bold">Technical Lead & AI Developer</p>
@@ -37,7 +37,7 @@ const currentYear = new Date().getFullYear();
 
       <!-- Right side - Social & Share -->
       <div class="space-y-6 animate-on-scroll slide-left">
-        <div class="brutal-card bg-white dark:bg-base-200 rotate-2 hover:rotate-0 transition-all">
+        <div class="brutal-card bg-white dark:bg-zinc-900 rotate-2 hover:rotate-0 transition-all">
           <div class="p-6">
             <p class="font-bold uppercase mb-4">Connect With Me</p>
             <div class="flex flex-wrap gap-3">
@@ -92,7 +92,7 @@ const currentYear = new Date().getFullYear();
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div 
           id="copyright-btn"
-          class="brutal-btn bg-white dark:bg-base-200 px-6 py-3 rotate-1 cursor-pointer relative hover:scale-105 hover:rotate-0 active:scale-95 transition-all"
+          class="brutal-btn bg-white dark:bg-zinc-900 px-6 py-3 rotate-1 cursor-pointer relative hover:scale-105 hover:rotate-0 active:scale-95 transition-all"
         >
           <p class="font-bold">&copy; {currentYear} Ethan Cornwill. Built with Astro + React.</p>
           <div id="secret-message" class="absolute -top-12 left-1/2 transform -translate-x-1/2 brutal-btn brutal-yellow px-4 py-2 text-sm whitespace-nowrap opacity-0 transition-opacity">
@@ -110,7 +110,7 @@ const currentYear = new Date().getFullYear();
             href="https://github.com/finneh4249" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="brutal-btn bg-white dark:bg-base-200 px-4 py-2 rotate-1 hover:rotate-0 transition-all text-sm"
+            class="brutal-btn bg-white dark:bg-zinc-900 px-4 py-2 rotate-1 hover:rotate-0 transition-all text-sm"
           >
             View Source
           </a>
@@ -121,9 +121,9 @@ const currentYear = new Date().getFullYear();
   
   <!-- Share Dialog (Hidden by default) -->
   <div id="share-dialog" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 hidden">
-    <div class="bg-white dark:bg-base-200 rounded-none border-3 border-black p-6 max-w-md w-full shadow-brutal-xl relative">
+    <div class="bg-white dark:bg-zinc-900 rounded-none border-3 border-black p-6 max-w-md w-full shadow-brutal-xl relative">
       <div class="flex justify-between items-center mb-4">
-        <h3 class="text-xl font-bold text-neo-black dark:text-neo-white">Share My Portfolio</h3>
+        <h3 class="text-xl font-bold text-black dark:text-white">Share My Portfolio</h3>
         <button id="close-share-dialog" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
           <i class="bx bx-x text-2xl"></i>
         </button>
@@ -139,7 +139,7 @@ const currentYear = new Date().getFullYear();
             type="text"
             id="share-url-input"
             readonly
-            class="w-full bg-gray-100 dark:bg-base-300 border-3 border-black rounded-none py-2 px-4 pr-12 text-neo-black dark:text-neo-white text-sm focus:shadow-brutal-sm focus:outline-none transition-all"
+            class="w-full bg-gray-100 dark:bg-zinc-800 border-3 border-black rounded-none py-2 px-4 pr-12 text-black dark:text-white text-sm focus:shadow-brutal-sm focus:outline-none transition-all"
           />
           <button
             id="dialog-copy-btn"
