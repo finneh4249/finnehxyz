@@ -1,44 +1,106 @@
 ---
 import EducationItem from '../education/EducationItem.astro';
 import educationItems from '../../data/education.json';
+import type { ImageMetadata } from 'astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif,webp}', { eager: true });
+
+const getImagePath = (path: string) => {
+  if (!path) return undefined;
+  const normalizedPath = path.replace(/^(\.\/)?images\//, '/src/assets/images/');
+  return images[normalizedPath]?.default;
+};
 ---
 
-<section id="education" class="py-20 bg-neo-orange dark:bg-zinc-950 relative overflow-hidden">
-  <!-- Chaotic brutal decorative elements -->
-  <div class="absolute top-20 left-5 w-40 h-40 border-3 border-black bg-neo-pink rotate-12"></div>
-  <div class="absolute top-40 right-10 w-24 h-60 border-3 border-black bg-neo-blue -rotate-6"></div>
-  <div class="absolute bottom-32 left-20 w-56 h-32 border-3 border-black bg-neo-green rotate-3"></div>
-  <div class="absolute bottom-20 right-32 w-32 h-32 border-3 border-black bg-neo-purple -rotate-12"></div>
-  <div class="absolute top-1/3 right-1/4 w-20 h-20 border-3 border-black bg-neo-yellow rotate-45"></div>
-  
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="mb-20 relative animate-on-scroll slide-left">
-      <div class="flex items-center gap-6 flex-wrap">
-        <h2 class="text-6xl md:text-7xl font-display font-bold uppercase tracking-tight -rotate-2 text-black dark:text-white">
-          Education
-        </h2>
-        <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white">
-          LEARNING
+<section id="education" class="sticky-scroll-section relative bg-neo-orange dark:bg-zinc-950" style="height: 300vh;">
+  <!-- Sticky Container -->
+  <div class="sticky-wrapper sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+    
+    <!-- Chaotic brutal decorative elements (Fixed in background) -->
+    <div class="absolute top-20 left-5 w-40 h-40 border-3 border-black bg-neo-pink rotate-12 z-0"></div>
+    <div class="absolute top-40 right-10 w-24 h-60 border-3 border-black bg-neo-blue -rotate-6 z-0"></div>
+    <div class="absolute bottom-32 left-20 w-56 h-32 border-3 border-black bg-neo-green rotate-3 z-0"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 mb-12 flex-shrink-0">
+      <div class="relative animate-on-scroll slide-left">
+        <div class="flex items-center gap-6 flex-wrap">
+          <h2 class="text-6xl md:text-8xl font-display font-black uppercase tracking-tighter -rotate-2 text-black dark:text-white drop-shadow-brutal">
+            Education
+          </h2>
+          <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white text-xl font-bold border-4">
+            LEARNING
+          </div>
         </div>
+        <div class="h-4 w-64 bg-black dark:bg-white mt-6 -rotate-1"></div>
       </div>
-      <div class="h-2 w-48 bg-black dark:bg-white mt-6 -rotate-1"></div>
     </div>
 
-    <div class="max-w-6xl mx-auto space-y-8">
+    <!-- Horizontal Track -->
+    <div class="horizontal-track flex gap-12 px-8 md:px-20 w-max items-center">
       {educationItems.map((item, index) => (
-        <EducationItem
-          year={item.year}
-          institution={item.institution}
-          program={item.program}
-          description={item.description}
-          gpa={item.gpa}
-          logoSrc={item.logoSrc}
-          logoAlt={item.logoAlt}
-          index={index}
-          isLast={index === educationItems.length - 1}
-          isFirst={index === 0}
-        />
+        <div class="w-[85vw] md:w-[600px] transform transition-transform hover:scale-105 duration-300">
+          <EducationItem
+            year={item.year}
+            institution={item.institution}
+            program={item.program}
+            description={item.description}
+            gpa={item.gpa}
+            logoSrc={getImagePath(item.logoSrc)!}
+            logoAlt={item.logoAlt}
+            index={index}
+            isLast={index === educationItems.length - 1}
+            isFirst={index === 0}
+          />
+        </div>
       ))}
+      <!-- End spacer -->
+      <div class="w-20"></div>
     </div>
   </div>
 </section>
+
+<script>
+  function initEducationScroll() {
+    const section = document.getElementById('education');
+    if (!section) return;
+
+    const track = section.querySelector('.horizontal-track') as HTMLElement;
+    if (!track) return;
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate scroll progress within the section
+      // We want the animation to start when the section hits the top of the viewport
+      // and end when the bottom of the section hits the bottom of the viewport
+      
+      const start = 0;
+      const end = section.offsetHeight - viewportHeight;
+      const distance = -rect.top;
+      
+      // Only animate if we are within the scroll bounds (with some buffer)
+      if (rect.top <= 0 && rect.bottom >= 0) {
+        const clampedDistance = Math.max(0, Math.min(distance, end));
+        const progress = clampedDistance / end;
+        
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        
+        // If track is smaller than viewport, don't scroll
+        if (trackWidth > viewportWidth) {
+           const maxTranslate = trackWidth - viewportWidth;
+           const translate = progress * maxTranslate;
+           track.style.transform = `translateX(-${translate}px)`;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    handleScroll(); // Initial call
+  }
+
+  initEducationScroll();
+  document.addEventListener('astro:page-load', initEducationScroll);
+</script>

@@ -8,6 +8,7 @@ interface Props {
 }
 
 import { getNeoColor } from '../../utils/colorMapping';
+import { Icon } from 'astro-icon/components';
 
 const { icon, title, description, color, category } = Astro.props;
 
@@ -20,7 +21,7 @@ const cardColor = getNeoColor(title);
   <div class="border-b-brutal border-black p-4" style={`background-color: ${cardColor};`}>
     <div class="flex items-center gap-3">
       <div class="w-12 h-12 bg-black border-2 border-black flex items-center justify-center">
-        <i class:list={["bx text-2xl text-white", icon]}></i>
+        <Icon name={icon} class="text-2xl text-white" />
       </div>
       <h3 class="text-xl font-bold uppercase text-black">{title}</h3>
     </div>

@@ -1,0 +1,17 @@
+graph TD
+    User[User Request] --> Server[Astro Server]
+    Server --> Layout[BaseLayout.astro]
+    
+    subgraph "HTML Document Structure"
+        Layout --> Head[HEAD Section]
+        Layout --> Body[BODY Section]
+        
+        Head --> Meta[Meta Tags]
+        Head --> GA4[Google Analytics Script]
+        Head --> SEO[SEO & Social Tags]
+        
+        Meta --> GA4
+        GA4 --> SEO
+    end
+    
+    style GA4 fill:#f9f,stroke:#333,stroke-width:2px

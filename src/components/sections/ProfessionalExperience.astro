@@ -1,46 +1,104 @@
 ---
 import TimelineItem from '../professional-experience/TimelineItem.astro';
 import experienceData from '../../data/experience.json';
+import type { ImageMetadata } from 'astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif,webp}', { eager: true });
+
+const getImagePath = (path: string) => {
+  if (!path) return undefined;
+  // Map "images/filename.ext" or "./images/filename.ext" to "/src/assets/images/filename.ext"
+  const normalizedPath = path.replace(/^(\.\/)?images\//, '/src/assets/images/');
+  return images[normalizedPath]?.default;
+};
 
 // Force type for the loop to avoid TS union errors with logoSrcs
 const experiences: any[] = experienceData;
 ---
 
-<section id="professionalExperience" class="py-20 bg-white dark:bg-zinc-950 relative overflow-hidden">
-  <!-- Wild asymmetric brutal decorations -->
-  <div class="absolute top-10 right-5 w-52 h-40 border-3 border-black bg-neo-yellow -rotate-12"></div>
-  <div class="absolute top-60 left-10 w-40 h-64 border-3 border-black bg-neo-purple rotate-6"></div>
-  <div class="absolute bottom-40 right-20 w-36 h-36 border-3 border-black bg-neo-pink -rotate-3"></div>
-  <div class="absolute bottom-20 left-32 w-48 h-28 border-3 border-black bg-neo-blue rotate-12"></div>
-  <div class="absolute top-1/3 left-1/4 w-24 h-24 border-3 border-black bg-neo-green rotate-45"></div>
-  
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="mb-20 relative animate-on-scroll slide-right">
-      <div class="flex items-center gap-6 flex-wrap justify-end">
-        <div class="brutal-btn brutal-blue px-6 py-3 -rotate-3 text-white">
-          WORK
+<section id="professionalExperience" class="sticky-scroll-section relative bg-white dark:bg-zinc-950" style="height: 400vh;">
+  <!-- Sticky Container -->
+  <div class="sticky-wrapper sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+    
+    <!-- Wild asymmetric brutal decorations -->
+    <div class="absolute top-10 right-5 w-52 h-40 border-3 border-black bg-neo-yellow -rotate-12 z-0"></div>
+    <div class="absolute top-60 left-10 w-40 h-64 border-3 border-black bg-neo-purple rotate-6 z-0"></div>
+    <div class="absolute bottom-40 right-20 w-36 h-36 border-3 border-black bg-neo-pink -rotate-3 z-0"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 mb-12 flex-shrink-0">
+      <div class="relative animate-on-scroll slide-right">
+        <div class="flex items-center gap-6 flex-wrap justify-end">
+          <div class="brutal-btn brutal-blue px-6 py-3 -rotate-3 text-white text-xl font-bold border-4">
+            WORK
+          </div>
+          <h2 class="text-6xl md:text-8xl font-display font-black uppercase tracking-tighter rotate-2 text-black dark:text-white drop-shadow-brutal">
+            Experience
+          </h2>
         </div>
-        <h2 class="text-6xl md:text-7xl font-display font-bold uppercase tracking-tight rotate-2 text-black dark:text-white">
-          Experience
-        </h2>
+        <div class="h-4 w-48 bg-black mt-6 ml-auto rotate-1"></div>
       </div>
-      <div class="h-2 w-48 bg-black mt-6 ml-auto rotate-1"></div>
     </div>
 
-    <div class="max-w-6xl mx-auto space-y-8">
+    <!-- Horizontal Track -->
+    <div class="horizontal-track flex gap-12 px-8 md:px-20 w-max items-center h-full">
       {experiences.map((item, index) => (
-        <TimelineItem
-          yearRange={item.yearRange}
-          company={item.company}
-          employer={item.employer}
-          roles={item.roles}
-          logoSrc={item.logoSrc}
-          logoAlt={item.logoAlt}
-          index={index}
-          isFirst={index === 0}
-          isLast={index === experiences.length - 1}
-        />
+        <div class="w-auto min-w-[85vw] md:min-w-[600px] h-[600px] transform transition-transform hover:scale-[1.01] duration-300 flex-shrink-0">
+          <TimelineItem
+            yearRange={item.yearRange}
+            company={item.company}
+            employer={item.employer}
+            roles={item.roles}
+            logoSrc={getImagePath(item.logoSrc)}
+            logoSrcs={item.logoSrcs?.map((src: string) => getImagePath(src))}
+            logoAlt={item.logoAlt}
+            index={index}
+            isFirst={index === 0}
+            isLast={index === experiences.length - 1}
+          />
+        </div>
       ))}
+      <!-- End spacer -->
+      <div class="w-20"></div>
     </div>
   </div>
 </section>
+
+<script>
+  function initExperienceScroll() {
+    const section = document.getElementById('professionalExperience');
+    if (!section) return;
+
+    const track = section.querySelector('.horizontal-track') as HTMLElement;
+    if (!track) return;
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      const start = 0;
+      const end = section.offsetHeight - viewportHeight;
+      const distance = -rect.top;
+      
+      if (rect.top <= 0 && rect.bottom >= 0) {
+        const clampedDistance = Math.max(0, Math.min(distance, end));
+        const progress = clampedDistance / end;
+        
+        const trackWidth = track.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        
+        if (trackWidth > viewportWidth) {
+           const maxTranslate = trackWidth - viewportWidth;
+           const translate = progress * maxTranslate;
+           track.style.transform = `translateX(-${translate}px)`;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+  }
+
+  initExperienceScroll();
+  document.addEventListener('astro:page-load', initExperienceScroll);
+</script>

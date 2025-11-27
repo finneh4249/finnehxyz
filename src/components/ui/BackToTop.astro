@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
   threshold?: number;
   right?: number;
@@ -14,7 +16,7 @@ const { threshold = 300, right = 6, bottom = 6 } = Astro.props;
   style={{ right: `${right}px`, bottom: `${bottom}px` }}
   aria-label="Back to top"
 >
-  <i class="bx bx-up-arrow-alt text-3xl"></i>
+  <Icon name="mdi:arrow-up" class="text-3xl" />
 </button>
 
 <style is:global>

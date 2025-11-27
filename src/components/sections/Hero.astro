@@ -1,7 +1,12 @@
 ---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { heroData } from '../../data/heroData';
+import ethanImage from '../../assets/images/ethan.jpg';
 ---
 
 <section
+  id="hero"
   class="min-h-screen flex flex-col justify-center items-center relative pt-20 pb-20 bg-white dark:bg-zinc-950 overflow-hidden selection:bg-neo-pink selection:text-white"
 >
   <!-- Diagonal stripe background pattern -->
@@ -40,7 +45,7 @@
     <div class="absolute top-1/3 left-1/4 w-40 h-24 bg-neo-orange border-4 border-black dark:border-white shadow-brutal -rotate-12 hidden lg:block"></div>
   </div>
 
-  <div id="hero" class="container mx-auto px-4 relative z-10">
+  <div class="container mx-auto px-4 relative z-10">
     <div class="max-w-7xl mx-auto">
       
       <!-- Main content - Stacked layout with more brutalist styling -->
@@ -59,12 +64,15 @@
               class="relative w-72 h-72 md:w-96 md:h-96 border-8 border-black dark:border-white shadow-brutal-xl overflow-hidden bg-white cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-brutal-xxl hover:rotate-2"
               title="Click me for a surprise 👀"
             >
-              <img
+              <Image
                 id="hero-image"
-                src="/images/ethan.jpg"
+                src={ethanImage}
                 alt="Ethan Cornwill"
                 class="object-cover w-full h-full"
                 loading="eager"
+                width={384}
+                height={384}
+                densities={[1.5, 2]}
               />
             </div>
             
@@ -78,30 +86,30 @@
           
           <!-- Massive name -->
           <div class="relative">
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-none text-black dark:text-white">
-              <span class="inline-block transform -rotate-2">HI,</span>
-              <span class="inline-block transform rotate-1">I'M</span>
+            <h1 class="text-7xl md:text-9xl lg:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] text-black dark:text-white mix-blend-difference">
+              <span class="inline-block transform -rotate-2 hover:rotate-2 transition-transform duration-300">HI,</span>
+              <span class="inline-block transform rotate-1 hover:-rotate-1 transition-transform duration-300 text-neo-pink">I'M</span>
               <br/>
-              <span class="relative inline-block transform -rotate-1">
+              <span class="relative inline-block transform -rotate-1 hover:scale-110 transition-transform duration-300">
                 ETHAN
-                <span class="absolute -bottom-2 left-0 w-full h-6 md:h-8 bg-neo-pink -z-10"></span>
+                <span class="absolute -bottom-4 left-0 w-full h-8 md:h-12 bg-neo-yellow -z-10 -rotate-2"></span>
               </span>
             </h1>
           </div>
           
           <!-- Title in loud box -->
-          <div class="bg-neo-yellow border-8 border-black dark:border-white shadow-brutal-xl p-6 md:p-8 rotate-1 transform hover:rotate-0 hover:scale-105 transition-all duration-200">
-            <p class="text-2xl md:text-4xl font-black uppercase leading-tight text-black tracking-tight">
+          <div class="bg-neo-yellow border-8 border-black dark:border-white shadow-brutal-xl p-6 md:p-8 rotate-1 transform hover:rotate-0 hover:scale-105 transition-all duration-200 max-w-2xl">
+            <p class="text-3xl md:text-5xl font-black uppercase leading-none text-black tracking-tighter glitch-text" data-text="AI ENGINEER & SYSTEMS ARCHITECT">
               AI ENGINEER &<br/>SYSTEMS ARCHITECT
             </p>
           </div>
 
           <!-- Bio statement -->
           <div class="bg-white dark:bg-gray-800 border-6 border-black dark:border-white shadow-brutal-lg p-6 md:p-8 -rotate-1 max-w-3xl transform hover:rotate-0 transition-all duration-200">
-            <p class="text-xl md:text-2xl font-bold leading-relaxed text-black dark:text-white">
+            <p class="text-xl md:text-3xl font-bold leading-tight text-black dark:text-white">
               13+ years building software. 10 years managing operations.
               <br/>
-              <span class="text-neo-pink font-black">Now I architect AI systems that survive production,</span>
+              <span class="bg-black text-white px-2 inline-block transform rotate-1 mt-2">Now I architect AI systems that survive production,</span>
               <br/>
               not just demos that die in staging.
             </p>
@@ -109,21 +117,21 @@
           
           <!-- Rotating role display -->
           <div class="bg-neo-blue border-8 border-black dark:border-white shadow-brutal-xl p-6 md:p-8 rotate-2 w-full max-w-2xl transform hover:rotate-0 hover:scale-105 transition-all duration-200">
-            <h2 class="text-2xl md:text-3xl font-black uppercase min-h-[60px] md:min-h-[80px] flex items-center justify-center text-white">
+            <h2 class="text-2xl md:text-4xl font-black uppercase min-h-[60px] md:min-h-[80px] flex items-center justify-center text-white">
               <span id="typing-text"></span>
-              <span class="animate-blink inline-block w-1.5 h-8 md:h-10 ml-2 bg-white"></span>
+              <span class="animate-blink inline-block w-2 h-8 md:h-12 ml-2 bg-white"></span>
             </h2>
           </div>
 
           <!-- Skill tags - bigger and bolder -->
-          <div class="flex flex-wrap justify-center gap-4 mt-4">
-            <div class="brutal-btn bg-neo-pink text-white px-8 py-4 text-lg md:text-xl font-black rotate-3 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
+          <div class="flex flex-wrap justify-center gap-4 mt-8">
+            <div class="brutal-btn bg-neo-pink text-white px-8 py-4 text-xl md:text-2xl font-black rotate-3 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
               AI DEVELOPMENT
             </div>
-            <div class="brutal-btn bg-neo-green text-black px-8 py-4 text-lg md:text-xl font-black -rotate-2 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
+            <div class="brutal-btn bg-neo-green text-black px-8 py-4 text-xl md:text-2xl font-black -rotate-2 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
               AGENT SYSTEMS
             </div>
-            <div class="brutal-btn bg-neo-purple text-white px-8 py-4 text-lg md:text-xl font-black rotate-2 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
+            <div class="brutal-btn bg-neo-purple text-white px-8 py-4 text-xl md:text-2xl font-black rotate-2 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
               PRODUCTION ML
             </div>
           </div>
@@ -133,20 +141,20 @@
       <!-- Social links - Bigger and more prominent -->
       <div class="mt-20 flex justify-center gap-6 flex-wrap animate-on-scroll slide-up">
         <a href="https://github.com/finneh4249" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-white dark:bg-gray-800 border-6 border-black dark:border-white w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <i class="bx bxl-github text-5xl md:text-6xl text-black dark:text-white group-hover:scale-110 transition-transform"></i>
+          class="brutal-btn bg-white dark:bg-gray-800 border-6 border-black dark:border-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
+          <Icon name="mdi:github" class="text-6xl md:text-7xl text-black dark:text-white group-hover:scale-110 transition-transform" />
         </a>
-        <a href="https://twitter.com/melbPAT" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-neo-blue border-6 border-black dark:border-white w-20 h-20 md:w-24 md:h-24 flex items-center justify-center -rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <i class="bx bxl-twitter text-white text-5xl md:text-6xl group-hover:scale-110 transition-transform"></i>
+        <a href="https://x.com/FinnehReform" target="_blank" rel="noopener noreferrer"
+          class="brutal-btn bg-neo-blue border-6 border-black dark:border-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center -rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
+          <Icon name="mdi:twitter" class="text-white text-6xl md:text-7xl group-hover:scale-110 transition-transform" />
         </a>
-        <a href="https://www.linkedin.com/in/ethancornwill/" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-[#0077B5] border-6 border-black dark:border-white text-white w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <i class="bx bxl-linkedin text-5xl md:text-6xl group-hover:scale-110 transition-transform"></i>
+        <a href="https://www.linkedin.com/in/ethan-cornwill/" target="_blank" rel="noopener noreferrer"
+          class="brutal-btn bg-[#0077B5] border-6 border-black dark:border-white text-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
+          <Icon name="mdi:linkedin" class="text-6xl md:text-7xl group-hover:scale-110 transition-transform" />
         </a>
         <a href="https://cityloopers.com/discord" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-[#5865F2] border-6 border-black dark:border-white text-white w-20 h-20 md:w-24 md:h-24 flex items-center justify-center -rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <i class="bx bxl-discord text-5xl md:text-6xl group-hover:scale-110 transition-transform"></i>
+          class="brutal-btn bg-[#5865F2] border-6 border-black dark:border-white text-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center -rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
+          <Icon name="mdi:discord" class="text-6xl md:text-7xl group-hover:scale-110 transition-transform" />
         </a>
       </div>
 
@@ -160,6 +168,9 @@
     </div>
   </div>
 </section>
+
+<!-- Data injection for client-side scripts -->
+<div id="hero-data" data-strings={JSON.stringify(heroData.typingStrings)} data-facts={JSON.stringify(heroData.funFacts)} class="hidden"></div>
 
 <style>
   @keyframes float {
@@ -203,18 +214,60 @@
   .dark .shadow-brutal-xxl {
     box-shadow: 20px 20px 0px 0px rgba(255, 255, 255, 1);
   }
+
+  /* Glitch Effect */
+  .glitch-text {
+    position: relative;
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+  
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+  }
+  
+  @keyframes glitch-anim {
+    0% { clip: rect(30px, 9999px, 10px, 0); }
+    20% { clip: rect(80px, 9999px, 90px, 0); }
+    40% { clip: rect(10px, 9999px, 50px, 0); }
+    60% { clip: rect(40px, 9999px, 20px, 0); }
+    80% { clip: rect(70px, 9999px, 60px, 0); }
+    100% { clip: rect(20px, 9999px, 80px, 0); }
+  }
+  
+  @keyframes glitch-anim2 {
+    0% { clip: rect(10px, 9999px, 80px, 0); }
+    20% { clip: rect(60px, 9999px, 10px, 0); }
+    40% { clip: rect(20px, 9999px, 50px, 0); }
+    60% { clip: rect(90px, 9999px, 30px, 0); }
+    80% { clip: rect(50px, 9999px, 20px, 0); }
+    100% { clip: rect(30px, 9999px, 70px, 0); }
+  }
 </style>
 
 <script>
   function initHero() {
     // Typing Effect
     const typingText = document.getElementById('typing-text');
-    const strings = [
-      "AI SYSTEMS ENGINEER",
-      "LLM TRAINER & EVALUATOR",
-      "RAG ARCHITECT",
-      "AUTOMATION SPECIALIST",
-    ];
+    const strings = JSON.parse(document.getElementById('hero-data').dataset.strings);
     
     if (typingText) {
       const typeElement = typingText as HTMLElement;
@@ -259,17 +312,7 @@
     const heroImage = document.getElementById('hero-image');
 
     if (profileContainer && heroImage && !profileContainer.dataset.hasListener) {
-      const funFacts = [
-        '📸 Fun fact: I used to manage the busiest Taco Bell in Australia. Now I build AI systems!',
-        '🎮 Fun fact: I\'ve been coding since I was young enough to think "goto" was good practice.',
-        '☕ Fun fact: 13+ years of software development, 10 years of operations management, infinite cups of coffee.',
-        '🎯 Fun fact: My specialty? Making AI systems that actually survive in production environments.',
-        '💡 Fun fact: I built SPARC - 3,000+ lines of prompt architecture for production-grade AI collaboration.',
-        '🔥 Fun fact: I teach AI systems to follow security mandates and TDD workflows. Someone has to.',
-        '⚡ Fun fact: From managing fast food operations to architecting AI systems. Life comes at you fast.',
-        '🎪 Fun fact: I run CityLoopers - a Melbourne community server with 250+ members. Join us!',
-        '🤖 Fun fact: I train LLMs, build RAG systems, and automate everything. Including this fun fact rotation.',
-      ];
+      const funFacts = JSON.parse(document.getElementById('hero-data').dataset.facts);
       
       const clickHandler = () => {
         const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];

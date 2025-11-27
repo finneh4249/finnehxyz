@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 
 const deniedMessages = [
   "ACCESS DENIED: YOU'RE NOT ON THE LIST",
@@ -18,7 +19,6 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
 ---
 
 <BaseLayout title="403 - ACCESS DENIED">
-  <link slot="head" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   
   <div class="overflow-x-hidden">
     
@@ -30,7 +30,7 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
       
       <!-- Rotating Lock -->
       <div class="absolute top-20 right-20 w-32 h-32 bg-red-500 border-4 border-black dark:border-white animate-spin-slow" style="animation-duration: 10s;">
-        <i class='bx bx-lock-alt text-6xl flex items-center justify-center h-full'></i>
+        <Icon name="mdi:lock" class="text-6xl flex items-center justify-center h-full mx-auto" />
       </div>
       
       <!-- Bouncing Warning Sign -->
@@ -38,7 +38,7 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
       
       <!-- Pulsing Stop Hand -->
       <div class="absolute bottom-32 right-1/4 w-40 h-40 bg-red-600 border-4 border-black dark:border-white rounded-full animate-pulse flex items-center justify-center">
-        <i class='bx bx-block text-8xl text-white'></i>
+        <Icon name="mdi:block-helper" class="text-8xl text-white" />
       </div>
     </div>
 
@@ -62,7 +62,7 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
               <h1 class="text-[150px] md:text-[250px] font-black leading-none mb-0" style="text-shadow: 8px 8px 0 #EF4444, 16px 16px 0 #DC2626;">
                 403
               </h1>
-              <i class='bx bx-lock-alt absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl text-yellow-400 opacity-50'></i>
+              <Icon name="mdi:lock" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl text-yellow-400 opacity-50" />
             </div>
           </div>
 
@@ -87,15 +87,15 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
           <!-- Status Cards -->
           <div class="grid md:grid-cols-3 gap-4 mb-8">
             <div class="bg-red-400 border-4 border-black dark:border-white p-4 text-center transform -rotate-2 hover:rotate-0 transition-transform">
-              <i class='bx bx-shield-x text-5xl mb-2'></i>
+              <Icon name="mdi:shield-alert" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">ACCESS BLOCKED</p>
             </div>
             <div class="bg-orange-400 border-4 border-black dark:border-white p-4 text-center hover:-rotate-2 transition-transform">
-              <i class='bx bx-error-circle text-5xl mb-2'></i>
+              <Icon name="mdi:alert-circle" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">UNAUTHORIZED</p>
             </div>
             <div class="bg-yellow-400 border-4 border-black dark:border-white p-4 text-center transform rotate-2 hover:rotate-0 transition-transform">
-              <i class='bx bx-id-card text-5xl mb-2'></i>
+              <Icon name="mdi:card-account-details" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">NO CLEARANCE</p>
             </div>
           </div>
@@ -120,7 +120,7 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-yellow-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-yellow-400 transition-colors">
-                <i class='bx bx-home-alt text-2xl'></i>
+                <Icon name="mdi:home" class="text-2xl" />
                 GO HOME
               </span>
             </a>
@@ -131,7 +131,7 @@ const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.l
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-red-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-red-500 transition-colors">
-                <i class='bx bx-left-arrow-alt text-2xl'></i>
+                <Icon name="mdi:arrow-left" class="text-2xl" />
                 GO BACK
               </span>
             </button>

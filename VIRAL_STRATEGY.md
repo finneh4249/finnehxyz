@@ -1,6 +1,7 @@
 # 🚀 Viral Marketing Strategy for finneh.xyz
 
 ## 📊 Current Assets
+
 - ✅ Neo-brutalist design (highly shareable visually)
 - ✅ Compelling story (Taco Bell → AI Engineer)
 - ✅ Proof of concept (SPARC framework with real results)
@@ -13,6 +14,7 @@
 ## 🎯 Phase 1: Content Creation (Week 1)
 
 ### **1. Twitter/X Thread Strategy**
+
 **Post Monday 9am EST:**
 
 ```
@@ -31,6 +33,7 @@ Here's how (and why I'm sharing the process) 🧵
 ```
 
 **Thread outline:**
+
 1. The problem (traditional dev takes weeks)
 2. The SPARC framework (what it is)
 3. Human-AI collaboration (my role vs AI role)
@@ -43,6 +46,7 @@ Here's how (and why I'm sharing the process) 🧵
 ---
 
 ### **2. LinkedIn Post Strategy**
+
 **Post Tuesday 8am EST:**
 
 **Hook:**
@@ -51,6 +55,7 @@ Here's how (and why I'm sharing the process) 🧵
 Here's what restaurant management taught me about building software:"
 
 **Body:**
+
 - Systems thinking under pressure
 - Managing resources efficiently
 - Customer-first mindset
@@ -68,9 +73,11 @@ Here's what restaurant management taught me about building software:"
 ---
 
 ### **3. Dev.to Article**
+
 **Title:** "I Built My Portfolio 75% Faster Using AI (With Full Transparency)"
 
 **Sections:**
+
 1. **Introduction**
    - The claim: 4 hours vs 2+ weeks
    - Why transparency matters
@@ -117,13 +124,14 @@ Here's what restaurant management taught me about building software:"
 ### **Reddit Strategy**
 
 **r/webdev - "Roast My Portfolio"**
+
 ```
 Title: Built my portfolio in 4 hours using AI. Roast it.
 
-Post: 
+Post:
 Neo-brutalist design, 5 hidden easter eggs, built with SPARC framework.
 
-Before you say "it looks AI-generated" - yes, I know. That's the point. 
+Before you say "it looks AI-generated" - yes, I know. That's the point.
 I'm testing transparent AI-human collaboration.
 
 What works? What doesn't? Would you hire me?
@@ -132,6 +140,7 @@ What works? What doesn't? Would you hire me?
 ```
 
 **r/programming - "Built a framework that cuts dev time by 75%"**
+
 ```
 Title: SPARC: AI development framework that reduced my build times by 75%
 
@@ -157,6 +166,7 @@ Thoughts?
 ```
 
 **r/cscareerquestions - Career Transition**
+
 ```
 Title: 10 years restaurant management → AI Engineer (lessons learned)
 
@@ -183,11 +193,13 @@ Currently open to opportunities. Happy to answer questions about the transition.
 ### **Submission Strategy**
 
 **Best Times:**
+
 - Tuesday-Thursday
 - 8-10am EST
 - Avoid Monday/Friday
 
 **Option 1: SPARC Framework**
+
 ```
 Title: SPARC – AI development framework that cuts build time by 75%
 
@@ -197,6 +209,7 @@ Post as "Show HN"
 ```
 
 **Option 2: Transparency Article**
+
 ```
 Title: I built my portfolio using AI and here's why I'm telling you
 
@@ -204,6 +217,7 @@ URL: [Dev.to article]
 ```
 
 **Comment Strategy:**
+
 - Be present in comments
 - Answer questions honestly
 - Share technical details
@@ -215,17 +229,20 @@ URL: [Dev.to article]
 ## 🎯 Phase 4: Niche Communities (Week 2-3)
 
 ### **Twitter AI Community**
+
 - Reply to @levelsio, @swyx, @bentossell posts about AI
 - Share your SPARC framework
 - Engage with #BuildInPublic community
 
 ### **Discord Servers**
+
 - Midjourney (design showcase)
 - AI Engineering Discord
 - Full Stack Development servers
 - Share your work, get feedback
 
 ### **GitHub**
+
 - Trending: Get SPARC on GitHub trending
 - How: Star exchanges, genuine community engagement
 - README must be stellar (already is)
@@ -235,15 +252,17 @@ URL: [Dev.to article]
 ## 🎯 Phase 5: Amplification (Ongoing)
 
 ### **Email Outreach**
+
 **Target:** AI newsletters, web dev podcasts
 
 **Pitch Template:**
+
 ```
 Subject: Built a portfolio in 4 hours using AI (with full transparency)
 
 Hi [Name],
 
-I'm Ethan Cornwill, an AI Engineer who built a production-ready portfolio 
+I'm Ethan Cornwill, an AI Engineer who built a production-ready portfolio
 in 4 hours using a framework I developed called SPARC.
 
 What makes it interesting:
@@ -252,7 +271,7 @@ What makes it interesting:
 - Open source framework
 - Neo-brutalist design with easter eggs
 
-Would this fit [your newsletter/podcast]? 
+Would this fit [your newsletter/podcast]?
 
 Happy to share the full story, code, and process.
 
@@ -264,6 +283,7 @@ Ethan
 ```
 
 **Targets:**
+
 - TLDR Newsletter
 - Dev.to featured
 - Hacker Newsletter
@@ -275,6 +295,7 @@ Ethan
 ## 📈 Analytics & Tracking
 
 ### **Track These Metrics:**
+
 1. Social shares (Twitter/LinkedIn)
 2. GitHub stars on SPARC
 3. Portfolio visits (Google Analytics)
@@ -283,6 +304,7 @@ Ethan
 6. Backlinks (Ahrefs/SEMrush)
 
 ### **Success Indicators:**
+
 - 1000+ portfolio visits in first week
 - 100+ GitHub stars on SPARC
 - 5+ job inquiries
@@ -293,6 +315,7 @@ Ethan
 ## 🎨 Content Assets Needed
 
 ### **Create These:**
+
 1. **OG Image** (1200x630px)
    - Your face + "AI Engineer"
    - Neo-brutalist design
@@ -343,6 +366,7 @@ Ethan
 ## 🎯 The Viral Formula
 
 **What Makes Content Go Viral:**
+
 1. ✅ **Controversy/Debate** (AI in development)
 2. ✅ **Proof/Results** (4 hours, 75% faster)
 3. ✅ **Transparency** (showing the process)
@@ -355,6 +379,7 @@ Ethan
 "The AI engineer who's transparent about using AI"
 
 Most devs either:
+
 - Hide AI usage (dishonest)
 - Or only use AI (no skill)
 
@@ -365,26 +390,31 @@ You: Use AI + show your work = credibility + shareability
 ## 📅 Sample Week 1 Schedule
 
 **Monday:**
+
 - 9am: Twitter thread
 - 12pm: Share on Discord servers
 - 3pm: Post to r/webdev
 
 **Tuesday:**
+
 - 8am: LinkedIn post
 - 2pm: Engage with Monday's thread replies
 - 5pm: Cross-post to relevant subreddits
 
 **Wednesday:**
+
 - Morning: Publish Dev.to article
 - Afternoon: Share article on Twitter/LinkedIn
 - Evening: Submit to Hacker News
 
 **Thursday:**
+
 - Monitor HN if it gains traction
 - Respond to all comments
 - Share updates on Twitter
 
 **Friday:**
+
 - Compile analytics
 - Plan Week 2 content
 - Reach out to newsletters
@@ -402,6 +432,7 @@ Your portfolio is the start. SPARC is your credibility. Your story is what makes
 ---
 
 **Remember:** Going viral isn't luck. It's:
+
 1. Great content (you have this)
 2. Strategic distribution (this doc)
 3. Consistent engagement (your job)

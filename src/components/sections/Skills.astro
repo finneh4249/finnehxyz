@@ -53,25 +53,34 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
         ))}
       </div>
       
-      <div id="tools-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-stretch">
+      <div id="tools-grid" class="flex flex-wrap justify-center gap-4">
         {skillsData.tools.map((tool, index) => {
-          const rot = ['-rotate-1', 'rotate-2', '-rotate-2', 'rotate-1', 'rotate-3', '-rotate-3'][index % 6];
+          const rot = ['-rotate-2', 'rotate-1', '-rotate-3', 'rotate-2', 'rotate-3', '-rotate-1'][index % 6];
+          const margin = ['mt-0', 'mt-4', 'mt-2', 'mt-6'][index % 4];
           return (
             <div 
-              class:list={["tool-item", rot]}
-              style={{ gridColumn: index % 7 === 0 ? 'span 2' : 'span 1' }}
+              class:list={["tool-item transform transition-all duration-300 hover:scale-110 hover:z-50", rot, margin]}
               data-name={tool.name.toLowerCase()}
               data-category={tool.category}
               data-proficiency={tool.proficiency}
             >
-              <ToolCard
-                icon={tool.icon}
-                name={tool.name}
-                color={tool.color}
-                category={tool.category}
-                proficiency={tool.proficiency}
-                description={tool.description}
-              />
+              <div class="bg-white dark:bg-zinc-900 border-3 border-black dark:border-white p-3 shadow-brutal flex flex-col gap-2 min-w-[140px] group">
+                <div class="flex items-center gap-2">
+                  <i class={`bx ${tool.icon} text-2xl ${tool.color}`}></i>
+                  <div>
+                    <span class="font-bold uppercase text-sm block leading-none">{tool.name}</span>
+                    <span class="text-xs text-gray-500 font-mono">{tool.category}</span>
+                  </div>
+                </div>
+                <!-- Proficiency Bar -->
+                <div class="w-full h-2 bg-gray-200 dark:bg-zinc-700 border border-black dark:border-white relative overflow-hidden">
+                  <div 
+                    class="h-full bg-neo-green absolute top-0 left-0 transition-all duration-500 group-hover:bg-neo-pink"
+                    style={`width: ${tool.proficiency}%`}
+                  ></div>
+                </div>
+                <div class="text-[10px] font-mono text-right font-bold">{tool.proficiency}%</div>
+              </div>
             </div>
           );
         })}
@@ -121,24 +130,30 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
         ))}
       </div>
       
-      <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="skills-grid" class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
         {skillsData.skills.map((skill, index) => {
-          const rot = ['rotate-1', '-rotate-2', 'rotate-2', '-rotate-1', 'rotate-3', '-rotate-3'][index % 6];
-          const isWide = index % 5 === 0;
+          const rot = ['rotate-1', '-rotate-1', 'rotate-2', '-rotate-2'][index % 4];
+          const bg = ['bg-white', 'bg-neo-yellow', 'bg-neo-blue', 'bg-neo-pink'][index % 4];
+          
           return (
             <div 
-              class:list={["skill-item", rot, isWide ? "md:col-span-2 lg:col-span-2" : ""]}
+              class:list={["skill-item break-inside-avoid", rot]}
               data-category={skill.category}
               data-title={skill.title.toLowerCase()}
               data-description={skill.description.toLowerCase()}
             >
-              <SkillCard
-                icon={skill.icon}
-                title={skill.title}
-                description={skill.description}
-                color={skill.color}
-                category={skill.category}
-              />
+              <div class={`brutal-card ${bg} dark:bg-zinc-900 border-4 border-black dark:border-white p-6 hover:scale-105 transition-transform duration-300`}>
+                <div class="flex items-center gap-4 mb-4 border-b-4 border-black dark:border-white pb-4">
+                  <i class={`bx ${skill.icon} text-4xl ${skill.color}`}></i>
+                  <h3 class="font-display font-black text-2xl uppercase leading-none text-black dark:text-white">{skill.title}</h3>
+                </div>
+                <p class="font-bold text-black dark:text-white leading-relaxed">
+                  {skill.description}
+                </p>
+                <div class="mt-4 flex justify-end">
+                  <span class="bg-black text-white px-2 py-1 text-xs font-mono uppercase">{skill.category}</span>
+                </div>
+              </div>
             </div>
           );
         })}

@@ -1,5 +1,6 @@
 ---
 import testimonialsData from '../../data/testimonials.json';
+import { Icon } from 'astro-icon/components';
 
 interface Testimonial {
   name: string;
@@ -78,7 +79,7 @@ const testimonials = (Array.isArray(testimonialsData) ? testimonialsData : []) a
       <div class="max-w-3xl mx-auto mb-16 brutal-card bg-white dark:bg-zinc-900 rotate-1 hover:rotate-0 transition-all animate-on-scroll slide-up">
         <div class="p-12 text-center">
           <div class="w-24 h-24 bg-neo-yellow border-brutal-thick border-black flex items-center justify-center mx-auto mb-6 rotate-12">
-            <i class="bx bx-message-square-dots text-5xl text-black"></i>
+            <Icon name="mdi:message-text" class="text-5xl text-black" />
           </div>
           <h3 class="text-3xl font-bold uppercase mb-4 text-black dark:text-white">Testimonials Coming Soon</h3>
           <p class="text-lg font-medium mb-0 text-black dark:text-white">
@@ -100,7 +101,7 @@ const testimonials = (Array.isArray(testimonialsData) ? testimonialsData : []) a
             href="mailto:mail@finneh.xyz?subject=Testimonial for Ethan Cornwill&body=Hi Ethan, I'd like to share my experience working with you..."
             class="brutal-btn brutal-yellow px-8 py-4 text-lg rotate-2 hover:rotate-0 transition-all inline-flex items-center gap-2 text-black"
           >
-            <i class="bx bx-message-square-dots text-2xl"></i>
+            <Icon name="mdi:message-text" class="text-2xl" />
             <span class="font-bold uppercase">Share Your Experience</span>
           </a>
         </div>

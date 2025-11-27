@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 
 const serverMessages = [
   "500: OOPS, I BROKE SOMETHING",
@@ -18,7 +19,6 @@ const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.l
 ---
 
 <BaseLayout title="500 - SERVER ERROR">
-  <link slot="head" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   
   <div class="overflow-x-hidden">
     
@@ -31,21 +31,21 @@ const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.l
       
       <!-- Spinning Error Icon -->
       <div class="absolute top-10 left-10 w-32 h-32 bg-orange-500 border-4 border-black dark:border-white animate-spin-slow" style="animation-duration: 6s;">
-        <i class='bx bx-error text-6xl flex items-center justify-center h-full text-white'></i>
+        <Icon name="mdi:alert-circle" class="text-6xl flex items-center justify-center h-full text-white mx-auto" />
       </div>
       
       <!-- Broken Gears -->
       <div class="absolute bottom-20 right-20 w-28 h-28 bg-purple-500 border-4 border-black dark:border-white rounded-full animate-spin-reverse">
-        <i class='bx bx-cog text-7xl flex items-center justify-center h-full text-white'></i>
+        <Icon name="mdi:cog" class="text-7xl flex items-center justify-center h-full text-white mx-auto" />
       </div>
       
       <div class="absolute top-1/3 right-1/4 w-20 h-20 bg-pink-500 border-4 border-black dark:border-white rounded-full animate-spin-slow" style="animation-duration: 4s;">
-        <i class='bx bx-cog text-5xl flex items-center justify-center h-full text-white'></i>
+        <Icon name="mdi:cog" class="text-5xl flex items-center justify-center h-full text-white mx-auto" />
       </div>
       
       <!-- Fire Symbol -->
       <div class="absolute bottom-1/4 left-1/4 w-24 h-24 bg-red-600 border-4 border-black dark:border-white transform rotate-12 animate-bounce">
-        <i class='bx bx-meteor text-6xl flex items-center justify-center h-full text-yellow-400'></i>
+        <Icon name="mdi:meteor" class="text-6xl flex items-center justify-center h-full text-yellow-400 mx-auto" />
       </div>
     </div>
 
@@ -91,15 +91,15 @@ const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.l
           <!-- Status Cards -->
           <div class="grid md:grid-cols-3 gap-4 mb-8">
             <div class="bg-red-500 border-4 border-black dark:border-white p-4 text-center transform -rotate-2 hover:rotate-0 transition-transform">
-              <i class='bx bx-bug text-5xl mb-2 text-white'></i>
+              <Icon name="mdi:bug" class="text-5xl mb-2 text-white mx-auto" />
               <p class="font-black text-lg text-white">SERVER CRASHED</p>
             </div>
             <div class="bg-orange-400 border-4 border-black dark:border-white p-4 text-center hover:-rotate-2 transition-transform">
-              <i class='bx bx-ghost text-5xl mb-2'></i>
+              <Icon name="mdi:ghost" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">CODE IS HAUNTED</p>
             </div>
             <div class="bg-yellow-400 border-4 border-black dark:border-white p-4 text-center transform rotate-2 hover:rotate-0 transition-transform">
-              <i class='bx bx-sad text-5xl mb-2'></i>
+              <Icon name="mdi:emoticon-sad" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">DEV IS CRYING</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.l
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-green-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-green-400 transition-colors">
-                <i class='bx bx-home-alt text-2xl'></i>
+                <Icon name="mdi:home" class="text-2xl" />
                 GO HOME
               </span>
             </a>
@@ -145,7 +145,7 @@ const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.l
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-orange-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-orange-500 transition-colors">
-                <i class='bx bx-refresh text-2xl'></i>
+                <Icon name="mdi:refresh" class="text-2xl" />
                 TRY AGAIN
               </span>
             </button>
@@ -156,7 +156,7 @@ const randomMessage = serverMessages[Math.floor(Math.random() * serverMessages.l
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-purple-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-purple-500 transition-colors">
-                <i class='bx bx-left-arrow-alt text-2xl'></i>
+                <Icon name="mdi:arrow-left" class="text-2xl" />
                 GO BACK
               </span>
             </button>

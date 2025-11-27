@@ -1,27 +1,33 @@
 ---
 interface Props {
   className?: string;
-  height?: string;
+  thickness?: string;
+  orientation?: 'horizontal' | 'vertical';
 }
 
-const { className = '', height = '6px' } = Astro.props;
+const { className = '', thickness = '6px', orientation = 'horizontal' } = Astro.props;
+
+const style = orientation === 'horizontal' ? { height: thickness, width: '100%' } : { width: thickness, height: '100%' };
 ---
 
-<div class:list={["w-full", className]} style={{ height }}>
+<div class:list={["pointer-events-none z-50", className]} style={style}>
   <div 
-    id="scroll-progress"
-    class="h-full bg-neo-yellow border-b-brutal border-black transition-transform duration-75 origin-left scale-x-0"
+    class:list={[
+      "bg-neo-yellow border-black transition-transform duration-75 scroll-progress-bar",
+      orientation === 'horizontal' ? "h-full border-b-brutal origin-left scale-x-0" : "w-full border-r-brutal origin-top scale-y-0"
+    ]}
     role="progressbar"
     aria-valuenow="0"
     aria-valuemin="0"
     aria-valuemax="100"
+    data-orientation={orientation}
   ></div>
 </div>
 
 <script>
   function initScrollProgress() {
-    const progressBar = document.getElementById('scroll-progress');
-    if (!progressBar) return;
+    const progressBars = document.querySelectorAll('.scroll-progress-bar');
+    if (progressBars.length === 0) return;
 
     const calculateScrollProgress = () => {
       requestAnimationFrame(() => {
@@ -30,9 +36,19 @@ const { className = '', height = '6px' } = Astro.props;
         
         if (scrollHeight > 0) {
           const scrollPercentage = (scrollTop / scrollHeight);
-          progressBar.style.transform = `scaleX(${scrollPercentage})`;
-          progressBar.style.boxShadow = scrollPercentage > 0 ? '0 2px 0 0 #000' : 'none';
-          progressBar.setAttribute('aria-valuenow', Math.round(scrollPercentage * 100).toString());
+          
+          progressBars.forEach(bar => {
+            const el = bar as HTMLElement;
+            const orientation = el.dataset.orientation;
+            
+            if (orientation === 'horizontal') {
+              el.style.transform = `scaleX(${scrollPercentage})`;
+            } else {
+              el.style.transform = `scaleY(${scrollPercentage})`;
+            }
+            
+            el.setAttribute('aria-valuenow', Math.round(scrollPercentage * 100).toString());
+          });
         }
       });
     };

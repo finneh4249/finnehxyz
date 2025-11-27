@@ -1,7 +1,7 @@
 ---
 import ProjectModal from '../projects/ProjectModal.astro';
 import SearchFilter from '../ui/SearchFilter.astro';
-import projectsData from '../../data/projects.json';
+import { projects as projectsData } from '../../data/projects';
 
 // Extract unique tags
 const allTags = new Set();
@@ -99,7 +99,7 @@ const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', '
         />
       </div>
 
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="projects-grid" class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
         {otherProjects.map((project, index) => {
           const rot = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'][index % 4];
           const color = colors[index % colors.length];
@@ -108,7 +108,7 @@ const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', '
 
           return (
             <div
-              class:list={["brutal-card border-3 border-black shadow-brutal-md rounded-none cursor-pointer hover:rotate-0 transition-all hover:scale-105 hover:-translate-y-1 project-item", rot]}
+              class:list={["brutal-card border-3 border-black shadow-brutal-md rounded-none cursor-pointer hover:rotate-0 transition-all hover:scale-105 hover:-translate-y-1 project-item break-inside-avoid", rot]}
               data-project={JSON.stringify(project)}
               data-title={project.title.toLowerCase()}
               data-description={project.description.toLowerCase()}
@@ -116,30 +116,32 @@ const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', '
               data-tags={JSON.stringify(project.tags || [])}
               data-date={project.date ? new Date(project.date).getTime() : 0}
             >
-              <figure class="border-b-brutal border-black relative">
+              <figure class="border-b-brutal border-black relative group overflow-hidden">
                 <img
                   src={project.image}
                   alt={`${project.title} Preview`}
-                  class="w-full h-48 object-cover"
+                  class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                   onerror={`this.onerror=null;this.src='https://placehold.co/600x400/FFE600/000000?text=${encodeURIComponent(project.title)}'`}
                 />
-                <div class:list={["absolute top-2 right-2 w-12 h-12 border-brutal border-black rotate-45", colors[index % colors.length]]}></div>
+                <div class:list={["absolute top-2 right-2 w-12 h-12 border-brutal border-black rotate-45 z-10", colors[index % colors.length]]}></div>
+                <!-- Glitch overlay on hover -->
+                <div class="absolute inset-0 bg-neo-pink mix-blend-multiply opacity-0 group-hover:opacity-40 transition-opacity duration-100"></div>
               </figure>
               <div class="p-6 bg-white dark:bg-zinc-900 relative">
                 <h2 class="text-2xl font-bold uppercase mb-3 text-black dark:text-white">{project.title}</h2>
                 <div class="flex flex-wrap gap-2 mb-3">
                   {project.tags.map((tag, idx) => (
                     <div
-                      class:list={["border-3 border-black dark:border-white px-3 py-1 font-bold uppercase text-sm rotate-1 text-black dark:text-white rounded-none", colors[idx % colors.length]]}
+                      class:list={["border-2 border-black dark:border-white px-2 py-0.5 font-bold uppercase text-xs rotate-1 text-black dark:text-white rounded-none", colors[idx % colors.length]]}
                     >
                       {tag.name}
                     </div>
                   ))}
                 </div>
                 {formattedDate && (
-                  <div class="text-sm font-bold mb-3 text-gray-700 dark:text-gray-300">
-                    📅 {formattedDate}
+                  <div class="text-sm font-bold mb-3 text-gray-700 dark:text-gray-300 font-mono">
+                    // {formattedDate}
                   </div>
                 )}
                 <p class="text-base mb-4 font-medium line-clamp-3 text-gray-700 dark:text-gray-300">{project.description}</p>

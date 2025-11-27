@@ -1,7 +1,7 @@
 {
   "name": "portfolio-astro",
   "private": true,
-  "version": "1.1.1",
+  "version": "1.1.3",
   "type": "module",
   "scripts": {
     "predev": "node scripts/ensure-data-files.cjs",
@@ -11,16 +11,20 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "^4.3.10",
     "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.15.7",
+    "astro-icon": "^1.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swiper": "^11.2.5"
+    "swiper": "^11.2.5",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@iconify-json/mdi": "^1.2.3",
     "@nuasite/agent-summary": "^0.0.37",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

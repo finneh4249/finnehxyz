@@ -1,108 +1,49 @@
-# Finneh.xyz - Personal Portfolio
+# Astro Portfolio
 
-A modern, responsive portfolio website for Ethan Cornwill, showcasing skills, projects, education, and professional experience.
+![Astro](https://img.shields.io/badge/Astro-v5.15.7-orange?style=flat-square&logo=astro)
+![React](https://img.shields.io/badge/React-v18-blue?style=flat-square&logo=react)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-v3.3-38B2AC?style=flat-square&logo=tailwind-css)
+![DaisyUI](https://img.shields.io/badge/DaisyUI-v5-5A0EF8?style=flat-square)
 
-## 🌟 Features
+A modern, performant portfolio website built with **Astro v5**. This project utilizes a "Neo-Brutalist" design aesthetic and leverages the Island Architecture to deliver zero-JavaScript by default, hydrating only interactive components when necessary.
 
-- **Responsive Design** - Fully responsive layout that works on all devices
-- **Dark/Light Mode** - Toggle between dark and light themes
-- **Interactive UI Components** - Including:
-  - Animated tech cube
-  - Typing effect
-  - Skill cards with proficiency indicators
-  - Scroll progress bar
-  - Back to top button
-- **Performance Optimized** - Lazy-loaded components and optimized images
-- **SEO Friendly** - Proper meta tags and semantic HTML
-- **Accessibility** - ARIA attributes and keyboard navigation support
-
-## 🛠️ Technologies
-
-- **Frontend Framework**: React with Vite
-- **Styling**: Tailwind CSS with DaisyUI
-- **Animations**: Framer Motion
-- **Icons**: BoxIcons
-- **Analytics**: Custom analytics component
-
-## 📋 Project Structure
-```src/ 
-├── components/ # React components 
-│ ├── AboutMe.jsx # About me section 
-│ ├── Contact.jsx # Contact form 
-│ ├── Education.jsx # Education history 
-│ ├── Footer.jsx # Page footer 
-│ ├── Hero.jsx # Hero section 
-│ ├── Navbar.jsx # Navigation bar 
-│ ├── Projects.jsx # Projects showcase 
-│ ├── Skills.jsx # Skills section 
-│ ├── ui/ # Reusable UI components 
-│ │ └── BackToTop.jsx # Back to top button 
-│ └── ... 
-├── contexts/ # React contexts 
-├── data/ # JSON data files 
-├── styles/ # CSS stylesheets 
-└── utils/ # Utility functions
-```
-
-## ⚙️ Setup & Installation
-
-1. Clone the repository
-
-   ```bash
-   git clone https://github.com/yourusername/finnehxyz.git
-   cd finnehxyz
-   ```
-
-2. Install dependencies
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
 npm install
-```
 
-3. Start the development server
-
-```bash
+# Start the development server
 npm run dev
 ```
 
-4. Build for production
+The site will launch at `http://localhost:4321`.
 
-```bash
-npm run build
+## 📂 Project Structure
+
+```text
+/
+├── docs/               # Documentation
+├── public/             # Static assets (images, fonts)
+├── src/
+│   ├── components/     # UI Components (.astro & .jsx)
+│   ├── data/           # Content Data (JSON)
+│   ├── layouts/        # Page Layouts
+│   ├── pages/          # File-based Routing
+│   └── utils/          # Helper functions
+├── astro.config.mjs    # Astro configuration
+└── tailwind.config.js  # Tailwind & Design Tokens
 ```
 
-🚀 Deployment
-The site is deployed at https://finneh.xyz.
+## 📚 Documentation
 
-Deployment can be done via your preferred hosting service:
-
-Netlify
-Vercel
-GitHub Pages
-AWS Amplify
-
-## 🔧 Customization
-Adding a New Component
-
-1. Create a new file in the appropriate directory
-2. Import it in the main App.jsx or relevant parent component
-3. Add any necessary data in the data/ directory
-
-Modifying Styles
-
-- Global styles are in src/index.css
-- Component-specific styles are in css/components.css or inline with Tailwind
-
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👨‍💻 Author
-Ethan Cornwill - Technical Lead & Software Engineer
-
-Portfolio: [finneh.xyz](https://finneh.xyz)
-LinkedIn: [in/ethancornwill](https://linkedin.com/in/ethancornwill)
-GitHub: [finneh4249](https://github.com/finneh4249)
+| Guide                                            | Description                                                      |
+| :----------------------------------------------- | :--------------------------------------------------------------- |
+| [**Architecture**](./docs/ARCHITECTURE.md)       | Deep dive into the Astro MPA structure and Islands architecture. |
+| [**Installation**](./docs/INSTALLATION.md)       | Setup instructions, prerequisites, and build commands.           |
+| [**Maintenance**](./docs/MAINTENANCE.md)         | How to update content, add projects, and write blog posts.       |
+| [**Troubleshooting**](./docs/TROUBLESHOOTING.md) | Solutions for common build and runtime issues.                   |
 
 ---
 
-Built with ❤️ using React and Vite
+_Built with Astro v5._

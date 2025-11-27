@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 
 const { frontmatter } = Astro.props;
 
@@ -25,15 +26,38 @@ function calculateReadingTime(content: string) {
   title={frontmatter.title} 
   description={frontmatter.description}
 >
-  <article class="min-h-screen bg-white dark:bg-gray-900 py-20 px-4">
-    <div class="max-w-4xl mx-auto">
+  <article class="min-h-screen bg-white dark:bg-gray-900 py-20 px-4 relative overflow-hidden">
+    
+    <!-- Background Elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Diagonal stripe background pattern -->
+      <div class="absolute inset-0 opacity-5 dark:opacity-10">
+        <div class="absolute inset-0" style={{
+          backgroundImage: `
+            repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 20px,
+              #000 20px,
+              #000 22px
+            )
+          `,
+        }}></div>
+      </div>
+      
+      <!-- Floating Shapes -->
+      <div class="absolute top-20 right-10 w-32 h-32 bg-neo-yellow border-4 border-black dark:border-white shadow-brutal rotate-12 opacity-50"></div>
+      <div class="absolute bottom-40 left-10 w-40 h-40 bg-neo-pink border-4 border-black dark:border-white shadow-brutal -rotate-12 opacity-50"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
       
       <!-- Back to Blog -->
       <a 
         href="/blog"
         class="inline-flex items-center gap-2 mb-8 text-lg font-bold hover:gap-4 transition-all text-black dark:text-white hover:text-pink-600"
       >
-        <i class='bx bx-left-arrow-alt text-2xl'></i>
+        <Icon name="mdi:arrow-left" class="text-2xl" />
         <span>Back to Blog</span>
       </a>
 
@@ -57,11 +81,11 @@ function calculateReadingTime(content: string) {
         <!-- Meta Info -->
         <div class="flex flex-wrap items-center gap-6 text-lg font-bold text-gray-700 dark:text-gray-300">
           <div class="flex items-center gap-2">
-            <i class='bx bx-user text-2xl' style="color: #FF006E;"></i>
+            <Icon name="mdi:account" class="text-2xl" style="color: #FF006E;" />
             <span>{frontmatter.author}</span>
           </div>
           <div class="flex items-center gap-2">
-            <i class='bx bx-calendar text-2xl' style="color: #00B4D8;"></i>
+            <Icon name="mdi:calendar" class="text-2xl" style="color: #00B4D8;" />
             <time datetime={frontmatter.date}>
               {formatDate(frontmatter.date)}
             </time>
@@ -84,15 +108,15 @@ function calculateReadingTime(content: string) {
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="mailto:mail@finneh.xyz" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-bold border-2 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
-              <i class='bx bx-envelope'></i>
+              <Icon name="mdi:email" />
               <span>Email Me</span>
             </a>
             <a href="https://github.com/finneh4249" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-bold border-2 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
-              <i class='bx bxl-github'></i>
+              <Icon name="mdi:github" />
               <span>GitHub</span>
             </a>
             <a href="https://linkedin.com/in/ethan-cornwill" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-bold border-2 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
-              <i class='bx bxl-linkedin'></i>
+              <Icon name="mdi:linkedin" />
               <span>LinkedIn</span>
             </a>
           </div>

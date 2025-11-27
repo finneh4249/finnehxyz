@@ -8,6 +8,8 @@ interface Props {
   category?: string;
 }
 
+import { Icon } from 'astro-icon/components';
+
 const { icon, name, color, proficiency = 50, description, category } = Astro.props;
 
 const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', 'bg-neo-purple', 'bg-neo-orange'];
@@ -31,7 +33,7 @@ const getProficiencyLevel = (percent: number) => {
 >
   <!-- Front Face (Default) -->
   <div class:list={[cardColor, "p-6 flex flex-col items-center justify-center h-32 tool-card-front transition-opacity duration-300"]}>
-    <i class:list={["bx text-5xl mb-2", icon]}></i>
+    <Icon name={icon} class="text-5xl mb-2 text-black" />
     <h3 class="font-bold text-center uppercase text-sm text-black">{name}</h3>
   </div>
 

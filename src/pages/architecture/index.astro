@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+const adrs = await getCollection('architecture');
+const sortedAdrs = adrs.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+
+function getStatusColor(status: string) {
+  switch (status) {
+    case 'ACCEPTED': return 'bg-green-400';
+    case 'PROPOSED': return 'bg-yellow-400';
+    case 'REJECTED': return 'bg-red-400';
+    case 'DEPRECATED': return 'bg-gray-400';
+    default: return 'bg-gray-200';
+  }
+}
+---
+
+<BaseLayout title="Architecture | FinnehXYZ" description="Architecture Decision Records (ADRs) and technical design documents.">
+  <div class="min-h-screen bg-white dark:bg-gray-900 py-20 px-4 relative overflow-hidden">
+    
+    <!-- Background Elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute inset-0 opacity-5 dark:opacity-10">
+        <div class="absolute inset-0" style={{
+          backgroundImage: `
+            repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 20px,
+              #000 20px,
+              #000 22px
+            )
+          `,
+        }}></div>
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <div class="inline-block bg-neo-blue border-6 border-black dark:border-white shadow-brutal-xl p-8 transform rotate-1 mb-8">
+          <h1 class="text-4xl md:text-6xl font-black text-black uppercase tracking-tight">
+            🏗️ Architecture
+          </h1>
+        </div>
+        <div class="bg-white dark:bg-gray-800 border-4 border-black dark:border-white p-6 max-w-2xl mx-auto transform -rotate-1 shadow-brutal-lg">
+          <p class="text-xl font-bold text-black dark:text-white">
+            Documenting the evolution, decisions, and technical design of the portfolio.
+          </p>
+        </div>
+      </div>
+
+      <!-- ADR List -->
+      <div class="space-y-8">
+        {sortedAdrs.map((adr) => (
+          <article class="bg-white dark:bg-gray-800 border-4 border-black dark:border-white p-6 shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+            <div class="flex flex-col md:flex-row gap-6 justify-between items-start">
+              
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class={`px-3 py-1 text-xs font-black border-2 border-black uppercase tracking-wide ${getStatusColor(adr.data.status)} text-black`}>
+                    {adr.data.status}
+                  </span>
+                  <span class="text-sm font-bold text-gray-500 dark:text-gray-400">
+                    {new Date(adr.data.date).toLocaleDateString()}
+                  </span>
+                </div>
+                
+                <h2 class="text-2xl font-black mb-2 text-black dark:text-white">
+                  {adr.data.title}
+                </h2>
+                
+                <div class="flex flex-wrap gap-2 mt-4">
+                  {adr.data.tags.map(tag => (
+                    <span class="text-xs font-bold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded border border-black dark:border-gray-500">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="w-full md:w-auto">
+                 <a href={`/architecture/${adr.id}`} class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors w-full md:w-auto justify-center">
+                  Read ADR <Icon name="mdi:arrow-right" />
+                </a>
+              </div>
+
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

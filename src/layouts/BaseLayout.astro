@@ -1,5 +1,6 @@
 ---
 import '../index.css';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title?: string;
@@ -43,35 +44,24 @@ const websiteSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54MHDEV8X7"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-54MHDEV8X7');
+    </script>
     <link rel="icon" type="image/svg+xml" href="/images/me.jpeg" />
     
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content="Ethan Cornwill, web developer, portfolio, team leader, digital solutions, user-focused design" />
-    <meta name="author" content="Ethan Cornwill" />
-    <meta name="google-adsense-account" content="ca-pub-1380962808933314">
+    <SEO 
+      title={title} 
+      description={description} 
+      image={image} 
+      url={url} 
+    />
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-    
-    <!-- Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
-
     <script is:inline>
       // Theme Initialization
       (function() {
@@ -88,17 +78,9 @@ const websiteSchema = {
       })();
     </script>
 
-
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1380962808933314"
+     crossorigin="anonymous"></script>
   </head>
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-54MHDEV8X7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-54MHDEV8X7');
-</script>
   <body class="bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300">
     <slot />
   </body>

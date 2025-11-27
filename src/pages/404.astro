@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
 
 const errorMessages = [
     "OOPS! THIS PAGE TOOK A PERMANENT VACATION",
@@ -40,7 +41,6 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
 ---
 
 <BaseLayout title="404 - NOPE, NOT HERE">
-  <link slot="head" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   
   <div class="overflow-x-hidden">
     
@@ -104,15 +104,15 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
           <!-- Fun Facts Section -->
           <div class="grid md:grid-cols-3 gap-4 mb-8">
             <div class="bg-blue-400 border-4 border-black dark:border-white p-4 text-center transform -rotate-2 hover:rotate-0 transition-transform">
-              <i class='bx bx-confused text-5xl mb-2'></i>
+              <Icon name="mdi:emoticon-confused" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">YOU ARE LOST</p>
             </div>
             <div class="bg-green-400 border-4 border-black dark:border-white p-4 text-center hover:-rotate-2 transition-transform">
-              <i class='bx bx-ghost text-5xl mb-2'></i>
+              <Icon name="mdi:ghost" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">PAGE IS DEAD</p>
             </div>
             <div class="bg-purple-400 border-4 border-black dark:border-white p-4 text-center transform rotate-2 hover:rotate-0 transition-transform">
-              <i class='bx bx-dizzy text-5xl mb-2'></i>
+              <Icon name="mdi:emoticon-dead" class="text-5xl mb-2 mx-auto" />
               <p class="font-black text-lg">BRAIN HURTS</p>
             </div>
           </div>
@@ -137,7 +137,7 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-yellow-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-yellow-400 transition-colors">
-                <i class='bx bx-home-alt text-2xl'></i>
+                <Icon name="mdi:home" class="text-2xl" />
                 GO HOME
               </span>
             </a>
@@ -148,7 +148,7 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-pink-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-pink-500 transition-colors">
-                <i class='bx bx-left-arrow-alt text-2xl'></i>
+                <Icon name="mdi:arrow-left" class="text-2xl" />
                 GO BACK
               </span>
             </button>
@@ -159,7 +159,7 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
             >
               <span class="absolute inset-0 translate-x-2 translate-y-2 bg-blue-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
               <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-blue-400 transition-colors">
-                <i class='bx bx-book-reader text-2xl'></i>
+                <Icon name="mdi:book-open-page-variant" class="text-2xl" />
                 READ BLOG
               </span>
             </a>
