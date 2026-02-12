@@ -16,6 +16,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "FinnehSpoof",
+    description: "AI-powered Minecraft player simulation solving the cold-start problem for new servers.",
+    detailedDescription:
+      "Production Bukkit plugin that spawns AI-driven fake players with distinct personas, LLM-powered chat, and realistic behavioral simulation. Built in one overnight session using SPARC methodology — zero lines written manually. Currently live on FusionMC (fusionparty.org.au).",
+    challenges:
+      "Solving the cold-start problem for new Minecraft servers where empty servers struggle to attract initial players. Creating convincing AI personas that engage naturally without being repetitive or obvious bots. Implementing packet-level player spoofing that appears authentic in server lists and tab displays. Balancing conversation dynamics with heat-based systems to prevent chat spam while maintaining engagement.",
+    outcomes:
+      "Achieved production deployment on first day with 120+ iterations completed in just 6 hours. Successfully created 55 distinct AI personas with heat-based conversation dynamics that feel natural. Implemented multi-LLM support (Gemini, OpenAI, OpenRouter, Anthropic) for flexibility. Live deployment on FusionMC demonstrates real-world viability. Zero manual code writing through SPARC methodology proved the framework's effectiveness for rapid, production-grade development.",
+    image: "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/FinnehSpoof",
+    githubUrl: "https://github.com/finneh4249/FinnehSpoof",
+    featured: true,
+    date: 1739232000000,
+    technologies: ["Java", "Spigot", "ProtocolLib", "Gemini API", "OpenRouter", "SPARC"],
+    tags: [
+      { name: "Java", badgeClass: "badge-warning" },
+      { name: "AI", badgeClass: "badge-secondary" },
+      { name: "Minecraft", badgeClass: "badge-secondary" },
+      { name: "SPARC", badgeClass: "badge-primary" },
+    ],
+  },
+  {
     title: "PoliCRM",
     description:
       "Automated political compliance infrastructure built in 48 hours to verify 911 members against electoral rolls.",
