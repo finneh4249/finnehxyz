@@ -2,108 +2,91 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSectionMeta } from '../../utils/seo';
-import { Icon } from 'astro-icon/components';
+import ScrollReveal from '../../components/ui/ScrollReveal.astro';
 
 const seoMeta = getSectionMeta('blog');
 
-// Get all blog posts from content collection
 const posts = await getCollection('blog');
-
-// Sort by date (newest first) and filter published/featured
 const sortedPosts = posts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Format date helper
 function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function isoDate(date: Date) {
+  return date.toISOString().slice(0, 10);
 }
 ---
 
 <BaseLayout title={seoMeta.title} description={seoMeta.description}>
-  <div class="min-h-screen bg-white dark:bg-gray-900 py-20 px-4 relative overflow-hidden">
-    
-    <!-- Background Elements -->
-    <div class="absolute inset-0 pointer-events-none">
-      <!-- Diagonal stripe background pattern -->
-      <div class="absolute inset-0 opacity-5 dark:opacity-10">
-        <div class="absolute inset-0" style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 20px,
-              #000 20px,
-              #000 22px
-            )
-          `,
-        }}></div>
-      </div>
+  <ScrollReveal />
+  
+  <div class="min-h-screen bg-cyber-bg py-16 px-4">
+    <div class="max-w-5xl mx-auto">
       
-      <!-- Floating Shapes -->
-      <div class="absolute top-20 left-10 w-32 h-32 bg-neo-yellow border-4 border-black dark:border-white shadow-brutal rotate-12 opacity-50"></div>
-      <div class="absolute bottom-40 right-10 w-40 h-40 bg-neo-pink border-4 border-black dark:border-white shadow-brutal -rotate-12 opacity-50"></div>
-      <div class="absolute top-1/3 right-20 w-24 h-24 bg-neo-blue border-4 border-black dark:border-white rounded-full shadow-brutal opacity-50"></div>
-    </div>
-
-    <div class="max-w-6xl mx-auto relative z-10">
-      
-      <!-- Header -->
-      <div class="text-center mb-16">
-        <div class="inline-block bg-neo-yellow border-6 border-black dark:border-white shadow-brutal-xl p-8 transform -rotate-2 mb-8">
-          <h1 class="text-5xl md:text-7xl font-black text-black uppercase tracking-tight">
-            📝 Blog
-          </h1>
+      <!-- Terminal Header -->
+      <div class="mb-12 reveal reveal-down">
+        <div class="font-mono text-sm text-cyber-text-muted mb-2">
+          <span class="text-cyber-cyan">guest@finneh.xyz</span>:<span class="text-cyber-blue">~/blog</span>$ ls -la --sort=date
         </div>
-        <div class="bg-white dark:bg-gray-800 border-4 border-black dark:border-white p-6 max-w-3xl mx-auto transform rotate-1 shadow-brutal-lg">
-          <p class="text-xl md:text-2xl font-bold text-black dark:text-white">
-            Thoughts on AI engineering, prompt architecture, and building production systems that actually ship.
-          </p>
+        <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white mt-4">
+          <span class="glitch-text" data-text="BLOG">BLOG</span>
+        </h1>
+        <p class="text-sm text-cyber-text-muted font-mono mt-3 border-l-2 border-cyber-cyan/40 pl-3">
+          // Thoughts on AI engineering, prompt architecture, and building production systems that actually ship.
+        </p>
+        <div class="mt-4 font-mono text-xs text-cyber-text-muted">
+          total {sortedPosts.length} posts // drwxr-xr-x
         </div>
       </div>
 
       <!-- Blog Posts Grid -->
-      <div class="grid gap-8 md:grid-cols-2">
-        {sortedPosts.map((post) => (
-          <article class="brutal-card bg-white dark:bg-gray-800 p-8 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group border-4 border-black dark:border-white">
-            <a href={`/blog/${post.id}`} class="block">
+      <div class="grid gap-6 md:grid-cols-2">
+        {sortedPosts.map((post, i) => (
+          <article class={`bg-cyber-surface border border-cyber-border hover:border-cyber-cyan/50 transition-all duration-300 group overflow-hidden reveal reveal-scale-up stagger-${Math.min(i + 1, 6)}`}>
+            <a href={`/blog/${post.id}`} class="block p-6">
               
-              <!-- Date -->
-              <div class="flex items-center gap-2 mb-4 text-sm font-bold">
-                <Icon name="mdi:calendar" class="text-2xl" style="color: #FF006E;" />
-                <time datetime={post.data.pubDate.toISOString()} class="text-black dark:text-white">
-                  {formatDate(post.data.pubDate)}
-                </time>
+              <!-- Date + Reading time -->
+              <div class="flex items-center justify-between mb-3">
+                <div class="font-mono text-[10px] uppercase tracking-widest text-cyber-text-muted">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {isoDate(post.data.pubDate)}
+                  </time>
+                </div>
+                {post.data.tags && post.data.tags[0] && (
+                  <span class="text-[9px] font-mono uppercase tracking-wider text-cyber-cyan border border-cyber-cyan/30 px-1.5 py-0.5">
+                    {post.data.tags[0]}
+                  </span>
+                )}
               </div>
 
               <!-- Title -->
-              <h2 class="text-3xl font-black mb-4 leading-tight group-hover:text-pink-600 transition-colors text-black dark:text-white">
+              <h2 class="text-xl md:text-2xl font-black uppercase leading-tight text-white group-hover:text-cyber-cyan transition-colors mb-3">
                 {post.data.title}
               </h2>
 
               <!-- Description -->
-              <p class="mb-6 text-lg leading-relaxed text-gray-800 dark:text-gray-200 line-clamp-3">
+              <p class="text-sm text-cyber-text-muted leading-relaxed line-clamp-3 mb-4">
                 {post.data.description}
               </p>
 
               <!-- Tags -->
               {post.data.tags && (
-                <div class="flex flex-wrap gap-2 mb-6">
-                  {post.data.tags.slice(0, 3).map((tag: string) => (
-                    <span class="px-3 py-1 bg-yellow-400 text-black text-xs font-bold border-2 border-black uppercase tracking-wide">
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  {post.data.tags.slice(0, 4).map((tag: string) => (
+                    <span class="text-[9px] font-mono uppercase tracking-wider text-cyber-text-muted border border-cyber-border px-1.5 py-0.5">
                       {tag}
                     </span>
                   ))}
                 </div>
               )}
 
-              <!-- Read More -->
-              <div class="flex items-center gap-2 font-bold group-hover:gap-4 transition-all text-lg" style="color: #FF006E;">
-                <span>Read Article</span>
-                <Icon name="mdi:arrow-right" class="text-2xl" />
+              <!-- Read -->
+              <div class="flex items-center gap-2 font-mono text-xs text-cyber-cyan group-hover:gap-3 transition-all">
+                <span>&gt;</span>
+                <span>read_article()</span>
+                <span class="transition-transform group-hover:translate-x-1">→</span>
               </div>
 
             </a>
@@ -114,17 +97,16 @@ function formatDate(date: Date) {
       <!-- Empty State -->
       {sortedPosts.length === 0 && (
         <div class="text-center py-20">
-          <p class="text-2xl text-gray-700 dark:text-gray-300">No blog posts yet. Check back soon!</p>
+          <p class="font-mono text-lg text-cyber-text-muted">
+            // No posts found. Buffer empty.
+          </p>
         </div>
       )}
 
-      <!-- Back Home -->
-      <div class="text-center mt-16">
-        <a 
-          href="/"
-          class="inline-block text-lg underline text-black dark:text-white hover:text-pink-600 transition-colors"
-        >
-          ← Back to Portfolio
+      <!-- Back -->
+      <div class="text-center mt-12">
+        <a href="/" class="font-mono text-sm text-cyber-cyan hover:underline transition-colors">
+          &lt;- cd /home
         </a>
       </div>
 

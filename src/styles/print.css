@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Print Styles — Global
+   Streamlined: homepage print just adds a "see resume" notice.
+   The /resume page has its own dedicated print styles inline.
+   ========================================================================== */
+
+@media print {
+  /* Hide interactive/decorative elements globally */
+  nav,
+  .boot-overlay,
+  .cmd-palette,
+  .scroll-progress-bar,
+  #back-to-top,
+  .animate-ping {
+    display: none !important;
+  }
+
+  /* Make reveals visible */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
