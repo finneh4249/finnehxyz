@@ -12,30 +12,12 @@ const { threshold = 300, right = 6, bottom = 6 } = Astro.props;
 
 <button
   id="back-to-top"
-  class="fixed bg-neo-purple border-3 border-black dark:border-white text-black dark:text-white font-black uppercase p-4 z-50 opacity-0 scale-50 pointer-events-none transition-all duration-300 hover:scale-110 active:scale-90 shadow-brutal hover:shadow-brutal-lg transform rotate-3 hover:-rotate-3 rounded-none"
-  style={{ right: `${right}px`, bottom: `${bottom}px` }}
+  class="fixed bg-cyber-magenta border-2 border-cyber-magenta text-white font-black uppercase p-3 z-50 opacity-0 scale-50 pointer-events-none transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-transparent hover:text-cyber-magenta rounded-none"
+  style={{ right: `${right}px`, bottom: `${bottom}px`, boxShadow: '0 0 15px rgba(255, 0, 255, 0.3), 3px 3px 0px 0px #2a2a3a' }}
   aria-label="Back to top"
 >
-  <Icon name="mdi:arrow-up" class="text-3xl" />
+  <Icon name="mdi:arrow-up" class="text-2xl" />
 </button>
-
-<style is:global>
-  .shadow-brutal {
-    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-  }
-
-  .dark .shadow-brutal {
-    box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 1);
-  }
-
-  .shadow-brutal-lg {
-    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-  }
-
-  .dark .shadow-brutal-lg {
-    box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 1);
-  }
-</style>
 
 <script define:vars={{ threshold }}>
   function initBackToTop() {
@@ -59,7 +41,7 @@ const { threshold = 300, right = 6, bottom = 6 } = Astro.props;
       window.addEventListener('scroll', handleScroll, { passive: true });
       btn.addEventListener('click', scrollToTop);
       
-      handleScroll(); // Initial check
+      handleScroll();
     }
   }
 

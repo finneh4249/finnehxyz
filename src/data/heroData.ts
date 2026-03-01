@@ -5,10 +5,11 @@ export interface HeroData {
 
 export const heroData: HeroData = {
   typingStrings: [
-    "AI SYSTEMS ENGINEER",
-    "LLM TRAINER & EVALUATOR",
-    "RAG ARCHITECT",
-    "AUTOMATION SPECIALIST",
+    "AI SYSTEMS ENGINEER //",
+    "LLM TRAINER & EVALUATOR //",
+    "RAG PIPELINE ARCHITECT //",
+    "AUTOMATION SPECIALIST //",
+    "PROMPT ARCHITECT //",
   ],
   funFacts: [
     "📸 Fun fact: I used to manage the busiest Taco Bell in Australia. Now I build AI systems!",

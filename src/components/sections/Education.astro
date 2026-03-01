@@ -12,95 +12,46 @@ const getImagePath = (path: string) => {
 };
 ---
 
-<section id="education" class="sticky-scroll-section relative bg-neo-orange dark:bg-zinc-950" style="height: 300vh;">
-  <!-- Sticky Container -->
-  <div class="sticky-wrapper sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-    
-    <!-- Chaotic brutal decorative elements (Fixed in background) -->
-    <div class="absolute top-20 left-5 w-40 h-40 border-3 border-black bg-neo-pink rotate-12 z-0"></div>
-    <div class="absolute top-40 right-10 w-24 h-60 border-3 border-black bg-neo-blue -rotate-6 z-0"></div>
-    <div class="absolute bottom-32 left-20 w-56 h-32 border-3 border-black bg-neo-green rotate-3 z-0"></div>
-    
-    <div class="container mx-auto px-4 relative z-10 mb-12 flex-shrink-0">
-      <div class="relative animate-on-scroll slide-left">
-        <div class="flex items-center gap-6 flex-wrap">
-          <h2 class="text-6xl md:text-8xl font-display font-black uppercase tracking-tighter -rotate-2 text-black dark:text-white drop-shadow-brutal">
-            Education
-          </h2>
-          <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white text-xl font-bold border-4">
-            LEARNING
-          </div>
-        </div>
-        <div class="h-4 w-64 bg-black dark:bg-white mt-6 -rotate-1"></div>
+<section id="education" class="py-20 bg-cyber-surface relative overflow-hidden">
+  <!-- Background accents -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-cyber-green/3 blur-3xl pointer-events-none"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section header -->
+    <div class="mb-12 animate-on-scroll slide-left">
+      <div class="flex items-center gap-4 flex-wrap mb-4">
+        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white">
+          Education
+        </h2>
+        <span class="category-badge-tech">// LEARNING</span>
       </div>
+      <div class="h-0.5 w-48 bg-gradient-to-r from-cyber-green to-transparent"></div>
     </div>
 
-    <!-- Horizontal Track -->
-    <div class="horizontal-track flex gap-12 px-8 md:px-20 w-max items-center">
+    <!-- Compact vertical list -->
+    <div class="max-w-4xl mx-auto space-y-4">
       {educationItems.map((item, index) => (
-        <div class="w-[85vw] md:w-[600px] transform transition-transform hover:scale-105 duration-300">
-          <EducationItem
-            year={item.year}
-            institution={item.institution}
-            program={item.program}
-            description={item.description}
-            gpa={item.gpa}
-            logoSrc={getImagePath(item.logoSrc)!}
-            logoAlt={item.logoAlt}
-            index={index}
-            isLast={index === educationItems.length - 1}
-            isFirst={index === 0}
-          />
+        <div class="cyber-card border border-cyber-border hover:border-cyber-green/50 transition-all duration-300 p-5"
+             style="box-shadow: 3px 3px 0px 0px #2a2a3a; border-left: 3px solid #39ff14;">
+          <div class="flex items-start gap-4">
+            {getImagePath(item.logoSrc) && (
+              <div class="w-10 h-10 bg-white border border-cyber-border p-1 flex items-center justify-center flex-shrink-0">
+                <img src={getImagePath(item.logoSrc)?.src} alt={item.logoAlt} class="w-full h-full object-contain" />
+              </div>
+            )}
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-3 flex-wrap">
+                <h3 class="font-bold uppercase text-white text-base">{item.institution}</h3>
+                <span class="font-mono text-xs text-cyber-text-muted">// {item.year}</span>
+              </div>
+              <p class="text-sm text-cyber-cyan font-mono mt-1">{item.program}</p>
+              {item.description && (
+                <p class="text-sm text-cyber-text-muted mt-2">{item.description}</p>
+              )}
+            </div>
+          </div>
         </div>
       ))}
-      <!-- End spacer -->
-      <div class="w-20"></div>
     </div>
   </div>
 </section>
-
-<script>
-  function initEducationScroll() {
-    const section = document.getElementById('education');
-    if (!section) return;
-
-    const track = section.querySelector('.horizontal-track') as HTMLElement;
-    if (!track) return;
-
-    const handleScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate scroll progress within the section
-      // We want the animation to start when the section hits the top of the viewport
-      // and end when the bottom of the section hits the bottom of the viewport
-      
-      const start = 0;
-      const end = section.offsetHeight - viewportHeight;
-      const distance = -rect.top;
-      
-      // Only animate if we are within the scroll bounds (with some buffer)
-      if (rect.top <= 0 && rect.bottom >= 0) {
-        const clampedDistance = Math.max(0, Math.min(distance, end));
-        const progress = clampedDistance / end;
-        
-        const trackWidth = track.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        
-        // If track is smaller than viewport, don't scroll
-        if (trackWidth > viewportWidth) {
-           const maxTranslate = trackWidth - viewportWidth;
-           const translate = progress * maxTranslate;
-           track.style.transform = `translateX(-${translate}px)`;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    handleScroll(); // Initial call
-  }
-
-  initEducationScroll();
-  document.addEventListener('astro:page-load', initEducationScroll);
-</script>
