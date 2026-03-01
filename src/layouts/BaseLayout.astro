@@ -1,5 +1,6 @@
 ---
 import '../index.css';
+import '../styles/print.css';
 import SEO from '../components/SEO.astro';
 
 interface Props {
@@ -40,7 +41,7 @@ const websiteSchema = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,10 +51,11 @@ const websiteSchema = {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-54MHDEV8X7');
     </script>
     <link rel="icon" type="image/svg+xml" href="/images/me.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <SEO 
       title={title} 
@@ -61,27 +63,15 @@ const websiteSchema = {
       image={image} 
       url={url} 
     />
-    
-    <script is:inline>
-      // Theme Initialization
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const theme = savedTheme || systemTheme;
-        
-        document.documentElement.setAttribute('data-theme', theme);
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      })();
-    </script>
 
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1380962808933314"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1380962808933314"
      crossorigin="anonymous"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
-  <body class="bg-white dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300">
+  <body class="bg-cyber-bg text-cyber-text min-h-screen">
     <slot />
   </body>
 </html>

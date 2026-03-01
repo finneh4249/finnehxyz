@@ -7,98 +7,117 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/
 
 const getImagePath = (path: string) => {
   if (!path) return undefined;
-  // Map "images/filename.ext" or "./images/filename.ext" to "/src/assets/images/filename.ext"
   const normalizedPath = path.replace(/^(\.\/)?images\//, '/src/assets/images/');
   return images[normalizedPath]?.default;
 };
 
-// Force type for the loop to avoid TS union errors with logoSrcs
 const experiences: any[] = experienceData;
+const techExperiences = experiences.filter(e => e.category === 'technology');
+const opsExperiences = experiences.filter(e => e.category === 'operations');
 ---
 
-<section id="professionalExperience" class="sticky-scroll-section relative bg-white dark:bg-zinc-950" style="height: 400vh;">
-  <!-- Sticky Container -->
-  <div class="sticky-wrapper sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-    
-    <!-- Wild asymmetric brutal decorations -->
-    <div class="absolute top-10 right-5 w-52 h-40 border-3 border-black bg-neo-yellow -rotate-12 z-0"></div>
-    <div class="absolute top-60 left-10 w-40 h-64 border-3 border-black bg-neo-purple rotate-6 z-0"></div>
-    <div class="absolute bottom-40 right-20 w-36 h-36 border-3 border-black bg-neo-pink -rotate-3 z-0"></div>
-    
-    <div class="container mx-auto px-4 relative z-10 mb-12 flex-shrink-0">
-      <div class="relative animate-on-scroll slide-right">
-        <div class="flex items-center gap-6 flex-wrap justify-end">
-          <div class="brutal-btn brutal-blue px-6 py-3 -rotate-3 text-white text-xl font-bold border-4">
-            WORK
-          </div>
-          <h2 class="text-6xl md:text-8xl font-display font-black uppercase tracking-tighter rotate-2 text-black dark:text-white drop-shadow-brutal">
-            Experience
-          </h2>
-        </div>
-        <div class="h-4 w-48 bg-black mt-6 ml-auto rotate-1"></div>
+<section id="professionalExperience" class="py-20 bg-cyber-surface relative overflow-hidden">
+  <!-- Background accents -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-cyber-cyan/3 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyber-magenta/3 blur-3xl pointer-events-none"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section header -->
+    <div class="mb-12 animate-on-scroll slide-right">
+      <div class="flex items-center gap-4 flex-wrap mb-4">
+        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white">
+          Experience
+        </h2>
+        <span class="category-badge-ops">// WORK</span>
       </div>
+      <div class="h-0.5 w-48 bg-gradient-to-r from-cyber-magenta to-transparent"></div>
     </div>
 
-    <!-- Horizontal Track -->
-    <div class="horizontal-track flex gap-12 px-8 md:px-20 w-max items-center h-full">
-      {experiences.map((item, index) => (
-        <div class="w-auto min-w-[85vw] md:min-w-[600px] h-[600px] transform transition-transform hover:scale-[1.01] duration-300 flex-shrink-0">
-          <TimelineItem
-            yearRange={item.yearRange}
-            company={item.company}
-            employer={item.employer}
-            roles={item.roles}
-            logoSrc={getImagePath(item.logoSrc)}
-            logoSrcs={item.logoSrcs?.map((src: string) => getImagePath(src))}
-            logoAlt={item.logoAlt}
-            index={index}
-            isFirst={index === 0}
-            isLast={index === experiences.length - 1}
-          />
-        </div>
+    <!-- Category Tabs -->
+    <div class="flex gap-2 mb-10" id="experience-tabs">
+      <button 
+        class="exp-tab cyber-btn border-cyber-cyan text-cyber-cyan bg-cyber-cyan/10 px-6 py-3 text-sm font-mono" 
+        data-tab="technology"
+      >
+        &lt;TECHNOLOGY /&gt;
+      </button>
+      <button 
+        class="exp-tab cyber-btn border-cyber-border text-cyber-text-muted px-6 py-3 text-sm font-mono" 
+        data-tab="operations"
+      >
+        &lt;OPERATIONS /&gt;
+      </button>
+    </div>
+
+    <!-- Technology Panel -->
+    <div id="panel-technology" class="exp-panel space-y-6">
+      {techExperiences.map((item, index) => (
+        <TimelineItem
+          yearRange={item.yearRange}
+          company={item.company}
+          employer={item.employer}
+          roles={item.roles}
+          logoSrc={getImagePath(item.logoSrc)}
+          logoSrcs={item.logoSrcs?.map((src: string) => getImagePath(src))}
+          logoAlt={item.logoAlt}
+          index={index}
+          isFirst={index === 0}
+          isLast={index === techExperiences.length - 1}
+          category="technology"
+        />
       ))}
-      <!-- End spacer -->
-      <div class="w-20"></div>
+    </div>
+
+    <!-- Operations Panel -->
+    <div id="panel-operations" class="exp-panel space-y-6 hidden">
+      {opsExperiences.map((item, index) => (
+        <TimelineItem
+          yearRange={item.yearRange}
+          company={item.company}
+          employer={item.employer}
+          roles={item.roles}
+          logoSrc={getImagePath(item.logoSrc)}
+          logoSrcs={item.logoSrcs?.map((src: string) => getImagePath(src))}
+          logoAlt={item.logoAlt}
+          index={index}
+          isFirst={index === 0}
+          isLast={index === opsExperiences.length - 1}
+          category="operations"
+        />
+      ))}
     </div>
   </div>
 </section>
 
 <script>
-  function initExperienceScroll() {
-    const section = document.getElementById('professionalExperience');
-    if (!section) return;
-
-    const track = section.querySelector('.horizontal-track') as HTMLElement;
-    if (!track) return;
-
-    const handleScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      const start = 0;
-      const end = section.offsetHeight - viewportHeight;
-      const distance = -rect.top;
-      
-      if (rect.top <= 0 && rect.bottom >= 0) {
-        const clampedDistance = Math.max(0, Math.min(distance, end));
-        const progress = clampedDistance / end;
+  function initExperience() {
+    const tabs = document.querySelectorAll('.exp-tab');
+    const panels = document.querySelectorAll('.exp-panel');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = (tab as HTMLElement).dataset.tab;
         
-        const trackWidth = track.scrollWidth;
-        const viewportWidth = window.innerWidth;
+        // Update tabs
+        tabs.forEach(t => {
+          t.classList.remove('border-cyber-cyan', 'text-cyber-cyan', 'bg-cyber-cyan/10', 'border-cyber-magenta', 'text-cyber-magenta', 'bg-cyber-magenta/10');
+          t.classList.add('border-cyber-border', 'text-cyber-text-muted');
+        });
         
-        if (trackWidth > viewportWidth) {
-           const maxTranslate = trackWidth - viewportWidth;
-           const translate = progress * maxTranslate;
-           track.style.transform = `translateX(-${translate}px)`;
+        if (target === 'technology') {
+          tab.classList.add('border-cyber-cyan', 'text-cyber-cyan', 'bg-cyber-cyan/10');
+        } else {
+          tab.classList.add('border-cyber-magenta', 'text-cyber-magenta', 'bg-cyber-magenta/10');
         }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    handleScroll();
+        tab.classList.remove('border-cyber-border', 'text-cyber-text-muted');
+        
+        // Update panels
+        panels.forEach(p => p.classList.add('hidden'));
+        document.getElementById(`panel-${target}`)?.classList.remove('hidden');
+      });
+    });
   }
 
-  initExperienceScroll();
-  document.addEventListener('astro:page-load', initExperienceScroll);
+  initExperience();
+  document.addEventListener('astro:page-load', initExperience);
 </script>

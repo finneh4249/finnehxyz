@@ -1,0 +1,65 @@
+---
+import { projects as projectsData } from '../../data/projects';
+import ProjectModal from '../projects/ProjectModal.astro';
+
+const allProjects = projectsData;
+---
+
+<div class="bento-cell cell-projects reveal reveal-up stagger-2">
+  <div class="bento-cell-header flex items-center justify-between">
+    <span>// all projects</span>
+    <span class="text-cyber-cyan">{allProjects.length} total</span>
+  </div>
+  <div class="bento-cell-content">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {allProjects.map((project, i) => (
+        <div
+          class={`bg-cyber-bg border border-cyber-border hover:border-cyber-cyan/50 cursor-pointer transition-all duration-300 group overflow-hidden project-grid-item reveal reveal-scale-up stagger-${Math.min(i % 6 + 1, 6)}`}
+          data-project={JSON.stringify(project)}
+        >
+          <div class="relative h-32 sm:h-36 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+              loading="lazy"
+              onerror={`this.onerror=null;this.src='https://placehold.co/300x200/12121a/00fff5?text=${encodeURIComponent(project.title)}'`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/40 to-transparent"></div>
+            {project.featured && (
+              <span class="absolute top-2 right-2 text-[8px] font-mono font-bold uppercase border border-cyber-yellow text-cyber-yellow px-1.5 py-0.5 bg-cyber-bg/80 tracking-widest">
+                Featured
+              </span>
+            )}
+          </div>
+          <div class="p-3">
+            <h3 class="text-sm font-bold uppercase text-white leading-tight group-hover:text-cyber-cyan transition-colors">{project.title}</h3>
+            <p class="text-xs text-cyber-text-muted mt-1 line-clamp-2 leading-relaxed">{project.description}</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              {project.tags.slice(0, 3).map(tag => (
+                <span class="text-[9px] font-mono uppercase tracking-wider text-cyber-text-muted border border-cyber-border px-1.5 py-0.5">{tag.name}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <ProjectModal />
+</div>
+
+<script>
+  function initProjectGrid() {
+    document.querySelectorAll('.project-grid-item').forEach(item => {
+      if ((item as HTMLElement).dataset.init) return;
+      (item as HTMLElement).dataset.init = 'true';
+      item.addEventListener('click', () => {
+        const data = JSON.parse((item as HTMLElement).dataset.project || '{}');
+        document.dispatchEvent(new CustomEvent('openProjectModal', { detail: data }));
+      });
+    });
+  }
+  initProjectGrid();
+  document.addEventListener('astro:page-load', initProjectGrid);
+</script>

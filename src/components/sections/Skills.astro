@@ -6,45 +6,35 @@ import skillsData from '../../data/skills.json';
 
 const toolCategories = ["All", ...new Set(skillsData.tools.map(tool => tool.category))];
 const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.category))];
-
-const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
 ---
 
-<section id="skills" class="py-20 bg-neo-purple relative overflow-hidden">
-  <!-- Chaotic decorative elements -->
-  <div class="absolute top-10 right-10 w-48 h-36 bg-neo-orange border-brutal-thick border-black shadow-brutal-lg rotate-12"></div>
-  <div class="absolute bottom-20 left-10 w-32 h-52 bg-neo-yellow border-brutal border-black shadow-brutal -rotate-6"></div>
-  <div class="absolute top-1/3 left-1/4 w-28 h-28 bg-neo-pink border-brutal-thick border-black shadow-brutal rotate-45"></div>
-  <div class="absolute bottom-1/3 right-1/4 w-40 h-24 bg-neo-blue border-brutal border-black shadow-brutal -rotate-12"></div>
+<section id="skills" class="py-20 bg-cyber-bg relative overflow-hidden">
+  <!-- Background accents -->
+  <div class="absolute top-1/3 -right-48 w-96 h-96 bg-cyber-magenta/3 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/3 -left-48 w-96 h-96 bg-cyber-green/3 blur-3xl pointer-events-none"></div>
   
   <div class="container mx-auto px-4 md:px-6 relative z-10">
-    <!-- Languages & Tools Section -->
+    <!-- Languages & Tools -->
     <div class="mb-20">
       <div class="mb-12 animate-on-scroll slide-up">
-        <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
-          <div class="brutal-btn brutal-orange px-6 py-3 -rotate-2 text-white">
-            TOOLS
-          </div>
-          <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tight rotate-1 text-white">
+        <div class="flex items-center gap-4 flex-wrap mb-4">
+          <span class="category-badge-tech">// TOOLS</span>
+          <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter neon-cyan">
             Languages & Tools
           </h1>
         </div>
-        <div class="h-3 w-56 bg-black mx-auto -rotate-1"></div>
+        <div class="h-0.5 w-48 bg-gradient-to-r from-cyber-cyan to-transparent"></div>
       </div>
       
-      <div class="text-center mb-6 brutal-btn brutal-yellow px-6 py-3 inline-block rotate-2 text-base text-black">
-        HOVER TO SEE PROFICIENCY LEVELS
-      </div>
-      
+      <p class="text-cyber-text-muted font-mono text-sm mb-8">// Hover to see proficiency levels</p>
       
       <!-- Category Filters -->
-      <div class="flex flex-wrap justify-center gap-3 mb-8" id="tool-categories">
-        {toolCategories.map((category, index) => (
+      <div class="flex flex-wrap gap-2 mb-8" id="tool-categories">
+        {toolCategories.map((category) => (
           <button
             class:list={[
-              "brutal-btn px-5 py-3 text-sm hover:rotate-0 transition-all category-btn",
-              rotations[index % rotations.length],
-              category === "All" ? "brutal-yellow" : "bg-white dark:bg-zinc-900"
+              "cyber-btn px-4 py-2 text-xs font-mono category-btn transition-all",
+              category === "All" ? "border-cyber-cyan text-cyber-cyan bg-cyber-cyan/10" : "border-cyber-border text-cyber-text-muted"
             ]}
             data-category={category}
           >
@@ -53,42 +43,39 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
         ))}
       </div>
       
-      <div id="tools-grid" class="flex flex-wrap justify-center gap-4">
-        {skillsData.tools.map((tool, index) => {
-          const rot = ['-rotate-2', 'rotate-1', '-rotate-3', 'rotate-2', 'rotate-3', '-rotate-1'][index % 6];
-          const margin = ['mt-0', 'mt-4', 'mt-2', 'mt-6'][index % 4];
-          return (
-            <div 
-              class:list={["tool-item transform transition-all duration-300 hover:scale-110 hover:z-50", rot, margin]}
-              data-name={tool.name.toLowerCase()}
-              data-category={tool.category}
-              data-proficiency={tool.proficiency}
-            >
-              <div class="bg-white dark:bg-zinc-900 border-3 border-black dark:border-white p-3 shadow-brutal flex flex-col gap-2 min-w-[140px] group">
-                <div class="flex items-center gap-2">
-                  <i class={`bx ${tool.icon} text-2xl ${tool.color}`}></i>
-                  <div>
-                    <span class="font-bold uppercase text-sm block leading-none">{tool.name}</span>
-                    <span class="text-xs text-gray-500 font-mono">{tool.category}</span>
-                  </div>
+      <div id="tools-grid" class="flex flex-wrap gap-3">
+        {skillsData.tools.map((tool, index) => (
+          <div 
+            class="tool-item transform transition-all duration-300 hover:scale-105 hover:z-10"
+            data-name={tool.name.toLowerCase()}
+            data-category={tool.category}
+            data-proficiency={tool.proficiency}
+          >
+            <div class="bg-cyber-surface border border-cyber-border p-3 flex flex-col gap-2 min-w-[140px] group hover:border-cyber-cyan transition-all"
+                 style="box-shadow: 3px 3px 0px 0px #2a2a3a;">
+              <div class="flex items-center gap-2">
+                <i class={`bx ${tool.icon} text-xl ${tool.color}`}></i>
+                <div>
+                  <span class="font-bold uppercase text-xs block leading-none text-white">{tool.name}</span>
+                  <span class="text-[10px] text-cyber-text-muted font-mono">{tool.category}</span>
                 </div>
-                <!-- Proficiency Bar -->
-                <div class="w-full h-2 bg-gray-200 dark:bg-zinc-700 border border-black dark:border-white relative overflow-hidden">
-                  <div 
-                    class="h-full bg-neo-green absolute top-0 left-0 transition-all duration-500 group-hover:bg-neo-pink"
-                    style={`width: ${tool.proficiency}%`}
-                  ></div>
-                </div>
-                <div class="text-[10px] font-mono text-right font-bold">{tool.proficiency}%</div>
               </div>
+              <!-- Proficiency Bar -->
+              <div class="w-full h-1 bg-cyber-border overflow-hidden">
+                <div 
+                  class="h-full bg-cyber-cyan transition-all duration-500 group-hover:bg-cyber-magenta"
+                  style={`width: ${tool.proficiency}%`}
+                ></div>
+              </div>
+              <div class="text-[10px] font-mono text-right text-cyber-text-muted">{tool.proficiency}%</div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
       
-      <div id="no-tools-found" class="text-center py-8 brutal-card bg-white dark:bg-zinc-900 rotate-1 hidden">
-        <p class="text-xl font-bold uppercase mb-4">No matching tools found.</p>
-        <button id="reset-tools" class="brutal-btn brutal-yellow px-6 py-3 -rotate-2">
+      <div id="no-tools-found" class="text-center py-8 cyber-card p-6 hidden">
+        <p class="text-lg font-bold uppercase font-mono text-cyber-text-muted">// No matching tools found.</p>
+        <button id="reset-tools" class="cyber-btn-primary px-6 py-3 mt-4 text-sm">
           Reset Filters
         </button>
       </div>
@@ -97,31 +84,22 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
     <!-- Skills Section -->
     <div>
       <div class="mb-12 animate-on-scroll slide-up">
-        <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
-          <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-1 text-white">
+        <div class="flex items-center gap-4 flex-wrap mb-4">
+          <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white">
             Skills
           </h1>
-          <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white">
-            EXPERTISE
-          </div>
+          <span class="category-badge-ops">// EXPERTISE</span>
         </div>
-        <div class="h-3 w-48 bg-black mx-auto rotate-1"></div>
+        <div class="h-0.5 w-48 bg-gradient-to-r from-cyber-magenta to-transparent"></div>
       </div>
       
-      <!-- Note: We could add a second search filter here for skills specifically if needed, 
-           but for simplicity in Astro + Vanilla JS, reusing the main filter logic or keeping it static might be better.
-           For now, I'll omit a second search bar to avoid event conflict complexity in this iteration, 
-           or assume the search bar at top filters both? 
-           Actually, the React version had two search bars. I'll implement logic for category filtering here at least.
-      -->
-      
-      <div class="flex flex-wrap justify-center gap-3 mb-8" id="skill-categories">
-        {skillCategories.map((category, index) => (
+      <!-- Category Filters -->
+      <div class="flex flex-wrap gap-2 mb-8" id="skill-categories">
+        {skillCategories.map((category) => (
           <button
             class:list={[
-              "brutal-btn px-5 py-3 text-sm hover:rotate-0 transition-all skill-category-btn",
-              rotations[index % rotations.length],
-              category === "All" ? "brutal-yellow" : "bg-white dark:bg-zinc-900"
+              "cyber-btn px-4 py-2 text-xs font-mono skill-category-btn transition-all",
+              category === "All" ? "border-cyber-magenta text-cyber-magenta bg-cyber-magenta/10" : "border-cyber-border text-cyber-text-muted"
             ]}
             data-category={category}
           >
@@ -130,28 +108,29 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
         ))}
       </div>
       
-      <div id="skills-grid" class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+      <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillsData.skills.map((skill, index) => {
-          const rot = ['rotate-1', '-rotate-1', 'rotate-2', '-rotate-2'][index % 4];
-          const bg = ['bg-white', 'bg-neo-yellow', 'bg-neo-blue', 'bg-neo-pink'][index % 4];
+          const borderColors = ['border-cyber-cyan/30', 'border-cyber-magenta/30', 'border-cyber-green/30', 'border-cyber-yellow/30'];
+          const borderColor = borderColors[index % borderColors.length];
           
           return (
             <div 
-              class:list={["skill-item break-inside-avoid", rot]}
+              class="skill-item"
               data-category={skill.category}
               data-title={skill.title.toLowerCase()}
               data-description={skill.description.toLowerCase()}
             >
-              <div class={`brutal-card ${bg} dark:bg-zinc-900 border-4 border-black dark:border-white p-6 hover:scale-105 transition-transform duration-300`}>
-                <div class="flex items-center gap-4 mb-4 border-b-4 border-black dark:border-white pb-4">
-                  <i class={`bx ${skill.icon} text-4xl ${skill.color}`}></i>
-                  <h3 class="font-display font-black text-2xl uppercase leading-none text-black dark:text-white">{skill.title}</h3>
+              <div class={`cyber-card border-2 ${borderColor} hover:border-cyber-cyan transition-all duration-300 p-6`}
+                   style="box-shadow: 4px 4px 0px 0px #2a2a3a;">
+                <div class="flex items-center gap-3 mb-4 border-b border-cyber-border pb-4">
+                  <i class={`bx ${skill.icon} text-3xl ${skill.color}`}></i>
+                  <h3 class="font-black text-xl uppercase leading-none text-white">{skill.title}</h3>
                 </div>
-                <p class="font-bold text-black dark:text-white leading-relaxed">
+                <p class="text-sm font-medium text-cyber-text leading-relaxed">
                   {skill.description}
                 </p>
                 <div class="mt-4 flex justify-end">
-                  <span class="bg-black text-white px-2 py-1 text-xs font-mono uppercase">{skill.category}</span>
+                  <span class="font-mono text-[10px] uppercase tracking-widest text-cyber-text-muted border border-cyber-border px-2 py-0.5">{skill.category}</span>
                 </div>
               </div>
             </div>
@@ -164,7 +143,6 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
 
 <script>
   function initSkills() {
-    // Tool Filters
     const toolItems = document.querySelectorAll('.tool-item');
     const categoryBtns = document.querySelectorAll('.category-btn');
     const noToolsMsg = document.getElementById('no-tools-found');
@@ -200,68 +178,57 @@ const rotations = ['-rotate-1', 'rotate-1', '-rotate-2', 'rotate-2'];
       }
     }
 
-    // Category Click
     categoryBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update UI
         categoryBtns.forEach(b => {
-          b.classList.remove('brutal-yellow');
-          b.classList.add('bg-white', 'dark:bg-zinc-900');
+          b.classList.remove('border-cyber-cyan', 'text-cyber-cyan', 'bg-cyber-cyan/10');
+          b.classList.add('border-cyber-border', 'text-cyber-text-muted');
         });
-        btn.classList.add('brutal-yellow');
-        btn.classList.remove('bg-white', 'dark:bg-zinc-900');
+        btn.classList.add('border-cyber-cyan', 'text-cyber-cyan', 'bg-cyber-cyan/10');
+        btn.classList.remove('border-cyber-border', 'text-cyber-text-muted');
         
         currentToolCategory = (btn as HTMLElement).dataset.category || 'All';
         filterTools();
       });
     });
 
-    // Search Filter Event
     document.addEventListener('filterChange', (e: any) => {
       const { searchTerm, proficiencyRange } = e.detail;
-      
       if (searchTerm !== undefined) currentSearchTerm = searchTerm;
       if (proficiencyRange !== undefined) currentProficiency = proficiencyRange;
-      
       filterTools();
     });
 
-    // Reset Button
     resetToolsBtn?.addEventListener('click', () => {
       currentToolCategory = 'All';
       currentSearchTerm = '';
       currentProficiency = 0;
       
-      // Reset UI
       categoryBtns.forEach(b => {
         if ((b as HTMLElement).dataset.category === 'All') {
-          b.classList.add('brutal-yellow');
-          b.classList.remove('bg-white', 'dark:bg-zinc-900');
+          b.classList.add('border-cyber-cyan', 'text-cyber-cyan', 'bg-cyber-cyan/10');
+          b.classList.remove('border-cyber-border', 'text-cyber-text-muted');
         } else {
-          b.classList.remove('brutal-yellow');
-          b.classList.add('bg-white', 'dark:bg-zinc-900');
+          b.classList.remove('border-cyber-cyan', 'text-cyber-cyan', 'bg-cyber-cyan/10');
+          b.classList.add('border-cyber-border', 'text-cyber-text-muted');
         }
       });
-      
-      // We should technically reset the SearchFilter component UI too, 
-      // but cross-component communication back to UI is harder in vanilla.
-      // For now, we reset the filtering logic.
       
       filterTools();
     });
 
-    // Skill Filters (Category Only for simplicity in this version)
+    // Skill Filters
     const skillItems = document.querySelectorAll('.skill-item');
     const skillCategoryBtns = document.querySelectorAll('.skill-category-btn');
     
     skillCategoryBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         skillCategoryBtns.forEach(b => {
-          b.classList.remove('brutal-yellow');
-          b.classList.add('bg-white', 'dark:bg-zinc-900');
+          b.classList.remove('border-cyber-magenta', 'text-cyber-magenta', 'bg-cyber-magenta/10');
+          b.classList.add('border-cyber-border', 'text-cyber-text-muted');
         });
-        btn.classList.add('brutal-yellow');
-        btn.classList.remove('bg-white', 'dark:bg-zinc-900');
+        btn.classList.add('border-cyber-magenta', 'text-cyber-magenta', 'bg-cyber-magenta/10');
+        btn.classList.remove('border-cyber-border', 'text-cyber-text-muted');
         
         const cat = (btn as HTMLElement).dataset.category || 'All';
         

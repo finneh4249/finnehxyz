@@ -1,21 +1,8 @@
 [
   {
     "yearRange": "2025",
-    "company": "ALDI Stores Australia",
-    "roles": [
-      {
-        "title": "Duty Store Manager",
-        "period": "October 2025 - Present",
-        "isCurrent": true,
-        "description": "Managing daily operations for one of Australia's leading discount grocery retailers, focusing on operational efficiency, team leadership, and customer service excellence in a fast-paced retail environment."
-      }
-    ],
-    "logoSrc": "images/aldi.png",
-    "logoAlt": "ALDI Stores Australia"
-  },
-  {
-    "yearRange": "2025",
     "company": "Axion — Technical Venture Framework (Concept Stage)",
+    "category": "technology",
     "roles": [
       {
         "title": "Founder & Lead Engineer",
@@ -30,6 +17,7 @@
   {
     "yearRange": "2024 - 2025",
     "company": "DataAnnotation",
+    "category": "technology",
     "roles": [
       {
         "title": "AI Code Analyst / Software Developer – AI Trainer",
@@ -44,6 +32,7 @@
   {
     "yearRange": "2025",
     "company": "MagnetLab",
+    "category": "technology",
     "roles": [
       {
         "title": "Lead Software Engineer | AI Systems",
@@ -56,9 +45,25 @@
     "logoAlt": "MagnetLab"
   },
   {
+    "yearRange": "2025",
+    "company": "ALDI Stores Australia",
+    "category": "operations",
+    "roles": [
+      {
+        "title": "Duty Store Manager",
+        "period": "October 2025 - Present",
+        "isCurrent": true,
+        "description": "Managing daily operations for one of Australia's leading discount grocery retailers, focusing on operational efficiency, team leadership, and customer service excellence in a fast-paced retail environment."
+      }
+    ],
+    "logoSrc": "images/aldi.png",
+    "logoAlt": "ALDI Stores Australia"
+  },
+  {
     "yearRange": "2022 - 2025",
     "company": "McDonald's",
     "employer": "DirectWest Pty Ltd",
+    "category": "operations",
     "roles": [
       {
         "title": "Operations Technology Platform (OTP) Manager",
@@ -109,6 +114,7 @@
   {
     "yearRange": "2020 - 2022",
     "company": "Taco Bell Australia",
+    "category": "operations",
     "roles": [
       {
         "title": "Assistant Restaurant Manager",

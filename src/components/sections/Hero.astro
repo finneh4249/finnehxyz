@@ -7,187 +7,158 @@ import ethanImage from '../../assets/images/ethan.jpg';
 
 <section
   id="hero"
-  class="min-h-screen flex flex-col justify-center items-center relative pt-20 pb-20 bg-white dark:bg-zinc-950 overflow-hidden selection:bg-neo-pink selection:text-white"
+  class="min-h-screen flex flex-col justify-center items-center relative pt-20 pb-20 bg-cyber-bg overflow-hidden selection:bg-cyber-magenta/30 selection:text-white scan-lines"
 >
-  <!-- Diagonal stripe background pattern -->
-  <div class="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none z-0">
-    <div class="absolute inset-0" style={{
-      backgroundImage: `
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 20px,
-          #000 20px,
-          #000 22px
-        )
-      `,
-    }}></div>
-  </div>
-  
-  <!-- Floating brutal shapes - More chaotic and overlapping -->
-  <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-    <!-- Large yellow rectangle top left -->
-    <div class="absolute -top-12 -left-12 w-48 h-64 bg-neo-yellow border-6 border-black dark:border-white shadow-brutal-xl rotate-12 animate-float" style="animation-duration: 6s;"></div>
-    
-    <!-- Pink square bottom right -->
-    <div class="absolute -bottom-16 -right-16 w-56 h-56 bg-neo-pink border-6 border-black dark:border-white shadow-brutal-xl -rotate-12 animate-float" style="animation-duration: 8s; animation-delay: 1s;"></div>
-    
-    <!-- Blue circle top right -->
-    <div class="absolute top-20 right-24 w-32 h-32 bg-neo-blue border-6 border-black dark:border-white rounded-full shadow-brutal-lg animate-bounce" style="animation-duration: 3s;"></div>
-    
-    <!-- Green tall rectangle bottom left -->
-    <div class="absolute bottom-24 left-16 w-24 h-72 bg-neo-green border-6 border-black dark:border-white shadow-brutal rotate-6 animate-float" style="animation-duration: 7s; animation-delay: 2s;"></div>
-    
-    <!-- Purple small square center -->
-    <div class="absolute top-1/2 right-1/4 w-20 h-20 bg-neo-purple border-4 border-black dark:border-white shadow-brutal rotate-45 hidden lg:block"></div>
-    
-    <!-- Orange wide rectangle -->
-    <div class="absolute top-1/3 left-1/4 w-40 h-24 bg-neo-orange border-4 border-black dark:border-white shadow-brutal -rotate-12 hidden lg:block"></div>
-  </div>
+  <!-- Grid background -->
+  <div class="absolute inset-0 pointer-events-none z-0" style={{
+    backgroundImage: `
+      linear-gradient(rgba(0, 255, 245, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 245, 0.03) 1px, transparent 1px)
+    `,
+    backgroundSize: '60px 60px',
+  }}></div>
+
+  <!-- Animated gradient orbs -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-cyber-cyan/5 blur-3xl animate-pulse-glow pointer-events-none"></div>
+  <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-cyber-magenta/5 blur-3xl animate-pulse-glow pointer-events-none" style="animation-delay: 1s;"></div>
 
   <div class="container mx-auto px-4 relative z-10">
     <div class="max-w-7xl mx-auto">
       
-      <!-- Main content - Stacked layout with more brutalist styling -->
+      <!-- Main content -->
       <div class="flex flex-col items-center gap-8 md:gap-12">
         
-        <!-- Profile Image with extreme brutalist treatment -->
+        <!-- Profile Image with neon treatment -->
         <div class="relative group animate-on-scroll slide-down">
           <div class="relative inline-block">
-            <!-- Triple-layered shadow effect -->
-            <div class="absolute -top-8 -left-8 w-full h-full bg-neo-purple border-6 border-black dark:border-white rotate-6"></div>
-            <div class="absolute -top-4 -left-4 w-full h-full bg-neo-blue border-6 border-black dark:border-white rotate-3"></div>
+            <!-- Neon glow backdrop -->
+            <div class="absolute -inset-2 bg-gradient-to-br from-cyber-cyan/20 to-cyber-magenta/20 blur-lg group-hover:blur-xl transition-all duration-500"></div>
             
             <!-- Main container -->
             <div 
               id="hero-profile-container"
-              class="relative w-72 h-72 md:w-96 md:h-96 border-8 border-black dark:border-white shadow-brutal-xl overflow-hidden bg-white cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-brutal-xxl hover:rotate-2"
+              class="relative w-56 h-56 md:w-72 md:h-72 border-3 border-cyber-cyan overflow-hidden bg-cyber-surface cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-glow-cyan-lg"
               title="Click me for a surprise 👀"
+              style="box-shadow: 0 0 20px rgba(0, 255, 245, 0.3), 6px 6px 0px 0px #2a2a3a;"
             >
               <Image
                 id="hero-image"
                 src={ethanImage}
                 alt="Ethan Cornwill"
-                class="object-cover w-full h-full"
+                class="object-cover w-full h-full grayscale-[20%] contrast-110"
                 loading="eager"
-                width={384}
-                height={384}
+                width={288}
+                height={288}
                 densities={[1.5, 2]}
               />
+              <!-- Scan line overlay on image -->
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyber-cyan/5 to-transparent pointer-events-none"></div>
             </div>
-            
-            <!-- Corner accent -->
-            <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-neo-yellow border-6 border-black dark:border-white shadow-brutal -rotate-12"></div>
           </div>
         </div>
 
-        <!-- Text content - Centered and bold -->
+        <!-- Text content -->
         <div class="flex flex-col gap-6 items-center text-center max-w-4xl animate-on-scroll slide-up">
           
-          <!-- Massive name -->
+          <!-- Name with glitch -->
           <div class="relative">
-            <h1 class="text-7xl md:text-9xl lg:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] text-black dark:text-white mix-blend-difference">
-              <span class="inline-block transform -rotate-2 hover:rotate-2 transition-transform duration-300">HI,</span>
-              <span class="inline-block transform rotate-1 hover:-rotate-1 transition-transform duration-300 text-neo-pink">I'M</span>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.85] text-white">
+              <span class="inline-block">HI,</span>
+              <span class="inline-block neon-magenta">I'M</span>
               <br/>
-              <span class="relative inline-block transform -rotate-1 hover:scale-110 transition-transform duration-300">
+              <span class="relative inline-block glitch-text" data-text="ETHAN">
                 ETHAN
-                <span class="absolute -bottom-4 left-0 w-full h-8 md:h-12 bg-neo-yellow -z-10 -rotate-2"></span>
+                <span class="absolute -bottom-2 left-0 w-full h-2 md:h-3 bg-cyber-cyan -z-10"></span>
               </span>
             </h1>
           </div>
           
-          <!-- Title in loud box -->
-          <div class="bg-neo-yellow border-8 border-black dark:border-white shadow-brutal-xl p-6 md:p-8 rotate-1 transform hover:rotate-0 hover:scale-105 transition-all duration-200 max-w-2xl">
-            <p class="text-3xl md:text-5xl font-black uppercase leading-none text-black tracking-tighter glitch-text" data-text="AI ENGINEER & SYSTEMS ARCHITECT">
+          <!-- Title box -->
+          <div class="border-2 border-cyber-cyan bg-cyber-surface p-5 md:p-7 max-w-2xl transition-all duration-200 hover:shadow-glow-cyan"
+               style="box-shadow: 4px 4px 0px 0px #2a2a3a;">
+            <p class="text-2xl md:text-4xl font-black uppercase leading-none text-cyber-cyan tracking-tight glitch-text" data-text="AI ENGINEER & SYSTEMS ARCHITECT">
               AI ENGINEER &<br/>SYSTEMS ARCHITECT
             </p>
           </div>
 
           <!-- Bio statement -->
-          <div class="bg-white dark:bg-gray-800 border-6 border-black dark:border-white shadow-brutal-lg p-6 md:p-8 -rotate-1 max-w-3xl transform hover:rotate-0 transition-all duration-200">
-            <p class="text-xl md:text-3xl font-bold leading-tight text-black dark:text-white">
+          <div class="border-2 border-cyber-border bg-cyber-surface/80 p-5 md:p-7 max-w-3xl transition-all duration-200"
+               style="box-shadow: 4px 4px 0px 0px #2a2a3a;">
+            <p class="text-lg md:text-xl font-medium leading-relaxed text-cyber-text">
               13+ years building software. 10 years managing operations.
               <br/>
-              <span class="bg-black text-white px-2 inline-block transform rotate-1 mt-2">Now I architect AI systems that survive production,</span>
+              <span class="bg-cyber-cyan/10 text-cyber-cyan px-2 py-0.5 inline-block mt-2 font-bold border border-cyber-cyan/30">Now I architect AI systems that survive production,</span>
               <br/>
-              not just demos that die in staging.
+              <span class="text-cyber-text-muted">not just demos that die in staging.</span>
             </p>
           </div>
           
           <!-- Rotating role display -->
-          <div class="bg-neo-blue border-8 border-black dark:border-white shadow-brutal-xl p-6 md:p-8 rotate-2 w-full max-w-2xl transform hover:rotate-0 hover:scale-105 transition-all duration-200">
-            <h2 class="text-2xl md:text-4xl font-black uppercase min-h-[60px] md:min-h-[80px] flex items-center justify-center text-white">
+          <div class="border-2 border-cyber-magenta bg-cyber-surface p-5 md:p-7 w-full max-w-2xl transition-all duration-200"
+               style="box-shadow: 4px 4px 0px 0px rgba(255, 0, 255, 0.3);">
+            <h2 class="text-xl md:text-3xl font-black uppercase min-h-[50px] md:min-h-[60px] flex items-center justify-center neon-magenta font-mono">
+              <span class="text-cyber-text-muted mr-2">&gt;</span>
               <span id="typing-text"></span>
-              <span class="animate-blink inline-block w-2 h-8 md:h-12 ml-2 bg-white"></span>
+              <span class="animate-blink inline-block w-2 h-7 md:h-10 ml-1 bg-cyber-magenta"></span>
             </h2>
           </div>
 
-          <!-- Skill tags - bigger and bolder -->
-          <div class="flex flex-wrap justify-center gap-4 mt-8">
-            <div class="brutal-btn bg-neo-pink text-white px-8 py-4 text-xl md:text-2xl font-black rotate-3 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
+          <!-- Skill tags -->
+          <div class="flex flex-wrap justify-center gap-3 mt-6">
+            <div class="cyber-btn border-cyber-cyan text-cyber-cyan px-6 py-3 text-sm md:text-base font-mono hover:bg-cyber-cyan/10 transition-all duration-200">
               AI DEVELOPMENT
             </div>
-            <div class="brutal-btn bg-neo-green text-black px-8 py-4 text-xl md:text-2xl font-black -rotate-2 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
+            <div class="cyber-btn border-cyber-green text-cyber-green px-6 py-3 text-sm md:text-base font-mono hover:bg-cyber-green/10 transition-all duration-200">
               AGENT SYSTEMS
             </div>
-            <div class="brutal-btn bg-neo-purple text-white px-8 py-4 text-xl md:text-2xl font-black rotate-2 hover:rotate-0 hover:-translate-y-2 border-6 border-black dark:border-white shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-200">
+            <div class="cyber-btn border-cyber-magenta text-cyber-magenta px-6 py-3 text-sm md:text-base font-mono hover:bg-cyber-magenta/10 transition-all duration-200">
               PRODUCTION ML
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Social links - Bigger and more prominent -->
-      <div class="mt-20 flex justify-center gap-6 flex-wrap animate-on-scroll slide-up">
+      <!-- Social links -->
+      <div class="mt-16 flex justify-center gap-4 flex-wrap animate-on-scroll slide-up">
         <a href="https://github.com/finneh4249" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-white dark:bg-gray-800 border-6 border-black dark:border-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <Icon name="mdi:github" class="text-6xl md:text-7xl text-black dark:text-white group-hover:scale-110 transition-transform" />
+          class="cyber-btn border-cyber-border w-16 h-16 md:w-20 md:h-20 p-0 flex items-center justify-center hover:border-white hover:text-white hover:shadow-glow-cyan transition-all group">
+          <Icon name="mdi:github" class="text-4xl md:text-5xl text-cyber-text-muted group-hover:text-white transition-colors" />
         </a>
         <a href="https://x.com/FinnehReform" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-neo-blue border-6 border-black dark:border-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center -rotate-6 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <Icon name="mdi:twitter" class="text-white text-6xl md:text-7xl group-hover:scale-110 transition-transform" />
+          class="cyber-btn border-cyber-border w-16 h-16 md:w-20 md:h-20 p-0 flex items-center justify-center hover:border-cyber-cyan hover:text-cyber-cyan hover:shadow-glow-cyan transition-all group">
+          <Icon name="mdi:twitter" class="text-4xl md:text-5xl text-cyber-text-muted group-hover:text-cyber-cyan transition-colors" />
         </a>
         <a href="https://www.linkedin.com/in/ethan-cornwill/" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-[#0077B5] border-6 border-black dark:border-white text-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <Icon name="mdi:linkedin" class="text-6xl md:text-7xl group-hover:scale-110 transition-transform" />
+          class="cyber-btn border-cyber-border w-16 h-16 md:w-20 md:h-20 p-0 flex items-center justify-center hover:border-cyber-blue hover:text-cyber-blue hover:shadow-glow-cyan transition-all group">
+          <Icon name="mdi:linkedin" class="text-4xl md:text-5xl text-cyber-text-muted group-hover:text-cyber-blue transition-colors" />
         </a>
         <a href="https://cityloopers.com/discord" target="_blank" rel="noopener noreferrer"
-          class="brutal-btn bg-[#5865F2] border-6 border-black dark:border-white text-white w-24 h-24 md:w-32 md:h-32 p-0 flex items-center justify-center -rotate-12 hover:rotate-0 hover:-translate-y-2 transition-all shadow-brutal-lg hover:shadow-brutal-xl group">
-          <Icon name="mdi:discord" class="text-6xl md:text-7xl group-hover:scale-110 transition-transform" />
+          class="cyber-btn border-cyber-border w-16 h-16 md:w-20 md:h-20 p-0 flex items-center justify-center hover:border-cyber-purple hover:text-cyber-purple hover:shadow-glow-magenta transition-all group">
+          <Icon name="mdi:discord" class="text-4xl md:text-5xl text-cyber-text-muted group-hover:text-cyber-purple transition-colors" />
         </a>
       </div>
 
-      <!-- Scroll indicator - More prominent -->
-      <div class="mt-20 text-center animate-on-scroll slide-up">
-        <a href="#aboutme" class="brutal-btn bg-neo-yellow border-8 border-black dark:border-white px-10 py-5 inline-flex items-center gap-3 animate-bounce rotate-1 text-black hover:rotate-0 hover:bg-yellow-400 hover:shadow-brutal-xl hover:-translate-y-2 shadow-brutal-lg transition-all duration-200">
-          <span class="font-black uppercase text-xl md:text-2xl">SCROLL DOWN</span>
-          <span class="text-3xl md:text-4xl">↓</span>
+      <!-- Scroll indicator -->
+      <div class="mt-16 text-center animate-on-scroll slide-up">
+        <a href="#projects" class="cyber-btn-primary px-8 py-4 inline-flex items-center gap-3 animate-bounce text-base group">
+          <span class="font-mono font-bold uppercase">VIEW PROJECTS</span>
+          <span class="text-2xl group-hover:translate-y-1 transition-transform">↓</span>
         </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Data injection for client-side scripts -->
+<!-- Data injection -->
 <div id="hero-data" data-strings={JSON.stringify(heroData.typingStrings)} data-facts={JSON.stringify(heroData.funFacts)} class="hidden"></div>
 
 <style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(var(--rotation, 0deg)); }
-    50% { transform: translateY(-20px) rotate(var(--rotation, 0deg)); }
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .shadow-brutal-xxl {
+    box-shadow: 12px 12px 0px 0px #2a2a3a, 0 0 30px rgba(0, 255, 245, 0.1);
   }
 
-  .animate-blink {
-    animation: blink 1s step-end infinite;
-  }
-  
-  @keyframes blink {
-    50% { opacity: 0; }
+  .shake-animation {
+    animation: shake 0.5s;
   }
 
   @keyframes shake {
@@ -202,72 +173,14 @@ import ethanImage from '../../assets/images/ethan.jpg';
     80% { transform: translate(2px, -2px) rotate(2deg); }
     90% { transform: translate(-2px, -2px) rotate(-2deg); }
   }
-  
-  .shake-animation {
-    animation: shake 0.5s;
-  }
-
-  .shadow-brutal-xxl {
-    box-shadow: 20px 20px 0px 0px rgba(0, 0, 0, 1);
-  }
-
-  .dark .shadow-brutal-xxl {
-    box-shadow: 20px 20px 0px 0px rgba(255, 255, 255, 1);
-  }
-
-  /* Glitch Effect */
-  .glitch-text {
-    position: relative;
-  }
-  
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .glitch-text::before {
-    left: 2px;
-    text-shadow: -1px 0 #ff00c1;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
-  }
-  
-  .glitch-text::after {
-    left: -2px;
-    text-shadow: -1px 0 #00fff9;
-    clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 5s infinite linear alternate-reverse;
-  }
-  
-  @keyframes glitch-anim {
-    0% { clip: rect(30px, 9999px, 10px, 0); }
-    20% { clip: rect(80px, 9999px, 90px, 0); }
-    40% { clip: rect(10px, 9999px, 50px, 0); }
-    60% { clip: rect(40px, 9999px, 20px, 0); }
-    80% { clip: rect(70px, 9999px, 60px, 0); }
-    100% { clip: rect(20px, 9999px, 80px, 0); }
-  }
-  
-  @keyframes glitch-anim2 {
-    0% { clip: rect(10px, 9999px, 80px, 0); }
-    20% { clip: rect(60px, 9999px, 10px, 0); }
-    40% { clip: rect(20px, 9999px, 50px, 0); }
-    60% { clip: rect(90px, 9999px, 30px, 0); }
-    80% { clip: rect(50px, 9999px, 20px, 0); }
-    100% { clip: rect(30px, 9999px, 70px, 0); }
-  }
 </style>
 
 <script>
   function initHero() {
-    // Typing Effect
     const typingText = document.getElementById('typing-text');
-    const strings = JSON.parse(document.getElementById('hero-data').dataset.strings);
+    const heroDataEl = document.getElementById('hero-data');
+    if (!heroDataEl) return;
+    const strings = JSON.parse(heroDataEl.dataset.strings || '[]');
     
     if (typingText) {
       const typeElement = typingText as HTMLElement;
@@ -312,7 +225,7 @@ import ethanImage from '../../assets/images/ethan.jpg';
     const heroImage = document.getElementById('hero-image');
 
     if (profileContainer && heroImage && !profileContainer.dataset.hasListener) {
-      const funFacts = JSON.parse(document.getElementById('hero-data').dataset.facts);
+      const funFacts = JSON.parse(heroDataEl.dataset.facts || '[]');
       
       const clickHandler = () => {
         const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
@@ -321,11 +234,11 @@ import ethanImage from '../../assets/images/ethan.jpg';
         notification.innerHTML = randomFact;
         notification.style.cssText = `
           position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-          background: #FF006E; color: white; padding: 1.5rem 2rem;
-          border: 8px solid #000; box-shadow: 12px 12px 0px 0px #000;
-          z-index: 10000; font-weight: bold; font-size: 18px;
+          background: #12121a; color: #00fff5; padding: 1.5rem 2rem;
+          border: 2px solid #00fff5; box-shadow: 0 0 20px rgba(0, 255, 245, 0.3), 6px 6px 0px 0px #2a2a3a;
+          z-index: 10000; font-weight: bold; font-size: 16px;
           max-width: 90vw; width: 500px; text-align: center;
-          font-family: 'Space Grotesk', sans-serif;
+          font-family: 'JetBrains Mono', 'Space Mono', monospace;
         `;
         
         document.body.appendChild(notification);

@@ -1,0 +1,139 @@
+---
+---
+
+<div id="cmd-palette" class="cmd-palette" style="display: none;">
+  <div class="cmd-palette-box">
+    <div class="p-3 border-b border-cyber-border">
+      <div class="flex items-center gap-2">
+        <span class="text-cyber-text-muted font-mono text-sm">&gt;</span>
+        <input 
+          id="cmd-input"
+          type="text"
+          class="bg-transparent border-none outline-none font-mono text-sm text-cyber-cyan w-full placeholder-cyber-text-muted"
+          placeholder="Type to navigate..."
+          autocomplete="off"
+        />
+        <kbd class="text-[10px] font-mono text-cyber-text-muted border border-cyber-border px-1.5 py-0.5 cursor-pointer" id="cmd-esc">ESC</kbd>
+      </div>
+    </div>
+    <div id="cmd-results" class="max-h-64 overflow-y-auto"></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    if (window.__cmdPaletteInit) return;
+    window.__cmdPaletteInit = true;
+    
+    const commands = [
+      { label: 'Identity', desc: 'Name & profile', target: 'identity' },
+      { label: 'Projects', desc: 'View all projects', target: 'projects' },
+      { label: 'Featured Project', desc: 'Featured showcase', target: 'featured' },
+      { label: 'About', desc: 'Bio & background', target: 'about' },
+      { label: 'Technology Experience', desc: 'Tech roles', target: 'exp-tech' },
+      { label: 'Operations Experience', desc: 'Ops roles', target: 'exp-ops' },
+      { label: 'Skills & Tools', desc: 'Languages & frameworks', target: 'skills' },
+      { label: 'Education', desc: 'Learning & certs', target: 'education' },
+      { label: 'Contact', desc: 'Get in touch', target: 'contact' },
+      { label: 'Status', desc: 'Availability', target: 'status' },
+    ];
+    
+    let activeIndex = 0;
+    let filtered = [...commands];
+    
+    function getPalette() { return document.getElementById('cmd-palette'); }
+    function getInput() { return document.getElementById('cmd-input') as HTMLInputElement | null; }
+    function getResults() { return document.getElementById('cmd-results'); }
+    
+    function isOpen() {
+      const p = getPalette();
+      return p ? p.style.display === 'flex' : false;
+    }
+    
+    function render() {
+      const r = getResults();
+      if (!r) return;
+      r.innerHTML = '';
+      filtered.forEach((cmd, i) => {
+        const item = document.createElement('div');
+        item.className = `cmd-palette-item ${i === activeIndex ? 'active' : ''}`;
+        item.innerHTML = `<span class="text-white font-bold">${cmd.label}</span><span class="text-cyber-text-muted ml-2 text-xs">${cmd.desc}</span>`;
+        item.addEventListener('click', () => navigate(cmd.target));
+        r.appendChild(item);
+      });
+    }
+    
+    function navigate(target: string) {
+      const el = document.querySelector(`[style*="grid-area: ${target}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      closePalette();
+    }
+    
+    function openPalette() {
+      const p = getPalette();
+      const i = getInput();
+      if (!p) return;
+      p.style.display = 'flex';
+      if (i) { i.value = ''; }
+      activeIndex = 0;
+      filtered = [...commands];
+      render();
+      setTimeout(() => i?.focus(), 50);
+    }
+    
+    function closePalette() {
+      const p = getPalette();
+      const i = getInput();
+      if (!p) return;
+      p.style.display = 'none';
+      i?.blur();
+    }
+    
+    // Global keyboard handler
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !isOpen()) {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+          e.preventDefault();
+          openPalette();
+        }
+      } else if (e.key === 'Escape' && isOpen()) {
+        e.preventDefault();
+        e.stopPropagation();
+        closePalette();
+      }
+    });
+    
+    // Input navigation
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      const i = getInput();
+      if (document.activeElement !== i) return;
+      
+      if (e.key === 'ArrowDown') { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, filtered.length - 1); render(); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); render(); }
+      if (e.key === 'Enter' && filtered[activeIndex]) { navigate(filtered[activeIndex].target); }
+    });
+    
+    // Search filter
+    document.addEventListener('input', (e) => {
+      if ((e.target as HTMLElement)?.id !== 'cmd-input') return;
+      const q = (e.target as HTMLInputElement).value.toLowerCase();
+      filtered = commands.filter(c => c.label.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q));
+      activeIndex = 0;
+      render();
+    });
+    
+    // Backdrop click to close
+    document.addEventListener('click', (e) => {
+      const p = getPalette();
+      if (isOpen() && e.target === p) closePalette();
+    });
+    
+    // ESC button click
+    document.getElementById('cmd-esc')?.addEventListener('click', closePalette);
+    
+    // Expose for trigger button
+    (window as any).__openCmdPalette = openPalette;
+  })();
+</script>

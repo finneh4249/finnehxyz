@@ -3,37 +3,39 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <dialog id="project-modal" class="modal p-0 bg-transparent backdrop:bg-black/80">
-  <div class="modal-box max-w-4xl w-full bg-white dark:bg-zinc-900 p-0 overflow-hidden relative border-3 border-black dark:border-white shadow-brutal-xl m-4 rounded-none">
-    <div class="relative h-64 md:h-80 bg-gray-200 overflow-hidden border-b-3 border-black dark:border-white">
+  <div class="modal-box max-w-4xl w-full bg-cyber-surface p-0 overflow-hidden relative border-2 border-cyber-cyan m-4 rounded-none"
+       style="box-shadow: 0 0 30px rgba(0, 255, 245, 0.15), 8px 8px 0px 0px #2a2a3a;">
+    <div class="relative h-56 md:h-72 bg-cyber-bg overflow-hidden border-b border-cyber-border">
       <img
         id="modal-image"
         src=""
         alt=""
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover grayscale-[20%]"
       />
+      <div class="absolute inset-0 bg-gradient-to-t from-cyber-surface to-transparent"></div>
       <button
         id="modal-close"
-        class="absolute top-4 right-4 brutal-btn bg-white text-black w-10 h-10 flex items-center justify-center z-10 hover:rotate-90 transition-transform duration-300 rounded-none border-3 border-black dark:border-white"
+        class="absolute top-4 right-4 cyber-btn w-10 h-10 flex items-center justify-center z-10 hover:border-cyber-magenta hover:text-cyber-magenta transition-all duration-300 p-0"
         aria-label="Close modal"
       >
-        <Icon name="mdi:close" class="text-2xl" />
+        <Icon name="mdi:close" class="text-xl" />
       </button>
     </div>
     
-    <div class="p-8">
+    <div class="p-6 md:p-8">
       <div class="flex flex-wrap justify-between items-start gap-4 mb-6">
         <div>
-          <h2 id="modal-title" class="text-4xl font-bold uppercase mb-2 leading-tight text-black dark:text-white"></h2>
+          <h2 id="modal-title" class="text-3xl font-black uppercase mb-2 leading-tight text-white"></h2>
           <div id="modal-tags" class="flex flex-wrap gap-2"></div>
         </div>
         
-        <div class="flex gap-3">
+        <div class="flex gap-2">
           <a 
             id="modal-live"
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="brutal-btn brutal-blue px-5 py-2 text-sm font-bold uppercase hover:-translate-y-1 transition-transform hidden"
+            class="cyber-btn-primary px-4 py-2 text-xs hidden"
           >
             Live Demo
           </a>
@@ -42,31 +44,33 @@ import { Icon } from 'astro-icon/components';
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="brutal-btn bg-black text-white px-5 py-2 text-sm font-bold uppercase hover:-translate-y-1 transition-transform hidden"
+            class="cyber-btn px-4 py-2 text-xs hidden"
           >
-            GitHub
+            Source
           </a>
         </div>
       </div>
       
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="md:col-span-2">
-          <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black dark:border-white inline-block text-black dark:text-white">Overview</h3>
-          <p id="modal-description" class="text-lg leading-relaxed mb-6 text-gray-700 dark:text-gray-300"></p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 space-y-6">
+          <div>
+            <h3 class="text-sm font-mono uppercase mb-2 text-cyber-cyan tracking-widest">// Overview</h3>
+            <p id="modal-description" class="text-sm leading-relaxed text-cyber-text"></p>
+          </div>
           
           <div id="modal-challenges-container" class="hidden">
-            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black dark:border-white inline-block text-black dark:text-white">Challenges</h3>
-            <p id="modal-challenges" class="mb-6 leading-relaxed text-gray-700 dark:text-gray-300"></p>
+            <h3 class="text-sm font-mono uppercase mb-2 text-cyber-magenta tracking-widest">// Challenges</h3>
+            <p id="modal-challenges" class="text-sm leading-relaxed text-cyber-text"></p>
           </div>
           
           <div id="modal-outcomes-container" class="hidden">
-            <h3 class="text-xl font-bold uppercase mb-3 border-b-3 border-black dark:border-white inline-block text-black dark:text-white">Outcomes</h3>
-            <p id="modal-outcomes" class="mb-6 leading-relaxed text-gray-700 dark:text-gray-300"></p>
+            <h3 class="text-sm font-mono uppercase mb-2 text-cyber-green tracking-widest">// Outcomes</h3>
+            <p id="modal-outcomes" class="text-sm leading-relaxed text-cyber-text"></p>
           </div>
         </div>
         
-        <div class="bg-white dark:bg-zinc-950 p-6 border-brutal border-black dark:border-white h-fit">
-          <h3 class="text-xl font-bold uppercase mb-4 text-black dark:text-white">Technologies</h3>
+        <div class="bg-cyber-bg border border-cyber-border p-5 h-fit" style="box-shadow: 3px 3px 0px 0px #2a2a3a;">
+          <h3 class="text-sm font-mono uppercase mb-3 text-cyber-text-muted tracking-widest">// Stack</h3>
           <div id="modal-tech" class="flex flex-wrap gap-2"></div>
         </div>
       </div>
@@ -109,7 +113,6 @@ import { Icon } from 'astro-icon/components';
     const dialog = document.getElementById('project-modal') as HTMLDialogElement;
     const closeBtn = document.getElementById('modal-close');
     
-    // Elements to update
     const img = document.getElementById('modal-image') as HTMLImageElement;
     const title = document.getElementById('modal-title');
     const desc = document.getElementById('modal-description');
@@ -122,7 +125,6 @@ import { Icon } from 'astro-icon/components';
     const outcomesContainer = document.getElementById('modal-outcomes-container');
     const outcomes = document.getElementById('modal-outcomes');
 
-    // Close handler
     const closeDialog = () => {
       dialog.close();
       document.body.style.overflow = '';
@@ -133,12 +135,10 @@ import { Icon } from 'astro-icon/components';
       if (e.target === dialog) closeDialog();
     });
 
-    // Open handler event
     document.addEventListener('openProjectModal', (e: any) => {
       const project = e.detail;
       if (!project || !dialog) return;
 
-      // Update content
       if (img) {
         img.src = project.image || '';
         img.alt = project.title || 'Project Image';
@@ -147,33 +147,30 @@ import { Icon } from 'astro-icon/components';
       if (title) title.textContent = project.title || '';
       if (desc) desc.textContent = project.detailedDescription || project.description || '';
       
-      // Tags
       if (tagsContainer) {
         tagsContainer.innerHTML = '';
         if (project.tags && Array.isArray(project.tags)) {
-          project.tags.forEach(tag => {
+          project.tags.forEach((tag: any) => {
             const span = document.createElement('span');
-            span.className = 'px-3 py-1 bg-white text-black border-3 border-black text-xs font-bold uppercase rounded-none';
+            span.className = 'px-2 py-0.5 border border-cyber-cyan/30 text-cyber-cyan text-[10px] font-mono font-bold uppercase tracking-wider';
             span.textContent = tag.name;
             tagsContainer.appendChild(span);
           });
         }
       }
 
-      // Tech
       if (techContainer) {
         techContainer.innerHTML = '';
         if (project.technologies && Array.isArray(project.technologies)) {
-          project.technologies.forEach(tech => {
+          project.technologies.forEach((tech: string) => {
             const span = document.createElement('span');
-            span.className = 'px-3 py-1 bg-white dark:bg-zinc-900 border-3 border-black dark:border-white text-xs font-bold uppercase rounded-none text-black dark:text-white';
+            span.className = 'px-2 py-1 bg-cyber-surface border border-cyber-border text-[10px] font-mono font-bold uppercase text-cyber-text tracking-wider';
             span.textContent = tech;
             techContainer.appendChild(span);
           });
         }
       }
 
-      // Links
       if (liveBtn) {
         if (project.liveDemoUrl) {
           liveBtn.href = project.liveDemoUrl;
@@ -192,7 +189,6 @@ import { Icon } from 'astro-icon/components';
         }
       }
       
-      // Details
       if (challengesContainer && challenges) {
         if (project.challenges) {
           challenges.textContent = project.challenges;

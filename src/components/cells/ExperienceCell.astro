@@ -1,0 +1,83 @@
+---
+import experienceData from '../../data/experience.json';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  category: 'technology' | 'operations';
+}
+
+const { category } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif,webp}', { eager: true });
+const getImagePath = (path: string) => {
+  if (!path) return undefined;
+  const normalizedPath = path.replace(/^(\.\/)?images\//, '/src/assets/images/');
+  return images[normalizedPath]?.default;
+};
+
+const experiences = (experienceData as any[]).filter(e => e.category === category);
+const accentColor = category === 'technology' ? 'cyber-cyan' : 'cyber-magenta';
+const cellClass = category === 'technology' ? 'cell-exp-tech' : 'cell-exp-ops';
+const revealDir = category === 'technology' ? 'reveal-left' : 'reveal-right';
+---
+
+<div class={`bento-cell ${cellClass} reveal ${revealDir} stagger-3`}>
+  <div class="bento-cell-header flex items-center gap-2">
+    <span class={`w-2 h-2 bg-${accentColor}`}></span>
+    <span>// {category}</span>
+  </div>
+  <div class="bento-cell-content space-y-4">
+    {experiences.map((exp) => {
+      const logo = getImagePath(exp.logoSrc);
+      return (
+        <div class={`bg-cyber-bg border border-cyber-border p-4 border-l-2 border-l-${accentColor} hover:border-l-4 transition-all`}>
+          <div class="flex items-start gap-3">
+            {logo && (
+              <div class="w-10 h-10 bg-white border border-cyber-border p-1 flex items-center justify-center flex-shrink-0">
+                <Image src={logo} alt={exp.logoAlt} class="w-full h-full object-contain" width={40} height={40} />
+              </div>
+            )}
+            <div class="flex-1 min-w-0">
+              <h3 class="text-sm font-bold uppercase text-white leading-tight">{exp.company}</h3>
+              {exp.employer && <p class="text-xs font-mono text-cyber-text-muted mt-0.5">{exp.employer}</p>}
+              <p class="text-xs font-mono text-cyber-text-muted mt-0.5">// {exp.yearRange}</p>
+            </div>
+          </div>
+          
+          <div class="mt-3 space-y-3">
+            {exp.roles.map((role: any) => (
+              <div class="border-t border-cyber-border/50 pt-3">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <span class="text-xs font-bold text-white uppercase">{role.title}</span>
+                  <div class="flex items-center gap-2">
+                    {role.isCurrent && (
+                      <span class={`text-[8px] font-mono font-bold uppercase border border-${accentColor} text-${accentColor} px-1.5 py-0.5 tracking-wider bg-${accentColor}/5`}>
+                        Active
+                      </span>
+                    )}
+                    <span class="text-[10px] font-mono text-cyber-text-muted">{role.period}</span>
+                  </div>
+                </div>
+                {role.description && (
+                  <div class="mt-2 text-xs text-cyber-text leading-relaxed space-y-1">
+                    {role.description.split('\n').map((line: string) => (
+                      line.startsWith('- ') ? (
+                        <div class="flex items-start gap-1.5">
+                          <span class={`w-1 h-1 bg-${accentColor} mt-1.5 flex-shrink-0`}></span>
+                          <span>{line.substring(2)}</span>
+                        </div>
+                      ) : (
+                        <p>{line}</p>
+                      )
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>

@@ -1,126 +1,124 @@
 ---
 ---
 
-<section id="contact" class="py-20 bg-neo-green relative overflow-hidden">
-  <!-- Chaotic decorative elements -->
-  <div class="absolute top-10 left-10 w-44 h-36 bg-neo-yellow border-brutal-thick border-black shadow-brutal-lg rotate-12"></div>
-  <div class="absolute bottom-10 right-10 w-32 h-48 bg-neo-pink border-brutal border-black shadow-brutal -rotate-6"></div>
-  <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-neo-blue border-brutal-thick border-black shadow-brutal rotate-45"></div>
-  <div class="absolute bottom-1/3 left-1/3 w-36 h-20 bg-neo-purple border-brutal border-black shadow-brutal -rotate-12"></div>
+<section id="contact" class="py-20 bg-cyber-bg relative overflow-hidden scan-lines">
+  <!-- Background accents -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-cyber-cyan/3 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyber-magenta/3 blur-3xl pointer-events-none"></div>
   
   <div class="container mx-auto px-4 relative z-10">
     <div class="mb-12 animate-on-scroll slide-up">
-      <div class="flex items-center justify-center gap-6 flex-wrap mb-6">
-        <div class="brutal-btn brutal-pink px-6 py-3 rotate-3 text-white">
-          LET'S BUILD
-        </div>
-        <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tight -rotate-1 text-black">
+      <div class="flex items-center justify-center gap-4 flex-wrap mb-4">
+        <span class="category-badge-ops">// LET'S BUILD</span>
+        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter neon-magenta">
           Contact
         </h2>
       </div>
-      <div class="h-3 w-48 bg-black mx-auto -rotate-1"></div>
+      <div class="h-0.5 w-48 bg-gradient-to-r from-transparent via-cyber-magenta to-transparent mx-auto"></div>
     </div>
     
-    <p class="text-center text-xl font-bold max-w-2xl mx-auto mb-12 -rotate-1 text-black dark:text-white">
+    <p class="text-center text-lg font-medium max-w-2xl mx-auto mb-4 text-cyber-text">
       Need an AI engineer who actually ships production systems?
     </p>
     
-    <p class="text-center text-lg max-w-2xl mx-auto mb-8 text-black dark:text-white">
-      I'm currently in retail management at Aldi while actively seeking AI engineering roles. 
-      Available to start with standard notice period.
+    <p class="text-center text-sm max-w-2xl mx-auto mb-4 text-cyber-text-muted font-mono">
+      // Currently in retail management at Aldi, actively seeking AI engineering roles.<br/>
+      // Available to start with standard notice period.
     </p>
     
-    <p class="text-center text-xl font-bold mb-12 rotate-1 text-black dark:text-white">
+    <p class="text-center text-lg font-bold mb-12 text-cyber-text">
       Let's talk:{' '}
       <a 
         href="mailto:mail@finneh.xyz" 
-        class="underline hover:scale-105 inline-block transition-transform text-neo-pink"
+        class="neon-cyan hover:underline transition-all"
       >
         mail@finneh.xyz
       </a>
     </p>
     
-    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
-      <!-- Form - takes 2 columns -->
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+      <!-- Form -->
       <div class="md:col-span-2 animate-on-scroll slide-right">
-        <div class="brutal-card rotate-1 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-lg">
-          <div class="p-6 md:p-8 bg-white dark:bg-zinc-900">
+        <div class="cyber-card border-2 border-cyber-border hover:border-cyber-cyan/30 transition-all"
+             style="box-shadow: 4px 4px 0px 0px #2a2a3a;">
+          <div class="p-6 md:p-8">
+            <div class="font-mono text-xs text-cyber-cyan mb-4">// contact_form.init()</div>
             
-            <div id="success-message" class="bg-white border-3 border-black shadow-brutal p-8 text-center hidden">
+            <div id="success-message" class="cyber-card border border-cyber-green p-8 text-center hidden">
               <div class="flex flex-col items-center">
-                <div class="w-20 h-20 bg-neo-yellow border-3 border-black flex items-center justify-center mb-4 rotate-12">
-                  <span class="text-4xl font-bold text-neo-green">✓</span>
+                <div class="w-16 h-16 border border-cyber-green flex items-center justify-center mb-4">
+                  <span class="text-3xl neon-green">✓</span>
                 </div>
-                <h3 class="text-2xl font-bold uppercase mb-2 text-neo-green">Message Sent!</h3>
-                <p class="text-lg font-medium text-black">Thanks! I'll get back to you soon.</p>
+                <h3 class="text-xl font-bold uppercase mb-2 neon-green font-mono">Message Sent!</h3>
+                <p class="text-sm text-cyber-text">Thanks! I'll get back to you soon.</p>
               </div>
             </div>
 
-            <form id="contact-form" class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="form-control w-full">
-                  <label class="label font-bold text-lg uppercase mb-2 text-black dark:text-white">
+            <form id="contact-form" class="space-y-5">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label class="font-mono text-xs uppercase mb-2 block text-cyber-text-muted tracking-widest">
                     Full Name
                   </label>
                   <input
                     type="text"
                     name="name"
-                    class="brutal-input w-full bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
-                    placeholder="Your name"
+                    class="cyber-input"
+                    placeholder="> your name"
                     required
                   />
                 </div>
                 
-                <div class="form-control w-full">
-                  <label class="label font-bold text-lg uppercase mb-2 text-black dark:text-white">
+                <div>
+                  <label class="font-mono text-xs uppercase mb-2 block text-cyber-text-muted tracking-widest">
                     Email Address
                   </label>
                   <input
                     type="email"
                     name="email"
-                    class="brutal-input w-full bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
-                    placeholder="your@email.com"
+                    class="cyber-input"
+                    placeholder="> your@email.com"
                     required
                   />
                 </div>
               </div>
               
-              <div class="form-control w-full">
-                <label class="label font-bold text-lg uppercase mb-2 text-black dark:text-white">
+              <div>
+                <label class="font-mono text-xs uppercase mb-2 block text-cyber-text-muted tracking-widest">
                   Subject
                 </label>
                 <input
                   type="text"
                   name="subject"
-                  class="brutal-input w-full bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
-                  placeholder="What's this about?"
+                  class="cyber-input"
+                  placeholder="> what's this about?"
                   required
                 />
               </div>
               
-              <div class="form-control w-full">
-                <label class="label font-bold text-lg uppercase mb-2 text-black dark:text-white">
+              <div>
+                <label class="font-mono text-xs uppercase mb-2 block text-cyber-text-muted tracking-widest">
                   Message
                 </label>
                 <textarea
                   name="message"
-                  class="brutal-input w-full h-40 resize-none bg-white text-black rounded-none border-3 border-black focus:border-neo-purple focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none transition-all"
-                  placeholder="Tell me about your project..."
+                  class="cyber-input h-36 resize-none"
+                  placeholder="> tell me about your project..."
                   required
                 ></textarea>
               </div>
               
-              <div id="error-message" class="bg-black border-3 border-black p-4 font-bold -rotate-1 text-neo-pink hidden">
-                ⚠ Failed to send message. Please try again later.
+              <div id="error-message" class="border border-cyber-pink bg-cyber-pink/10 p-4 font-mono text-sm text-cyber-pink hidden">
+                // ERROR: Failed to send message. Please try again later.
               </div>
               
-              <div class="flex justify-center mt-8">
+              <div class="flex justify-center mt-6">
                 <button
                   type="submit"
                   id="submit-btn"
-                  class="brutal-btn brutal-yellow px-12 py-4 text-xl rotate-2 hover:rotate-0 transition-all text-black disabled:opacity-50 disabled:cursor-not-allowed rounded-none border-3 border-black shadow-brutal-md"
+                  class="cyber-btn-primary px-10 py-4 text-base font-mono disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  SEND MESSAGE
+                  TRANSMIT_MESSAGE()
                 </button>
               </div>
             </form>
@@ -128,55 +126,52 @@
         </div>
       </div>
 
-      <!-- Contact cards - stacked in 1 column -->
-      <div class="space-y-6 animate-on-scroll slide-left">
-        <div class="brutal-card bg-white dark:bg-zinc-900 -rotate-2 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-md">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-neo-pink border-3 border-black mx-auto mb-4 flex items-center justify-center rotate-6 rounded-none">
-              <span class="text-3xl">📧</span>
-            </div>
-            <h3 class="text-xl font-bold uppercase mb-2 text-black dark:text-white">Email</h3>
-            <a 
-              href="mailto:mail@finneh.xyz" 
-              class="font-bold hover:scale-105 inline-block transition-transform text-black dark:text-white"
-            >
-              mail@finneh.xyz
-            </a>
+      <!-- Contact cards -->
+      <div class="space-y-4 animate-on-scroll slide-left">
+        <div class="cyber-card border border-cyber-border hover:border-cyber-cyan transition-all p-5 text-center"
+             style="box-shadow: 3px 3px 0px 0px #2a2a3a;">
+          <div class="w-12 h-12 border border-cyber-cyan mx-auto mb-3 flex items-center justify-center">
+            <span class="text-2xl">📧</span>
           </div>
+          <h3 class="text-base font-bold uppercase mb-1 text-white font-mono">Email</h3>
+          <a 
+            href="mailto:mail@finneh.xyz" 
+            class="text-sm font-mono text-cyber-cyan hover:underline"
+          >
+            mail@finneh.xyz
+          </a>
         </div>
         
-        <div class="brutal-card bg-white dark:bg-zinc-900 rotate-2 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-md">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-neo-blue border-3 border-black mx-auto mb-4 flex items-center justify-center -rotate-6 rounded-none">
-              <i class="bx bxl-linkedin text-3xl text-white"></i>
-            </div>
-            <h3 class="text-xl font-bold uppercase mb-2 text-black dark:text-white">LinkedIn</h3>
-            <a 
-              href="https://www.linkedin.com/in/ethancornwill/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="font-bold hover:scale-105 inline-block transition-transform text-black dark:text-white"
-            >
-              Connect
-            </a>
+        <div class="cyber-card border border-cyber-border hover:border-cyber-blue transition-all p-5 text-center"
+             style="box-shadow: 3px 3px 0px 0px #2a2a3a;">
+          <div class="w-12 h-12 border border-cyber-blue mx-auto mb-3 flex items-center justify-center">
+            <i class="bx bxl-linkedin text-2xl text-cyber-blue"></i>
           </div>
+          <h3 class="text-base font-bold uppercase mb-1 text-white font-mono">LinkedIn</h3>
+          <a 
+            href="https://www.linkedin.com/in/ethancornwill/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-sm font-mono text-cyber-blue hover:underline"
+          >
+            Connect
+          </a>
         </div>
         
-        <div class="brutal-card bg-white dark:bg-zinc-900 -rotate-2 hover:rotate-0 transition-all border-3 border-black rounded-none shadow-brutal-md">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-black border-3 border-black mx-auto mb-4 flex items-center justify-center rotate-6 rounded-none">
-              <i class="bx bxl-github text-3xl text-white"></i>
-            </div>
-            <h3 class="text-xl font-bold uppercase mb-2 text-black dark:text-white">GitHub</h3>
-            <a 
-              href="https://github.com/finneh4249" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="font-bold hover:scale-105 inline-block transition-transform text-black dark:text-white"
-            >
-              Follow
-            </a>
+        <div class="cyber-card border border-cyber-border hover:border-white transition-all p-5 text-center"
+             style="box-shadow: 3px 3px 0px 0px #2a2a3a;">
+          <div class="w-12 h-12 border border-cyber-border mx-auto mb-3 flex items-center justify-center">
+            <i class="bx bxl-github text-2xl text-white"></i>
           </div>
+          <h3 class="text-base font-bold uppercase mb-1 text-white font-mono">GitHub</h3>
+          <a 
+            href="https://github.com/finneh4249" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-sm font-mono text-cyber-text-muted hover:text-white hover:underline"
+          >
+            Follow
+          </a>
         </div>
       </div>
     </div>
@@ -194,26 +189,23 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (submitBtn) {
-          submitBtn.textContent = 'SENDING...';
+          submitBtn.textContent = 'TRANSMITTING...';
           (submitBtn as HTMLButtonElement).disabled = true;
         }
         errorMsg?.classList.add('hidden');
 
         try {
-          // Simulate network request
           await new Promise(resolve => setTimeout(resolve, 1500));
           
-          // Success
           form.classList.add('hidden');
           successMsg?.classList.remove('hidden');
           form.reset();
           
-          // Reset after 5 seconds
           setTimeout(() => {
             successMsg?.classList.add('hidden');
             form.classList.remove('hidden');
             if (submitBtn) {
-              submitBtn.textContent = 'SEND MESSAGE';
+              submitBtn.textContent = 'TRANSMIT_MESSAGE()';
               (submitBtn as HTMLButtonElement).disabled = false;
             }
           }, 5000);
@@ -222,7 +214,7 @@
           console.error('Form error:', err);
           errorMsg?.classList.remove('hidden');
           if (submitBtn) {
-            submitBtn.textContent = 'SEND MESSAGE';
+            submitBtn.textContent = 'TRANSMIT_MESSAGE()';
             (submitBtn as HTMLButtonElement).disabled = false;
           }
         }

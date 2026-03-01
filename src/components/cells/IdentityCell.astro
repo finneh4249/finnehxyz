@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import ethanImage from '../../assets/images/ethan.jpg';
+---
+
+<div class="bento-cell cell-identity reveal reveal-down stagger-1">
+  <div class="bento-cell-header">// identity</div>
+  <div class="bento-cell-content flex flex-col md:flex-row items-center md:items-start gap-4">
+    <!-- Profile Image -->
+    <div class="relative group flex-shrink-0">
+      <div class="absolute -inset-1 bg-gradient-to-br from-cyber-cyan/20 to-cyber-magenta/20 blur-md group-hover:blur-lg transition-all"></div>
+      <div 
+        id="identity-photo"
+        class="relative w-28 h-28 md:w-36 md:h-36 border-2 border-cyber-cyan overflow-hidden cursor-pointer hover:-translate-y-1 transition-transform"
+        style="box-shadow: 0 0 15px rgba(0, 255, 245, 0.2);"
+        title="Click me! 👀"
+      >
+        <Image
+          src={ethanImage}
+          alt="Ethan Cornwill"
+          class="object-cover w-full h-full grayscale-[15%] contrast-110"
+          loading="eager"
+          width={144}
+          height={144}
+          densities={[1.5, 2]}
+        />
+      </div>
+    </div>
+    
+    <!-- Name & Title -->
+    <div class="text-center md:text-left flex-1 min-w-0">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.85] text-white">
+        <span class="glitch-text" data-text="ETHAN">ETHAN</span>
+      </h1>
+      <p class="text-lg md:text-xl font-black uppercase neon-cyan mt-2 tracking-tight">
+        AI Engineer
+      </p>
+      <p class="text-xs font-mono text-cyber-text-muted mt-2">
+        13+ yrs software // 10 yrs operations
+      </p>
+      <p class="text-xs font-mono text-cyber-text-muted mt-1">
+        Melbourne, AU 🇦🇺
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initIdentity() {
+    const photo = document.getElementById('identity-photo');
+    if (!photo || photo.dataset.init) return;
+    
+    const facts = [
+      '📸 I used to manage the busiest Taco Bell in Australia!',
+      '🎮 Coding since I was young enough to think "goto" was good.',
+      '☕ 13+ yrs dev, 10 yrs ops, ∞ cups of coffee.',
+      '💡 Built SPARC — 3,000+ lines of prompt architecture.',
+      '⚡ Fast food ops → AI systems. Life comes at you fast.',
+      '🤖 I train LLMs, build RAG systems, and automate everything.',
+    ];
+    
+    photo.addEventListener('click', () => {
+      const msg = facts[Math.floor(Math.random() * facts.length)];
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.className = 'boot-overlay';
+      el.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#12121a;color:#00fff5;padding:1rem 1.5rem;border:1px solid #00fff5;z-index:10000;font-size:13px;max-width:90vw;width:400px;text-align:center;box-shadow:0 0 20px rgba(0,255,245,0.3);';
+      document.body.appendChild(el);
+      setTimeout(() => { el.style.transition='opacity 0.3s'; el.style.opacity='0'; setTimeout(() => el.remove(), 300); }, 2500);
+    });
+    photo.dataset.init = 'true';
+  }
+  initIdentity();
+  document.addEventListener('astro:page-load', initIdentity);
+</script>

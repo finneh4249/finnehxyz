@@ -1,0 +1,19 @@
+---
+import educationItems from '../../data/education.json';
+---
+
+<div class="bento-cell cell-edu reveal reveal-up stagger-4">
+  <div class="bento-cell-header">// education</div>
+  <div class="bento-cell-content space-y-3">
+    {educationItems.map((item, i) => (
+      <div class={`bg-cyber-bg border border-cyber-border p-3 border-l-2 border-l-cyber-green hover:border-l-4 transition-all reveal reveal-right stagger-${Math.min(i + 1, 6)}`}>
+        <h3 class="text-xs font-bold uppercase text-white leading-tight">{item.institution}</h3>
+        <p class="text-xs font-mono text-cyber-green mt-1">{item.program}</p>
+        <p class="text-[10px] font-mono text-cyber-text-muted mt-0.5">// {item.year}</p>
+        {item.description && (
+          <p class="text-[11px] text-cyber-text-muted mt-2 leading-relaxed">{item.description}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</div>

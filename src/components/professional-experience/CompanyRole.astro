@@ -9,7 +9,6 @@ interface Props {
 
 const { title, period, description, isCurrent = false, isLast = false } = Astro.props;
 
-// Helper function to process description lines
 const processDescription = (text: string) => {
   if (!text) return [];
   return text.split('\n').map(line => ({
@@ -22,40 +21,36 @@ const descriptionLines = processDescription(description || '');
 ---
 
 <div class="role relative group">
-  
-  <div class="brutal-card group-hover:translate-x-1 transition-all duration-200 bg-gray-50 dark:bg-zinc-800 border-2 border-black dark:border-white">
-    <div class="p-6">
-      <div class="flex flex-wrap items-baseline justify-between gap-2">
-        <h4 class="font-display font-bold text-lg uppercase text-black dark:text-white">{title}</h4>
-        
-        <div class="flex items-center flex-wrap gap-2">
-          {isCurrent && (
-            <span class="border-2 border-black dark:border-white bg-neo-yellow text-black px-2 py-0.5 text-xs font-bold uppercase">Current</span>
-          )}
-          <p class:list={[
-            "text-sm",
-            isCurrent ? "text-neo-yellow font-medium" : "text-gray-600 dark:text-gray-400"
-          ]}>
-            {period}
-          </p>
-        </div>
-      </div>
+  <div class="bg-cyber-surface/50 border border-cyber-border group-hover:border-cyber-cyan/30 transition-all duration-200 p-4">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h4 class="font-bold text-base uppercase text-white">{title}</h4>
       
-      <!-- Role description with better typography -->
-      {description && (
-        <div class="mt-4 text-sm font-medium text-black dark:text-white border-t-2 border-black dark:border-white pt-4 leading-relaxed space-y-2">
-          {descriptionLines.map((line) => (
-            line.isBullet ? (
-              <div class="flex items-start">
-                <span class="mr-3 mt-1.5 w-2 h-2 bg-neo-pink border border-black dark:border-white flex-shrink-0"></span>
-                <span>{line.content}</span>
-              </div>
-            ) : (
-              <p>{line.content}</p>
-            )
-          ))}
-        </div>
-      )}
+      <div class="flex items-center flex-wrap gap-2">
+        {isCurrent && (
+          <span class="border border-cyber-green bg-cyber-green/10 text-cyber-green px-2 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider">Active</span>
+        )}
+        <p class:list={[
+          "text-xs font-mono",
+          isCurrent ? "text-cyber-green" : "text-cyber-text-muted"
+        ]}>
+          {period}
+        </p>
+      </div>
     </div>
+    
+    {description && (
+      <div class="mt-3 text-sm text-cyber-text border-t border-cyber-border pt-3 leading-relaxed space-y-1.5">
+        {descriptionLines.map((line) => (
+          line.isBullet ? (
+            <div class="flex items-start">
+              <span class="mr-2 mt-1.5 w-1.5 h-1.5 bg-cyber-cyan flex-shrink-0"></span>
+              <span>{line.content}</span>
+            </div>
+          ) : (
+            <p>{line.content}</p>
+          )
+        ))}
+      </div>
+    )}
   </div>
 </div>

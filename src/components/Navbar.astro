@@ -1,15 +1,13 @@
 ---
-import ThemeSwitcher from './ThemeSwitcher.astro';
 import ScrollProgressBar from './ScrollProgressBar.astro';
 import { Icon } from 'astro-icon/components';
 
 const navLinks = [
   { id: 'hero', label: 'Home', type: 'anchor' },
+  { id: 'projects', label: 'Projects', type: 'anchor' },
   { id: 'aboutme', label: 'About', type: 'anchor' },
   { id: 'professionalExperience', label: 'Experience', type: 'anchor' },
-  { id: 'education', label: 'Education', type: 'anchor' },
   { id: 'skills', label: 'Skills', type: 'anchor' },
-  { id: 'projects', label: 'Projects', type: 'anchor' },
   { href: '/blog', label: 'Blog', type: 'page' },
   { id: 'contact', label: 'Contact', type: 'anchor' }
 ];
@@ -27,27 +25,28 @@ const { activeSection } = Astro.props;
 >
   <ScrollProgressBar className="fixed top-0 left-0 w-full z-[60]" />
   
-  <!-- Floating Dock Container -->
-  <div class="bg-white dark:bg-zinc-900 border-4 border-black dark:border-white shadow-brutal-xl p-2 flex items-center gap-2 md:gap-4 rounded-none transform hover:-translate-y-1 transition-transform duration-200">
+  <!-- Floating Cyber Dock -->
+  <div class="bg-cyber-surface/95 backdrop-blur-md border-2 border-cyber-border p-2 flex items-center gap-2 md:gap-3 transform hover:-translate-y-1 transition-transform duration-200"
+       style="box-shadow: 0 0 20px rgba(0, 255, 245, 0.1), 4px 4px 0px 0px #2a2a3a;">
     
     <!-- Logo / Home -->
     <a 
       href="#hero" 
       id="nav-logo"
-      class="brutal-btn bg-neo-yellow text-black w-12 h-12 flex items-center justify-center border-2 !shadow-none hover:!bg-black hover:!text-neo-yellow transition-colors"
+      class="cyber-btn bg-cyber-cyan text-cyber-bg w-11 h-11 flex items-center justify-center border-2 border-cyber-cyan !shadow-none hover:!bg-cyber-magenta hover:!border-cyber-magenta hover:!text-white transition-colors px-0 py-0"
       title="Home"
     >
-      <span class="font-black text-xl">EC</span>
+      <span class="font-black text-lg font-mono">EC</span>
     </a>
 
     <!-- Desktop Links -->
-    <div class="hidden md:flex items-center gap-2">
+    <div class="hidden md:flex items-center gap-1">
       {navLinks.map(link => (
         <a
           href={link.type === 'page' ? link.href : `#${link.id}`}
           class:list={[
-            "px-4 py-2 font-bold uppercase text-sm border-2 border-transparent hover:border-black dark:hover:border-white hover:bg-gray-100 dark:hover:bg-zinc-800 transition-all",
-            activeSection === link.id ? 'bg-black text-white dark:bg-white dark:text-black' : 'text-black dark:text-white'
+            "px-3 py-2 font-mono font-bold uppercase text-xs border border-transparent hover:border-cyber-cyan hover:text-cyber-cyan transition-all tracking-wider",
+            activeSection === link.id ? 'bg-cyber-cyan/10 text-cyber-cyan border-cyber-cyan' : 'text-cyber-text-muted'
           ]}
           data-id={link.id}
         >
@@ -59,32 +58,28 @@ const { activeSection } = Astro.props;
     <!-- Mobile Menu Toggle -->
     <button 
       id="mobile-menu-toggle"
-      class="md:hidden brutal-btn bg-white dark:bg-zinc-900 w-12 h-12 p-0 flex items-center justify-center border-2 !shadow-none text-black dark:text-white relative overflow-hidden"
+      class="md:hidden cyber-btn w-11 h-11 p-0 flex items-center justify-center border-2 !shadow-none relative overflow-hidden"
       aria-label="Toggle menu"
     >
-      <Icon name="mdi:menu" class="w-8 h-8 text-black dark:text-white absolute transition-all duration-300 menu-icon-open" style="color: inherit;" />
-      <Icon name="mdi:close" class="w-8 h-8 text-black dark:text-white absolute transition-all duration-300 menu-icon-close opacity-0 rotate-90 scale-50" style="color: inherit;" />
+      <Icon name="mdi:menu" class="w-7 h-7 text-cyber-text absolute transition-all duration-300 menu-icon-open" style="color: inherit;" />
+      <Icon name="mdi:close" class="w-7 h-7 text-cyber-text absolute transition-all duration-300 menu-icon-close opacity-0 rotate-90 scale-50" style="color: inherit;" />
     </button>
-
-    <!-- Theme Switcher -->
-    <div class="border-l-2 border-black dark:border-white pl-2">
-      <ThemeSwitcher />
-    </div>
   </div>
 
-  <!-- Mobile Menu (Popup from bottom) -->
+  <!-- Mobile Menu -->
   <div 
     id="mobile-menu"
-    class="absolute bottom-full left-0 w-full mb-4 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white shadow-brutal-xl p-4 transform scale-y-0 origin-bottom transition-transform duration-200 md:hidden"
+    class="absolute bottom-full left-0 w-full mb-4 bg-cyber-surface/95 backdrop-blur-md border-2 border-cyber-border p-4 transform scale-y-0 origin-bottom transition-transform duration-200 md:hidden"
+    style="box-shadow: 0 0 20px rgba(0, 255, 245, 0.1), 4px 4px 0px 0px #2a2a3a;"
   >
-    <ul class="space-y-2">
+    <ul class="space-y-1">
       {navLinks.map(link => (
         <li>
           <a 
             href={link.type === 'page' ? link.href : `#${link.id}`}
             class:list={[
-              "block w-full text-center py-3 font-bold uppercase border-2 border-transparent hover:border-black dark:hover:border-white hover:bg-gray-100 dark:hover:bg-zinc-800",
-              activeSection === link.id ? 'bg-black text-white dark:bg-white dark:text-black' : 'text-black dark:text-white'
+              "block w-full text-center py-3 font-mono font-bold uppercase text-sm border border-transparent hover:border-cyber-cyan hover:text-cyber-cyan transition-all tracking-wider",
+              activeSection === link.id ? 'bg-cyber-cyan/10 text-cyber-cyan border-cyber-cyan' : 'text-cyber-text-muted'
             ]}
           >
             {link.label}
@@ -112,18 +107,12 @@ const { activeSection } = Astro.props;
       isMenuOpen = !isMenuOpen;
       if (isMenuOpen) {
         menu.classList.remove('scale-y-0');
-        toggleBtn.classList.add('bg-black', 'text-white');
-        toggleBtn.classList.remove('bg-white', 'dark:bg-zinc-900');
-        
         if (menuIconOpen && menuIconClose) {
           menuIconOpen.classList.add('opacity-0', 'rotate-90', 'scale-50');
           menuIconClose.classList.remove('opacity-0', 'rotate-90', 'scale-50');
         }
       } else {
         menu.classList.add('scale-y-0');
-        toggleBtn.classList.remove('bg-black', 'text-white');
-        toggleBtn.classList.add('bg-white', 'dark:bg-zinc-900');
-        
         if (menuIconOpen && menuIconClose) {
           menuIconOpen.classList.remove('opacity-0', 'rotate-90', 'scale-50');
           menuIconClose.classList.add('opacity-0', 'rotate-90', 'scale-50');
@@ -133,7 +122,6 @@ const { activeSection } = Astro.props;
 
     toggleBtn.addEventListener('click', toggleMenu);
 
-    // Close menu when clicking a link
     menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         if (isMenuOpen) toggleMenu();
@@ -160,15 +148,15 @@ const { activeSection } = Astro.props;
       observer.observe(section);
     });
 
-    function updateActiveLink(id) {
+    function updateActiveLink(id: string) {
       document.querySelectorAll('[data-id]').forEach(link => {
         const href = link.getAttribute('href');
         if (href === `#${id}`) {
-          link.classList.add('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-          link.classList.remove('text-black', 'dark:text-white');
+          link.classList.add('bg-cyber-cyan/10', 'text-cyber-cyan', 'border-cyber-cyan');
+          link.classList.remove('text-cyber-text-muted');
         } else {
-          link.classList.remove('bg-black', 'text-white', 'dark:bg-white', 'dark:text-black');
-          link.classList.add('text-black', 'dark:text-white');
+          link.classList.remove('bg-cyber-cyan/10', 'text-cyber-cyan', 'border-cyber-cyan');
+          link.classList.add('text-cyber-text-muted');
         }
       });
     }

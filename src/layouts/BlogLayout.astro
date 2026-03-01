@@ -1,24 +1,21 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { Icon } from 'astro-icon/components';
 
 const { frontmatter } = Astro.props;
 
-// Format date helper
-function formatDate(dateString: string) {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+function formatDate(d: string | Date) {
+  const date = d instanceof Date ? d : new Date(d);
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
-// Calculate reading time (rough estimate: 200 words per minute)
-function calculateReadingTime(content: string) {
-  const wordsPerMinute = 200;
+function isoDate(d: string | Date) {
+  const date = d instanceof Date ? d : new Date(d);
+  return isNaN(date.getTime()) ? String(d) : date.toISOString().slice(0, 10);
+}
+
+function estimateReadingTime(content: string) {
   const wordCount = content.trim().split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / wordsPerMinute);
-  return readingTime;
+  return Math.ceil(wordCount / 200);
 }
 ---
 
@@ -26,98 +23,70 @@ function calculateReadingTime(content: string) {
   title={frontmatter.title} 
   description={frontmatter.description}
 >
-  <article class="min-h-screen bg-white dark:bg-gray-900 py-20 px-4 relative overflow-hidden">
-    
-    <!-- Background Elements -->
-    <div class="absolute inset-0 pointer-events-none">
-      <!-- Diagonal stripe background pattern -->
-      <div class="absolute inset-0 opacity-5 dark:opacity-10">
-        <div class="absolute inset-0" style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 20px,
-              #000 20px,
-              #000 22px
-            )
-          `,
-        }}></div>
-      </div>
-      
-      <!-- Floating Shapes -->
-      <div class="absolute top-20 right-10 w-32 h-32 bg-neo-yellow border-4 border-black dark:border-white shadow-brutal rotate-12 opacity-50"></div>
-      <div class="absolute bottom-40 left-10 w-40 h-40 bg-neo-pink border-4 border-black dark:border-white shadow-brutal -rotate-12 opacity-50"></div>
-    </div>
-
-    <div class="max-w-4xl mx-auto relative z-10">
+  <article class="min-h-screen bg-cyber-bg py-16 px-4">
+    <div class="max-w-3xl mx-auto">
       
       <!-- Back to Blog -->
       <a 
         href="/blog"
-        class="inline-flex items-center gap-2 mb-8 text-lg font-bold hover:gap-4 transition-all text-black dark:text-white hover:text-pink-600"
+        class="inline-flex items-center gap-2 mb-8 font-mono text-sm text-cyber-cyan hover:underline transition-all group"
       >
-        <Icon name="mdi:arrow-left" class="text-2xl" />
-        <span>Back to Blog</span>
+        <span class="group-hover:-translate-x-1 transition-transform">←</span>
+        <span>cd /blog</span>
       </a>
 
       <!-- Article Header -->
-      <header class="mb-12 pb-8 border-b-4 border-black dark:border-white">
+      <header class="mb-10 pb-8 border-b border-cyber-border">
         <!-- Tags -->
         {frontmatter.tags && (
-          <div class="flex flex-wrap gap-2 mb-6">
+          <div class="flex flex-wrap gap-1.5 mb-4">
             {frontmatter.tags.map((tag: string) => (
-              <span class="px-4 py-2 bg-yellow-400 text-black text-sm font-bold border-2 border-black uppercase tracking-wide">
+              <span class="text-[9px] font-mono uppercase tracking-wider text-cyber-cyan border border-cyber-cyan/30 px-2 py-0.5">
                 {tag}
               </span>
             ))}
           </div>
         )}
 
-        <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight text-black dark:text-white">
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-[1.1] tracking-tight text-white mb-4">
           {frontmatter.title}
         </h1>
 
-        <!-- Meta Info -->
-        <div class="flex flex-wrap items-center gap-6 text-lg font-bold text-gray-700 dark:text-gray-300">
-          <div class="flex items-center gap-2">
-            <Icon name="mdi:account" class="text-2xl" style="color: #FF006E;" />
-            <span>{frontmatter.author}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <Icon name="mdi:calendar" class="text-2xl" style="color: #00B4D8;" />
-            <time datetime={frontmatter.date}>
-              {formatDate(frontmatter.date)}
-            </time>
-          </div>
+        <!-- Meta -->
+        <div class="flex items-center gap-4 font-mono text-xs text-cyber-text-muted">
+          <time datetime={frontmatter.pubDate}>
+            {isoDate(frontmatter.pubDate)}
+          </time>
+          <span class="text-cyber-border">|</span>
+          <span>~{estimateReadingTime(frontmatter.description || '')} min read</span>
+          <span class="text-cyber-border">|</span>
+          <span>by Ethan Cornwill</span>
         </div>
       </header>
 
       <!-- Article Content -->
-      <div class="prose prose-lg dark:prose-invert max-w-none blog-content">
+      <div class="blog-content">
         <slot />
       </div>
 
       <!-- Article Footer -->
-      <footer class="mt-16 pt-8 border-t-4 border-black dark:border-white">
-        <div class="brutal-card p-8 border-4 border-black dark:border-white" style="background: #FF006E;">
-          <h3 class="text-2xl font-black mb-4 text-white">About the Author</h3>
-          <p class="text-lg mb-4 text-white">
+      <footer class="mt-16 pt-8 border-t border-cyber-border">
+        <div class="bg-cyber-surface border border-cyber-border p-6 border-l-2 border-l-cyber-magenta">
+          <h3 class="text-sm font-bold uppercase text-white mb-2 font-mono">// about the author</h3>
+          <p class="text-sm text-cyber-text leading-relaxed mb-3">
             I'm Ethan Cornwill. 13+ years building software, 10 years managing QSR operations. 
-            I architect AI systems that survive production, not just demos that die in staging.
+            Now I design AI systems, write prompt architecture, and build tools that ship.
           </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="mailto:mail@finneh.xyz" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-bold border-2 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
-              <Icon name="mdi:email" />
-              <span>Email Me</span>
+          <div class="flex items-center gap-4 font-mono text-xs">
+            <a href="https://github.com/finneh4249" class="text-cyber-cyan hover:underline" target="_blank" rel="noopener noreferrer">
+              github
             </a>
-            <a href="https://github.com/finneh4249" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-bold border-2 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
-              <Icon name="mdi:github" />
-              <span>GitHub</span>
+            <a href="https://www.linkedin.com/in/ethan-cornwill/" class="text-cyber-blue hover:underline" target="_blank" rel="noopener noreferrer">
+              linkedin
             </a>
-            <a href="https://linkedin.com/in/ethan-cornwill" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white text-black font-bold border-2 border-black hover:translate-x-1 hover:translate-y-1 transition-all">
-              <Icon name="mdi:linkedin" />
-              <span>LinkedIn</span>
+            <a href="https://x.com/FinnehReform" class="text-cyber-purple hover:underline" target="_blank" rel="noopener noreferrer">
+              twitter
             </a>
           </div>
         </div>
@@ -128,214 +97,159 @@ function calculateReadingTime(content: string) {
 </BaseLayout>
 
 <style is:global>
-  /* Blog Content Styling with Fixed Contrast */
+  /* Blog Content — Cyberpunk Prose */
   .blog-content {
     line-height: 1.8;
+    color: #b8c0cc;
   }
 
   .blog-content h2 {
-    font-size: 2.5rem;
-    font-weight: 900;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    color: #000;
-    border-bottom: 4px solid #FFE600;
-    padding-bottom: 0.5rem;
-  }
-
-  .dark .blog-content h2 {
-    color: #fff;
-  }
-
-  .blog-content h3 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 900;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    line-height: 1.3;
-    color: #000;
-  }
-
-  .dark .blog-content h3 {
+    line-height: 1.2;
     color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    border-left: 3px solid #00fff5;
+    padding-left: 0.75rem;
   }
 
-  .blog-content h4 {
-    font-size: 1.5rem;
+  .blog-content h3 {
+    font-size: 1.35rem;
     font-weight: 800;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
-    color: #000;
+    color: #00fff5;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
   }
 
-  .dark .blog-content h4 {
-    color: #fff;
+  .blog-content h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ff00ff;
+    font-family: 'JetBrains Mono', monospace;
   }
 
   .blog-content p {
-    margin-bottom: 1.5rem;
-    font-size: 1.125rem;
-    color: #1f2937;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
   }
 
-  .dark .blog-content p {
-    color: #e5e7eb;
+  .blog-content a {
+    color: #00fff5;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
   }
 
-  .blog-content ul,
-  .blog-content ol {
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
+  .blog-content a:hover {
+    color: #ff00ff;
+  }
+
+  .blog-content ul, .blog-content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
   }
 
   .blog-content li {
-    margin-bottom: 0.75rem;
-    font-size: 1.125rem;
-    color: #1f2937;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
   }
 
-  .dark .blog-content li {
-    color: #e5e7eb;
+  .blog-content li::marker {
+    color: #00fff5;
   }
 
   .blog-content strong {
     font-weight: 800;
-    color: #FF006E;
-  }
-
-  .dark .blog-content strong {
-    color: #FFE600;
+    color: #ffe600;
   }
 
   .blog-content em {
     font-style: italic;
-    color: #00B4D8;
+    color: #00b4d8;
   }
 
   .blog-content code {
-    background: #FFE600;
-    color: #000;
-    padding: 0.25rem 0.5rem;
-    border: 2px solid #000;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9em;
-    font-weight: 600;
+    background: #1a1a2e;
+    color: #00fff5;
+    padding: 0.15rem 0.4rem;
+    border: 1px solid #2a2a3a;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
   }
 
   .blog-content pre {
-    background: #1e1e1e;
-    color: #d4d4d4;
-    padding: 1.5rem;
-    border: 4px solid #000;
+    background: #0a0a14 !important;
+    border: 1px solid #2a2a3a;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
     overflow-x: auto;
-    margin: 2rem 0;
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 1);
-  }
-
-  .dark .blog-content pre {
-    border-color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
 
   .blog-content pre code {
-    background: transparent;
-    color: inherit;
-    padding: 0;
+    background: none;
     border: none;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    font-weight: 400;
+    padding: 0;
+    color: inherit;
   }
 
   .blog-content blockquote {
-    border-left: 6px solid #FF006E;
-    padding: 1.5rem;
-    margin: 2rem 0;
+    border-left: 3px solid #ff00ff;
+    padding: 0.75rem 1rem;
+    margin: 1.5rem 0;
+    background: rgba(255, 0, 255, 0.05);
     font-style: italic;
-    background: rgba(255, 0, 110, 0.1);
-    border: 2px solid #FF006E;
-    color: #000;
-  }
-
-  .dark .blog-content blockquote {
-    color: #fff;
-    background: rgba(255, 0, 110, 0.2);
-  }
-
-  .blog-content a {
-    color: #FF006E;
-    text-decoration: underline;
-    font-weight: 700;
-    transition: all 0.2s;
-  }
-
-  .blog-content a:hover {
-    color: #00B4D8;
-    text-decoration-thickness: 3px;
+    color: #d4d4e0;
   }
 
   .blog-content hr {
     border: none;
-    border-top: 4px solid #000;
-    margin: 3rem 0;
+    border-top: 1px solid #2a2a3a;
+    margin: 2.5rem 0;
   }
 
-  .dark .blog-content hr {
-    border-top-color: #fff;
+  .blog-content img {
+    border: 1px solid #2a2a3a;
+    margin: 1.5rem 0;
   }
 
   /* Tables */
   .blog-content table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin: 2rem 0;
-    border: 4px solid #000;
-  }
-
-  .dark .blog-content table {
-    border-color: #fff;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
   }
 
   .blog-content th {
-    background: #FFE600;
-    color: #000;
-    font-weight: 900;
-    padding: 1rem;
+    background: #1a1a2e;
+    color: #00fff5;
+    padding: 0.6rem 0.75rem;
     text-align: left;
-    border-bottom: 4px solid #000;
-    border-right: 2px solid #000;
-  }
-
-  .dark .blog-content th {
-    border-bottom-color: #fff;
-    border-right-color: #fff;
-  }
-
-  .blog-content th:last-child {
-    border-right: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #2a2a3a;
   }
 
   .blog-content td {
-    padding: 1rem;
-    border-bottom: 2px solid #000;
-    border-right: 2px solid #000;
-    background: #fff;
-    color: #000;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #1a1a2e;
+    color: #b8c0cc;
   }
 
-  .dark .blog-content td {
-    background: #1f2937;
-    color: #fff;
-    border-bottom-color: #fff;
-    border-right-color: #fff;
-  }
-
-  .blog-content td:last-child {
-    border-right: none;
-  }
-
-  .blog-content tr:last-child td {
-    border-bottom: none;
+  .blog-content tr:hover td {
+    background: rgba(0, 255, 245, 0.03);
   }
 </style>

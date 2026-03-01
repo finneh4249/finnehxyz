@@ -18,32 +18,31 @@ const {
   sortOptions = [],
   filterOptions = []
 } = Astro.props;
-
-const themeColor = purpleTheme ? "bg-neo-purple" : "bg-neo-blue";
 ---
 
-<div class:list={["brutal-card p-6 rotate-1", themeColor, "border-brutal-thick border-black shadow-brutal-lg max-w-4xl mx-auto z-20 relative", className]}>
+<div class:list={["cyber-card border-2 border-cyber-cyan p-5 max-w-4xl mx-auto z-20 relative", className]}
+     style="box-shadow: 0 0 15px rgba(0, 255, 245, 0.1), 4px 4px 0px 0px #2a2a3a;">
   <div class="flex flex-col gap-4">
     <!-- Search Input -->
     <div class="relative">
-      <Icon name="mdi:magnify" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl text-black" />
+      <Icon name="mdi:magnify" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-xl text-cyber-text-muted" />
       <input
         type="text"
         id="search-input"
         placeholder={placeholder}
-        class="w-full pl-12 pr-4 py-3 text-lg font-bold border-4 border-black shadow-brutal focus:outline-none focus:shadow-brutal-lg transition-all placeholder-gray-500 text-black"
+        class="cyber-input w-full pl-12 pr-4 py-3 text-base font-mono"
       />
     </div>
 
     <!-- Filters Row -->
     {(sortOptions.length > 0 || filterOptions.length > 0 || includeRangeSlider) && (
-      <div class="flex flex-wrap gap-4 items-center justify-between bg-white p-4 border-2 border-black">
+      <div class="flex flex-wrap gap-4 items-center justify-between bg-cyber-bg border border-cyber-border p-3">
         
-        <div class="flex flex-wrap gap-4 w-full md:w-auto">
+        <div class="flex flex-wrap gap-3 w-full md:w-auto">
           {sortOptions.length > 0 && (
             <select 
               id="sort-select"
-              class="brutal-select px-4 py-2 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-brutal text-black"
+              class="cyber-input px-3 py-2 text-sm font-mono cursor-pointer"
             >
               {sortOptions.map(option => (
                 <option value={option.value}>{option.label}</option>
@@ -54,7 +53,7 @@ const themeColor = purpleTheme ? "bg-neo-purple" : "bg-neo-blue";
           {filterOptions.length > 0 && (
             <select 
               id="filter-select"
-              class="brutal-select px-4 py-2 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-brutal text-black"
+              class="cyber-input px-3 py-2 text-sm font-mono cursor-pointer"
             >
               <option value="">All Tags</option>
               {filterOptions.map(option => (
@@ -66,7 +65,7 @@ const themeColor = purpleTheme ? "bg-neo-purple" : "bg-neo-blue";
 
         {includeRangeSlider && (
           <div class="flex items-center gap-3 w-full md:w-auto min-w-[200px]">
-            <span class="font-bold text-sm uppercase text-black">Proficiency:</span>
+            <span class="font-mono text-xs uppercase text-cyber-text-muted tracking-wider">Proficiency:</span>
             <input 
               type="range" 
               id="range-slider"
@@ -74,9 +73,9 @@ const themeColor = purpleTheme ? "bg-neo-purple" : "bg-neo-blue";
               max="100" 
               step="10" 
               value="0"
-              class="w-full h-3 bg-gray-200 rounded-none appearance-none border-2 border-black accent-black"
+              class="w-full h-1.5 bg-cyber-border appearance-none border border-cyber-border accent-cyber-cyan"
             />
-            <span id="range-value" class="font-bold text-black w-8">0%</span>
+            <span id="range-value" class="font-mono text-sm text-cyber-cyan w-8">0%</span>
           </div>
         )}
       </div>

@@ -1,0 +1,48 @@
+---
+import { heroData } from '../../data/heroData';
+---
+
+<div class="bento-cell cell-terminal reveal reveal-down stagger-2">
+  <div class="bento-cell-header">// terminal</div>
+  <div class="bento-cell-content flex flex-col justify-center h-full min-h-[120px]">
+    <div class="font-mono text-sm md:text-base">
+      <span class="text-cyber-text-muted">guest@finneh.xyz:~$</span>
+      <span class="text-cyber-text ml-1">whoami</span>
+    </div>
+    <div class="font-mono text-lg md:text-2xl font-bold mt-2 neon-magenta flex items-center">
+      <span class="text-cyber-text-muted mr-2">&gt;</span>
+      <span id="terminal-typing"></span>
+      <span class="animate-blink inline-block w-2 h-5 md:h-7 ml-0.5 bg-cyber-magenta"></span>
+    </div>
+  </div>
+</div>
+
+<div id="terminal-data" data-strings={JSON.stringify(heroData.typingStrings)} class="hidden"></div>
+
+<script>
+  function initTerminal() {
+    const el = document.getElementById('terminal-typing');
+    const dataEl = document.getElementById('terminal-data');
+    if (!el || !dataEl || el.dataset.init === 'true') return;
+    
+    const strings = JSON.parse(dataEl.dataset.strings || '[]');
+    let si = 0, ci = 0, deleting = false;
+    
+    function type() {
+      const str = strings[si];
+      if (deleting) { el.textContent = str.substring(0, --ci); }
+      else { el.textContent = str.substring(0, ++ci); }
+      
+      let speed = deleting ? 35 : 70;
+      if (!deleting && ci === str.length) { speed = 2000; deleting = true; }
+      else if (deleting && ci === 0) { deleting = false; si = (si + 1) % strings.length; speed = 400; }
+      
+      setTimeout(type, speed);
+    }
+    
+    type();
+    el.dataset.init = 'true';
+  }
+  initTerminal();
+  document.addEventListener('astro:page-load', initTerminal);
+</script>

@@ -1,0 +1,41 @@
+---
+import { projects as projectsData } from '../../data/projects';
+const featured = projectsData.filter(p => p.featured)[0] || projectsData[0];
+---
+
+<div class="bento-cell group cursor-pointer cell-featured reveal reveal-left stagger-2" data-project={JSON.stringify(featured)} id="featured-cell">
+  <div class="bento-cell-header z-10 relative">// featured project</div>
+  <div class="relative h-48 md:h-full min-h-[200px]">
+    <img
+      src={featured.image}
+      alt={`${featured.title} Preview`}
+      class="absolute inset-0 w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/70 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 p-4">
+      <div class="flex flex-wrap gap-1.5 mb-2">
+        {(featured.technologies ?? []).slice(0, 3).map((tech) => (
+          <span class="bg-cyber-bg/80 text-cyber-cyan border border-cyber-cyan/30 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider">
+            {tech}
+          </span>
+        ))}
+      </div>
+      <h2 class="text-xl md:text-2xl font-black uppercase text-white leading-tight">{featured.title}</h2>
+      <p class="text-xs text-cyber-text-muted mt-1 line-clamp-2">{featured.description}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initFeatured() {
+    const cell = document.getElementById('featured-cell');
+    if (!cell) return;
+    cell.addEventListener('click', () => {
+      const data = JSON.parse(cell.dataset.project || '{}');
+      document.dispatchEvent(new CustomEvent('openProjectModal', { detail: data }));
+    });
+  }
+  initFeatured();
+  document.addEventListener('astro:page-load', initFeatured);
+</script>
