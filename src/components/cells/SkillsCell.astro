@@ -1,0 +1,47 @@
+---
+import skillsData from '../../data/skills.json';
+
+const neonColors = ['text-cyber-cyan', 'text-cyber-magenta', 'text-cyber-green', 'text-cyber-yellow', 'text-cyber-blue', 'text-cyber-purple'];
+---
+
+<div class="bento-cell cell-skills reveal reveal-up stagger-2">
+  <div class="bento-cell-header flex items-center justify-between">
+    <span>// tools & skills</span>
+    <span class="text-cyber-cyan">{skillsData.tools.length} tools</span>
+  </div>
+  <div class="bento-cell-content">
+    <!-- Tool grid with proficiency bars -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-5">
+      {skillsData.tools.sort((a, b) => b.proficiency - a.proficiency).map((tool, i) => (
+        <div class={`group relative bg-cyber-bg border border-cyber-border p-2.5 hover:border-cyber-cyan/50 transition-all duration-300 reveal reveal-scale stagger-${Math.min(i % 6 + 1, 6)}`}>
+          <div class="flex items-center gap-2">
+            <i class={`bx ${tool.icon} text-sm ${tool.color}`}></i>
+            <span class="text-[11px] font-bold uppercase text-white truncate">{tool.name}</span>
+          </div>
+          <div class="mt-2 h-1 bg-cyber-border/50 overflow-hidden">
+            <div 
+              class="h-full bg-cyber-cyan transition-all duration-1000 ease-out"
+              style={`width: ${tool.proficiency}%;`}
+            ></div>
+          </div>
+          <div class="text-[9px] font-mono text-cyber-text-muted mt-1 text-right">{tool.proficiency}%</div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Skill areas -->
+    <div class="border-t border-cyber-border pt-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        {skillsData.skills.map((skill, i) => (
+          <div class={`flex items-start gap-2.5 p-3 bg-cyber-bg border border-cyber-border hover:border-${neonColors[i % neonColors.length].replace('text-', '')}/30 transition-all`}>
+            <i class={`bx ${skill.icon} text-lg ${skill.color} mt-0.5 flex-shrink-0`}></i>
+            <div>
+              <span class="text-xs font-bold text-white uppercase block">{skill.title}</span>
+              <p class="text-[11px] text-cyber-text-muted mt-1 leading-relaxed">{skill.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

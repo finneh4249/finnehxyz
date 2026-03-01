@@ -1,37 +1,72 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/sections/Hero.astro';
-import AboutMe from '../components/sections/AboutMe.astro';
-import ProfessionalExperience from '../components/sections/ProfessionalExperience.astro';
-import Education from '../components/sections/Education.astro';
-import Skills from '../components/sections/Skills.astro';
-import Projects from '../components/sections/Projects.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
-import Contact from '../components/sections/Contact.astro';
-import Footer from '../components/Footer.astro';
+import BootSequence from '../components/ui/BootSequence.astro';
+import CommandPalette from '../components/ui/CommandPalette.astro';
+import ScrollReveal from '../components/ui/ScrollReveal.astro';
+import ScrollProgressBar from '../components/ScrollProgressBar.astro';
 import BackToTop from '../components/ui/BackToTop.astro';
-import EasterEggs from '../components/EasterEggs.astro';
-import HiddenEasterEggs from '../components/HiddenEasterEggs.astro';
+
+// Bento cells
+import IdentityCell from '../components/cells/IdentityCell.astro';
+import TerminalCell from '../components/cells/TerminalCell.astro';
+import FeaturedProjectCell from '../components/cells/FeaturedProjectCell.astro';
+import StatsCell from '../components/cells/StatsCell.astro';
+import SocialCell from '../components/cells/SocialCell.astro';
+import AboutCell from '../components/cells/AboutCell.astro';
+import ProjectGridCell from '../components/cells/ProjectGridCell.astro';
+import ExperienceCell from '../components/cells/ExperienceCell.astro';
+import SkillsCell from '../components/cells/SkillsCell.astro';
+import EducationCell from '../components/cells/EducationCell.astro';
+import StatusCell from '../components/cells/StatusCell.astro';
+import ContactCell from '../components/cells/ContactCell.astro';
 ---
 
 <BaseLayout>
-  <EasterEggs />
-  <HiddenEasterEggs />
-  
-  <Navbar />
-  
-  <main>
-    <Hero />
-    <Projects />
-    <AboutMe />
-    <ProfessionalExperience />
-    <Skills />
-    <Education />
-    <Testimonials />
-    <Contact />
+  <BootSequence />
+  <CommandPalette />
+  <ScrollReveal />
+  <ScrollProgressBar className="fixed top-0 left-0 right-0" />
+
+  <!-- Minimal navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-4 py-2 bg-cyber-bg/80 backdrop-blur-sm border-b border-cyber-border/30">
+    <a href="/" class="font-mono font-bold text-sm text-cyber-cyan hover:text-white transition-colors">EC://</a>
+    <div class="flex items-center gap-3">
+      <a href="/blog" class="font-mono text-[10px] uppercase tracking-widest text-cyber-text-muted hover:text-cyber-cyan transition-colors">Blog</a>
+      <kbd class="text-[10px] font-mono text-cyber-text-muted border border-cyber-border px-1.5 py-0.5 cursor-pointer hover:border-cyber-cyan hover:text-cyber-cyan transition-colors" id="cmd-trigger" title="Command palette">/</kbd>
+    </div>
+  </nav>
+
+  <!-- Full page bento grid -->
+  <main class="bento-grid pt-12 pb-6 min-h-screen">
+    <IdentityCell />
+    <TerminalCell />
+    <FeaturedProjectCell />
+    <StatsCell />
+    <SocialCell />
+    <AboutCell />
+    <ProjectGridCell />
+    <ExperienceCell category="technology" />
+    <ExperienceCell category="operations" />
+    <SkillsCell />
+    <EducationCell />
+    <StatusCell />
+    <ContactCell />
   </main>
 
-  <Footer />
+  <!-- Minimal footer -->
+  <footer class="text-center py-4 border-t border-cyber-border/30 bg-cyber-surface/50">
+    <p class="font-mono text-[10px] text-cyber-text-muted">
+      &copy; {new Date().getFullYear()} Ethan Cornwill // Built with Astro // <a href="https://github.com/finneh4249/finnehxyz" class="text-cyber-cyan hover:underline">src</a>
+    </p>
+  </footer>
+
   <BackToTop />
 </BaseLayout>
+
+<script>
+  document.getElementById('cmd-trigger')?.addEventListener('click', () => {
+    if (typeof (window as any).__openCmdPalette === 'function') {
+      (window as any).__openCmdPalette();
+    }
+  });
+</script>

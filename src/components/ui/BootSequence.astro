@@ -1,0 +1,66 @@
+---
+---
+
+<div id="boot-overlay" class="boot-overlay">
+  <div id="boot-lines" class="max-w-lg"></div>
+</div>
+
+<script>
+  function initBoot() {
+    const overlay = document.getElementById('boot-overlay');
+    const container = document.getElementById('boot-lines');
+    if (!overlay || !container) return;
+    
+    // Skip if already seen this session
+    if (sessionStorage.getItem('boot-done')) {
+      overlay.remove();
+      return;
+    }
+    
+    const lines = [
+      '> FINNEH.XYZ v4.2.1',
+      '> Initializing system...',
+      '> Loading modules: [AI, SYSTEMS, OPS]',
+      '> Establishing neural pathways... ✓',
+      '> Calibrating quantum flux capacitor... ✓',
+      '> Injecting prompt architecture... ✓',
+      '> Loading portfolio data... ✓',
+      '> System ready.',
+      '',
+      '> Welcome, visitor.',
+    ];
+    
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i >= lines.length) {
+        clearInterval(interval);
+        setTimeout(() => {
+          overlay.classList.add('fade-out');
+          sessionStorage.setItem('boot-done', 'true');
+          setTimeout(() => overlay.remove(), 600);
+        }, 500);
+        return;
+      }
+      
+      const lineEl = document.createElement('div');
+      lineEl.className = 'boot-line';
+      lineEl.style.animationDelay = `${i * 0.05}s`;
+      
+      if (lines[i] === '') {
+        lineEl.innerHTML = '&nbsp;';
+      } else if (lines[i].includes('✓')) {
+        lineEl.innerHTML = lines[i].replace('✓', '<span style="color: #39ff14;">✓</span>');
+      } else if (lines[i].includes('Welcome')) {
+        lineEl.style.color = '#ff00ff';
+        lineEl.textContent = lines[i];
+      } else {
+        lineEl.textContent = lines[i];
+      }
+      
+      container.appendChild(lineEl);
+      i++;
+    }, 200);
+  }
+  
+  initBoot();
+</script>
