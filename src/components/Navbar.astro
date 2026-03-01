@@ -165,3 +165,9 @@ const { activeSection } = Astro.props;
   initNavbar();
   document.addEventListener('astro:page-load', initNavbar);
 </script>
+
+<style>
+  #main-nav {
+    max-width: clamp(200px, calc(100vw - 2rem), 800px);
+  }
+</style>
