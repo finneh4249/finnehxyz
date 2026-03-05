@@ -4,7 +4,7 @@
       "icon": "mdi:language-html5",
       "name": "HTML",
       "color": "text-orange-500",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 90,
       "description": "Semantic markup, accessibility, SEO optimization"
     },
@@ -12,7 +12,7 @@
       "icon": "mdi:language-css3",
       "name": "CSS",
       "color": "text-blue-500",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 85,
       "description": "Responsive design, animations, modern layouts"
     },
@@ -20,7 +20,7 @@
       "icon": "mdi:language-javascript",
       "name": "JavaScript",
       "color": "text-yellow-500",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 80,
       "description": "ES6+, DOM manipulation, async programming"
     },
@@ -28,7 +28,7 @@
       "icon": "mdi:nodejs",
       "name": "Node.js",
       "color": "text-green-500",
-      "category": "Backend",
+      "category": "Core Stack",
       "proficiency": 75,
       "description": "Server-side JS, API development, Express"
     },
@@ -36,7 +36,7 @@
       "icon": "mdi:language-python",
       "name": "Python",
       "color": "text-blue-600",
-      "category": "Backend",
+      "category": "Core Stack",
       "proficiency": 65,
       "description": "Data processing, scripting, automation"
     },
@@ -44,7 +44,7 @@
       "icon": "mdi:language-java",
       "name": "Java",
       "color": "text-red-500",
-      "category": "Backend",
+      "category": "Core Stack",
       "proficiency": 60,
       "description": "OOP principles, basic application development"
     },
@@ -52,7 +52,7 @@
       "icon": "mdi:docker",
       "name": "Docker",
       "color": "text-blue-400",
-      "category": "DevOps",
+      "category": "Infrastructure",
       "proficiency": 70,
       "description": "Containerization, image building, compose"
     },
@@ -60,7 +60,7 @@
       "icon": "mdi:git",
       "name": "Git",
       "color": "text-orange-600",
-      "category": "DevOps",
+      "category": "Infrastructure",
       "proficiency": 85,
       "description": "Version control, branching strategies, collaboration"
     },
@@ -76,7 +76,7 @@
       "icon": "mdi:linux",
       "name": "Linux",
       "color": "text-gray-800",
-      "category": "DevOps",
+      "category": "Infrastructure",
       "proficiency": 70,
       "description": "Shell scripting, system administration"
     },
@@ -92,7 +92,7 @@
       "icon": "mdi:database",
       "name": "MongoDB",
       "color": "text-green-500",
-      "category": "Database",
+      "category": "Infrastructure",
       "proficiency": 75,
       "description": "Document databases, aggregations, Atlas"
     },
@@ -100,7 +100,7 @@
       "icon": "mdi:database",
       "name": "PostgreSQL",
       "color": "text-blue-400",
-      "category": "Database",
+      "category": "Infrastructure",
       "proficiency": 70,
       "description": "Relational databases, SQL, optimization"
     },
@@ -108,7 +108,7 @@
       "icon": "mdi:cellphone-link",
       "name": "Flutter",
       "color": "text-blue-400",
-      "category": "Mobile",
+      "category": "Core Stack",
       "proficiency": 50,
       "description": "Cross-platform mobile development"
     },
@@ -116,7 +116,7 @@
       "icon": "mdi:language-ruby",
       "name": "Ruby",
       "color": "text-red-500",
-      "category": "Backend",
+      "category": "Core Stack",
       "proficiency": 50,
       "description": "Basic syntax, Ruby on Rails concepts"
     },
@@ -124,7 +124,7 @@
       "icon": "mdi:sass",
       "name": "Sass",
       "color": "text-pink-500",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 80,
       "description": "CSS preprocessing, mixins, variables"
     },
@@ -132,7 +132,7 @@
       "icon": "mdi:tailwind",
       "name": "Tailwind CSS",
       "color": "text-blue-400",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 85,
       "description": "Utility classes, responsive design, customization"
     },
@@ -140,7 +140,7 @@
       "icon": "mdi:angular",
       "name": "Angular",
       "color": "text-red-600",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 60,
       "description": "Components, services, RxJS basics"
     },
@@ -148,7 +148,7 @@
       "icon": "mdi:vuejs",
       "name": "VueJS",
       "color": "text-green-500",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 65,
       "description": "Vue components, routing, Composition API"
     },
@@ -156,7 +156,7 @@
       "icon": "mdi:react",
       "name": "React",
       "color": "text-blue-500",
-      "category": "Frontend",
+      "category": "Core Stack",
       "proficiency": 85,
       "description": "Component lifecycle, hooks, state management"
     },
@@ -164,7 +164,7 @@
       "icon": "mdi:language-cpp",
       "name": "C++",
       "color": "text-blue-500",
-      "category": "Backend",
+      "category": "Core Stack",
       "proficiency": 50,
       "description": "Basic syntax and algorithms"
     },
@@ -172,7 +172,7 @@
       "icon": "mdi:flask",
       "name": "Flask",
       "color": "text-gray-800",
-      "category": "Backend",
+      "category": "Core Stack",
       "proficiency": 70,
       "description": "API development, routing, extensions"
     },
@@ -180,7 +180,7 @@
       "icon": "mdi:brain",
       "name": "LangChain",
       "color": "text-green-600",
-      "category": "AI/ML",
+      "category": "AI/LLM Tools",
       "proficiency": 85,
       "description": "Building chains, agents, and memory for LLMs"
     },
@@ -188,7 +188,7 @@
       "icon": "mdi:database",
       "name": "OpenAI API",
       "color": "text-green-500",
-      "category": "AI/ML",
+      "category": "AI/LLM Tools",
       "proficiency": 95,
       "description": "GPT-4 integration, function calling, embeddings"
     },
@@ -196,7 +196,7 @@
       "icon": "mdi:aws",
       "name": "AWS",
       "color": "text-orange-500",
-      "category": "DevOps",
+      "category": "Infrastructure",
       "proficiency": 65,
       "description": "EC2, S3, Lambda basics"
     },
@@ -204,7 +204,7 @@
       "icon": "mdi:trello",
       "name": "Jira/Linear",
       "color": "text-blue-600",
-      "category": "Management",
+      "category": "Workflow",
       "proficiency": 90,
       "description": "Agile workflows, sprint planning, ticket management"
     },
@@ -212,7 +212,7 @@
       "icon": "mdi:test-tube",
       "name": "PyTorch",
       "color": "text-orange-600",
-      "category": "AI/ML",
+      "category": "AI/LLM Tools",
       "proficiency": 60,
       "description": "Basic tensor operations, model fine-tuning concepts"
     }

@@ -26,7 +26,7 @@ const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.
         <div class="h-0.5 w-48 bg-gradient-to-r from-cyber-cyan to-transparent"></div>
       </div>
       
-      <p class="text-cyber-text-muted font-mono text-sm mb-8">// Hover to see proficiency levels</p>
+      <p class="text-cyber-text-muted font-mono text-sm mb-8">// Filter by category to explore the stack</p>
       
       <!-- Category Filters -->
       <div class="flex flex-wrap gap-2 mb-8" id="tool-categories">
@@ -49,7 +49,6 @@ const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.
             class="tool-item transform transition-all duration-300 hover:scale-105 hover:z-10"
             data-name={tool.name.toLowerCase()}
             data-category={tool.category}
-            data-proficiency={tool.proficiency}
           >
             <div class="bg-cyber-surface border border-cyber-border p-3 flex flex-col gap-2 min-w-[140px] group hover:border-cyber-cyan transition-all"
                  style="box-shadow: 3px 3px 0px 0px #2a2a3a;">
@@ -60,14 +59,6 @@ const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.
                   <span class="text-[10px] text-cyber-text-muted font-mono">{tool.category}</span>
                 </div>
               </div>
-              <!-- Proficiency Bar -->
-              <div class="w-full h-1 bg-cyber-border overflow-hidden">
-                <div 
-                  class="h-full bg-cyber-cyan transition-all duration-500 group-hover:bg-cyber-magenta"
-                  style={`width: ${tool.proficiency}%`}
-                ></div>
-              </div>
-              <div class="text-[10px] font-mono text-right text-cyber-text-muted">{tool.proficiency}%</div>
             </div>
           </div>
         ))}
@@ -150,7 +141,6 @@ const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.
     
     let currentToolCategory = 'All';
     let currentSearchTerm = '';
-    let currentProficiency = 0;
 
     function filterTools() {
       let visibleCount = 0;
@@ -159,13 +149,11 @@ const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.
         const el = item as HTMLElement;
         const name = el.dataset.name || '';
         const category = el.dataset.category || '';
-        const proficiency = parseInt(el.dataset.proficiency || '0');
         
         const matchesCategory = currentToolCategory === 'All' || category === currentToolCategory;
         const matchesSearch = name.includes(currentSearchTerm.toLowerCase());
-        const matchesProficiency = proficiency >= currentProficiency;
         
-        if (matchesCategory && matchesSearch && matchesProficiency) {
+        if (matchesCategory && matchesSearch) {
           el.style.display = '';
           visibleCount++;
         } else {
@@ -193,16 +181,14 @@ const skillCategories = ["All", ...new Set(skillsData.skills.map(skill => skill.
     });
 
     document.addEventListener('filterChange', (e: any) => {
-      const { searchTerm, proficiencyRange } = e.detail;
+      const { searchTerm } = e.detail;
       if (searchTerm !== undefined) currentSearchTerm = searchTerm;
-      if (proficiencyRange !== undefined) currentProficiency = proficiencyRange;
       filterTools();
     });
 
     resetToolsBtn?.addEventListener('click', () => {
       currentToolCategory = 'All';
       currentSearchTerm = '';
-      currentProficiency = 0;
       
       categoryBtns.forEach(b => {
         if ((b as HTMLElement).dataset.category === 'All') {
