@@ -9,6 +9,14 @@
     "logoAlt": "Coder Academy"
   },
   {
+    "year": "2024",
+    "institution": "freeCodeCamp",
+    "program": "Responsive Web Design",
+    "description": "Certification covering HTML, CSS, flexbox, CSS grid, and accessibility best practices for building responsive, mobile-first web applications.",
+    "logoSrc": "./images/freecodecamp.png",
+    "logoAlt": "freeCodeCamp"
+  },
+  {
     "year": "2017",
     "institution": "Distance Education Centre Victoria",
     "program": "VCE Year 12",
