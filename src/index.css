@@ -76,6 +76,7 @@
         "projects  projects  projects  projects"
         "exp-tech  exp-tech  exp-ops   exp-ops"
         "skills    skills    edu       status"
+        "findy     findy     findy     findy"
         "contact   contact   contact   contact";
     }
     .cell-identity  { grid-area: identity; }
@@ -90,6 +91,7 @@
     .cell-skills    { grid-area: skills; }
     .cell-edu       { grid-area: edu; }
     .cell-status    { grid-area: status; }
+    .cell-findy     { grid-area: findy; }
     .cell-contact   { grid-area: contact; }
   }
 
