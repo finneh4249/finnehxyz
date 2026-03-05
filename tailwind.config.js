@@ -65,8 +65,8 @@ export default {
         DEFAULT: "0px",
       },
       fontFamily: {
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
-        body: ["Space Grotesk", "system-ui", "sans-serif"],
+        display: ["Space Grotesk", "Noto Sans JP", "system-ui", "sans-serif"],
+        body: ["Space Grotesk", "Noto Sans JP", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "Space Mono", "monospace"],
       },
       transitionTimingFunction: {
