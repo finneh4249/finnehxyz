@@ -2,6 +2,8 @@ export interface Project {
   title: string;
   description: string;
   detailedDescription?: string;
+  challenges?: string;
+  outcomes?: string;
   image: string;
   githubUrl?: string;
   liveDemoUrl?: string;
@@ -15,6 +17,27 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    title: "Zetto",
+    description: "Voice-first Japanese acquisition engine — acoustic telemetry, spaced production, and sub-second AI conversation via Gemini 2.5 Flash.",
+    detailedDescription:
+      "Zetto is a low-latency, voice-first Japanese language acquisition engine built on Gemini 2.5 Flash (native audio) over WebSockets, targeting sub-second conversational latency. It abandons passive gamification in favour of three interlocking Second Language Acquisition engines. The Spaced Production Pipeline tracks vocabulary through active generation across three tiers: cloze exercises (Stage 1), semantic prompts (Stage 2), and open contextual roleplay (Stage 3). Acoustic Telemetry measures the millisecond gap between each AI prompt and the user's first syllable — fast responses flag a token as mastered and escalate complexity, while slow responses trigger a micro-hint without breaking character. Socratic Error-Discovery rounds out the system by having the AI intentionally inject grammatical errors 5% of the time to test true comprehension. The Next.js 15 frontend enforces a 'No-Glaze' single-task interface: one sentence on screen, JIT word-tap translations that increment a token's Struggle Count in the database, and Furigana Decay Logic that strips hiragana brackets after the first occurrence of any kanji in a session.",
+    challenges:
+      "Achieving sub-second conversational latency required bypassing REST entirely — audio streams over a persistent WebSocket connection to gemini-2.5-flash-native-audio. Retrieval Latency measurement (the gap between AI prompt and first user syllable) had to be implemented client-side with AudioWorklet to avoid round-trip overhead. Furigana Decay Logic requires a per-session kanji registry so the UI can strip brackets on re-occurrence without re-rendering the whole transcript. The Spaced Production Pipeline demands constant low-latency reads and writes to a Skill Map in Cloudflare KV, tracking mastery counts and grammar failure rates per token without blocking the audio thread.",
+    outcomes:
+      "Currently in active development as a personal accelerator for N4-level Japanese study. The architecture proves that a consumer web app can deliver sub-second AI voice latency without native infrastructure. The weekly Sunday Calibration loop — a 3-minute coaching session where the AI requests a 1-10 effort rating and adjusts the upcoming N4/N5 concept ratio accordingly — closes the metacognitive loop and makes the difficulty curve responsive to lived experience rather than just raw performance metrics.",
+    image: "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/zetto",
+    githubUrl: "https://github.com/finneh4249/zetto",
+    featured: true,
+    date: 1741132800000,
+    technologies: ["Next.js 15", "Gemini 2.5 Flash", "WebSockets", "TanStack Query", "Cloudflare KV", "Supabase", "TypeScript", "Tailwind CSS"],
+    tags: [
+      { name: "AI", badgeClass: "badge-secondary" },
+      { name: "Language Learning", badgeClass: "badge-accent" },
+      { name: "Japanese", badgeClass: "badge-primary" },
+      { name: "Voice", badgeClass: "badge-info" },
+    ],
+  },
   {
     title: "FinnehSpoof",
     description: "AI-powered Minecraft player simulation solving the cold-start problem for new servers.",

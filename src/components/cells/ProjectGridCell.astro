@@ -3,6 +3,7 @@ import { projects as projectsData } from '../../data/projects';
 import ProjectModal from '../projects/ProjectModal.astro';
 
 const allProjects = projectsData;
+const INITIAL_VISIBLE = 6;
 ---
 
 <div class="bento-cell cell-projects reveal reveal-up stagger-2">
@@ -11,11 +12,16 @@ const allProjects = projectsData;
     <span class="text-cyber-cyan">{allProjects.length} total</span>
   </div>
   <div class="bento-cell-content">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="project-grid-inner">
       {allProjects.map((project, i) => (
         <div
-          class={`bg-cyber-bg border border-cyber-border hover:border-cyber-cyan/50 cursor-pointer transition-all duration-300 group overflow-hidden project-grid-item reveal reveal-scale-up stagger-${Math.min(i % 6 + 1, 6)}`}
+          class:list={[
+            'bg-cyber-bg border border-cyber-border hover:border-cyber-cyan/50 cursor-pointer transition-all duration-300 group overflow-hidden project-grid-item',
+            `reveal reveal-scale-up stagger-${Math.min(i % 6 + 1, 6)}`,
+            { hidden: i >= INITIAL_VISIBLE },
+          ]}
           data-project={JSON.stringify(project)}
+          data-index={i}
         >
           <div class="relative h-32 sm:h-36 overflow-hidden">
             <img
@@ -44,6 +50,19 @@ const allProjects = projectsData;
         </div>
       ))}
     </div>
+
+    {allProjects.length > INITIAL_VISIBLE && (
+      <div class="mt-4 text-center">
+        <button
+          id="projects-show-more"
+          class="font-mono text-[10px] uppercase tracking-widest text-cyber-text-muted border border-cyber-border px-3 py-1.5 hover:border-cyber-cyan hover:text-cyber-cyan transition-colors"
+          data-total={allProjects.length}
+          data-visible={INITIAL_VISIBLE}
+        >
+          show more <span id="projects-remaining">+{allProjects.length - INITIAL_VISIBLE}</span>
+        </button>
+      </div>
+    )}
   </div>
   
   <ProjectModal />
@@ -59,6 +78,24 @@ const allProjects = projectsData;
         document.dispatchEvent(new CustomEvent('openProjectModal', { detail: data }));
       });
     });
+
+    const showMoreBtn = document.getElementById('projects-show-more') as HTMLButtonElement | null;
+    if (showMoreBtn) {
+      showMoreBtn.addEventListener('click', () => {
+        const allItems = Array.from(document.querySelectorAll('.project-grid-item')) as HTMLElement[];
+        const hiddenItems = allItems.filter(el => el.classList.contains('hidden'));
+        const toShow = hiddenItems.slice(0, 6);
+        toShow.forEach(el => el.classList.remove('hidden'));
+
+        const stillHidden = allItems.filter(el => el.classList.contains('hidden')).length;
+        const remaining = document.getElementById('projects-remaining');
+        if (stillHidden === 0) {
+          showMoreBtn.style.display = 'none';
+        } else if (remaining) {
+          remaining.textContent = `+${stillHidden}`;
+        }
+      });
+    }
   }
   initProjectGrid();
   document.addEventListener('astro:page-load', initProjectGrid);
