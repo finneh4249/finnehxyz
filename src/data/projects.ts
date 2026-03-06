@@ -16,6 +16,26 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Zetto",
+    description: "AI Language Learning app built on the Gemini Live API to accelerate Japanese learning.",
+    detailedDescription:
+      "Zetto is an AI-powered language learning companion built on top of the Gemini Live API, designed to make Japanese acquisition faster and more intuitive. It leverages real-time conversational AI to simulate immersive practice sessions, helping learners build vocabulary, grammar, and speaking confidence through natural dialogue.",
+    challenges:
+      "Integrating with the Gemini Live API to create seamless, low-latency conversational exchanges for language practice. Designing an experience that adapts to varying learner levels while remaining engaging and pedagogically effective for a language as complex as Japanese.",
+    outcomes:
+      "Currently in active development as a personal tool for accelerating Japanese study. The project demonstrates practical application of the Gemini Live API for real-time AI conversation and explores novel approaches to language immersion through technology.",
+    image: "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/zetto",
+    githubUrl: "https://github.com/finneh4249/zetto",
+    featured: true,
+    date: 1741132800000,
+    technologies: ["Gemini Live API", "AI", "TypeScript"],
+    tags: [
+      { name: "AI", badgeClass: "badge-secondary" },
+      { name: "Language Learning", badgeClass: "badge-accent" },
+      { name: "Japanese", badgeClass: "badge-primary" },
+    ],
+  },
+  {
     title: "FinnehSpoof",
     description: "AI-powered Minecraft player simulation solving the cold-start problem for new servers.",
     detailedDescription:
