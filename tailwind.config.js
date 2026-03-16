@@ -25,19 +25,6 @@ export default {
           blue: "#00b4d8",
           purple: "#b75cff",
         },
-        // Keep neo- aliases for backward compat during migration
-        neo: {
-          bg: "#0a0a0f",
-          dark: "#0a0a0f",
-          white: "#e0e0e8",
-          black: "#0a0a0f",
-          yellow: "#f0ff00",
-          pink: "#ff2d7b",
-          blue: "#00b4d8",
-          green: "#39ff14",
-          purple: "#b75cff",
-          orange: "#ff6600",
-        },
       },
       boxShadow: {
         "brutal-sm": "3px 3px 0px 0px #2a2a3a",

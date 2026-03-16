@@ -11,7 +11,7 @@ import { Icon } from 'astro-icon/components';
 
 const { icon, name, color, description, category } = Astro.props;
 
-const colors = ['bg-neo-yellow', 'bg-neo-pink', 'bg-neo-blue', 'bg-neo-green', 'bg-neo-purple', 'bg-neo-orange'];
+const colors = ['bg-cyber-yellow', 'bg-cyber-pink', 'bg-cyber-blue', 'bg-cyber-green', 'bg-cyber-purple', 'bg-cyber-orange'];
 const colorIndex = Math.abs(name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)) % colors.length;
 const cardColor = colors[colorIndex];
 ---
