@@ -25,7 +25,12 @@ import { heroData } from '../../data/heroData';
     const dataEl = document.getElementById('terminal-data');
     if (!el || !dataEl || el.dataset.init === 'true') return;
     
-    const strings = JSON.parse(dataEl.dataset.strings || '[]');
+    let strings: string[] = [];
+    try {
+      strings = JSON.parse(dataEl.dataset.strings || '[]');
+    } catch {
+      strings = ['developer'];
+    }
     let si = 0, ci = 0, deleting = false;
     
     function type() {

@@ -1,7 +1,15 @@
 ---
 import skillsData from '../../data/skills.json';
 
-const neonColors = ['text-cyber-cyan', 'text-cyber-magenta', 'text-cyber-green', 'text-cyber-yellow', 'text-cyber-blue', 'text-cyber-purple'];
+// Full static class names so Tailwind's scanner can detect them
+const skillBorderClasses = [
+  'hover:border-cyber-cyan/30',
+  'hover:border-cyber-magenta/30',
+  'hover:border-cyber-green/30',
+  'hover:border-cyber-yellow/30',
+  'hover:border-cyber-blue/30',
+  'hover:border-cyber-purple/30',
+];
 ---
 
 <div class="bento-cell cell-skills reveal reveal-up stagger-2">
@@ -27,7 +35,7 @@ const neonColors = ['text-cyber-cyan', 'text-cyber-magenta', 'text-cyber-green',
     <div class="border-t border-cyber-border pt-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         {skillsData.skills.map((skill, i) => (
-          <div class={`flex items-start gap-2.5 p-3 bg-cyber-bg border border-cyber-border hover:border-${neonColors[i % neonColors.length].replace('text-', '')}/30 transition-all`}>
+          <div class={`flex items-start gap-2.5 p-3 bg-cyber-bg border border-cyber-border ${skillBorderClasses[i % skillBorderClasses.length]} transition-all`}>
             <i class={`bx ${skill.icon} text-lg ${skill.color} mt-0.5 flex-shrink-0`}></i>
             <div>
               <span class="text-xs font-bold text-white uppercase block">{skill.title}</span>

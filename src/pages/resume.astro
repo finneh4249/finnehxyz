@@ -4,22 +4,37 @@ import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
 
+interface Role {
+  title: string;
+  period: string;
+  isCurrent?: boolean;
+  description?: string;
+}
+
+interface Experience {
+  yearRange: string;
+  company: string;
+  employer?: string;
+  category: 'technology' | 'operations';
+  roles: Role[];
+}
+
 // Only keep most relevant roles (recent / current / significant)
-const techRoles = (experienceData as any[])
+const techRoles = (experienceData as Experience[])
   .filter(e => e.category === 'technology')
   .map(e => ({
     company: e.company,
     employer: e.employer,
-    roles: e.roles.filter((r: any) => r.isCurrent || r.title.includes('Lead') || r.title.includes('Founder')).slice(0, 1),
+    roles: e.roles.filter(r => r.isCurrent || r.title.includes('Lead') || r.title.includes('Founder')).slice(0, 1),
   }))
   .filter(e => e.roles.length > 0);
 
-const opsRoles = (experienceData as any[])
+const opsRoles = (experienceData as Experience[])
   .filter(e => e.category === 'operations')
   .map(e => ({
     company: e.company,
     employer: e.employer,
-    roles: e.roles.slice(0, 2), // Latest 2 roles per company
+    roles: e.roles.slice(0, 2),
   }));
 
 // Top skills by proficiency
@@ -87,7 +102,7 @@ const keyEdu = educationItems.filter(e =>
                 <h3 class="text-xs font-bold text-white print:text-black uppercase">{exp.company.split('—')[0].trim()}</h3>
               </div>
               {exp.employer && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">{exp.employer}</p>}
-              {exp.roles.map((role: any) => (
+              {exp.roles.map((role) => (
                 <div class="mt-1">
                   <div class="flex items-baseline justify-between gap-2">
                     <span class="text-[10px] font-bold text-cyber-cyan print:text-gray-800">{role.title}</span>
@@ -117,7 +132,7 @@ const keyEdu = educationItems.filter(e =>
             <div class="mb-3">
               <h3 class="text-xs font-bold text-white print:text-black uppercase">{exp.company}</h3>
               {exp.employer && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">{exp.employer}</p>}
-              {exp.roles.map((role: any) => (
+              {exp.roles.map((role) => (
                 <div class="mt-1">
                   <div class="flex items-baseline justify-between gap-2">
                     <span class="text-[10px] font-bold text-cyber-magenta print:text-gray-800">{role.title}</span>

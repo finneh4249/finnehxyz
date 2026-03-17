@@ -2,19 +2,38 @@
   {
     "title": "FinnehSpoof",
     "description": "AI-powered Minecraft player simulation solving the cold-start problem for new servers.",
-    "detailedDescription": "Production Bukkit plugin that spawns AI-driven fake players with distinct personas, LLM-powered chat, and realistic behavioral simulation. Built in one overnight session using SPARC methodology — zero lines written manually. Currently live on FusionMC (fusionparty.org.au).",
+    "detailedDescription": "Production Bukkit plugin that spawns AI-driven fake players with distinct personas, LLM-powered chat, and realistic behavioral simulation. Built in one overnight session using SPARC methodology \u2014 zero lines written manually. Currently live on FusionMC (fusionparty.org.au).",
     "challenges": "Solving the cold-start problem for new Minecraft servers where empty servers struggle to attract initial players. Creating convincing AI personas that engage naturally without being repetitive or obvious bots. Implementing packet-level player spoofing that appears authentic in server lists and tab displays. Balancing conversation dynamics with heat-based systems to prevent chat spam while maintaining engagement.",
     "outcomes": "Achieved production deployment on first day with 120+ iterations completed in just 6 hours. Successfully created 55 distinct AI personas with heat-based conversation dynamics that feel natural. Implemented multi-LLM support (Gemini, OpenAI, OpenRouter, Anthropic) for flexibility. Live deployment on FusionMC demonstrates real-world viability. Zero manual code writing through SPARC methodology proved the framework's effectiveness for rapid, production-grade development.",
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/FinnehSpoof",
     "githubUrl": "https://github.com/finneh4249/FinnehSpoof",
     "featured": true,
     "date": 1739232000000,
-    "technologies": ["Java", "Spigot", "ProtocolLib", "Gemini API", "OpenRouter", "SPARC"],
+    "technologies": [
+      "Java",
+      "Spigot",
+      "ProtocolLib",
+      "Gemini API",
+      "OpenRouter",
+      "SPARC"
+    ],
     "tags": [
-      { "name": "Java", "badgeClass": "badge-warning" },
-      { "name": "AI", "badgeClass": "badge-secondary" },
-      { "name": "Minecraft", "badgeClass": "badge-secondary" },
-      { "name": "SPARC", "badgeClass": "badge-primary" }
+      {
+        "name": "Java",
+        "badgeClass": "badge-warning"
+      },
+      {
+        "name": "AI",
+        "badgeClass": "badge-secondary"
+      },
+      {
+        "name": "Minecraft",
+        "badgeClass": "badge-secondary"
+      },
+      {
+        "name": "SPARC",
+        "badgeClass": "badge-primary"
+      }
     ]
   },
   {
@@ -27,10 +46,22 @@
     "githubUrl": null,
     "featured": true,
     "date": 1729033200000,
-    "technologies": ["Python", "FastAPI", "React", "Selenium", "Docker"],
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "React",
+      "Selenium",
+      "Docker"
+    ],
     "tags": [
-      { "name": "Python", "badgeClass": "badge-info" },
-      { "name": "Automation", "badgeClass": "badge-warning" }
+      {
+        "name": "Python",
+        "badgeClass": "badge-info"
+      },
+      {
+        "name": "Automation",
+        "badgeClass": "badge-warning"
+      }
     ]
   },
   {
@@ -43,10 +74,21 @@
     "githubUrl": "https://github.com/Finneh4249/SPARC-Framework",
     "featured": true,
     "date": 1728946800000,
-    "technologies": ["AI Agents", "React", "Node.js", "SPARC Methodology"],
+    "technologies": [
+      "AI Agents",
+      "React",
+      "Node.js",
+      "SPARC Methodology"
+    ],
     "tags": [
-      { "name": "AI", "badgeClass": "badge-secondary" },
-      { "name": "Framework", "badgeClass": "badge-primary" }
+      {
+        "name": "AI",
+        "badgeClass": "badge-secondary"
+      },
+      {
+        "name": "Framework",
+        "badgeClass": "badge-primary"
+      }
     ]
   },
   {
@@ -59,10 +101,20 @@
     "githubUrl": "https://github.com/Finneh4249/Nexus-App",
     "featured": true,
     "date": 1728946800000,
-    "technologies": ["Full-Stack", "FinTech", "UX/UI"],
+    "technologies": [
+      "Full-Stack",
+      "FinTech",
+      "UX/UI"
+    ],
     "tags": [
-      { "name": "FinTech", "badgeClass": "badge-success" },
-      { "name": "Web App", "badgeClass": "badge-info" }
+      {
+        "name": "FinTech",
+        "badgeClass": "badge-success"
+      },
+      {
+        "name": "Web App",
+        "badgeClass": "badge-info"
+      }
     ]
   },
   {
@@ -76,8 +128,17 @@
     "liveDemoUrl": "https://finneh.xyz/pokerbo",
     "featured": true,
     "date": 1708243200000,
-    "technologies": ["JavaScript", "HTML5", "CSS3"],
-    "tags": [{ "name": "JavaScript", "badgeClass": "badge-primary" }]
+    "technologies": [
+      "JavaScript",
+      "HTML5",
+      "CSS3"
+    ],
+    "tags": [
+      {
+        "name": "JavaScript",
+        "badgeClass": "badge-primary"
+      }
+    ]
   },
   {
     "title": "City Loopers",
@@ -90,8 +151,17 @@
     "liveDemoUrl": "https://cityloopers.com",
     "featured": false,
     "date": 1709683200000,
-    "technologies": ["Java", "Spigot", "Discord.js"],
-    "tags": [{ "name": "Minecraft", "badgeClass": "badge-secondary" }]
+    "technologies": [
+      "Java",
+      "Spigot",
+      "Discord.js"
+    ],
+    "tags": [
+      {
+        "name": "Minecraft",
+        "badgeClass": "badge-secondary"
+      }
+    ]
   },
   {
     "title": "Aometry",
@@ -102,8 +172,18 @@
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
     "githubUrl": "https://github.com/CityLoopers/Aometry",
     "date": 1625270400000,
-    "technologies": ["Node.js", "Discord.js", "JavaScript"],
-    "tags": [{ "name": "Discord.js", "badgeClass": "badge-accent" }]
+    "technologies": [
+      "Node.js",
+      "Discord.js",
+      "JavaScript"
+    ],
+    "tags": [
+      {
+        "name": "Discord.js",
+        "badgeClass": "badge-accent"
+      }
+    ],
+    "featured": false
   },
   {
     "title": "F1 Results Tracker",
@@ -114,11 +194,21 @@
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/F1-Results-Tracker",
     "githubUrl": "https://github.com/finneh4249/F1-Results-Tracker",
     "date": 1720396800000,
-    "technologies": ["Python", "SQLite"],
+    "technologies": [
+      "Python",
+      "SQLite"
+    ],
     "tags": [
-      { "name": "Python", "badgeClass": "badge-info" },
-      { "name": "SQLite", "badgeClass": "badge-success" }
-    ]
+      {
+        "name": "Python",
+        "badgeClass": "badge-info"
+      },
+      {
+        "name": "SQLite",
+        "badgeClass": "badge-success"
+      }
+    ],
+    "featured": false
   },
   {
     "title": "WeatherWise",
@@ -129,11 +219,22 @@
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/hackathon",
     "githubUrl": "https://github.com/finneh4249/hackathon",
     "date": 1734124800000,
-    "technologies": ["JavaScript", "CSS", "API Integration"],
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "API Integration"
+    ],
     "tags": [
-      { "name": "Weather App", "badgeClass": "badge-primary" },
-      { "name": "Team Project", "badgeClass": "badge-secondary" }
-    ]
+      {
+        "name": "Weather App",
+        "badgeClass": "badge-primary"
+      },
+      {
+        "name": "Team Project",
+        "badgeClass": "badge-secondary"
+      }
+    ],
+    "featured": false
   },
   {
     "title": "OpenNewPOS6",
@@ -144,27 +245,52 @@
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/OpenNewPOS6",
     "githubUrl": "https://github.com/finneh4249/OpenNewPOS6",
     "date": 1732320000000,
-    "technologies": ["HTML", "CSS", "JavaScript"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "tags": [
-      { "name": "HTML/CSS", "badgeClass": "badge-warning" },
-      { "name": "JavaScript", "badgeClass": "badge-primary" }
-    ]
+      {
+        "name": "HTML/CSS",
+        "badgeClass": "badge-warning"
+      },
+      {
+        "name": "JavaScript",
+        "badgeClass": "badge-primary"
+      }
+    ],
+    "featured": false
   },
   {
     "title": "Merry Berry Acai",
-    "description": "A full-stack solution for a smoothie & açaí shop.",
-    "detailedDescription": "A comprehensive e-commerce platform designed for a smoothie and açaí shop. It features a custom ordering system, menu management, and a streamlined checkout process tailored for health-conscious customers.",
+    "description": "A full-stack solution for a smoothie & a\u00e7a\u00ed shop.",
+    "detailedDescription": "A comprehensive e-commerce platform designed for a smoothie and a\u00e7a\u00ed shop. It features a custom ordering system, menu management, and a streamlined checkout process tailored for health-conscious customers.",
     "challenges": "Building a custom e-commerce flow that accommodates complex customization options (toppings, bases, allergies) for food items. Ensuring the checkout process was frictionless to minimize cart abandonment while managing inventory states.",
     "outcomes": "Delivered a polished online ordering platform that streamlined the shop's operations. The system improved order accuracy and customer satisfaction through its intuitive customization interface and reliable backend processing.",
     "image": "https://repository-images.githubusercontent.com/640027341/cdd6e617-a936-47d3-bc91-14cc88c9d20b",
     "githubUrl": "https://github.com/merry-berry-acai",
     "date": 1739664000000,
-    "technologies": ["Full-Stack", "E-commerce", "Web Development"],
+    "technologies": [
+      "Full-Stack",
+      "E-commerce",
+      "Web Development"
+    ],
     "tags": [
-      { "name": "Full-stack", "badgeClass": "badge-accent" },
-      { "name": "E-commerce", "badgeClass": "badge-info" },
-      { "name": "Team Project", "badgeClass": "badge-secondary" }
-    ]
+      {
+        "name": "Full-stack",
+        "badgeClass": "badge-accent"
+      },
+      {
+        "name": "E-commerce",
+        "badgeClass": "badge-info"
+      },
+      {
+        "name": "Team Project",
+        "badgeClass": "badge-secondary"
+      }
+    ],
+    "featured": false
   },
   {
     "title": "MunchRun",
@@ -175,12 +301,26 @@
     "image": "https://repository-images.githubusercontent.com/627035887/ba268172-7344-41f1-b4b0-9e8f0705208d",
     "githubUrl": "https://github.com/munchrun-app",
     "date": 1586822400000,
-    "technologies": ["App Development", "Real-time Systems", "Logistics"],
+    "technologies": [
+      "App Development",
+      "Real-time Systems",
+      "Logistics"
+    ],
     "tags": [
-      { "name": "App Development", "badgeClass": "badge-secondary" },
-      { "name": "Food Delivery", "badgeClass": "badge-success" },
-      { "name": "Team Project", "badgeClass": "badge-secondary" }
-    ]
+      {
+        "name": "App Development",
+        "badgeClass": "badge-secondary"
+      },
+      {
+        "name": "Food Delivery",
+        "badgeClass": "badge-success"
+      },
+      {
+        "name": "Team Project",
+        "badgeClass": "badge-secondary"
+      }
+    ],
+    "featured": false
   },
   {
     "title": "EdgeBrowser",
@@ -191,11 +331,25 @@
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/FinnehPleh/EdgeBrowser",
     "githubUrl": "https://github.com/FinnehPleh/EdgeBrowser",
     "date": 1345766400000,
-    "technologies": ["Visual Basic", "Windows Forms", ".NET Framework"],
+    "technologies": [
+      "Visual Basic",
+      "Windows Forms",
+      ".NET Framework"
+    ],
     "tags": [
-      { "name": "Visual Basic", "badgeClass": "badge-warning" },
-      { "name": "Legacy", "badgeClass": "badge-neutral" },
-      { "name": "Desktop App", "badgeClass": "badge-info" }
-    ]
+      {
+        "name": "Visual Basic",
+        "badgeClass": "badge-warning"
+      },
+      {
+        "name": "Legacy",
+        "badgeClass": "badge-neutral"
+      },
+      {
+        "name": "Desktop App",
+        "badgeClass": "badge-info"
+      }
+    ],
+    "featured": false
   }
 ]

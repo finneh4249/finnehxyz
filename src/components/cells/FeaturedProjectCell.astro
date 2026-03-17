@@ -32,7 +32,12 @@ const featured = projectsData.filter(p => p.featured)[0] || projectsData[0];
     const cell = document.getElementById('featured-cell');
     if (!cell) return;
     cell.addEventListener('click', () => {
-      const data = JSON.parse(cell.dataset.project || '{}');
+      let data = {};
+      try {
+        data = JSON.parse(cell.dataset.project || '{}');
+      } catch {
+        return;
+      }
       document.dispatchEvent(new CustomEvent('openProjectModal', { detail: data }));
     });
   }

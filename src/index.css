@@ -237,17 +237,10 @@
     z-index: 1;
   }
 
-  /* --- Legacy Brutal Compat (maps to cyber) --- */
+  /* --- Brutal aliases (used by secret.astro, SkillCard, ToolCard, EducationItem) --- */
   .brutal-card { @apply cyber-card; }
   .brutal-btn { @apply cyber-btn; }
   .brutal-input { @apply cyber-input; }
-
-  .brutal-yellow { @apply bg-cyber-yellow text-cyber-bg; }
-  .brutal-pink { @apply bg-cyber-pink text-white; }
-  .brutal-blue { @apply bg-cyber-blue text-white; }
-  .brutal-green { @apply bg-cyber-green text-cyber-bg; }
-  .brutal-purple { @apply bg-cyber-purple text-white; }
-  .brutal-orange { @apply bg-cyber-orange text-white; }
 
   /* --- Category Badge --- */
   .category-badge {
