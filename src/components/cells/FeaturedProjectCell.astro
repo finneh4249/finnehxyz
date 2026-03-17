@@ -1,46 +1,126 @@
 ---
 import { projects as projectsData } from '../../data/projects';
-const featured = projectsData.filter(p => p.featured)[0] || projectsData[0];
+const featured = projectsData.filter(p => p.featured);
 ---
 
-<div class="bento-cell group cursor-pointer cell-featured reveal reveal-left stagger-2" data-project={JSON.stringify(featured)} id="featured-cell">
-  <div class="bento-cell-header z-10 relative">// featured project</div>
-  <div class="relative h-48 md:h-full min-h-[200px]">
-    <img
-      src={featured.image}
-      alt={`${featured.title} Preview`}
-      class="absolute inset-0 w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-      loading="lazy"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/70 to-transparent"></div>
-    <div class="absolute bottom-0 left-0 right-0 p-4">
-      <div class="flex flex-wrap gap-1.5 mb-2">
-        {(featured.technologies ?? []).slice(0, 3).map((tech) => (
-          <span class="bg-cyber-bg/80 text-cyber-cyan border border-cyber-cyan/30 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider">
-            {tech}
-          </span>
-        ))}
-      </div>
-      <h2 class="text-xl md:text-2xl font-black uppercase text-white leading-tight">{featured.title}</h2>
-      <p class="text-xs text-cyber-text-muted mt-1 line-clamp-2">{featured.description}</p>
+<div class="bento-cell cell-featured reveal reveal-left stagger-2" id="featured-cell">
+  <div class="bento-cell-header z-10 relative flex items-center justify-between">
+    <span>// featured project</span>
+    <div class="flex items-center gap-2" id="featured-indicators">
+      {featured.map((_, i) => (
+        <button
+          class={`w-1.5 h-1.5 border border-cyber-cyan/50 transition-all duration-300 ${i === 0 ? 'bg-cyber-cyan' : 'bg-transparent'}`}
+          data-index={i}
+          aria-label={`Go to project ${i + 1}`}
+        />
+      ))}
     </div>
+  </div>
+
+  <div class="relative h-48 md:h-full min-h-[200px] overflow-hidden cursor-pointer" id="featured-slides">
+    {featured.map((project, i) => (
+      <div
+        class={`absolute inset-0 transition-opacity duration-700 group ${i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        data-slide={i}
+        data-project={JSON.stringify(project)}
+      >
+        <img
+          src={project.image}
+          alt={`${project.title} Preview`}
+          class="absolute inset-0 w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/70 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-4">
+          <div class="flex flex-wrap gap-1.5 mb-2">
+            {(project.technologies ?? []).slice(0, 3).map((tech) => (
+              <span class="bg-cyber-bg/80 text-cyber-cyan border border-cyber-cyan/30 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider">
+                {tech}
+              </span>
+            ))}
+          </div>
+          <h2 class="text-xl md:text-2xl font-black uppercase text-white leading-tight">{project.title}</h2>
+          <p class="text-xs text-cyber-text-muted mt-1 line-clamp-2">{project.description}</p>
+        </div>
+      </div>
+    ))}
   </div>
 </div>
 
 <script>
-  function initFeatured() {
+  const INTERVAL_MS = 4000;
+
+  function initCarousel() {
     const cell = document.getElementById('featured-cell');
-    if (!cell) return;
-    cell.addEventListener('click', () => {
-      let data = {};
-      try {
-        data = JSON.parse(cell.dataset.project || '{}');
-      } catch {
-        return;
+    const slidesEl = document.getElementById('featured-slides');
+    const indicatorsEl = document.getElementById('featured-indicators');
+    if (!cell || !slidesEl || !indicatorsEl || (cell as HTMLElement & { _carouselInit?: boolean })._carouselInit) return;
+    (cell as HTMLElement & { _carouselInit?: boolean })._carouselInit = true;
+
+    const slides = Array.from(slidesEl.querySelectorAll<HTMLElement>('[data-slide]'));
+    const dots = Array.from(indicatorsEl.querySelectorAll<HTMLButtonElement>('[data-index]'));
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    function goTo(index: number) {
+      slides[current].classList.remove('opacity-100');
+      slides[current].classList.add('opacity-0', 'pointer-events-none');
+      dots[current].classList.remove('bg-cyber-cyan');
+      dots[current].classList.add('bg-transparent');
+
+      current = index;
+
+      slides[current].classList.remove('opacity-0', 'pointer-events-none');
+      slides[current].classList.add('opacity-100');
+      dots[current].classList.remove('bg-transparent');
+      dots[current].classList.add('bg-cyber-cyan');
+    }
+
+    function next() {
+      goTo((current + 1) % slides.length);
+    }
+
+    function startTimer() {
+      timer = setInterval(next, INTERVAL_MS);
+    }
+
+    function stopTimer() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
       }
-      document.dispatchEvent(new CustomEvent('openProjectModal', { detail: data }));
+    }
+
+    // Dot navigation
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopTimer();
+        goTo(Number(dot.dataset.index));
+        startTimer();
+      });
     });
+
+    // Click slide opens modal
+    slides.forEach((slide) => {
+      slide.addEventListener('click', () => {
+        let data = {};
+        try {
+          data = JSON.parse(slide.dataset.project || '{}');
+        } catch {
+          return;
+        }
+        document.dispatchEvent(new CustomEvent('openProjectModal', { detail: data }));
+      });
+    });
+
+    // Pause on hover
+    cell.addEventListener('mouseenter', stopTimer);
+    cell.addEventListener('mouseleave', startTimer);
+
+    startTimer();
   }
-  initFeatured();
-  document.addEventListener('astro:page-load', initFeatured);
+
+  initCarousel();
+  document.addEventListener('astro:page-load', initCarousel);
 </script>
