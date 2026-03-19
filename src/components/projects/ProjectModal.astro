@@ -142,6 +142,10 @@ import { Icon } from 'astro-icon/components';
       if (img) {
         img.src = project.image || '';
         img.alt = project.title || 'Project Image';
+        img.onerror = () => {
+          img.onerror = null;
+          img.src = `https://placehold.co/800x400/12121a/00fff5?text=${encodeURIComponent(project.title || 'Project')}`;
+        };
       }
       
       if (title) title.textContent = project.title || '';

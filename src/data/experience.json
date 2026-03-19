@@ -1,14 +1,14 @@
 [
   {
     "yearRange": "2025",
-    "company": "Axion — Technical Venture Framework (Concept Stage)",
+    "company": "Axion",
     "category": "technology",
     "roles": [
       {
         "title": "Founder & Lead Engineer",
         "period": "Oct 2025 – Present",
         "isCurrent": true,
-        "description": "Axion is my applied R&D initiative exploring the intersection of AI-assisted development, venture incubation, and ethical innovation. Architecting and building proof-of-concept products such as Nexus and the SPARC framework. Developing human-in-the-loop AI workflows to enhance developer productivity and maintain design quality. Experimenting with small-team collaboration models that emphasize motivation, accountability, and autonomy. Currently in concept stage, Axion serves as a launchpad for future ventures and a real-world testbed for scalable AI-native systems."
+        "description": "Ships AI-native products using SPARC methodology. Built Nexus (fintech platform), SPARC prompt library, and this portfolio. Every product is a production testbed for AI-assisted development at scale."
       }
     ],
     "logoSrc": "images/axion.png",
@@ -60,7 +60,7 @@
     "logoAlt": "ALDI Stores Australia"
   },
   {
-    "yearRange": "2022 - 2025",
+    "yearRange": "2015 - 2025",
     "company": "McDonald's",
     "employer": "DirectWest Pty Ltd",
     "category": "operations",
@@ -69,43 +69,13 @@
         "title": "Operations Technology Platform (OTP) Manager",
         "period": "March 2024 - October 2025",
         "isCurrent": false,
-        "description": "- Conducted monthly OTP Tech Travel Path audits, identifying and resolving issues to maintain 99% technology uptime.\n- Utilized resources and technical knowledge to troubleshoot POS system errors, minimizing customer wait times.\n- Proactively identified and resolved network connectivity issues, preventing potential disruptions to restaurant operations."
+        "description": "- Maintained 99% technology uptime across POS and network systems through monthly audits and proactive fault resolution."
       },
       {
         "title": "Assistant Business Manager",
-        "period": "August 2022 - March 2024",
+        "period": "August 2015 - February 2024",
         "isCurrent": false,
-        "description": "Successfully implemented strategies to drive sales, optimize team performance, and maintain exceptional QSC&V standards, ensuring a positive customer experience and achieving business objectives."
-      },
-      {
-        "title": "Department Manager",
-        "period": "June 2022 - August 2022",
-        "isCurrent": false,
-        "description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
-      },
-      {
-        "title": "Department Manager",
-        "period": "July 2019 - April 2020",
-        "isCurrent": false,
-        "description": "Successfully completed and implemented training for People Performance, Product Quality, and Customer Experience departments, demonstrating a well-rounded skillset in restaurant operations."
-      },
-      {
-        "title": "Shift Supervisor",
-        "period": "May 2018 - July 2019",
-        "isCurrent": false,
-        "description": "Successfully completed all required training, including Leadership Transitions, First Aid, and Fire Training, demonstrating readiness to lead shifts and ensure operational efficiency. Supervised and motivated crew members, ensuring adherence to McDonald's procedures and QSC&V standards."
-      },
-      {
-        "title": "Area Manager",
-        "period": "December 2017 - May 2018",
-        "isCurrent": false,
-        "description": "Managed multiple operational areas within the restaurant, coordinating between departments and ensuring smooth daily operations while maintaining high standards of service quality."
-      },
-      {
-        "title": "Crew Member",
-        "period": "August 2015 - December 2017",
-        "isCurrent": false,
-        "description": "Gained foundational experience in fast-paced food service operations, developing strong teamwork, communication, and customer service skills while maintaining food safety standards."
+        "description": "- Progressed from Crew Member to ABM over 9 years; managed QSC&V standards, team performance, and sales strategy."
       }
     ],
     "logoSrc": "images/mc_logo.png",
