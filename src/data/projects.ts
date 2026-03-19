@@ -19,7 +19,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "Zetto",
-    description: "Voice-first Japanese acquisition engine — acoustic telemetry, spaced production, and sub-second AI conversation via Gemini 2.5 Flash.",
+    description: "Voice-first Japanese learning app with sub-second AI conversation via Gemini 2.5 Flash. Built on a Flash Lite + TTS architecture that cuts API costs ~75% vs Gemini Live.",
     detailedDescription:
       "Zetto is a low-latency, voice-first Japanese language acquisition engine built on Gemini 2.5 Flash (native audio) over WebSockets, targeting sub-second conversational latency. It abandons passive gamification in favour of three interlocking Second Language Acquisition engines. The Spaced Production Pipeline tracks vocabulary through active generation across three tiers: cloze exercises (Stage 1), semantic prompts (Stage 2), and open contextual roleplay (Stage 3). Acoustic Telemetry measures the millisecond gap between each AI prompt and the user's first syllable — fast responses flag a token as mastered and escalate complexity, while slow responses trigger a micro-hint without breaking character. Socratic Error-Discovery rounds out the system by having the AI intentionally inject grammatical errors 5% of the time to test true comprehension. The Next.js 15 frontend enforces a 'No-Glaze' single-task interface: one sentence on screen, JIT word-tap translations that increment a token's Struggle Count in the database, and Furigana Decay Logic that strips hiragana brackets after the first occurrence of any kanji in a session.",
     challenges:
@@ -80,8 +80,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "SPARC Framework (2025)",
-    description: "AI-assisted development workflow",
+    title: "SPARC Framework",
+    description: "Prompt library of 3,000+ lines orchestrating 12 specialized agents across a full dev cycle. Cuts scaffolding from 2 days to 4 hours.",
     detailedDescription:
       "A proprietary orchestration system designed to automate key stages of the software development lifecycle. SPARC reduces build times by up to 75% while maintaining documentation quality and version control integrity.",
     challenges:
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Nexus (Prototype, 2025)",
+    title: "Nexus",
     description: "Financial wellness platform for couples",
     detailedDescription:
       "A next-generation web application that helps couples track, plan, and manage shared finances with empathy and transparency. Focused on user-centered design, ethical data handling, and meaningful engagement.",
@@ -157,20 +157,24 @@ export const projects: Project[] = [
   },
   {
     title: "Aometry",
-    description:
-      "A custom and modular discord bot framework build on Discord.JS v13.",
+    description: "Discord bot built at 16. 46 GitHub stars, 5 forks, active contributor community. Built with discord.js v14.",
     detailedDescription:
       "Aometry is a robust framework designed to simplify the creation of Discord bots. It abstracts away common boilerplate, providing a modular structure for command handling, event listeners, and configuration management.",
     challenges:
-      "Abstracting the repetitive boilerplate of Discord.js v13 into a flexible architecture that could support various bot types. Handling dynamic command registration and ensuring the framework remained performant while managing multiple event listeners.",
+      "Abstracting the repetitive boilerplate of Discord.js into a flexible architecture that could support various bot types. Handling dynamic command registration and ensuring the framework remained performant while managing multiple event listeners.",
     outcomes:
-      "Drastically reduced setup time for new bot projects. The framework allows developers to focus on feature logic rather than API connectivity, standardizing development practices and improving code maintainability.",
+      "Drastically reduced setup time for new bot projects. The framework allows developers to focus on feature logic rather than API connectivity, standardizing development practices and improving code maintainability. 46 GitHub stars and an active contributor community.",
     image:
       "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
     githubUrl: "https://github.com/CityLoopers/Aometry",
+    featured: true,
     date: 1625270400000,
-    technologies: ["Node.js", "Discord.js", "JavaScript"],
-    tags: [{ name: "Discord.js", badgeClass: "badge-accent" }],
+    technologies: ["JavaScript", "discord.js v14", "Node.js"],
+    tags: [
+      { name: "JavaScript", badgeClass: "badge-primary" },
+      { name: "Discord", badgeClass: "badge-accent" },
+      { name: "Open Source", badgeClass: "badge-success" },
+    ],
   },
   {
     title: "F1 Results Tracker",

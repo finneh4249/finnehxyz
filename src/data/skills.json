@@ -123,20 +123,6 @@
       "color": "text-blue-500",
       "category": "Leadership",
       "description": "Bridging the gap between technical complexity and business goals. I lead teams with clarity, empathy, and a focus on shipping."
-    },
-    {
-      "icon": "mdi:rocket-launch",
-      "title": "Venture Building",
-      "color": "text-purple-500",
-      "category": "Strategic",
-      "description": "Taking concepts from zero to one. I understand the full lifecycle of product development, from ideation and validation to MVP and scale."
-    },
-    {
-      "icon": "mdi:chart-line",
-      "title": "Process Optimization",
-      "color": "text-orange-500",
-      "category": "Operational",
-      "description": "Identifying bottlenecks in both code and human workflows. I implement systems that reduce friction and increase throughput."
     }
   ]
 }
