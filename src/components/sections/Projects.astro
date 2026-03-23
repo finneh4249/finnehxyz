@@ -57,6 +57,7 @@ const otherProjects = projectsData.filter(p => !p.featured);
                   alt={`${project.title} Preview`}
                   class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   loading="lazy"
+                  onerror={`this.onerror=null;this.src='https://placehold.co/800x400/12121a/00fff5?text=${encodeURIComponent(project.title)}'`}
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-cyber-bg via-cyber-bg/60 to-transparent"></div>
               </div>

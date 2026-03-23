@@ -13,11 +13,9 @@ tags:
 featured: true
 ---
 
-I didn't build an AI coding framework.
+SPARC isn't a framework. It's a prompt library that turns an existing AI tool (Roo Code) into a production-grade development system with security controls, automated testing, and deterministic output.
 
-I built something arguably harder: a comprehensive prompt library that turns an existing AI tool (Roo Code) into a production-grade development system with security controls, automated testing, and deterministic output.
-
-3,000+ lines of carefully architected prompts. 12 specialized agent modes. Mandatory reasoning protocols. Security-first design.
+3,000 lines of carefully architected prompts. 12 specialized agent modes. Mandatory reasoning protocols. Security-first design.
 
 Here's what I learned about prompt engineering at scale, and why most developers are doing it wrong.
 
@@ -67,7 +65,7 @@ Instead of writing ad-hoc prompts for each task, I built **SPARC**: a comprehens
 **R - Refinement & Review**  
 **C - Completion & Versioning**
 
-Not just a workflow. A complete **prompt architecture** with 12 specialized agents, each with explicit role definitions, reasoning protocols, and security mandates.
+A complete prompt architecture with 12 specialized agents, each with explicit role definitions, reasoning protocols, and security mandates.
 
 ## How Prompt Architecture Actually Works
 
@@ -139,7 +137,7 @@ to ensure logical consistency and accurate syntax.
 4. **Temperature controls** → Deterministic output, not creative guessing
 5. **Context injection** → All necessary info provided in structured tags
 
-This isn't a prompt. It's a **software specification for AI behavior**.
+A prompt written this way is a software specification for AI behavior.
 
 ## The 12 Specialized Agents
 
@@ -638,7 +636,7 @@ Most developers never adjust temperature settings. This is a mistake.
 
 In SPARC, every agent has explicit temperature requirements in the prompt. The code agent uses ≤0.3. The version manager uses ≤0.1.
 
-**Result:** Consistent, predictable output instead of random variations.
+Consistent, predictable output instead of random variations.
 
 ### 2. Reasoning Transparency Prevents Hallucinations
 
@@ -668,7 +666,7 @@ Without reasoning tags, AI might generate code that "looks right" but violates r
 
 ### 3. Security Can't Be Bolted On
 
-Security must be in **every agent's prompt**, not just a final review step.
+Security must be in every agent's prompt. A final review step alone misses too much.
 
 **spec-pseudocode agent:**
 
@@ -700,7 +698,7 @@ Security must be in **every agent's prompt**, not just a final review step.
 - Refuses to commit .env files
 - Reports violations immediately
 
-**Result:** Security violations caught at every phase, not just at the end.
+Security violations get caught at every phase, not just at the end.
 
 ### 4. Specificity Beats Generality
 
@@ -730,16 +728,7 @@ secrets in environment variables. Use Temperature ≤ 0.3 for deterministic
 output."
 ```
 
-The SPARC prompt provides:
-
-- **Exact requirements** (pass failing tests)
-- **Performance constraints** (Big O limits)
-- **Design requirements** (design tokens)
-- **Code quality standards** (type hints, docstrings)
-- **Security requirements** (bcrypt cost, rate limits, secret storage)
-- **Decoding parameters** (Temperature ≤ 0.3)
-
-**No ambiguity. No guessing. Just requirements.**
+The SPARC prompt provides exact requirements (pass failing tests), performance constraints (Big O limits), design requirements (design tokens), code quality standards (type hints, docstrings), security requirements (bcrypt cost, rate limits, secret storage), and decoding parameters (Temperature ≤ 0.3). No ambiguity, no guessing.
 
 ### 5. Agent Specialization Works
 
@@ -776,9 +765,7 @@ Twelve specialized agents, each expert in one thing = excellent at their specifi
 
 ### 6. Context Injection Is Critical
 
-AI needs context. But not just any context. **Structured, tagged context.**
-
-SPARC uses `<SPECIFICATION_INPUT>` tags to inject context:
+AI needs structured, tagged context. SPARC uses `<SPECIFICATION_INPUT>` tags to inject context:
 
 ```
 <SPECIFICATION_INPUT>
@@ -881,13 +868,13 @@ The version-manager agent analyzes the feature:
 </THINKING>
 ```
 
-**Result:** Semantic versioning that actually means something.
+Semantic versioning that actually means something:
 
 - PATCH: Bug fixes, no API changes
 - MINOR: New features, backwards-compatible
 - MAJOR: Breaking changes
 
-No human judgment required. Just systematic analysis.
+No human judgment required.
 
 ### 10. The Human Still Matters
 
@@ -909,7 +896,7 @@ SPARC doesn't replace human judgment. It **augments it**.
 - Evaluating security trade-offs
 - Deciding what to build
 
-**SPARC automates the mechanical parts so humans can focus on the strategic parts.**
+SPARC automates the mechanical parts — implementation, testing, documentation, versioning — so you can focus on what AI can't do: requirements, trade-offs, user needs, final decisions.
 
 ## The Honest Limitations
 
@@ -1029,42 +1016,23 @@ Output only the necessary code to pass the failing tests.
 
 ## The Bottom Line
 
-I didn't build a framework. I built a **systematic approach to prompt engineering** that encodes production engineering practices into AI behavior.
+SPARC is a systematic approach to prompt engineering that encodes production practices into AI behavior: explicit roles, mandatory reasoning, security-first design, performance tracking, automated testing, complete documentation.
 
-3,000+ lines of prompts that implement:
+The code isn't magic. The architecture isn't new. TDD is decades old. The contribution is encoding all of it into prompts that run consistently.
 
-- Explicit role definitions
-- Mandatory reasoning protocols
-- Security-first design
-- Performance tracking
-- Automated testing
-- Complete documentation
+Most developers use AI as faster autocomplete. SPARC treats it as a development partner with explicit workflows, security mandates, and quality controls. Fusion Party runs on it. MagnetLab clients paid for it. This portfolio proves it.
 
-**This is prompt engineering at scale.**
-
-Not one-off ChatGPT requests. Not random experiments. A **formal specification** for how AI should collaborate on production systems.
-
-The code isn't magic. The architecture isn't revolutionary. The testing isn't novel.
-
-**What's novel is encoding all of it into prompts.**
-
-Most developers use AI as a faster autocomplete. I use AI as a **systematic development partner** with explicit workflows, security mandates, and quality controls.
-
-That's the difference between AI-assisted coding and AI-orchestrated development.
-
-And it works. Fusion Party runs on it. MagnetLab clients paid for it. This portfolio proves it.
-
-**The prompts are open source. The methodology is free. The results speak for themselves.**
+The prompts are open source. The methodology is free.
 
 ---
 
 ## About the Author
 
-I'm Ethan Cornwill. I've spent 13+ years writing software and 10 years managing QSR operations where downtime costs money and failures are public. I train LLMs at DataAnnotation, founded MagnetLab (AI consultancy), and serve as National Secretary for Fusion Party where I built their technical infrastructure.
+I'm Ethan Cornwill. 13 years of software, a decade in QSR operations where downtime costs money. I train LLMs at DataAnnotation, founded MagnetLab (AI consultancy), and serve as National Secretary for Fusion Party where I built their technical infrastructure.
 
-I developed SPARC because I got tired of AI-generated code that looked good in demos and died in production.
+I built SPARC because AI-generated code that looks good in demos and breaks in production is a solved problem — just not by most people's prompts.
 
-Want to see it in action? **Check out this portfolio. It was built using SPARC.**
+Want to see it in action? This portfolio was built using SPARC.
 
 **Contact:** mail@finneh.xyz
 

@@ -10,6 +10,9 @@ import educationItems from '../../data/education.json';
         <h3 class="text-xs font-bold uppercase text-white leading-tight">{item.institution}</h3>
         <p class="text-xs font-mono text-cyber-green mt-1">{item.program}</p>
         <p class="text-[10px] font-mono text-cyber-text-muted mt-0.5">// {item.year}</p>
+        {item.gpa && (
+          <p class="text-[10px] font-mono text-cyber-yellow mt-0.5">GPA: {item.gpa}</p>
+        )}
         {item.description && (
           <p class="text-[11px] text-cyber-text-muted mt-2 leading-relaxed">{item.description}</p>
         )}

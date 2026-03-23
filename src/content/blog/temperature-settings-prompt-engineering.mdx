@@ -16,7 +16,7 @@ When I tell developers that temperature settings are one of the most important a
 
 "Temperature? That's just the creativity dial, right?"
 
-Wrong. It's the **determinism dial**. And getting it right is the difference between AI that ships production code and AI that generates pretty demos that break.
+It's the determinism dial. Getting it right is the difference between AI that ships production code and AI that generates pretty demos that break.
 
 ## The Problem Nobody Talks About
 
@@ -426,77 +426,23 @@ This isn't optional. It's **mandatory** in the prompt specification.
 
 ## What You'll Notice
 
-Once you start controlling temperature deliberately:
-
-**1. Debugging becomes easier**
-
-- Same input → same output
-- You can reproduce issues
-- You know what to expect
-
-**2. Code reviews are faster**
-
-- AI uses consistent patterns
-- Less "why did it do it this way?" questions
-- Easier to spot actual issues
-
-**3. Documentation stays accurate**
-
-- Technical details are consistent
-- API examples are reliable
-- No random variations
-
-**4. Teams can collaborate better**
-
-- Everyone gets similar results
-- Shared patterns emerge
-- Less confusion about AI behavior
+Once you start controlling temperature deliberately, debugging gets easier — same input produces same output, so you can reproduce issues and know what to expect. Code reviews get faster because AI uses consistent patterns and there are fewer "why did it do this?" questions. Documentation stays accurate because technical details don't vary between runs. Teams can collaborate more effectively when everyone gets similar results from the same prompts.
 
 ## The Limitations
 
-Temperature isn't magic. It doesn't fix:
+Temperature isn't magic. Low temperature plus vague instructions produces consistently bad output. It can't invent missing context. Some tasks need multiple attempts regardless. It can't make a model smarter.
 
-**Bad prompts:**
-
-- Low temperature + vague instructions = consistently bad output
-
-**Missing context:**
-
-- Low temperature can't invent missing information
-
-**Complex reasoning:**
-
-- Some tasks need multiple attempts regardless
-
-**Model capabilities:**
-
-- Temperature can't make a model smarter
-
-But it **dramatically** improves consistency for well-defined tasks.
+It does dramatically improve consistency for well-defined tasks.
 
 ## The Bottom Line
 
-Most developers never adjust temperature. They accept random variation as "how AI works."
+Most developers never adjust temperature. They accept random variation as "how AI works" — but that variation is configurable.
 
-**It doesn't have to be this way.**
+Temperature is the most actionable parameter for production AI work. Get it wrong and you get inconsistent implementations, unreliable debugging, and wasted time chasing regressions. Get it right and you get predictable behavior you can build processes around.
 
-Temperature is **the single most important parameter** for production AI work. Get it wrong and you get:
+In SPARC, I wrote deterministic specifications for AI behavior. Temperature control is how you move from "AI-assisted coding" to "AI-orchestrated development."
 
-- Inconsistent implementations
-- Unreliable debugging
-- Random regressions
-- Wasted time
-
-Get it right and you get:
-
-- Predictable behavior
-- Reproducible output
-- Consistent patterns
-- Reliable systems
-
-In SPARC, I didn't just write prompts. I wrote **deterministic specifications for AI behavior**. Temperature control is how you go from "AI-assisted coding" to "AI-orchestrated development."
-
-**Start here:**
+Start here:
 
 1. Check your current temperature setting (probably 0.7)
 2. Set it to 0.3 for code generation
