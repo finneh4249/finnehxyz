@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
+import projectsData from '../data/projects.json';
 
 // Only keep most relevant roles (recent / current / significant)
 const techRoles = (experienceData as any[])
@@ -38,6 +39,11 @@ const toolsByCategory = topTools.reduce((acc: Record<string, string[]>, tool) =>
 const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
+
+// Featured projects for resume
+const featuredProjects = (projectsData as any[])
+  .filter(p => p.featured)
+  .slice(0, 5);
 ---
 
 <BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
@@ -178,6 +184,36 @@ const keyEdu = educationItems.filter(e =>
                 </div>
                 <p class="text-[9px] font-mono text-cyber-green print:text-gray-600">{item.program}</p>
                 {'gpa' in item && item.gpa && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">GPA: {item.gpa}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Key Projects -->
+        <div class="resume-cell col-span-full border-t border-cyber-border/40 print:border-gray-300 pt-2">
+          <h2 class="resume-section-title">Key Projects</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+            {featuredProjects.map((project: any) => (
+              <div class="mb-2">
+                <div class="flex items-baseline justify-between gap-2">
+                  <h3 class="text-[10px] font-bold text-white print:text-black uppercase">{project.title}</h3>
+                  <div class="flex gap-2 shrink-0">
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} class="text-[8px] font-mono text-cyber-cyan print:text-gray-600 hover:underline" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                    )}
+                    {project.liveDemoUrl && (
+                      <a href={project.liveDemoUrl} class="text-[8px] font-mono text-cyber-green print:text-gray-600 hover:underline" target="_blank" rel="noopener noreferrer">Demo ↗</a>
+                    )}
+                  </div>
+                </div>
+                <p class="text-[9px] text-cyber-text print:text-gray-600 mt-0.5 leading-snug">{project.description}</p>
+                {project.technologies && project.technologies.length > 0 && (
+                  <div class="flex flex-wrap gap-1 mt-1">
+                    {project.technologies.slice(0, 5).map((tech: string) => (
+                      <span class="text-[8px] font-mono text-cyber-text-muted print:text-gray-500 border border-cyber-border/50 print:border-gray-200 px-1 py-px">{tech}</span>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
