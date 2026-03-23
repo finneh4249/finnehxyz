@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
-import projectsData from '../data/projects.json';
+import { projects as projectsData } from '../data/projects';
 
 // Only keep most relevant roles (recent / current / significant)
 const techRoles = (experienceData as any[])
@@ -41,7 +41,7 @@ const keyEdu = educationItems.filter(e =>
 );
 
 // Featured projects for resume
-const featuredProjects = (projectsData as any[])
+const featuredProjects = projectsData
   .filter(p => p.featured)
   .slice(0, 5);
 ---
