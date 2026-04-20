@@ -38,8 +38,9 @@ const toolsByCategory = topTools.reduce((acc: Record<string, string[]>, tool) =>
 const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
+const excludedCompetencyTitles = new Set(['Technical Leadership']);
 const coreCompetencies = skillsData.skills
-  .filter(skill => skill.category !== 'Leadership' && !skill.title.toLowerCase().includes('lead'))
+  .filter(skill => skill.category !== 'Leadership' && !excludedCompetencyTitles.has(skill.title))
   .slice(0, 6);
 
 const technicalProjectHighlights = [
@@ -90,7 +91,7 @@ const technicalProjectHighlights = [
 
           <!-- Summary -->
           <p class="text-xs text-cyber-text print:text-gray-700 mt-3 leading-relaxed max-w-3xl">
-            Technical operator with 10+ years in high-pressure environments maintaining operational technology uptime (OTP), data integrity, and production stability. Experienced across systems administration, incident response, and procedural governance in Australian operations contexts, with deep familiarity in aviation-adjacent workflows and radio telephony protocol standards.
+            Technical operator with 10+ years in high-pressure environments maintaining Operations Technology Platform (OTP) uptime, data integrity, and production stability. Experienced across systems administration, incident response, and procedural governance in Australian operations contexts, with applied industry knowledge of aviation workflows and radio telephony protocol standards.
           </p>
         </div>
 
