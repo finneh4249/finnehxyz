@@ -5,10 +5,10 @@
     "category": "technology",
     "roles": [
       {
-        "title": "Founder & Lead Engineer",
+        "title": "Founder & Systems Engineer",
         "period": "Oct 2025 – Present",
         "isCurrent": true,
-        "description": "Ships AI-native products using SPARC methodology. Built Nexus (fintech platform), SPARC prompt library, and this portfolio. Every product is a production testbed for AI-assisted development at scale."
+        "description": "- Built and administered Nexus (fintech platform) with PostgreSQL-backed data models, SQL query optimisation, and encrypted transaction handling.\n- Maintained HomeLab and server infrastructure using Docker containers, service monitoring, and repeatable configuration baselines for operational reliability.\n- Automated operational workflows for deployments, data sync, and incident response runbooks to improve recovery speed and service continuity."
       }
     ],
     "logoSrc": "images/axion.png",
@@ -50,10 +50,10 @@
     "category": "operations",
     "roles": [
       {
-        "title": "Duty Store Manager",
+        "title": "Duty Store Manager (Operational Compliance)",
         "period": "October 2025 - Present",
         "isCurrent": true,
-        "description": "Managing daily operations for one of Australia's leading discount grocery retailers, focusing on operational efficiency, team leadership, and customer service excellence in a fast-paced retail environment."
+        "description": "- Executed operational governance procedures using documented checklists, compliance controls, and audit-ready recordkeeping.\n- Applied standard operating procedures to maintain consistent, policy-aligned execution across shift-critical tasks.\n- Monitored adherence to regulatory and internal requirements, escalating non-conformances through defined governance channels."
       }
     ],
     "logoSrc": "images/aldi.png",
@@ -69,13 +69,13 @@
         "title": "Operations Technology Platform (OTP) Manager",
         "period": "March 2024 - October 2025",
         "isCurrent": false,
-        "description": "- Maintained 99% technology uptime across POS and network systems through monthly audits and proactive fault resolution."
+        "description": "- Maintained 99% uptime across business-critical POS, back-office, and network systems through proactive diagnostics and preventative maintenance.\n- Managed server hardware maintenance cycles and software patch scheduling to keep production systems secure and stable.\n- Troubleshot network protocols and POS infrastructure faults, restoring service rapidly under high-pressure trading windows."
       },
       {
         "title": "Assistant Business Manager",
         "period": "August 2015 - February 2024",
         "isCurrent": false,
-        "description": "- Progressed from Crew Member to ABM over 9 years; managed QSC&V standards, team performance, and sales strategy."
+        "description": "- Optimised operational workflows and managed system resources supporting QSC&V execution, shift throughput, and service continuity.\n- Maintained procedural controls for daily platform readiness, incident logging, and escalation to technical support channels."
       }
     ],
     "logoSrc": "images/mc_logo.png",
@@ -90,7 +90,7 @@
         "title": "Assistant Restaurant Manager",
         "period": "June 2020 - June 2022",
         "isCurrent": false,
-        "description": "- Managed daily operations for the busiest Taco Bell restaurant in the country, consistently achieving top-tier results across all major KPIs, including customer satisfaction, speed of service, and labor management.\n- Directed the successful launch of two new restaurant locations, establishing foundational operating procedures and recruiting and training new-hire teams of up to 70 staff members from the ground up.\n- Recognized with over 12 performance awards for operational excellence; implemented inventory control measures that reduced food waste by 15%."
+        "description": "- Managed daily operations for a high-volume restaurant environment, consistently delivering strong KPI performance across service speed and customer outcomes.\n- Established operating procedures and managed system resources during two new-site launches to ensure stable opening readiness.\n- Recognised with over 12 performance awards for operational excellence; implemented inventory controls that reduced food waste by 15%."
       }
     ],
     "logoSrc": "images/taco_bell.png",
