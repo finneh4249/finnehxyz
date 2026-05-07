@@ -8,7 +8,7 @@
         "title": "Founder & Lead Engineer",
         "period": "Oct 2025 \u2013 Present",
         "isCurrent": true,
-        "description": "- Built AI-native products with a systems architecture focus, including Nexus, SPARC prompt infrastructure, and portfolio automation workflows.\n- Designed and iterated the SPARC methodology, materially reducing AI build delivery timelines compared to traditional agency development approaches, while maintaining production reliability.\n- Developed the Transport Inequality Engine (TIE) for urban transit analysis to convert domain data into practical decision-support tooling."
+        "description": "- Built AI-native products with a systems architecture focus, including Nexus, SPARC prompt infrastructure, and portfolio automation workflows.\n- Designed and iterated the SPARC methodology, reducing AI build delivery timelines by up to 75% in internal project comparisons versus traditional agency development approaches, while maintaining production reliability.\n- Developed the Transport Inequality Engine (TIE) for urban transit analysis to convert domain data into practical decision-support tooling."
       }
     ],
     "logoSrc": "images/axion.png",
@@ -53,7 +53,7 @@
         "title": "Operational Governance Lead (Duty Store Manager)",
         "period": "October 2025 - Present",
         "isCurrent": true,
-        "description": "- Governed execution of business-critical operations systems including POS, inventory control, and workforce scheduling in a high-volume enterprise environment.\n- Applied structured escalation and incident triage to protect service continuity, compliance, and operational throughput.\n- Led cross-functional floor execution under strict KPI, audit, and safety controls."
+        "description": "- Managed execution of business-critical operations systems including POS, inventory control, and workforce scheduling in a high-volume enterprise environment.\n- Applied structured escalation and incident triage to protect service continuity, compliance, and operational throughput.\n- Led cross-functional floor execution under strict KPI, audit, and safety controls."
       }
     ],
     "logoSrc": "images/aldi.png",

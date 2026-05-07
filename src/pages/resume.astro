@@ -38,7 +38,7 @@ const toolsByCategory = topTools.reduce((acc: Record<string, string[]>, tool) =>
 const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
-const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa || '6.75/7.0';
+const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa;
 ---
 
 <BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
@@ -58,9 +58,9 @@ const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa || '6.75
               <p class="text-sm font-mono text-cyber-cyan print:text-gray-700 mt-1">
                 Systems Architect &amp; AI Automation Lead
               </p>
-              <p class="text-[10px] font-mono text-cyber-green print:text-gray-700 mt-1 uppercase tracking-wide">
+              {diplomaGpa && (<p class="text-[10px] font-mono text-cyber-green print:text-gray-700 mt-1 uppercase tracking-wide">
                 Diploma of IT GPA: {diplomaGpa}
-              </p>
+              </p>)}
             </div>
             <div class="font-mono text-[10px] text-cyber-text-muted print:text-gray-600 text-right space-y-0.5">
               <div>mail@finneh.xyz</div>
