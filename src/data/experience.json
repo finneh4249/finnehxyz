@@ -6,9 +6,9 @@
     "roles": [
       {
         "title": "Founder & Lead Engineer",
-        "period": "Oct 2025 – Present",
+        "period": "Oct 2025 \u2013 Present",
         "isCurrent": true,
-        "description": "Ships AI-native products using SPARC methodology. Built Nexus (fintech platform), SPARC prompt library, and this portfolio. Every product is a production testbed for AI-assisted development at scale."
+        "description": "- Built AI-native products with a systems architecture focus, including Nexus, SPARC prompt infrastructure, and portfolio automation workflows.\n- Designed and iterated the SPARC methodology to improve delivery speed and reliability for production-grade AI builds.\n- Developed the Transport Inequality Engine (TIE) to convert domain data into practical decision-support tooling."
       }
     ],
     "logoSrc": "images/axion.png",
@@ -20,7 +20,7 @@
     "category": "technology",
     "roles": [
       {
-        "title": "AI Code Analyst / Software Developer – AI Trainer",
+        "title": "AI Code Analyst / Software Developer \u2013 AI Trainer",
         "period": "May 2024 - Present",
         "isCurrent": true,
         "description": "- Evaluated and refactored AI-generated code in multiple languages (including Python and JavaScript) to improve logic, enforce best practices, and ensure correctness.\n- Assessed and rated the quality of Large Language Model (LLM) responses against complex rubrics, comparing multiple outputs for accuracy, helpfulness, and safety.\n- Developed targeted coding challenges and unit tests designed to evaluate the reasoning and real-world problem-solving capabilities of AI models.\n- Analyzed and debugged complex functions to identify logic errors and tested the model's ability to correctly utilize real-world tools like APIs and command-line interfaces."
@@ -50,10 +50,10 @@
     "category": "operations",
     "roles": [
       {
-        "title": "Duty Store Manager",
+        "title": "Operational Governance Lead (Duty Store Manager)",
         "period": "October 2025 - Present",
         "isCurrent": true,
-        "description": "Managing daily operations for one of Australia's leading discount grocery retailers, focusing on operational efficiency, team leadership, and customer service excellence in a fast-paced retail environment."
+        "description": "- Governed daily execution of business-critical retail operations systems in a high-volume enterprise environment.\n- Applied structured escalation and incident triage to protect service continuity, compliance, and operational throughput.\n- Led cross-functional floor execution under strict KPI, audit, and safety controls."
       }
     ],
     "logoSrc": "images/aldi.png",
@@ -69,13 +69,13 @@
         "title": "Operations Technology Platform (OTP) Manager",
         "period": "March 2024 - October 2025",
         "isCurrent": false,
-        "description": "- Maintained 99% technology uptime across POS and network systems through monthly audits and proactive fault resolution."
+        "description": "- Maintained 99% uptime across point-of-sale and network infrastructure via proactive audits, issue prevention, and rapid fault recovery.\n- Treated restaurant technology as a reliability platform with documented checks, escalation pathways, and recovery runbooks."
       },
       {
-        "title": "Assistant Business Manager",
+        "title": "Assistant Business Manager (Enterprise Operations)",
         "period": "August 2015 - February 2024",
         "isCurrent": false,
-        "description": "- Progressed from Crew Member to ABM over 9 years; managed QSC&V standards, team performance, and sales strategy."
+        "description": "- Led enterprise operations governance across labor, quality, and service systems in high-pressure multi-shift environments.\n- Progressed from Crew Member to ABM over 9 years through performance in systems execution, people leadership, and standards compliance."
       }
     ],
     "logoSrc": "images/mc_logo.png",
