@@ -4,6 +4,7 @@ import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
 import projectsData from '../data/projects.json';
+import type { Project } from '../data/projects';
 
 // Only keep most relevant roles (recent / current / significant)
 const techRoles = (experienceData as any[])
@@ -42,7 +43,7 @@ const keyEdu = educationItems.filter(e =>
 const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa;
 
 // Resume-relevant featured projects
-const resumeProjects = (projectsData as any[])
+const resumeProjects = (projectsData as Project[])
   .filter(project => project.featured)
   .slice(0, 3);
 ---
@@ -193,7 +194,7 @@ const resumeProjects = (projectsData as any[])
         <div class="resume-cell resume-right">
           <h2 class="resume-section-title">Selected Projects</h2>
           <div class="space-y-2">
-            {resumeProjects.map((project: any) => (
+            {resumeProjects.map((project: Project) => (
               <div>
                 <h3 class="text-[10px] font-bold text-white print:text-black">{project.title}</h3>
                 <p class="text-[9px] text-cyber-text print:text-gray-600 leading-relaxed">
