@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
+import projectsData from '../data/projects.json';
 
 // Only keep most relevant roles (recent / current / significant)
 const techRoles = (experienceData as any[])
@@ -39,6 +40,11 @@ const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
 const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa;
+
+// Resume-relevant featured projects
+const resumeProjects = (projectsData as any[])
+  .filter(project => project.featured)
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
@@ -67,10 +73,6 @@ const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa;
               <div>finneh.xyz</div>
               <div>Melbourne, Australia</div>
               <div>github.com/finneh4249</div>
-              <div class="pt-1 border-t border-cyber-border/40 print:border-gray-300">
-                <span class="text-cyber-cyan print:text-gray-700">Findy ポートフォリオ</span> /
-                <a href="https://findy-code.io/skills-share/5saH9fgUEzb5o" class="text-cyber-cyan hover:underline print:text-gray-700" target="_blank" rel="noopener noreferrer">findy-code.io/skills-share/5saH9fgUEzb5o</a>
-              </div>
             </div>
           </div>
 
@@ -182,6 +184,21 @@ const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa;
                 </div>
                 <p class="text-[9px] font-mono text-cyber-green print:text-gray-600">{item.program}</p>
                 {'gpa' in item && item.gpa && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">GPA: {item.gpa}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="resume-cell resume-right">
+          <h2 class="resume-section-title">Selected Projects</h2>
+          <div class="space-y-2">
+            {resumeProjects.map((project: any) => (
+              <div>
+                <h3 class="text-[10px] font-bold text-white print:text-black">{project.title}</h3>
+                <p class="text-[9px] text-cyber-text print:text-gray-600 leading-relaxed">
+                  {project.description}
+                </p>
               </div>
             ))}
           </div>
