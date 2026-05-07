@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
+import projectsData from '../data/projects.json';
+import type { Project } from '../data/projects';
 
 // Only keep most relevant roles (recent / current / significant)
 const techRoles = (experienceData as any[])
@@ -38,6 +40,12 @@ const toolsByCategory = topTools.reduce((acc: Record<string, string[]>, tool) =>
 const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
+const diplomaGpa = keyEdu.find(e => e.program.includes('Diploma'))?.gpa;
+
+// Resume-relevant featured projects
+const resumeProjects = (projectsData as Project[])
+  .filter(project => project.featured)
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
@@ -55,24 +63,23 @@ const keyEdu = educationItems.filter(e =>
                 Ethan Cornwill
               </h1>
               <p class="text-sm font-mono text-cyber-cyan print:text-gray-700 mt-1">
-                Technical Lead &amp; AI Developer
+                Systems Architect &amp; AI Automation Lead
               </p>
+              {diplomaGpa && (<p class="text-[10px] font-mono text-cyber-green print:text-gray-700 mt-1 uppercase tracking-wide">
+                Diploma of IT GPA: {diplomaGpa}
+              </p>)}
             </div>
             <div class="font-mono text-[10px] text-cyber-text-muted print:text-gray-600 text-right space-y-0.5">
               <div>mail@finneh.xyz</div>
               <div>finneh.xyz</div>
               <div>Melbourne, Australia</div>
               <div>github.com/finneh4249</div>
-              <div class="pt-1 border-t border-cyber-border/40 print:border-gray-300">
-                <span class="text-cyber-cyan print:text-gray-700">Findy ポートフォリオ</span> /
-                <a href="https://findy-code.io/skills-share/5saH9fgUEzb5o" class="text-cyber-cyan hover:underline print:text-gray-700" target="_blank" rel="noopener noreferrer">findy-code.io/skills-share/5saH9fgUEzb5o</a>
-              </div>
             </div>
           </div>
 
           <!-- Summary -->
           <p class="text-xs text-cyber-text print:text-gray-700 mt-3 leading-relaxed max-w-3xl">
-            13+ years in software development, 10 years leading operations. I architect AI systems, design prompt frameworks (SPARC), and build production tools that ship. Dual background in technology and high-pressure operations management.
+            Systems architect focused on AI automation, operational governance, and reliability engineering. Built SPARC (up to 75% faster AI delivery vs traditional agency workflows), developed the Transport Inequality Engine (TIE), and led enterprise operations platforms across 10+ years in high-pressure environments.
           </p>
         </div>
 
@@ -112,7 +119,7 @@ const keyEdu = educationItems.filter(e =>
 
         <!-- Ops Experience -->
         <div class="resume-cell resume-right">
-          <h2 class="resume-section-title">Operations Experience</h2>
+          <h2 class="resume-section-title">Operational Governance Experience</h2>
           {opsRoles.map(exp => (
             <div class="mb-3">
               <h3 class="text-xs font-bold text-white print:text-black uppercase">{exp.company}</h3>
@@ -178,6 +185,21 @@ const keyEdu = educationItems.filter(e =>
                 </div>
                 <p class="text-[9px] font-mono text-cyber-green print:text-gray-600">{item.program}</p>
                 {'gpa' in item && item.gpa && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">GPA: {item.gpa}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="resume-cell resume-right">
+          <h2 class="resume-section-title">Selected Projects</h2>
+          <div class="space-y-2">
+            {resumeProjects.map((project: Project) => (
+              <div>
+                <h3 class="text-[10px] font-bold text-white print:text-black">{project.title}</h3>
+                <p class="text-[9px] text-cyber-text print:text-gray-600 leading-relaxed">
+                  {project.description}
+                </p>
               </div>
             ))}
           </div>
