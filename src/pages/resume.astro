@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import experienceData from '../data/experience.json';
 import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
+import projectsRaw from '../data/projects.json';
 
 // Only keep most relevant roles (recent / current / significant)
 const techRoles = (experienceData as any[])
@@ -19,7 +20,7 @@ const opsRoles = (experienceData as any[])
   .map(e => ({
     company: e.company,
     employer: e.employer,
-    roles: e.roles.slice(0, 2), // Latest 2 roles per company
+    roles: e.roles.slice(0, 2),
   }));
 
 // Top skills by proficiency
@@ -38,6 +39,14 @@ const toolsByCategory = topTools.reduce((acc: Record<string, string[]>, tool) =>
 const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
+
+// Keystone projects — lead the resume
+const keystoneProjects = (projectsRaw as any[]).filter(p => p.keystone);
+
+// Supporting featured projects (non-keystone)
+const supportingProjects = (projectsRaw as any[])
+  .filter(p => p.featured && !p.keystone)
+  .slice(0, 4);
 ---
 
 <BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
@@ -63,17 +72,43 @@ const keyEdu = educationItems.filter(e =>
               <div>finneh.xyz</div>
               <div>Melbourne, Australia</div>
               <div>github.com/finneh4249</div>
-              <div class="pt-1 border-t border-cyber-border/40 print:border-gray-300">
-                <span class="text-cyber-cyan print:text-gray-700">Findy ポートフォリオ</span> /
-                <a href="https://findy-code.io/skills-share/5saH9fgUEzb5o" class="text-cyber-cyan hover:underline print:text-gray-700" target="_blank" rel="noopener noreferrer">findy-code.io/skills-share/5saH9fgUEzb5o</a>
-              </div>
             </div>
           </div>
 
           <!-- Summary -->
           <p class="text-xs text-cyber-text print:text-gray-700 mt-3 leading-relaxed max-w-3xl">
-            13+ years in software development, 10 years leading operations. I architect AI systems, design prompt frameworks (SPARC), and build production tools that ship. Dual background in technology and high-pressure operations management.
+            AI systems architect and operational governance leader. Built Melbourne transport tooling (TIE) and the SPARC multi-agent framework. Proven OTP track record — 99% uptime across POS and network infrastructure. 13+ years in software, 10 years leading high-pressure operational environments. Translates domain requirements into AI-native tools that ship.
           </p>
+        </div>
+
+        <!-- ═══ KEYSTONE PROJECTS ═══ -->
+        <div class="resume-cell col-span-full">
+          <h2 class="resume-section-title keystone-title">Keystone Projects</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {keystoneProjects.map((p: any) => (
+              <div class="keystone-card">
+                <div class="flex items-start justify-between gap-2 mb-1">
+                  <span class="text-[11px] font-black text-cyber-cyan print:text-gray-900 uppercase tracking-wide">{p.title}</span>
+                  {p.githubUrl
+                    ? <a href={p.githubUrl} class="text-[8px] font-mono text-cyber-text-muted print:text-gray-500 hover:text-cyber-cyan shrink-0" target="_blank" rel="noopener noreferrer">
+                        {p.githubUrl.replace('https://github.com/', 'github/')}
+                      </a>
+                    : <span class="text-[8px] font-mono text-cyber-text-muted print:text-gray-400 shrink-0">private</span>
+                  }
+                </div>
+                <p class="text-[9px] text-cyber-text print:text-gray-700 leading-relaxed">
+                  {p.description}
+                </p>
+                {p.technologies && (
+                  <div class="flex flex-wrap gap-1 mt-1.5">
+                    {(p.technologies as string[]).map((tech: string) => (
+                      <span class="text-[8px] font-mono text-cyber-cyan print:text-gray-600 border border-cyber-cyan/40 print:border-gray-300 px-1 py-px">{tech}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         <!-- ═══ LEFT COLUMN ═══ -->
@@ -112,7 +147,7 @@ const keyEdu = educationItems.filter(e =>
 
         <!-- Ops Experience -->
         <div class="resume-cell resume-right">
-          <h2 class="resume-section-title">Operations Experience</h2>
+          <h2 class="resume-section-title">Operational Governance</h2>
           {opsRoles.map(exp => (
             <div class="mb-3">
               <h3 class="text-xs font-bold text-white print:text-black uppercase">{exp.company}</h3>
@@ -183,6 +218,37 @@ const keyEdu = educationItems.filter(e =>
           </div>
         </div>
 
+        <!-- Supporting Projects -->
+        {supportingProjects.length > 0 && (
+          <div class="resume-cell col-span-full border-t border-cyber-border/30 print:border-gray-200 pt-2">
+            <h2 class="resume-section-title">Other Projects</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+              {supportingProjects.map((p: any) => (
+                <div>
+                  <div class="flex items-baseline justify-between gap-1">
+                    <span class="text-[10px] font-bold text-cyber-yellow print:text-gray-800 uppercase">{p.title}</span>
+                    {p.githubUrl && (
+                      <a href={p.githubUrl} class="text-[8px] font-mono text-cyber-text-muted print:text-gray-400 hover:text-cyber-cyan shrink-0" target="_blank" rel="noopener noreferrer">
+                        github
+                      </a>
+                    )}
+                  </div>
+                  <p class="text-[9px] text-cyber-text print:text-gray-600 mt-0.5 leading-relaxed">
+                    {p.description.length > 100 ? p.description.slice(0, 100) + '…' : p.description}
+                  </p>
+                  {p.technologies && (
+                    <div class="flex flex-wrap gap-1 mt-1">
+                      {(p.technologies as string[]).slice(0, 4).map((tech: string) => (
+                        <span class="text-[8px] font-mono text-cyber-text-muted print:text-gray-400 border border-cyber-border/40 print:border-gray-200 px-1 py-px">{tech}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
 
       <!-- Print-only footer -->
@@ -243,6 +309,17 @@ const keyEdu = educationItems.filter(e =>
     font-family: monospace;
   }
 
+  .keystone-title {
+    font-size: 12px;
+    border-bottom-color: rgba(0, 255, 245, 0.6);
+  }
+
+  .keystone-card {
+    border: 1px solid rgba(0, 255, 245, 0.25);
+    padding: 10px 12px;
+    background: rgba(0, 255, 245, 0.03);
+  }
+
   @media print {
     .resume-page {
       background: white !important;
@@ -263,6 +340,12 @@ const keyEdu = educationItems.filter(e =>
       color: #000 !important;
       border-bottom-color: #000 !important;
       font-size: 10px !important;
+    }
+
+    .keystone-card {
+      border-color: #ccc !important;
+      background: #fafafa !important;
+      padding: 6px 8px !important;
     }
 
     * {

@@ -65,6 +65,14 @@
       "description": "Relational databases, SQL, optimization"
     },
     {
+      "icon": "mdi:microsoft-azure",
+      "name": "Azure",
+      "color": "text-blue-500",
+      "category": "Infrastructure",
+      "proficiency": 35,
+      "description": "Cloud services, resource management, introductory exposure"
+    },
+    {
       "icon": "mdi:brain",
       "name": "LangChain",
       "color": "text-green-600",
