@@ -70,19 +70,19 @@
   },
   {
     "title": "Transport Inequality Engine",
-    "description": "Geospatial analysis engine that quantifies public transport accessibility gaps across Melbourne — overlaying GTFS transit feeds with ABS census data to produce per-suburb equity scores and service-gap heat maps.",
-    "detailedDescription": "The Transport Inequality Engine (TIE) is a Python-based geospatial pipeline that cross-references Melbourne's GTFS public transit schedule data with ABS census demographics to surface where transport disadvantage is highest. A weighted equity algorithm scores each suburb across four dimensions: service frequency, walking distance to stops, connection reliability, and population density. The output is a set of interactive maps and ranked reports that planners can use to prioritise infrastructure investment. The algorithm is parameterised so that different policy goals (e.g., prioritise outer suburbs vs. high-density corridors) produce different ranked outputs without rewriting the core scoring logic.",
-    "challenges": "GTFS feeds are large, denormalised, and updated frequently — the pipeline had to be idempotent and diff-aware so re-running after a feed update only recomputes affected suburbs. ABS census boundaries don't align with GTFS stop catchment areas, requiring a spatial join strategy that handles partial overlaps without double-counting population. The equity scoring weights are inherently political; the system exposes them as named presets rather than hiding them in code to make the trade-offs transparent.",
-    "outcomes": "Produces actionable suburb-level equity rankings and interactive heat maps that surface systemic gaps invisible in raw timetable data. Demonstrates end-to-end ability to translate a policy question into a reproducible, auditable data pipeline.",
+    "description": "Rust + TypeScript interactive map that scores any pinned Melbourne location /100 for public transport accessibility. A Rust engine parses GTFS feeds and weights frequency (40%), coverage (35%), and reliability (25%) into composite walk, connectivity, and parking subscores.",
+    "detailedDescription": "TIE is a two-layer architecture: a Rust backend that ingests GTFS schedule data and computes per-stop and per-location transport accessibility scores, and a React/TypeScript frontend that renders the network on an interactive map. Drop a pin anywhere and the scoring engine returns a composite /100 built from three weighted dimensions — frequency (40%), coverage (35%), reliability (25%) — decomposed further into walk-time, connectivity, and park-and-ride subscores. The connectivity score counts viable transport options (raw_score > 50) and combines option count with best available score, capped at 100. Walk score weights walk time, frequency, and coverage independently. The map supports two view modes — connectivity and transport mode — and includes address search. A verify_scores.py script validates scoring outputs against known stop data.",
+    "challenges": "GTFS data is large and denormalised — parsing it efficiently enough for real-time pin-drop scoring required processing the feeds entirely in Rust rather than passing raw data to the frontend. The multi-factor scoring model had to produce consistent, interpretable results across wildly different network densities (inner-city vs. outer suburbs) without manual tuning per area.",
+    "outcomes": "Any location in Melbourne can be scored in real time against the live GTFS network. The scoring model surfaces concrete, weighted breakdowns rather than a single opaque number, making the gaps between well-served and underserved areas immediately legible.",
     "image": null,
     "githubUrl": "https://github.com/finneh4249/TransportMap",
     "featured": true,
     "keystone": true,
     "date": 1740528000000,
-    "technologies": ["Python", "GeoPandas", "GTFS", "PostgreSQL", "Folium", "ABS Data", "Docker"],
+    "technologies": ["Rust", "TypeScript", "React", "Vite", "GTFS", "GeoJSON"],
     "tags": [
       { "name": "GIS", "badgeClass": "badge-info" },
-      { "name": "AI", "badgeClass": "badge-secondary" },
+      { "name": "Rust", "badgeClass": "badge-warning" },
       { "name": "Data Analysis", "badgeClass": "badge-primary" }
     ]
   },
