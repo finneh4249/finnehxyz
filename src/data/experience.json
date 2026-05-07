@@ -8,7 +8,7 @@
         "title": "Founder & Lead Engineer",
         "period": "Oct 2025 \u2013 Present",
         "isCurrent": true,
-        "description": "- Built AI-native products with a systems architecture focus, including Nexus, SPARC prompt infrastructure, and portfolio automation workflows.\n- Designed and iterated the SPARC methodology, improving AI build delivery timelines by up to 75% compared to traditional agency development approaches, while maintaining production reliability.\n- Developed the Transport Inequality Engine (TIE) to convert domain data into practical decision-support tooling."
+        "description": "- Built AI-native products with a systems architecture focus, including Nexus, SPARC prompt infrastructure, and portfolio automation workflows.\n- Designed and iterated the SPARC methodology, materially reducing AI build delivery timelines compared to traditional agency development approaches, while maintaining production reliability.\n- Developed the Transport Inequality Engine (TIE) to convert domain data into practical decision-support tooling."
       }
     ],
     "logoSrc": "images/axion.png",
@@ -69,7 +69,7 @@
         "title": "Operations Technology Platform (OTP) Manager",
         "period": "March 2024 - October 2025",
         "isCurrent": false,
-        "description": "- Maintained 99% uptime across point-of-sale and network infrastructure via proactive audits, issue prevention, and rapid fault recovery.\n- Treated restaurant technology as a reliability platform with documented checks, escalation pathways, and recovery runbooks."
+        "description": "- Maintained 99% uptime across point-of-sale and network infrastructure during the 2024-2025 tenure via proactive audits, issue prevention, and rapid fault recovery.\n- Treated restaurant technology as a reliability platform with documented checks, escalation pathways, and recovery runbooks."
       },
       {
         "title": "Assistant Business Manager (Enterprise Operations)",
