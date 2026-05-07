@@ -58,13 +58,32 @@
     "challenges": "Coordinating multiple AI agents deterministically without context loss or hallucinations required a strict handoff protocol — each agent's output format must exactly match the next agent's expected input. Context windows fill fast when carrying full codebase state; the framework uses structured summaries and explicit file references rather than raw file dumps to stay within limits. Keeping the prompt library and the generated code in sync as both evolve required a versioning convention enforced at the spec-writing stage.",
     "outcomes": "Scaffolding time dropped from roughly 2 days to 4 hours per feature. The framework has been used across FinnehSpoof, Zetto, and several other projects on this site. Zero manual boilerplate writing — specifications go in, working code with tests and docs comes out.",
     "image": "images/axion.png",
-    "githubUrl": "https://github.com/Finneh4249/SPARC-Framework",
+    "githubUrl": null,
     "featured": true,
+    "keystone": true,
     "date": 1728946800000,
     "technologies": ["AI Agents", "React", "Node.js", "SPARC Methodology"],
     "tags": [
       { "name": "AI", "badgeClass": "badge-secondary" },
       { "name": "Framework", "badgeClass": "badge-primary" }
+    ]
+  },
+  {
+    "title": "Transport Inequality Engine",
+    "description": "Geospatial analysis engine that quantifies public transport accessibility gaps across Melbourne — overlaying GTFS transit feeds with ABS census data to produce per-suburb equity scores and service-gap heat maps.",
+    "detailedDescription": "The Transport Inequality Engine (TIE) is a Python-based geospatial pipeline that cross-references Melbourne's GTFS public transit schedule data with ABS census demographics to surface where transport disadvantage is highest. A weighted equity algorithm scores each suburb across four dimensions: service frequency, walking distance to stops, connection reliability, and population density. The output is a set of interactive maps and ranked reports that planners can use to prioritise infrastructure investment. The algorithm is parameterised so that different policy goals (e.g., prioritise outer suburbs vs. high-density corridors) produce different ranked outputs without rewriting the core scoring logic.",
+    "challenges": "GTFS feeds are large, denormalised, and updated frequently — the pipeline had to be idempotent and diff-aware so re-running after a feed update only recomputes affected suburbs. ABS census boundaries don't align with GTFS stop catchment areas, requiring a spatial join strategy that handles partial overlaps without double-counting population. The equity scoring weights are inherently political; the system exposes them as named presets rather than hiding them in code to make the trade-offs transparent.",
+    "outcomes": "Produces actionable suburb-level equity rankings and interactive heat maps that surface systemic gaps invisible in raw timetable data. Demonstrates end-to-end ability to translate a policy question into a reproducible, auditable data pipeline.",
+    "image": null,
+    "githubUrl": "https://github.com/finneh4249/TransportMap",
+    "featured": true,
+    "keystone": true,
+    "date": 1740528000000,
+    "technologies": ["Python", "GeoPandas", "GTFS", "PostgreSQL", "Folium", "ABS Data", "Docker"],
+    "tags": [
+      { "name": "GIS", "badgeClass": "badge-info" },
+      { "name": "AI", "badgeClass": "badge-secondary" },
+      { "name": "Data Analysis", "badgeClass": "badge-primary" }
     ]
   },
   {
