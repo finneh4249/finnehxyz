@@ -46,7 +46,7 @@ const keystoneProjects = (projectsRaw as any[]).filter(p => p.keystone);
 // Supporting featured projects (non-keystone)
 const supportingProjects = (projectsRaw as any[])
   .filter(p => p.featured && !p.keystone)
-  .slice(0, 3);
+  .slice(0, 4);
 ---
 
 <BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
@@ -222,7 +222,7 @@ const supportingProjects = (projectsRaw as any[])
         {supportingProjects.length > 0 && (
           <div class="resume-cell col-span-full border-t border-cyber-border/30 print:border-gray-200 pt-2">
             <h2 class="resume-section-title">Other Projects</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
               {supportingProjects.map((p: any) => (
                 <div>
                   <div class="flex items-baseline justify-between gap-1">

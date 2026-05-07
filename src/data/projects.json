@@ -19,7 +19,7 @@
   },
   {
     "title": "FinnehSpoof",
-    "description": "AI-powered Minecraft player simulation solving the cold-start problem for new servers.",
+    "description": "55-agent autonomous simulation platform — independently-governed AI personas with heat-mapped conversation dynamics, multi-LLM routing (Gemini, OpenAI, Anthropic, OpenRouter), and live production deployment. Early proof-of-concept for the cold-start problem in agentic simulation before enterprise tooling existed for it.",
     "detailedDescription": "Production Bukkit plugin that spawns AI-driven fake players with distinct personas, LLM-powered chat, and realistic behavioral simulation. Built in one overnight session using SPARC methodology — zero lines written manually. Currently live on FusionMC (fusionparty.org.au).",
     "challenges": "Solving the cold-start problem for new Minecraft servers where empty servers struggle to attract initial players. Creating convincing AI personas that engage naturally without being repetitive or obvious bots. Implementing packet-level player spoofing that appears authentic in server lists and tab displays. Balancing conversation dynamics with heat-based systems to prevent chat spam while maintaining engagement.",
     "outcomes": "Achieved production deployment on first day with 120+ iterations completed in just 6 hours. Successfully created 55 distinct AI personas with heat-based conversation dynamics that feel natural. Implemented multi-LLM support (Gemini, OpenAI, OpenRouter, Anthropic) for flexibility. Live deployment on FusionMC demonstrates real-world viability. Zero manual code writing through SPARC methodology proved the framework's effectiveness for rapid, production-grade development.",
@@ -33,6 +33,23 @@
       { "name": "AI", "badgeClass": "badge-secondary" },
       { "name": "Minecraft", "badgeClass": "badge-secondary" },
       { "name": "SPARC", "badgeClass": "badge-primary" }
+    ]
+  },
+  {
+    "title": "SPARC-Engine",
+    "description": "Fork of Roo Code reconfigured as the IDE backbone for SPARC methodology — wires each SPARC phase (Spec, Pseudocode, Architecture, Refinement, Completion) to a dedicated in-editor agent mode, so the full 12-agent pipeline runs natively in VS Code without switching tools.",
+    "detailedDescription": "SPARC-Engine is a fork of the Roo Code VS Code extension, reconfigured to embed the SPARC multi-agent development methodology directly into the IDE. Rather than treating the editor as a passive code receiver, SPARC-Engine makes it the orchestration layer: each phase of the SPARC pipeline maps to a dedicated agent mode with its own context, constraints, and handoff contract. A developer writes a spec; the engine routes it through Architecture, Pseudocode, Implementation, Security Review, and Git Operations modes in sequence, with each agent reading only the structured output of the previous stage. This keeps context windows tight and eliminates the ad-hoc prompt sprawl that makes one-shot AI coding sessions hard to audit or replicate.",
+    "challenges": "Roo Code's mode system is built for general-purpose workflows. Mapping SPARC's strict handoff protocol onto it required defining precise input/output schemas for each mode so that agents couldn't hallucinate or skip steps. Keeping the fork in sync with upstream Roo Code changes without losing the SPARC customizations required a disciplined branching strategy.",
+    "outcomes": "Any developer running SPARC-Engine gets the full SPARC pipeline as first-class IDE tooling — no separate prompt files or context switching required. The same methodology that cut build times 75% at MagnetLab is now installable as a VS Code extension.",
+    "image": null,
+    "githubUrl": "https://github.com/finneh4249/SPARC-Engine",
+    "featured": true,
+    "date": 1743465600000,
+    "technologies": ["TypeScript", "VS Code Extension API", "Roo Code", "SPARC Methodology"],
+    "tags": [
+      { "name": "DevEx", "badgeClass": "badge-success" },
+      { "name": "AI", "badgeClass": "badge-secondary" },
+      { "name": "TypeScript", "badgeClass": "badge-primary" }
     ]
   },
   {
