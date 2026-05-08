@@ -1,211 +1,65 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Icon } from 'astro-icon/components';
-
-const deniedMessages = [
-  "ACCESS DENIED: YOU'RE NOT ON THE LIST",
-  "403: PERMISSION DENIED (NICE TRY THOUGH)",
-  "SECURITY SAYS NO",
-  "YOU SHALL NOT PASS!",
-  "FORBIDDEN: THIS PAGE HAS A RESTRAINING ORDER",
-  "ACCESS DENIED: YOUR CLEARANCE ISN'T HIGH ENOUGH",
-  "403: THIS PAGE IS OUT OF YOUR LEAGUE",
-  "NOPE. NOT FOR YOU.",
-  "FORBIDDEN: VIP AREA ONLY",
-  "ACCESS DENIED: INSUFFICIENT PRIVILEGE LEVEL",
-];
-
-const randomMessage = deniedMessages[Math.floor(Math.random() * deniedMessages.length)];
 ---
 
 <BaseLayout title="403 - ACCESS DENIED">
-  
-  <div class="overflow-x-hidden">
-    
-    <!-- Background Elements -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden">
-      <!-- Warning Stripes -->
-      <div class="absolute top-0 left-0 w-full h-8 bg-gradient-to-r from-yellow-400 via-black to-yellow-400 opacity-20"></div>
-      <div class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-r from-yellow-400 via-black to-yellow-400 opacity-20"></div>
-      
-      <!-- Rotating Lock -->
-      <div class="absolute top-20 right-20 w-32 h-32 bg-red-500 border-4 border-black dark:border-white animate-spin-slow" style="animation-duration: 10s;">
-        <Icon name="mdi:lock" class="text-6xl flex items-center justify-center h-full mx-auto" />
-      </div>
-      
-      <!-- Bouncing Warning Sign -->
-      <div class="absolute top-1/3 left-10 w-24 h-24 bg-yellow-400 border-4 border-black dark:border-white transform rotate-45 animate-bounce"></div>
-      
-      <!-- Pulsing Stop Hand -->
-      <div class="absolute bottom-32 right-1/4 w-40 h-40 bg-red-600 border-4 border-black dark:border-white rounded-full animate-pulse flex items-center justify-center">
-        <Icon name="mdi:block-helper" class="text-8xl text-white" />
-      </div>
+  <div class="signal-grid-bg" aria-hidden="true"></div>
+
+  <main class="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-10">
+
+    <p class="font-mono text-[10px] text-signal-orange/70 uppercase tracking-[0.5em] mb-6">Signal Error</p>
+
+    <h1
+      class="font-display font-black text-signal-orange italic tracking-tighter leading-none mb-8"
+      style="font-size: clamp(7rem, 25vw, 18rem); text-shadow: 12px 12px 0px oklch(14% 0.01 258);"
+    >
+      403
+    </h1>
+
+    <div class="border border-signal-orange/30 bg-signal-orange/5 px-8 py-6 mb-10 max-w-md text-center">
+      <p class="font-mono text-[11px] text-signal-orange/70 uppercase tracking-[0.4em] mb-3">// Access Denied</p>
+      <p class="font-body text-signal-white/70 text-sm leading-relaxed">
+        Clearance level insufficient. This resource requires elevated permissions you don't have.
+      </p>
     </div>
 
-    <!-- Main Content -->
-    <div class="min-h-screen flex items-center justify-center p-4 relative z-10">
-      <div class="max-w-4xl w-full">
-        
-        <!-- Error Code Badge -->
-        <div class="flex justify-center mb-8 animate-wiggle">
-          <div class="bg-red-600 text-white px-8 py-4 border-4 border-black dark:border-white transform -rotate-3 shadow-brutal">
-            <span class="text-3xl font-black">ERROR_CODE: 403</span>
-          </div>
-        </div>
-
-        <!-- Main Error Card -->
-        <div class="bg-white dark:bg-gray-800 border-8 border-black dark:border-white p-8 md:p-12 shadow-brutal-xl transform hover:rotate-1 transition-all duration-300 mb-8">
-          
-          <!-- Giant 403 with Lock -->
-          <div class="text-center mb-8">
-            <div class="relative inline-block">
-              <h1 class="text-[150px] md:text-[250px] font-black leading-none mb-0" style="text-shadow: 8px 8px 0 #EF4444, 16px 16px 0 #DC2626;">
-                403
-              </h1>
-              <Icon name="mdi:lock" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl text-yellow-400 opacity-50" />
-            </div>
-          </div>
-
-          <!-- Random Error Message -->
-          <div class="bg-red-500 border-4 border-black dark:border-white p-6 mb-8 transform -rotate-1">
-            <p class="text-2xl md:text-3xl font-black text-white text-center uppercase">
-              {randomMessage}
-            </p>
-          </div>
-
-          <!-- Explanation Box -->
-          <div class="bg-yellow-400 border-4 border-black dark:border-white p-6 mb-8 transform rotate-1">
-            <p class="text-xl font-bold text-black text-center">
-              ⚠️ WARNING ⚠️
-              <br class="mb-2"/>
-              This page is restricted. You don't have permission to access this resource.
-              <br class="hidden md:block"/>
-              It's not personal. Well, maybe it is.
-            </p>
-          </div>
-
-          <!-- Status Cards -->
-          <div class="grid md:grid-cols-3 gap-4 mb-8">
-            <div class="bg-red-400 border-4 border-black dark:border-white p-4 text-center transform -rotate-2 hover:rotate-0 transition-transform">
-              <Icon name="mdi:shield-alert" class="text-5xl mb-2 mx-auto" />
-              <p class="font-black text-lg">ACCESS BLOCKED</p>
-            </div>
-            <div class="bg-orange-400 border-4 border-black dark:border-white p-4 text-center hover:-rotate-2 transition-transform">
-              <Icon name="mdi:alert-circle" class="text-5xl mb-2 mx-auto" />
-              <p class="font-black text-lg">UNAUTHORIZED</p>
-            </div>
-            <div class="bg-yellow-400 border-4 border-black dark:border-white p-4 text-center transform rotate-2 hover:rotate-0 transition-transform">
-              <Icon name="mdi:card-account-details" class="text-5xl mb-2 mx-auto" />
-              <p class="font-black text-lg">NO CLEARANCE</p>
-            </div>
-          </div>
-
-          <!-- Helpful Suggestions -->
-          <div class="bg-purple-400 border-4 border-black dark:border-white p-6 mb-8">
-            <h2 class="text-2xl font-black mb-4 text-black">POSSIBLE REASONS:</h2>
-            <ul class="space-y-2 text-lg font-bold text-black">
-              <li>✗ You're not logged in (oops)</li>
-              <li>✗ You're logged in as the wrong person</li>
-              <li>✗ This page is VIP only</li>
-              <li>✗ The server doesn't like your vibe</li>
-              <li>✗ You didn't say the magic word</li>
-            </ul>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch">
-            <a 
-              href="/" 
-              class="group relative inline-block flex-1 sm:flex-initial"
-            >
-              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-yellow-400 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
-              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-yellow-400 transition-colors">
-                <Icon name="mdi:home" class="text-2xl" />
-                GO HOME
-              </span>
-            </a>
-
-            <button 
-              onclick="history.back()" 
-              class="group relative inline-block flex-1 sm:flex-initial"
-            >
-              <span class="absolute inset-0 translate-x-2 translate-y-2 bg-red-500 transition-transform group-hover:translate-y-4 group-hover:translate-x-4 border-4 border-black dark:border-white"></span>
-              <span class="relative flex items-center justify-center gap-2 border-4 border-black dark:border-white bg-white dark:bg-gray-900 px-8 py-4 text-xl font-black uppercase text-black dark:text-white group-hover:bg-red-500 transition-colors">
-                <Icon name="mdi:arrow-left" class="text-2xl" />
-                GO BACK
-              </span>
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Snarky Footer Message -->
-        <div class="text-center">
-          <div class="inline-block bg-red-600 text-white px-6 py-3 border-4 border-black dark:border-white transform rotate-2">
-            <p class="text-lg font-black">
-              🚫 FORBIDDEN ZONE 🚫
-            </p>
-          </div>
-        </div>
-
-      </div>
+    <div class="font-mono text-[10px] text-signal-white/25 uppercase tracking-widest space-y-1.5 mb-10 text-left">
+      <p><span class="text-signal-orange mr-2">[ERR]</span> Authorization check failed</p>
+      <p><span class="text-signal-orange mr-2">[ERR]</span> Insufficient privilege level</p>
+      <p><span class="text-signal-amber mr-2">[WRN]</span> Incident logged</p>
     </div>
 
-    <!-- Animated Marquee Footer -->
-    <div class="fixed bottom-0 left-0 w-full bg-red-600 border-t-8 border-black dark:border-white overflow-hidden py-4 z-20">
-      <div class="whitespace-nowrap animate-marquee">
-        <span class="mx-8 text-2xl font-black text-white">
-          🚨 ACCESS DENIED 🚨 FORBIDDEN 🚨 UNAUTHORIZED 🚨 NO ENTRY 🚨 RESTRICTED AREA 🚨 KEEP OUT 🚨
-        </span>
-        <span class="mx-8 text-2xl font-black text-white">
-          🚨 ACCESS DENIED 🚨 FORBIDDEN 🚨 UNAUTHORIZED 🚨 NO ENTRY 🚨 RESTRICTED AREA 🚨 KEEP OUT 🚨
-        </span>
-      </div>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="/" class="signal-btn group">
+        Home
+        <span class="ml-3 group-hover:translate-x-1 transition-transform inline-block">→</span>
+      </a>
+      <button onclick="history.back()" class="signal-btn-ghost">
+        Go back
+      </button>
     </div>
-  </div>
 
-  <style is:global>
-      @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-
-      @keyframes wiggle {
-        0%, 100% { transform: rotate(-3deg); }
-        50% { transform: rotate(3deg); }
-      }
-
-      .animate-marquee {
-        animation: marquee 20s linear infinite;
-      }
-
-      .animate-wiggle {
-        animation: wiggle 2s ease-in-out infinite;
-      }
-
-      .animate-spin-slow {
-        animation: spin 10s linear infinite;
-      }
-
-      .shadow-brutal {
-        box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
-      }
-
-      .dark .shadow-brutal {
-        box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 1);
-      }
-
-      .shadow-brutal-xl {
-        box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
-      }
-
-      .dark .shadow-brutal-xl {
-        box-shadow: 12px 12px 0px 0px rgba(255, 255, 255, 1);
-      }
-
-      @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-      }
-    </style>
+  </main>
 </BaseLayout>
+
+<style>
+  .signal-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-weight: 900;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    padding: 1.25rem 2.5rem;
+    border: 1px solid oklch(96% 0.005 258 / 0.2);
+    color: oklch(96% 0.005 258 / 0.6);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .signal-btn-ghost:hover {
+    border-color: var(--signal-white);
+    color: var(--signal-white);
+  }
+</style>
