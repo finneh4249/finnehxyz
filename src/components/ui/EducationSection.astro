@@ -1,0 +1,65 @@
+---
+import educationData from '../../data/education.json';
+
+interface Education {
+  year: string;
+  institution: string;
+  program: string;
+  description?: string;
+  gpa?: string;
+}
+
+const education = educationData as Education[];
+---
+
+<section id="education" class="relative overflow-hidden" aria-labelledby="education-heading">
+
+  <!-- Direction C: white/light surface header band matching projects/experience pattern -->
+  <div class="bg-signal-white px-6 md:px-12 py-8 md:py-10 scroll-reveal">
+    <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <h2 id="education-heading" class="text-signal-black tracking-tighter leading-none italic" style="font-size:clamp(2.2rem,6vw,7rem)">
+          Education
+        </h2>
+      </div>
+      <p class="text-signal-black/50 font-body text-signal-sm max-w-sm leading-relaxed font-normal not-italic">
+        Formal credentials and self-directed study in software engineering and computer science.
+      </p>
+    </div>
+  </div>
+
+  <!-- Content on dark surface -->
+  <div class="bg-signal-black py-10 md:py-14">
+    <div class="max-w-[1800px] mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-signal-white/5">
+        {education.map((item, i) => (
+          <div class="bg-signal-black p-8 md:p-10 hover:bg-signal-charcoal/50 transition-colors duration-500 scroll-reveal group">
+            <div class="flex justify-between items-start mb-5">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-signal-white/25">
+                {i === 0 ? 'Formal' : i === 1 ? 'Certification' : 'Self-directed'}
+              </span>
+              <span class="font-mono text-[10px] text-signal-orange font-black">{item.year}</span>
+            </div>
+            <h3 class="font-display font-black text-signal-white uppercase italic tracking-tight leading-none text-signal-xl mb-3 group-hover:text-signal-white transition-colors">
+              {item.institution}
+            </h3>
+            <p class="font-mono text-[10px] text-signal-cyan/70 uppercase tracking-wider mb-4 leading-relaxed">
+              {item.program}
+            </p>
+            {item.description && (
+              <p class="font-body text-signal-white/50 text-signal-sm leading-relaxed max-w-[52ch] group-hover:text-signal-white/70 transition-colors">
+                {item.description}
+              </p>
+            )}
+            {item.gpa && (
+              <div class="mt-4 pt-4 border-t border-signal-white/8">
+                <span class="font-mono text-[10px] text-signal-white/25 uppercase tracking-widest block mb-1">Performance</span>
+                <span class="font-mono text-xs text-signal-white/60">{item.gpa}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
