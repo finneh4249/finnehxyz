@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects, getProjectSlug } from '../data/projects';
+
+const allProjects = [...projects].sort((a, b) => b.date - a.date);
+const allTags = Array.from(new Set(projects.flatMap(p => p.tags.map(t => t.name)))).sort();
+---
+
+<BaseLayout title="Projects | Ethan Cornwill" description="All projects by Ethan Cornwill — AI systems, infrastructure tooling, political tech, and more.">
+
+  <div class="signal-grid-bg" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-3 bg-signal-black/95 border-b border-signal-white/8 backdrop-blur-sm" role="navigation" aria-label="Main Navigation">
+    <a href="/" class="font-display font-black text-lg text-signal-white tracking-tighter uppercase flex items-center border-2 border-signal-orange px-4 py-1 hover:bg-signal-orange hover:text-signal-black transition-colors duration-200">
+      ETHAN CORNWILL
+    </a>
+    <div class="flex items-center gap-8 md:gap-12">
+      <a href="/resume" class="font-mono text-[10px] uppercase tracking-[0.4em] text-signal-white/50 hover:text-signal-white transition-colors">Resume</a>
+      <a href="/blog" class="font-mono text-[10px] uppercase tracking-[0.4em] text-signal-white/50 hover:text-signal-white transition-colors">Blog</a>
+    </div>
+  </nav>
+
+  <main class="pt-[52px] min-h-screen">
+
+    <!-- Section header band -->
+    <div class="surface-orange px-6 md:px-12 py-8 md:py-12">
+      <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p class="font-mono text-signal-black/60 text-xs uppercase tracking-[0.5em] mb-2">
+            <a href="/" class="hover:text-signal-black transition-colors">Home</a>
+            <span class="mx-2 opacity-40">/</span>
+            Projects
+          </p>
+          <h1 class="text-signal-black tracking-tighter leading-none italic" style="font-size:clamp(2.5rem,7vw,8rem)">
+            All Projects
+          </h1>
+        </div>
+        <p class="text-signal-black/60 font-body text-sm max-w-xs leading-relaxed font-normal not-italic">
+          {allProjects.length} projects across AI, infrastructure, web, and game systems.
+        </p>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="bg-signal-charcoal border-b border-signal-white/8 px-6 md:px-12 py-4">
+      <div class="max-w-[1800px] mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        <input
+          type="text"
+          id="project-search"
+          placeholder="Search projects..."
+          class="projects-search"
+          aria-label="Search projects"
+        />
+        <div class="flex flex-wrap gap-2" id="tag-filters" role="group" aria-label="Filter by tag">
+          <button class="tag-btn active" data-tag="">All</button>
+          {allTags.map(tag => (
+            <button class="tag-btn" data-tag={tag}>{tag}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects grid -->
+    <div class="bg-signal-black py-12 md:py-16 px-6 md:px-12">
+      <div class="max-w-[1800px] mx-auto">
+
+        <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {allProjects.map((project) => {
+            const year = new Date(project.date).getFullYear();
+            const slug = getProjectSlug(project);
+            return (
+              <a
+                href={`/projects/${slug}`}
+                class="project-item signal-card-item group"
+                data-title={project.title.toLowerCase()}
+                data-description={project.description.toLowerCase()}
+                data-tags={JSON.stringify(project.tags.map(t => t.name))}
+              >
+                <!-- Image -->
+                <div class="relative h-44 overflow-hidden bg-signal-charcoal">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-full object-cover opacity-35 grayscale group-hover:opacity-70 group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-signal-black via-signal-black/30 to-transparent"></div>
+                  {project.featured && (
+                    <span class="absolute top-3 right-3 font-mono text-[8px] font-black uppercase tracking-widest bg-signal-orange text-signal-black px-2 py-0.5">
+                      Featured
+                    </span>
+                  )}
+                  <div class="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 2).map((tag, ti) => (
+                      <span class={`font-mono text-[8px] font-black uppercase tracking-widest px-2 py-0.5 ${
+                        ti === 0 ? 'bg-signal-cyan text-signal-black' : 'bg-signal-white/10 text-signal-white/70'
+                      }`}>
+                        {tag.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Text body -->
+                <div class="p-4 flex flex-col gap-2 flex-1">
+                  <div class="flex justify-between items-start gap-2">
+                    <h2 class="font-display font-black text-sm text-signal-white uppercase tracking-tight italic leading-tight group-hover:text-signal-orange transition-colors">
+                      {project.title}
+                    </h2>
+                    <span class="font-mono text-[9px] text-signal-white/25 shrink-0">{year}</span>
+                  </div>
+                  <p class="font-body text-[0.75rem] text-signal-white/50 leading-relaxed line-clamp-2 flex-1">
+                    {project.description}
+                  </p>
+                  {project.technologies && project.technologies.length > 0 && (
+                    <div class="flex flex-wrap gap-1 pt-1 border-t border-signal-white/5">
+                      {project.technologies.slice(0, 3).map(tech => (
+                        <span class="font-mono text-[8px] text-signal-white/30 uppercase tracking-wide">{tech}</span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span class="font-mono text-[8px] text-signal-white/20">+{project.technologies.length - 3}</span>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <!-- Footer -->
+                <div class="px-4 py-2.5 border-t border-signal-white/5 flex justify-between items-center bg-signal-charcoal/20 group-hover:bg-signal-orange/5 transition-colors mt-auto">
+                  <span class="font-mono text-[8px] text-signal-white/25 uppercase tracking-widest group-hover:text-signal-orange transition-colors">View project</span>
+                  <span class="text-signal-white/25 group-hover:text-signal-orange group-hover:translate-x-1 transition-all font-black text-xs">›</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <!-- Empty state -->
+        <div id="no-results" class="hidden py-24 text-center">
+          <p class="font-mono text-signal-white/25 uppercase tracking-[0.3em] text-sm">// No projects found</p>
+          <p class="font-body text-signal-white/20 text-sm mt-2">Try a different search or filter.</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</BaseLayout>
+
+<style>
+  .projects-search {
+    background: oklch(18% 0.01 258);
+    border: 1px solid oklch(96% 0.005 258 / 0.12);
+    color: var(--signal-white);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    width: 100%;
+    max-width: 280px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .projects-search:focus {
+    border-color: oklch(75% 0.22 45 / 0.6);
+  }
+  .projects-search::placeholder {
+    color: oklch(96% 0.005 258 / 0.25);
+  }
+
+  .tag-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3125rem 0.75rem;
+    border: 1px solid oklch(96% 0.005 258 / 0.12);
+    color: oklch(96% 0.005 258 / 0.4);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .tag-btn:hover {
+    border-color: var(--signal-orange);
+    color: var(--signal-orange);
+  }
+  .tag-btn.active {
+    background: var(--signal-orange);
+    border-color: var(--signal-orange);
+    color: var(--signal-black);
+  }
+
+  .signal-card-item {
+    display: flex;
+    flex-direction: column;
+    background: var(--signal-black);
+    border: 1px solid oklch(96% 0.005 258 / 0.07);
+    box-shadow: 6px 6px 0px 0px oklch(0% 0 0);
+    text-decoration: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .signal-card-item:hover {
+    border-color: oklch(96% 0.005 258 / 0.18);
+    box-shadow: 8px 8px 0px 0px oklch(75% 0.22 45 / 0.2);
+  }
+</style>
+
+<script>
+  function initProjectsPage() {
+    const searchInput = document.getElementById('project-search') as HTMLInputElement | null;
+    const tagButtons = document.querySelectorAll('.tag-btn');
+    const items = document.querySelectorAll('.project-item') as NodeListOf<HTMLElement>;
+    const noResults = document.getElementById('no-results');
+
+    let activeTag = '';
+    let searchTerm = '';
+
+    function filterProjects() {
+      let count = 0;
+      items.forEach(item => {
+        const title = item.dataset.title || '';
+        const desc = item.dataset.description || '';
+        const tags: string[] = JSON.parse(item.dataset.tags || '[]');
+
+        const matchesSearch = !searchTerm ||
+          title.includes(searchTerm) ||
+          desc.includes(searchTerm) ||
+          tags.some(t => t.toLowerCase().includes(searchTerm));
+
+        const matchesTag = !activeTag || tags.includes(activeTag);
+
+        if (matchesSearch && matchesTag) {
+          (item as HTMLElement).style.display = '';
+          count++;
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+
+      if (noResults) noResults.classList.toggle('hidden', count > 0);
+    }
+
+    searchInput?.addEventListener('input', () => {
+      searchTerm = (searchInput.value || '').toLowerCase().trim();
+      filterProjects();
+    });
+
+    tagButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tagButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTag = (btn as HTMLElement).dataset.tag || '';
+        filterProjects();
+      });
+    });
+  }
+
+  initProjectsPage();
+  document.addEventListener('astro:page-load', initProjectsPage);
+</script>

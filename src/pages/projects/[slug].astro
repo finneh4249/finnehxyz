@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects, getProjectSlug } from '../../data/projects';
+
+export async function getStaticPaths() {
+  return projects.map(project => ({
+    params: { slug: getProjectSlug(project) },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const year = new Date(project.date).getFullYear();
+const allProjects = projects;
+const currentSlug = getProjectSlug(project);
+const currentIndex = allProjects.findIndex(p => getProjectSlug(p) === currentSlug);
+const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
+const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
+---
+
+<BaseLayout
+  title={`${project.title} | Ethan Cornwill`}
+  description={project.description}
+  image={project.image}
+>
+  <div class="signal-grid-bg" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-3 bg-signal-black/95 border-b border-signal-white/8 backdrop-blur-sm">
+    <a href="/" class="font-display font-black text-lg text-signal-white tracking-tighter uppercase border-2 border-signal-orange px-4 py-1 hover:bg-signal-orange hover:text-signal-black transition-colors duration-200">
+      ETHAN CORNWILL
+    </a>
+    <div class="flex items-center gap-6">
+      <a href="/projects" class="font-mono text-[10px] uppercase tracking-[0.4em] text-signal-white/50 hover:text-signal-white transition-colors">
+        ← All Projects
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-[52px] min-h-screen">
+
+    <!-- Hero image band -->
+    <div class="relative h-[280px] md:h-[400px] overflow-hidden bg-signal-charcoal">
+      <img
+        src={project.image}
+        alt={project.title}
+        class="w-full h-full object-cover opacity-35"
+        loading="eager"
+        onerror="this.style.display='none'"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-signal-black via-signal-black/50 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-signal-black/60 to-transparent"></div>
+
+      <!-- Project identity pinned to bottom -->
+      <div class="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-8 max-w-[1400px] mx-auto w-full">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag, ti) => (
+            <span class={`font-mono text-[9px] font-black uppercase tracking-widest px-3 py-1 ${
+              ti === 0 ? 'bg-signal-cyan text-signal-black' :
+              ti === 1 ? 'bg-signal-orange text-signal-black' :
+              'bg-signal-white/10 text-signal-white/70'
+            }`}>
+              {tag.name}
+            </span>
+          ))}
+        </div>
+        <h1 class="font-display font-black text-signal-white italic tracking-tighter leading-none" style="font-size: clamp(2.5rem, 7vw, 6rem)">
+          {project.title}
+        </h1>
+        <p class="font-mono text-[9px] text-signal-white/30 uppercase tracking-[0.4em] mt-3">{year}</p>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="bg-signal-black py-12 md:py-16 px-6 md:px-12">
+      <div class="max-w-[1400px] mx-auto">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 md:gap-16 items-start">
+
+          <!-- Main content -->
+          <div class="space-y-10">
+
+            {/* Description */}
+            <div>
+              <p class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.4em] mb-4">// Overview</p>
+              <p class="font-body text-signal-white/70 text-base md:text-lg leading-relaxed max-w-[65ch]">
+                {project.detailedDescription || project.description}
+              </p>
+            </div>
+
+            {/* Challenges */}
+            {project.challenges && (
+              <div>
+                <p class="font-mono text-[10px] text-signal-orange/70 uppercase tracking-[0.4em] mb-4">// Challenges</p>
+                <p class="font-body text-signal-white/65 text-base leading-relaxed max-w-[65ch]">
+                  {project.challenges}
+                </p>
+              </div>
+            )}
+
+            {/* Outcomes */}
+            {project.outcomes && (
+              <div>
+                <p class="font-mono text-[10px] text-signal-cyan/70 uppercase tracking-[0.4em] mb-4">// Outcomes</p>
+                <p class="font-body text-signal-white/65 text-base leading-relaxed max-w-[65ch]">
+                  {project.outcomes}
+                </p>
+              </div>
+            )}
+
+            {/* Links */}
+            {(project.githubUrl || project.liveDemoUrl) && (
+              <div class="flex flex-wrap gap-4 pt-2">
+                {project.liveDemoUrl && (
+                  <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" class="signal-btn group">
+                    Live Demo
+                    <span class="ml-3 group-hover:translate-x-1 transition-transform inline-block">→</span>
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="project-link-ghost">
+                    View Source
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="space-y-8">
+
+            {/* Stack */}
+            {project.technologies && project.technologies.length > 0 && (
+              <div class="border border-signal-white/8 bg-signal-charcoal/20 p-6">
+                <p class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.4em] mb-4">// Stack</p>
+                <div class="flex flex-wrap gap-2">
+                  {project.technologies.map(tech => (
+                    <span class="font-mono text-[9px] text-signal-white/50 uppercase tracking-wide border border-signal-white/10 px-2.5 py-1">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Meta */}
+            <div class="border border-signal-white/8 bg-signal-charcoal/20 p-6">
+              <p class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.4em] mb-4">// Meta</p>
+              <div class="space-y-2">
+                <div class="flex justify-between text-[10px] font-mono">
+                  <span class="text-signal-white/30 uppercase tracking-widest">Year</span>
+                  <span class="text-signal-white/60">{year}</span>
+                </div>
+                {project.featured && (
+                  <div class="flex justify-between text-[10px] font-mono">
+                    <span class="text-signal-white/30 uppercase tracking-widest">Status</span>
+                    <span class="text-signal-orange uppercase tracking-wider">Featured</span>
+                  </div>
+                )}
+                {project.githubUrl && (
+                  <div class="flex justify-between text-[10px] font-mono">
+                    <span class="text-signal-white/30 uppercase tracking-widest">Source</span>
+                    <span class="text-signal-cyan uppercase tracking-wider">Open</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </aside>
+
+        </div>
+
+        <!-- Prev / Next navigation -->
+        <div class="mt-16 md:mt-24 pt-8 border-t border-signal-white/8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {prevProject ? (
+            <a href={`/projects/${getProjectSlug(prevProject)}`} class="project-nav-link group text-left">
+              <span class="font-mono text-[9px] text-signal-white/25 uppercase tracking-widest block mb-1">← Previous</span>
+              <span class="font-display font-black text-signal-white/70 italic text-sm group-hover:text-signal-white transition-colors">
+                {prevProject.title}
+              </span>
+            </a>
+          ) : <div />}
+
+          {nextProject && (
+            <a href={`/projects/${getProjectSlug(nextProject)}`} class="project-nav-link group text-right sm:col-start-2">
+              <span class="font-mono text-[9px] text-signal-white/25 uppercase tracking-widest block mb-1">Next →</span>
+              <span class="font-display font-black text-signal-white/70 italic text-sm group-hover:text-signal-white transition-colors">
+                {nextProject.title}
+              </span>
+            </a>
+          )}
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</BaseLayout>
+
+<style>
+  .project-link-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-weight: 900;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    padding: 1.25rem 2.5rem;
+    border: 1px solid oklch(96% 0.005 258 / 0.18);
+    color: oklch(96% 0.005 258 / 0.55);
+    background: transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-link-ghost:hover {
+    border-color: var(--signal-white);
+    color: var(--signal-white);
+  }
+
+  .project-nav-link {
+    display: block;
+    padding: 1rem;
+    border: 1px solid oklch(96% 0.005 258 / 0.08);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .project-nav-link:hover {
+    border-color: oklch(96% 0.005 258 / 0.2);
+    background: oklch(18% 0.01 258 / 0.4);
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import type { Project } from '../../data/projects';
+
+interface Props {
+  project: Project;
+  className?: string;
+}
+
+const { project, className = "" } = Astro.props;
+const displayDate = new Date(project.date).getFullYear() || "2024";
+const idSuffix = project.date.toString().slice(-4);
+---
+
+<div 
+  class={`signal-card group cursor-pointer transition-all duration-700 hover:scale-[1.02] ${className}`}
+  data-project={JSON.stringify(project)}
+  onclick="document.dispatchEvent(new CustomEvent('openProjectModal', { detail: JSON.parse(this.dataset.project) }))"
+  role="article"
+  aria-labelledby={`project-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`}
+>
+  <div class="bg-signal-charcoal/30 border-b border-signal-white/8 flex justify-between items-center px-5 py-2.5">
+    <div class="flex items-center gap-2.5">
+      <span class="w-1.5 h-1.5 bg-signal-cyan rounded-full opacity-60"></span>
+      <span id={`project-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`} class="truncate font-display font-black text-xs text-signal-white tracking-widest uppercase">{project.title}</span>
+    </div>
+    <span class="text-[9px] text-signal-white/20 font-mono shrink-0">{displayDate}</span>
+  </div>
+  
+  <div class="relative h-64 overflow-hidden bg-signal-black border-b border-signal-white/10 flex items-center justify-center">
+    <img 
+      src={project.image} 
+      alt={`Diagnostic view of ${project.title}`}
+      class="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-1000 scale-110 group-hover:scale-100"
+      loading="lazy"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="absolute inset-0 hidden flex-col items-center justify-center bg-signal-charcoal text-signal-white/20 font-mono text-[10px] uppercase p-4 text-center">
+      No preview available
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-t from-signal-black via-signal-black/40 to-transparent opacity-90"></div>
+    
+    <div class="absolute bottom-4 left-4 flex flex-wrap gap-2 max-w-[90%]">
+      {project.tags.slice(0, 3).map((tag, ti) => (
+        <span class={`px-3 py-1 font-mono text-[9px] font-black uppercase tracking-widest shadow-signal-sm ${
+          ti === 0 ? 'bg-signal-cyan text-signal-black' :
+          ti === 1 ? 'bg-signal-orange text-signal-black' :
+          'bg-signal-amber text-signal-black'
+        }`}>
+          {tag.name}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="signal-card-body p-6 md:p-10 flex flex-col flex-1 bg-signal-charcoal/20 group-hover:bg-signal-cyan/[0.04] transition-colors duration-700">
+    <p class="font-body text-signal-sm md:text-signal-base text-signal-white/50 leading-relaxed line-clamp-3 mb-6 md:mb-10 flex-1 group-hover:text-signal-white/80 transition-colors">
+      {project.description || "Project manifest currently being re-indexed for deep-system retrieval."}
+    </p>
+    
+    <div class="flex justify-between items-center border-t border-signal-white/5 pt-4 text-[10px] font-mono">
+      <span class="text-signal-cyan/50 tracking-widest">{displayDate}</span>
+      {project.githubUrl && <span class="text-signal-white/20 tracking-widest">Open Source</span>}
+    </div>
+  </div>
+  
+  <div class="bg-signal-black/60 px-5 py-3 flex justify-between items-center border-t border-signal-white/8 group-hover:border-signal-cyan/30 transition-colors duration-500">
+    <span class="font-mono text-[9px] text-signal-white/25 uppercase tracking-widest group-hover:text-signal-cyan transition-colors">View project</span>
+    <span class="text-signal-cyan transform group-hover:translate-x-1.5 transition-transform duration-500 font-black">›</span>
+  </div>
+</div>
+
+<style>
+  .signal-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--signal-black);
+    box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 0.4);
+  }
+</style>

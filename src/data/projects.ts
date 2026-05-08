@@ -16,6 +16,14 @@ export interface Project {
   }[];
 }
 
+export function getProjectSlug(project: Project): string {
+  return project.title
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+
 export const projects: Project[] = [
   {
     title: "Zetto",
@@ -69,7 +77,7 @@ export const projects: Project[] = [
       "The party faced a strict deadline from the Victorian Electoral Commission (VEC) to prove its membership numbers, with significant funding at stake. The existing process involved manual lookups or fragile scripts that could not handle the volume or the anti-bot measures of verification portals. Legacy systems were fragmented, lacking a unified source of truth required for programmatic verification.",
     outcomes:
       "PoliCRM processed the entire database in a fraction of the time, running completely unattended overnight due to its self-healing automation daemon. It secured the party's eligibility for $640k in electoral funding and evolved from a rescue script into a stable, production-grade application for future member management.",
-    image: "images/policrm.png",
+    image: "/images/axion.png",
     githubUrl: null,
     featured: true,
     date: 1729033200000,
@@ -88,7 +96,7 @@ export const projects: Project[] = [
       "Coordinating multiple AI agents deterministically without context loss or hallucinations required a strict handoff protocol — each agent's output format must exactly match the next agent's expected input. Context windows fill fast when carrying full codebase state; the framework uses structured summaries and explicit file references rather than raw file dumps to stay within limits. Keeping the prompt library and the generated code in sync as both evolve required a versioning convention enforced at the spec-writing stage.",
     outcomes:
       "Scaffolding time dropped from roughly 2 days to 4 hours per feature. The framework has been used across FinnehSpoof, Zetto, and several other projects on this site. Zero manual boilerplate writing — specifications go in, working code with tests and docs comes out.",
-    image: "images/axion.png",
+    image: "/images/axion.png",
     githubUrl: "https://github.com/Finneh4249/SPARC-Framework",
     featured: true,
     date: 1728946800000,
@@ -107,7 +115,7 @@ export const projects: Project[] = [
       "Designing a financial interface that's transparent without triggering anxiety between partners. Real-time sync across devices for sensitive financial data required careful state management and end-to-end encryption for stored records. The dual-user model (both partners see the same budget) required an access control system that prevents one-sided edits without requiring approval workflows for every small transaction.",
     outcomes:
       "A functional prototype demonstrating an empathy-first approach to shared fintech — no gamification, no shaming, just a clear view of where money is going. The UX work on this project directly informed approaches used on other app projects.",
-    image: "images/axion.png",
+    image: "/images/axion.png",
     githubUrl: "https://github.com/Finneh4249/Nexus-App",
     featured: false,
     date: 1728946800000,
