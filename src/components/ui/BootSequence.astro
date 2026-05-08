@@ -1,8 +1,12 @@
 ---
 ---
 
-<div id="boot-overlay" class="boot-overlay">
-  <div id="boot-lines" class="max-w-lg"></div>
+<div id="boot-overlay" class="boot-overlay bg-signal-black">
+  <div id="boot-lines" class="max-w-lg w-full"></div>
+  <div class="absolute bottom-10 right-10 flex items-center gap-4 animate-pulse">
+    <div class="w-4 h-4 bg-signal-orange"></div>
+    <span class="font-mono text-signal-orange text-xs tracking-widest">SYSTEM_INITIALIZING...</span>
+  </div>
 </div>
 
 <script>
@@ -11,23 +15,22 @@
     const container = document.getElementById('boot-lines');
     if (!overlay || !container) return;
     
-    // Skip if already seen this session
     if (sessionStorage.getItem('boot-done')) {
       overlay.remove();
       return;
     }
     
     const lines = [
-      '> FINNEH.XYZ v4.2.1',
-      '> Initializing system...',
-      '> Loading modules: [AI, SYSTEMS, OPS]',
-      '> Establishing neural pathways... ✓',
-      '> Calibrating quantum flux capacitor... ✓',
-      '> Injecting prompt architecture... ✓',
-      '> Loading portfolio data... ✓',
-      '> System ready.',
+      '[  OK  ] INITIALIZING_CORE_TERMINAL_V5',
+      '[  OK  ] ESTABLISHING_SIGNAL_HANDSHAKE',
+      '[  OK  ] LOADING_OPERATIONAL_LOGS',
+      '[  OK  ] CALIBRATING_FLIGHT_DECK_DISPLAY',
+      '[ WAIT ] FETCHING_KERNEL_DATA_FROM_GITHUB',
+      '[  OK  ] GITHUB_DATA_STREAM_READY',
+      '[  OK  ] INJECTING_BRUTALIST_DESIGN_TOKENS',
+      '[  OK  ] AUTHENTICATING_OPERATOR: E. CORNWILL',
       '',
-      '> Welcome, visitor.',
+      '> ACCESS_GRANTED // WELCOME_TO_THE_TERMINAL',
     ];
     
     let i = 0;
@@ -38,29 +41,60 @@
           overlay.classList.add('fade-out');
           sessionStorage.setItem('boot-done', 'true');
           setTimeout(() => overlay.remove(), 600);
-        }, 500);
+        }, 800);
         return;
       }
       
       const lineEl = document.createElement('div');
-      lineEl.className = 'boot-line';
-      lineEl.style.animationDelay = `${i * 0.05}s`;
+      lineEl.className = 'boot-line font-mono text-[13px] mb-1';
       
-      if (lines[i] === '') {
+      const content = lines[i];
+      if (content === '') {
         lineEl.innerHTML = '&nbsp;';
-      } else if (lines[i].includes('✓')) {
-        lineEl.innerHTML = lines[i].replace('✓', '<span style="color: #39ff14;">✓</span>');
-      } else if (lines[i].includes('Welcome')) {
-        lineEl.style.color = '#ff00ff';
-        lineEl.textContent = lines[i];
+      } else if (content.includes('[  OK  ]')) {
+        lineEl.innerHTML = `<span class="text-signal-green mr-3">${content.slice(0, 8)}</span><span class="text-signal-white/80">${content.slice(8)}</span>`;
+      } else if (content.includes('[ WAIT ]')) {
+        lineEl.innerHTML = `<span class="text-signal-amber mr-3">${content.slice(0, 8)}</span><span class="text-signal-white/80">${content.slice(8)}</span>`;
+      } else if (content.startsWith('>')) {
+        lineEl.className += ' text-signal-orange font-bold mt-4 text-[15px]';
+        lineEl.textContent = content;
       } else {
-        lineEl.textContent = lines[i];
+        lineEl.textContent = content;
       }
       
       container.appendChild(lineEl);
       i++;
-    }, 200);
+    }, 120);
   }
   
   initBoot();
 </script>
+
+<style>
+  .boot-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    transition: opacity 0.5s ease;
+  }
+
+  .boot-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .boot-line {
+    opacity: 0;
+    transform: translateY(5px);
+    animation: bootLineIn 0.1s ease forwards;
+  }
+
+  @keyframes bootLineIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

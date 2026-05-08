@@ -1,0 +1,235 @@
+---
+interface Props {
+  text?: string;
+  subtext?: string;
+  className?: string;
+}
+
+const { text = "EC://SYSTEM", subtext, className = "" } = Astro.props;
+const characters = text.toUpperCase().split("");
+---
+
+<div class={`split-flap-container ${className}`} data-text={text.toUpperCase()} aria-label={text}>
+  <div class="flex flex-wrap sm:flex-nowrap gap-1 sm:gap-2 lg:gap-4 justify-start overflow-hidden">
+    {characters.map((char, i) => (
+      <div 
+        class="flap-unit shrink-0" 
+        data-index={i}
+      >
+        <div class="flap-leaf top-half" data-char=" "></div>
+        <div class="flap-leaf bottom-half" data-char=" "></div>
+        <div class="flap-leaf top-next" data-char=" "></div>
+        <div class="flap-leaf bottom-next" data-char=" "></div>
+        <div class="flap-divider"></div>
+      </div>
+    ))}
+  </div>
+  {subtext && (
+    <div class="mt-16 flex items-center gap-10 animate-reveal-delayed">
+      <div class="h-[6px] w-24 bg-signal-orange shadow-signal-sm shrink-0"></div>
+      <p class="font-mono text-signal-orange uppercase tracking-[0.8em] text-signal-sm font-black italic">
+        {subtext}
+      </p>
+    </div>
+  )}
+</div>
+
+<script>
+  class SplitFlapDisplay {
+    container: HTMLElement;
+    chars: string[] = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_:/.-".split("");
+    units: HTMLElement[];
+    targetText: string;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.units = Array.from(container.querySelectorAll('.flap-unit'));
+      this.targetText = container.getAttribute('data-text') || "";
+      this.init();
+    }
+
+    init() {
+      this.units.forEach((unit, i) => {
+        const targetChar = this.targetText[i] || " ";
+        // Base delay of 500ms to ensure page has settled
+        this.spinTo(unit as HTMLElement, targetChar, 500 + (i * 150));
+      });
+    }
+
+    spinTo(unit: HTMLElement, target: string, delay: number) {
+      const targetIndex = this.chars.indexOf(target);
+      if (targetIndex === -1) return;
+
+      setTimeout(() => {
+        let currentIndex = 0;
+        
+        const interval = setInterval(() => {
+          const currentChar = this.chars[currentIndex];
+          this.flip(unit, currentChar);
+
+          if (currentIndex === targetIndex) {
+            clearInterval(interval);
+          } else {
+            currentIndex = (currentIndex + 1) % this.chars.length;
+          }
+        }, 60); // Slightly slower for more mechanical impact
+      }, delay);
+    }
+
+    flip(unit: HTMLElement, nextChar: string) {
+      const topHalf = unit.querySelector('.top-half') as HTMLElement;
+      const bottomHalf = unit.querySelector('.bottom-half') as HTMLElement;
+      const topNext = unit.querySelector('.top-next') as HTMLElement;
+      const bottomNext = unit.querySelector('.bottom-next') as HTMLElement;
+
+      const currentDisplayChar = topHalf.getAttribute('data-char');
+      if (currentDisplayChar === nextChar) return;
+
+      topNext.setAttribute('data-char', nextChar);
+      bottomNext.setAttribute('data-char', nextChar);
+      
+      unit.classList.remove('flipping');
+      void unit.offsetWidth; 
+      unit.classList.add('flipping');
+
+      setTimeout(() => {
+        topHalf.setAttribute('data-char', nextChar);
+        bottomHalf.setAttribute('data-char', nextChar);
+        unit.classList.remove('flipping');
+      }, 55); 
+    }
+  }
+
+  function initAll() {
+    document.querySelectorAll('.split-flap-container').forEach(el => {
+      new SplitFlapDisplay(el as HTMLElement);
+    });
+  }
+
+  // Handle both initial load and view transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+  document.addEventListener('astro:after-swap', initAll);
+</script>
+
+<style>
+  .split-flap-container {
+    perspective: 2000px;
+    width: 100%;
+  }
+
+  .flap-unit {
+    position: relative;
+    width: clamp(24px, 4vw, 80px);
+    height: clamp(36px, 6vw, 120px);
+    background: #0D0D0F;
+    border: 3px solid #1A1816;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(27px, 4.5vw, 90px);
+    font-weight: 900;
+    color: #F5F5F7;
+    transform-style: preserve-3d;
+  }
+
+  @media (min-width: 480px) {
+    .flap-unit {
+      width: clamp(32px, 4.5vw, 80px);
+      height: clamp(48px, 7vw, 120px);
+      font-size: clamp(36px, 5.5vw, 90px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .flap-unit {
+      width: clamp(40px, 5vw, 80px);
+      height: clamp(60px, 8vw, 120px);
+      font-size: clamp(45px, 6vw, 90px);
+    }
+  }
+
+  .flap-leaf {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background: #141417;
+    backface-visibility: hidden;
+    transition: transform 0.06s ease-in;
+  }
+
+  /* Robust character positioning */
+  .flap-leaf::before {
+    content: attr(data-char);
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .top-half, .top-next {
+    top: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.8);
+    z-index: 2;
+  }
+
+  .top-half::before, .top-next::before {
+    top: 0;
+  }
+
+  .bottom-half, .bottom-next {
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .bottom-half::before, .bottom-next::before {
+    bottom: 0;
+  }
+
+  .top-next {
+    z-index: 3;
+    transform-origin: bottom;
+    transform: rotateX(90deg);
+    background: #1A1816;
+  }
+
+  .flipping .top-half {
+    transform: rotateX(-90deg);
+  }
+
+  .flipping .top-next {
+    transform: rotateX(0deg);
+  }
+
+  .flap-divider {
+    position: absolute;
+    top: 50%;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: 4px;
+    background: #000;
+    z-index: 10;
+    transform: translateY(-50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .animate-reveal-delayed {
+    opacity: 0;
+    animation: reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 3s;
+  }
+
+  @keyframes reveal {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
