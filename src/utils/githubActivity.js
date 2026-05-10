@@ -10,7 +10,7 @@ export function getPushActionText(payload) {
   if (commitCount !== null) {
     return `pushed ${commitCount} commit${commitCount !== 1 ? "s" : ""} to`;
   }
-  return "pushed Active changes to";
+  return "pushed active changes to";
 }
 
 export function formatLastSuccessLabel(timestamp) {

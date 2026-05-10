@@ -12,8 +12,8 @@ describe("githubActivity utilities", () => {
   });
 
   it("returns Active fallback when commit count cannot be determined", () => {
-    expect(getPushActionText({ commits: [] })).toBe("pushed Active changes to");
-    expect(getPushActionText({})).toBe("pushed Active changes to");
+    expect(getPushActionText({ commits: [] })).toBe("pushed active changes to");
+    expect(getPushActionText({})).toBe("pushed active changes to");
   });
 
   it("formats a last-success label only for valid timestamps", () => {

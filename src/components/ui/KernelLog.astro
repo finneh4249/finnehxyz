@@ -28,6 +28,9 @@ const { className = "" } = Astro.props;
 
   const CACHE_KEY = 'gh_events_v1';
   const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+  const GITHUB_OWNER = 'finneh4249';
+  const GITHUB_REPO = 'finnehxyz';
+  const GITHUB_EVENTS_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/events?per_page=15`;
 
   function getCacheEntry(): { data: any[]; ts: number } | null {
     try {
@@ -72,7 +75,7 @@ const { className = "" } = Astro.props;
     indicator.classList.add('bg-signal-amber', 'animate-ping');
 
     try {
-      const response = await fetch('https://api.github.com/repos/finneh4249/finnehxyz/events?per_page=15', {
+      const response = await fetch(GITHUB_EVENTS_URL, {
         cache: 'no-store',
         headers: {
           Accept: 'application/vnd.github+json',
@@ -95,7 +98,7 @@ const { className = "" } = Astro.props;
       const msg = err.message === 'RATE_LIMIT' ? 'Rate limited — showing cached data when available.' : 'Could not fetch activity.';
       const lastSuccess = formatLastSuccessLabel(getCacheEntry()?.ts);
       // Try to fall back to stale cache
-      const stale = (() => { try { const r = localStorage.getItem(CACHE_KEY); return r ? JSON.parse(r).data : null; } catch { return null; } })();
+      const stale = getCacheEntry()?.data;
       if (stale) {
         renderEvents(stale, stream, indicator, reconnectBtn);
         stream.insertAdjacentHTML('afterbegin', `<div class="text-signal-orange/50 text-[9px] font-mono px-1 py-1 mb-1">${msg}</div>`);
