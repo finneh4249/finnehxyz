@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../../data/projects';
+import { getProjectSlug } from '../../data/projects';
 
 interface Props {
   project: Project;
@@ -7,13 +8,12 @@ interface Props {
 
 const { project } = Astro.props;
 const displayDate = new Date(project.date).getFullYear() || "2024";
+const slug = getProjectSlug(project);
 ---
 
-<div
-  class="group cursor-pointer relative overflow-hidden bg-signal-black border border-signal-white/10 shadow-signal-lg hover:border-signal-cyan/40 transition-all duration-700"
-  data-project={JSON.stringify(project)}
-  onclick="document.dispatchEvent(new CustomEvent('openProjectModal', { detail: JSON.parse(this.dataset.project) }))"
-  role="article"
+<a
+  href={`/projects/${slug}`}
+  class="group relative overflow-hidden bg-signal-black border border-signal-white/10 shadow-signal-lg hover:border-signal-cyan/40 transition-all duration-700 block"
   aria-labelledby={`hero-project-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`}
 >
   <!-- Image background, full bleed -->
@@ -65,4 +65,4 @@ const displayDate = new Date(project.date).getFullYear() || "2024";
       </div>
     </div>
   </div>
-</div>
+</a>

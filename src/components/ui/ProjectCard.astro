@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../../data/projects';
+import { getProjectSlug } from '../../data/projects';
 
 interface Props {
   project: Project;
@@ -8,14 +9,12 @@ interface Props {
 
 const { project, className = "" } = Astro.props;
 const displayDate = new Date(project.date).getFullYear() || "2024";
-const idSuffix = project.date.toString().slice(-4);
+const slug = getProjectSlug(project);
 ---
 
-<div 
-  class={`signal-card group cursor-pointer transition-all duration-700 hover:scale-[1.02] ${className}`}
-  data-project={JSON.stringify(project)}
-  onclick="document.dispatchEvent(new CustomEvent('openProjectModal', { detail: JSON.parse(this.dataset.project) }))"
-  role="article"
+<a
+  href={`/projects/${slug}`}
+  class={`signal-card group transition-all duration-700 hover:scale-[1.02] ${className}`}
   aria-labelledby={`project-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`}
 >
   <div class="bg-signal-charcoal/30 border-b border-signal-white/8 flex justify-between items-center px-5 py-2.5">
@@ -54,6 +53,9 @@ const idSuffix = project.date.toString().slice(-4);
   </div>
 
   <div class="signal-card-body p-6 md:p-10 flex flex-col flex-1 bg-signal-charcoal/20 group-hover:bg-signal-cyan/[0.04] transition-colors duration-700">
+    <h3 class="font-display font-black text-signal-white uppercase italic tracking-tight leading-tight text-signal-xl mb-3 group-hover:text-signal-cyan transition-colors">
+      {project.title}
+    </h3>
     <p class="font-body text-signal-sm md:text-signal-base text-signal-white/50 leading-relaxed line-clamp-3 mb-6 md:mb-10 flex-1 group-hover:text-signal-white/80 transition-colors">
       {project.description || "Project manifest currently being re-indexed for deep-system retrieval."}
     </p>
@@ -68,7 +70,7 @@ const idSuffix = project.date.toString().slice(-4);
     <span class="font-mono text-[9px] text-signal-white/25 uppercase tracking-widest group-hover:text-signal-cyan transition-colors">View project</span>
     <span class="text-signal-cyan transform group-hover:translate-x-1.5 transition-transform duration-500 font-black">›</span>
   </div>
-</div>
+</a>
 
 <style>
   .signal-card {

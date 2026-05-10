@@ -1,8 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 import ProjectCardHero from './ProjectCardHero.astro';
-import ProjectModal from '../projects/ProjectModal.astro';
-import { projects } from '../../data/projects';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.date - a.data.date);
 
 interface Props {
   id?: string;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const { id, className = "" } = Astro.props;
-const featuredProjects = projects.filter(p => p.featured);
+const featuredProjects = projects.filter((p) => p.data.featured);
 const [heroProject, ...subProjects] = featuredProjects;
 ---
 
@@ -19,7 +20,7 @@ const [heroProject, ...subProjects] = featuredProjects;
   {/* Hero — full width, primary weight */}
   {heroProject && (
     <div class="mb-6 md:mb-8 animate-reveal">
-      <ProjectCardHero project={heroProject} />
+      <ProjectCardHero project={heroProject.data} />
     </div>
   )}
 
@@ -35,7 +36,7 @@ const [heroProject, ...subProjects] = featuredProjects;
           ]}
           style={`animation-delay: ${(i + 1) * 100}ms`}
         >
-          <ProjectCard project={project} className={i === 0 ? 'project-card--wide' : ''} />
+          <ProjectCard project={project.data} className={i === 0 ? 'project-card--wide' : ''} />
         </div>
       ))}
     </div>
@@ -49,7 +50,6 @@ const [heroProject, ...subProjects] = featuredProjects;
     </a>
   </div>
 
-  <ProjectModal />
 
 </section>
 

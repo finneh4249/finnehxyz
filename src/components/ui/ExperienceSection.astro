@@ -1,119 +1,64 @@
 ---
 import experienceData from '../../data/experience.json';
 
-const techExperience = (experienceData as any[]).filter(e => e.category === 'technology');
-const opsExperience = (experienceData as any[]).filter(e => e.category === 'operations');
+const systemsHistory = experienceData as any[];
 ---
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
-
-  <!-- ── Technology Track ─────────────────────────────────────────── -->
-  <div>
-    <!-- C: Full cyan surface column header -->
-    <div class="surface-cyan px-6 py-4 mb-8 flex items-baseline justify-between">
-      <h3 class="font-display font-black text-signal-black uppercase italic tracking-tighter text-signal-2xl leading-none">Technology</h3>
-      <span class="font-mono text-[10px] text-signal-black/50 uppercase tracking-widest">Tech</span>
-    </div>
-
-    <div class="space-y-10 scroll-reveal-stagger">
-      {techExperience.map((exp: any) => (
-        <div class="scroll-reveal border-t border-signal-white/8 pt-8">
-          <!-- Company header with logo -->
-          <div class="flex items-center gap-4 mb-5">
-            {exp.logoSrc && (
-              <div class="w-10 h-10 shrink-0 bg-signal-charcoal border border-signal-white/10 p-1 overflow-hidden flex items-center justify-center">
-                <img
-                  src={`/assets/images/${exp.logoSrc.split('/').pop()}`}
-                  alt={exp.logoAlt || exp.company}
-                  class="w-full h-full object-contain"
-                  loading="lazy"
-                  onerror="this.parentElement.style.display='none'"
-                />
-              </div>
-            )}
-            <div class="flex-1 min-w-0">
-              <div class="flex items-baseline justify-between gap-3">
-                <h4 class="font-black text-signal-white uppercase tracking-tight leading-none text-signal-xl truncate">{exp.company}</h4>
-                <span class="font-mono text-[10px] text-signal-cyan/60 shrink-0 tracking-widest">{exp.yearRange}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Roles -->
-          <div class="space-y-6 pl-14">
-            {exp.roles.map((role: any) => (
-              <div class="group">
-                <div class="flex flex-wrap items-center gap-3 mb-2">
-                  <span class="font-display font-black text-signal-lg text-signal-white uppercase tracking-tight group-hover:text-signal-cyan transition-colors leading-tight">
-                    {role.title}
-                  </span>
-                  {role.isCurrent && (
-                    <span class="text-[9px] bg-signal-cyan text-signal-black px-3 py-0.5 font-black uppercase tracking-wide flex items-center gap-1.5">
-                      <span class="w-1.5 h-1.5 bg-signal-black rounded-full animate-pulse"></span>
-                      Current
-                    </span>
-                  )}
-                </div>
-                <span class="font-mono text-[10px] text-signal-white/30 tracking-widest block mb-2">{role.period}</span>
-                <p class="font-body text-signal-white/55 text-signal-sm leading-relaxed max-w-[60ch] group-hover:text-signal-white/75 transition-colors">
-                  {role.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+<div>
+  <!-- Section header -->
+  <div class="surface-cyan px-6 py-4 mb-10 flex items-baseline justify-between">
+    <h3 class="font-display font-black text-signal-black uppercase italic tracking-tighter text-signal-2xl leading-none">Systems History</h3>
+    <span class="font-mono text-[10px] text-signal-black/50 uppercase tracking-widest">2013 — 2026</span>
   </div>
 
-  <!-- ── Operations Track ─────────────────────────────────────────── -->
-  <div>
-    <!-- C: Full amber surface column header -->
-    <div class="surface-amber px-6 py-4 mb-8 flex items-baseline justify-between">
-      <h3 class="font-display font-black text-signal-black uppercase italic tracking-tighter text-signal-2xl leading-none">Operations</h3>
-      <span class="font-mono text-[10px] text-signal-black/50 uppercase tracking-widest">Ops</span>
-    </div>
-
-    <div class="space-y-10 scroll-reveal-stagger">
-      {opsExperience.map((exp: any) => (
-        <div class="scroll-reveal border-t border-signal-white/8 pt-8">
-          <div class="flex items-center gap-4 mb-5">
-            {exp.logoSrc && (
-              <div class="w-10 h-10 shrink-0 bg-signal-charcoal border border-signal-white/10 p-1 overflow-hidden flex items-center justify-center">
-                <img
-                  src={`/assets/images/${exp.logoSrc.split('/').pop()}`}
-                  alt={exp.logoAlt || exp.company}
-                  class="w-full h-full object-contain"
-                  loading="lazy"
-                  onerror="this.parentElement.style.display='none'"
-                />
-              </div>
-            )}
-            <div class="flex-1 min-w-0">
-              <div class="flex items-baseline justify-between gap-3">
-                <h4 class="font-black text-signal-white uppercase tracking-tight leading-none text-signal-xl truncate">{exp.company}</h4>
-                <span class="font-mono text-[10px] text-signal-amber/60 shrink-0 tracking-widest">{exp.yearRange}</span>
-              </div>
+  <div class="space-y-10 scroll-reveal-stagger">
+    {systemsHistory.map((exp: any) => (
+      <div class="scroll-reveal border-t border-signal-white/8 pt-8">
+        <!-- Company header with logo -->
+        <div class="flex items-center gap-4 mb-5">
+          {exp.logoSrc && (
+            <div class="w-10 h-10 shrink-0 bg-signal-charcoal border border-signal-white/10 p-1 overflow-hidden flex items-center justify-center">
+              <img
+                src={`/assets/images/${exp.logoSrc.split('/').pop()}`}
+                alt={exp.logoAlt || exp.company}
+                class="w-full h-full object-contain"
+                loading="lazy"
+                onerror="this.parentElement.style.display='none'"
+              />
             </div>
-          </div>
-
-          <div class="space-y-6 pl-14">
-            {exp.roles.map((role: any) => (
-              <div class="group">
-                <div class="flex flex-wrap items-baseline gap-3 mb-1">
-                  <span class="font-display font-black text-signal-lg text-signal-white uppercase tracking-tight group-hover:text-signal-amber transition-colors leading-tight">
-                    {role.title}
-                  </span>
-                  <span class="font-mono text-[10px] text-signal-white/30 tracking-widest">{role.period}</span>
-                </div>
-                <p class="font-body text-signal-white/55 text-signal-sm leading-relaxed max-w-[60ch] group-hover:text-signal-white/75 transition-colors">
-                  {role.description}
-                </p>
-              </div>
-            ))}
+          )}
+          <div class="flex-1 min-w-0">
+            <div class="flex items-baseline justify-between gap-3">
+              <h4 class="font-black text-signal-white uppercase tracking-tight leading-none text-signal-xl truncate">{exp.company}</h4>
+              <span class="font-mono text-[10px] text-signal-cyan/60 shrink-0 tracking-widest">{exp.yearRange}</span>
+            </div>
+            {exp.employer && <p class="font-mono text-[9px] text-signal-white/30 uppercase tracking-widest mt-1">{exp.employer}</p>}
           </div>
         </div>
-      ))}
-    </div>
+
+        <!-- Roles -->
+        <div class="space-y-6 pl-14">
+          {exp.roles.map((role: any) => (
+            <div class="group">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <span class="font-display font-black text-signal-lg text-signal-white uppercase tracking-tight group-hover:text-signal-cyan transition-colors leading-tight">
+                  {role.title}
+                </span>
+                {role.isCurrent && (
+                  <span class="text-[9px] bg-signal-cyan text-signal-black px-3 py-0.5 font-black uppercase tracking-wide flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 bg-signal-black rounded-full animate-pulse"></span>
+                    Current
+                  </span>
+                )}
+              </div>
+              <span class="font-mono text-[10px] text-signal-white/30 tracking-widest block mb-2">{role.period}</span>
+              <p class="font-body text-signal-white/55 text-signal-sm leading-relaxed max-w-[72ch] group-hover:text-signal-white/75 transition-colors">
+                {role.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 </div>
