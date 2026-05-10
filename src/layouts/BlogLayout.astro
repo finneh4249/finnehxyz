@@ -3,11 +3,6 @@ import BaseLayout from './BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
 
-function formatDate(d: string | Date) {
-  const date = d instanceof Date ? d : new Date(d);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-}
-
 function isoDate(d: string | Date) {
   const date = d instanceof Date ? d : new Date(d);
   return isNaN(date.getTime()) ? String(d) : date.toISOString().slice(0, 10);
@@ -15,178 +10,208 @@ function isoDate(d: string | Date) {
 
 function estimateReadingTime(content: string) {
   const wordCount = content.trim().split(/\s+/).length;
-  return Math.ceil(wordCount / 200);
+  return Math.max(1, Math.ceil(wordCount / 200));
 }
 ---
 
-<BaseLayout 
-  title={frontmatter.title} 
+<BaseLayout
+  title={frontmatter.title}
   description={frontmatter.description}
 >
-  <article class="min-h-screen bg-cyber-bg py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-      
-      <!-- Back to Blog -->
-      <a 
-        href="/blog"
-        class="inline-flex items-center gap-2 mb-8 font-mono text-sm text-cyber-cyan hover:underline transition-all group"
-      >
-        <span class="group-hover:-translate-x-1 transition-transform">←</span>
-        <span>cd /blog</span>
-      </a>
+  <div class="signal-grid-bg" aria-hidden="true"></div>
 
-      <!-- Article Header -->
-      <header class="mb-10 pb-8 border-b border-cyber-border">
-        <!-- Tags -->
-        {frontmatter.tags && (
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            {frontmatter.tags.map((tag: string) => (
-              <span class="text-[9px] font-mono uppercase tracking-wider text-cyber-cyan border border-cyber-cyan/30 px-2 py-0.5">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-3 bg-signal-black/95 border-b border-signal-white/8 backdrop-blur-sm" role="navigation" aria-label="Main Navigation">
+    <a href="/" class="font-display font-black text-lg text-signal-white tracking-tighter uppercase flex items-center border-2 border-signal-orange px-4 py-1 hover:bg-signal-orange hover:text-signal-black transition-colors duration-200">
+      ETHAN CORNWILL
+    </a>
+    <div class="flex items-center gap-8 md:gap-12">
+      <a href="/resume" class="font-mono text-[10px] uppercase tracking-[0.4em] text-signal-white/50 hover:text-signal-white transition-colors">Resume</a>
+      <a href="/blog" class="font-mono text-[10px] uppercase tracking-[0.4em] text-signal-orange hover:text-signal-white transition-colors">Blog</a>
+    </div>
+  </nav>
 
-        <!-- Title -->
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-[1.1] tracking-tight text-white mb-4">
+  <article class="pt-[52px] min-h-screen">
+
+    <!-- Header band -->
+    <div class="surface-orange px-6 md:px-12 py-8 md:py-12">
+      <div class="max-w-3xl mx-auto">
+        <p class="font-mono text-signal-black/60 text-xs uppercase tracking-[0.5em] mb-3">
+          <a href="/" class="hover:text-signal-black transition-colors">Home</a>
+          <span class="mx-2 opacity-40">/</span>
+          <a href="/blog" class="hover:text-signal-black transition-colors">Blog</a>
+        </p>
+        <h1 class="text-signal-black tracking-tighter leading-[1.05] not-italic" style="font-size:clamp(1.6rem,3.5vw,3rem); font-style:normal;">
           {frontmatter.title}
         </h1>
-
-        <!-- Meta -->
-        <div class="flex items-center gap-4 font-mono text-xs text-cyber-text-muted">
-          <time datetime={frontmatter.pubDate}>
+        <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-signal-black/60 mt-4">
+          <time datetime={isoDate(frontmatter.pubDate)}>
             {isoDate(frontmatter.pubDate)}
           </time>
-          <span class="text-cyber-border">|</span>
-          <span>~{estimateReadingTime(frontmatter.description || '')} min read</span>
-          <span class="text-cyber-border">|</span>
-          <span>by Ethan Cornwill</span>
+          <span aria-hidden="true">·</span>
+          <span>~{estimateReadingTime(frontmatter.body || frontmatter.description || '')} min read</span>
+          <span aria-hidden="true">·</span>
+          <span>Ethan Cornwill</span>
         </div>
-      </header>
+      </div>
+    </div>
 
-      <!-- Article Content -->
+    <!-- Tags strip -->
+    {frontmatter.tags && frontmatter.tags.length > 0 && (
+      <div class="bg-signal-charcoal border-b border-signal-white/8 px-6 md:px-12 py-3">
+        <div class="max-w-3xl mx-auto flex flex-wrap gap-2">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="committed-cyan text-[9px] font-mono uppercase tracking-[0.25em] text-signal-cyan px-2 py-1">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Article body -->
+    <div class="max-w-3xl mx-auto px-6 md:px-12 py-12 md:py-16">
       <div class="blog-content">
         <slot />
       </div>
 
-      <!-- Article Footer -->
-      <footer class="mt-16 pt-8 border-t border-cyber-border">
-        <div class="bg-cyber-surface border border-cyber-border p-6 border-l-2 border-l-cyber-magenta">
-          <h3 class="text-sm font-bold uppercase text-white mb-2 font-mono">// about the author</h3>
-          <p class="text-sm text-cyber-text leading-relaxed mb-3">
-            I'm Ethan Cornwill. 13+ years building software, 10 years managing QSR operations. 
+      <!-- Author -->
+      <footer class="mt-16 pt-8 border-t border-signal-white/10">
+        <div class="committed-cyan p-6">
+          <p class="font-mono text-signal-cyan text-[10px] uppercase tracking-[0.35em] mb-3">// about the author</p>
+          <p class="text-signal-white/75 text-sm leading-relaxed mb-4">
+            I'm Ethan Cornwill. 13+ years building software, 10 years managing QSR operations.
             Now I design AI systems, write prompt architecture, and build tools that ship.
           </p>
-          <div class="flex items-center gap-4 font-mono text-xs">
-            <a href="https://github.com/finneh4249" class="text-cyber-cyan hover:underline" target="_blank" rel="noopener noreferrer">
+          <div class="flex items-center gap-6 font-mono text-xs">
+            <a href="https://github.com/finneh4249" class="text-signal-cyan hover:text-signal-orange transition-colors" target="_blank" rel="noopener noreferrer">
               github
             </a>
-            <a href="https://www.linkedin.com/in/ethan-cornwill/" class="text-cyber-blue hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/ethan-cornwill/" class="text-signal-cyan hover:text-signal-orange transition-colors" target="_blank" rel="noopener noreferrer">
               linkedin
             </a>
-            <a href="https://x.com/FinnehReform" class="text-cyber-purple hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://x.com/FinnehReform" class="text-signal-cyan hover:text-signal-orange transition-colors" target="_blank" rel="noopener noreferrer">
               twitter
             </a>
           </div>
         </div>
-      </footer>
 
+        <div class="mt-8 text-center">
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-2 font-mono text-xs text-signal-white/50 hover:text-signal-orange transition-colors group"
+          >
+            <span class="group-hover:-translate-x-1 transition-transform">←</span>
+            <span>back to dispatch</span>
+          </a>
+        </div>
+      </footer>
     </div>
+
   </article>
 </BaseLayout>
 
 <style is:global>
-  /* Blog Content — Cyberpunk Prose */
   .blog-content {
     line-height: 1.8;
-    color: #b8c0cc;
-  }
-
-  .blog-content h2 {
-    font-size: 1.75rem;
-    font-weight: 900;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    border-left: 3px solid #00fff5;
-    padding-left: 0.75rem;
-  }
-
-  .blog-content h3 {
-    font-size: 1.35rem;
-    font-weight: 800;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    color: #00fff5;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-  }
-
-  .blog-content h4 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #ff00ff;
-    font-family: 'JetBrains Mono', monospace;
+    color: oklch(88% 0.005 258);
   }
 
   .blog-content p {
     margin-bottom: 1.25rem;
-    font-size: 0.95rem;
+    font-size: var(--step-0);
+    max-width: 65ch;
+  }
+
+  /* h2: Signal Orange + full top separator — no side stripe */
+  .blog-content h2 {
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 900;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--signal-orange);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    padding-top: 1rem;
+    border-top: 2px solid oklch(75% 0.22 45 / 0.35);
+    line-height: 1.1;
+    font-style: italic;
+  }
+
+  .blog-content h3 {
+    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    font-weight: 800;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--signal-cyan);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    font-style: italic;
+  }
+
+  .blog-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--signal-amber);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    font-style: normal;
+    letter-spacing: 0.02em;
   }
 
   .blog-content a {
-    color: #00fff5;
+    color: var(--signal-cyan);
     text-decoration: underline;
     text-underline-offset: 3px;
-    transition: color 0.2s;
+    transition: color 0.15s;
   }
 
   .blog-content a:hover {
-    color: #ff00ff;
+    color: var(--signal-orange);
   }
 
-  .blog-content ul, .blog-content ol {
+  .blog-content ul,
+  .blog-content ol {
     margin: 1rem 0;
     padding-left: 1.5rem;
+    max-width: 65ch;
   }
 
   .blog-content li {
     margin-bottom: 0.5rem;
-    font-size: 0.95rem;
+    font-size: var(--step-0);
   }
 
   .blog-content li::marker {
-    color: #00fff5;
+    color: var(--signal-orange);
   }
 
   .blog-content strong {
     font-weight: 800;
-    color: #ffe600;
+    color: var(--signal-amber);
   }
 
   .blog-content em {
     font-style: italic;
-    color: #00b4d8;
+    color: var(--signal-cyan);
   }
 
   .blog-content code {
-    background: #1a1a2e;
-    color: #00fff5;
+    background: var(--signal-charcoal);
+    color: var(--signal-cyan);
     padding: 0.15rem 0.4rem;
-    border: 1px solid #2a2a3a;
+    border: 1px solid oklch(80% 0.15 190 / 0.2);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85em;
+    font-style: normal;
   }
 
   .blog-content pre {
-    background: #0a0a14 !important;
-    border: 1px solid #2a2a3a;
+    background: oklch(12% 0.01 258) !important;
+    border: 2px solid oklch(22% 0.01 258);
     padding: 1.25rem;
     margin: 1.5rem 0;
     overflow-x: auto;
@@ -202,27 +227,33 @@ function estimateReadingTime(content: string) {
     color: inherit;
   }
 
+  /* Blockquote: committed-cyan pattern — full border + tinted bg, no side stripe */
   .blog-content blockquote {
-    border-left: 3px solid #ff00ff;
-    padding: 0.75rem 1rem;
+    background-color: var(--signal-cyan-dim);
+    border: 2px solid oklch(80% 0.15 190 / 0.35);
+    padding: 0.875rem 1.25rem;
     margin: 1.5rem 0;
-    background: rgba(255, 0, 255, 0.05);
     font-style: italic;
-    color: #d4d4e0;
+    color: oklch(88% 0.01 258);
+    max-width: 65ch;
+  }
+
+  .blog-content blockquote p {
+    margin-bottom: 0;
   }
 
   .blog-content hr {
     border: none;
-    border-top: 1px solid #2a2a3a;
+    border-top: 1px solid oklch(75% 0.22 45 / 0.25);
     margin: 2.5rem 0;
   }
 
   .blog-content img {
-    border: 1px solid #2a2a3a;
+    border: 2px solid oklch(22% 0.01 258);
     margin: 1.5rem 0;
+    max-width: 100%;
   }
 
-  /* Tables */
   .blog-content table {
     width: 100%;
     border-collapse: collapse;
@@ -232,24 +263,25 @@ function estimateReadingTime(content: string) {
   }
 
   .blog-content th {
-    background: #1a1a2e;
-    color: #00fff5;
+    background: var(--signal-charcoal);
+    color: var(--signal-orange);
     padding: 0.6rem 0.75rem;
     text-align: left;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
-    border-bottom: 1px solid #2a2a3a;
+    border-bottom: 2px solid oklch(75% 0.22 45 / 0.4);
+    font-style: normal;
   }
 
   .blog-content td {
     padding: 0.5rem 0.75rem;
-    border-bottom: 1px solid #1a1a2e;
-    color: #b8c0cc;
+    border-bottom: 1px solid oklch(22% 0.01 258);
+    color: oklch(80% 0.005 258);
   }
 
   .blog-content tr:hover td {
-    background: rgba(0, 255, 245, 0.03);
+    background: oklch(75% 0.22 45 / 0.04);
   }
 </style>
