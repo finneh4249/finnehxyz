@@ -95,7 +95,12 @@ const { className = "" } = Astro.props;
       indicator.classList.remove('animate-ping', 'bg-signal-amber');
       indicator.classList.add('bg-signal-orange');
       reconnectBtn.classList.remove('hidden');
-      const msg = err.message === 'RATE_LIMIT' ? 'Rate limited — showing cached data when available.' : 'Could not fetch activity.';
+      const msg =
+        err.message === 'RATE_LIMIT'
+          ? 'Rate limited — showing cached data when available.'
+          : err.message === 'INVALID_RESPONSE'
+            ? 'Received unexpected data format from GitHub.'
+            : 'Could not fetch activity.';
       const lastSuccess = formatLastSuccessLabel(getCacheEntry()?.ts);
       // Try to fall back to stale cache
       const stale = getCacheEntry()?.data;
