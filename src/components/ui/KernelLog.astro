@@ -24,14 +24,26 @@ const { className = "" } = Astro.props;
 </div>
 
 <script>
+  import { formatLastSuccessLabel, getPushActionText } from "../../utils/githubActivity";
+
   const CACHE_KEY = 'gh_events_v1';
   const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
-  function getCached(): any[] | null {
+  function getCacheEntry(): { data: any[]; ts: number } | null {
     try {
       const raw = localStorage.getItem(CACHE_KEY);
       if (!raw) return null;
       const { data, ts } = JSON.parse(raw);
+      if (!Array.isArray(data) || !Number.isFinite(ts)) return null;
+      return { data, ts };
+    } catch { return null; }
+  }
+
+  function getCached(): any[] | null {
+    try {
+      const cached = getCacheEntry();
+      if (!cached) return null;
+      const { data, ts } = cached;
       if (Date.now() - ts > CACHE_TTL) { localStorage.removeItem(CACHE_KEY); return null; }
       return data;
     } catch { return null; }
@@ -60,12 +72,20 @@ const { className = "" } = Astro.props;
     indicator.classList.add('bg-signal-amber', 'animate-ping');
 
     try {
-      const response = await fetch('https://api.github.com/users/finneh4249/events/public?per_page=15');
+      const response = await fetch('https://api.github.com/repos/finneh4249/finnehxyz/events?per_page=15', {
+        cache: 'no-store',
+        headers: {
+          Accept: 'application/vnd.github+json',
+        },
+      });
       if (!response.ok) {
         if (response.status === 403) throw new Error('RATE_LIMIT');
         throw new Error('OFFLINE');
       }
       const events = await response.json();
+      if (!Array.isArray(events)) {
+        throw new Error('INVALID_RESPONSE');
+      }
       setCached(events);
       renderEvents(events, stream, indicator, reconnectBtn);
     } catch (err: any) {
@@ -73,13 +93,17 @@ const { className = "" } = Astro.props;
       indicator.classList.add('bg-signal-orange');
       reconnectBtn.classList.remove('hidden');
       const msg = err.message === 'RATE_LIMIT' ? 'Rate limited — showing cached data when available.' : 'Could not fetch activity.';
+      const lastSuccess = formatLastSuccessLabel(getCacheEntry()?.ts);
       // Try to fall back to stale cache
       const stale = (() => { try { const r = localStorage.getItem(CACHE_KEY); return r ? JSON.parse(r).data : null; } catch { return null; } })();
       if (stale) {
         renderEvents(stale, stream, indicator, reconnectBtn);
         stream.insertAdjacentHTML('afterbegin', `<div class="text-signal-orange/50 text-[9px] font-mono px-1 py-1 mb-1">${msg}</div>`);
+        if (lastSuccess) {
+          stream.insertAdjacentHTML('afterbegin', `<div class="text-signal-white/30 text-[9px] font-mono px-1 pt-1">${lastSuccess}</div>`);
+        }
       } else {
-        stream.innerHTML = `<div class="text-signal-white/30 text-center py-12 text-[11px]">${msg}</div>`;
+        stream.innerHTML = `<div class="text-signal-white/30 text-center py-12 text-[11px]">${msg}${lastSuccess ? `<br/><span class="text-[10px]">${lastSuccess}</span>` : ''}</div>`;
       }
     }
   }
@@ -101,8 +125,7 @@ const { className = "" } = Astro.props;
       let action = '';
       let colorClass = 'text-signal-white/50';
       if (event.type === 'PushEvent') {
-        const count = event.payload.commits?.length || 0;
-        action = `pushed ${count} commit${count !== 1 ? 's' : ''} to`;
+        action = getPushActionText(event.payload);
         colorClass = 'text-signal-cyan';
       } else if (event.type === 'PullRequestEvent') {
         action = `${event.payload.action} PR in`;
