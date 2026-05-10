@@ -312,3 +312,22 @@
     transform: none;
   }
 }
+
+/* ─── Print: force animated elements visible ─────────────────────── */
+@media print {
+  .scroll-reveal,
+  .scroll-reveal-stagger .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-line,
+  .animate-reveal,
+  .animate-reveal-slow {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
