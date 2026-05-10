@@ -2,25 +2,10 @@
   {
     "year": "2024",
     "institution": "Coder Academy",
-    "program": "Diploma of Information Technology - Web Dev",
-    "description": "Full-time study program focused on modern web development technologies and practices.",
-    "gpa": "6.75/7.0 — 6x High Distinction",
+    "program": "Diploma of Information Technology",
+    "description": "6.75 / 7.0. Shipped production systems before the semester ended.",
+    "gpa": "GPA: 6.75 / 7.0",
     "logoSrc": "./images/coder_academy.png",
     "logoAlt": "Coder Academy"
-  },
-  {
-    "year": "2024",
-    "institution": "freeCodeCamp",
-    "program": "Responsive Web Design",
-    "description": "Certification covering HTML, CSS, flexbox, CSS grid, and accessibility best practices for building responsive, mobile-first web applications.",
-    "logoSrc": "./images/freecodecamp.png",
-    "logoAlt": "freeCodeCamp"
-  },
-  {
-    "year": "2017",
-    "institution": "Distance Education Centre Victoria",
-    "program": "VCE Year 12",
-    "logoSrc": "./images/vsv.png",
-    "logoAlt": "Distance Education Centre Victoria"
   }
 ]

@@ -17,6 +17,14 @@
       "description": "ES6+, DOM manipulation, async programming"
     },
     {
+      "icon": "mdi:language-rust",
+      "name": "Rust",
+      "color": "text-red-500",
+      "category": "Core Stack",
+      "proficiency": 60,
+      "description": "Systems programming, performance optimization, memory safety"
+    },
+    {
       "icon": "mdi:nodejs",
       "name": "Node.js",
       "color": "text-green-500",
@@ -31,6 +39,14 @@
       "category": "Core Stack",
       "proficiency": 65,
       "description": "Data processing, scripting, automation"
+    },
+    {
+      "icon": "mdi:language-typescript",
+      "name": "TypeScript",
+      "color": "text-sky-500",
+      "category": "Core Stack",
+      "proficiency": 90,
+      "description": "Typed JavaScript for safer, scalable frontends and tooling"
     },
     {
       "icon": "mdi:react",
@@ -49,6 +65,14 @@
       "description": "Containerization, image building, compose"
     },
     {
+      "icon": "mdi:language-java",
+      "name": "Java",
+      "color": "text-red-600",
+      "category": "Core Stack",
+      "proficiency": 75,
+      "description": "Server-side applications, Minecraft/Spigot plugins, JVM tooling"
+    },
+    {
       "icon": "mdi:git",
       "name": "Git",
       "color": "text-orange-600",
@@ -63,6 +87,70 @@
       "category": "Infrastructure",
       "proficiency": 70,
       "description": "Relational databases, SQL, optimization"
+    },
+    {
+      "icon": "mdi:database",
+      "name": "SQLite",
+      "color": "text-amber-500",
+      "category": "Infrastructure",
+      "proficiency": 80,
+      "description": "Lightweight relational storage for CLIs and prototypes"
+    },
+    {
+      "icon": "mdi:language-html5",
+      "name": "MDX / Static Content",
+      "color": "text-violet-500",
+      "category": "Content",
+      "proficiency": 85,
+      "description": "MDX/Markdown-driven content for static sites and docs"
+    },
+    {
+      "icon": "mdi:database",
+      "name": "Astro",
+      "color": "text-cyan-400",
+      "category": "Frontend",
+      "proficiency": 85,
+      "description": "Astro islands architecture, static-first builds, partial hydration"
+    },
+    {
+      "icon": "mdi:tailwind",
+      "name": "Tailwind CSS",
+      "color": "text-teal-400",
+      "category": "Frontend",
+      "proficiency": 90,
+      "description": "Utility-first styling, design tokens, DaisyUI integrations"
+    },
+    {
+      "icon": "mdi:gear",
+      "name": "Vite / Build Tooling",
+      "color": "text-emerald-500",
+      "category": "Tooling",
+      "proficiency": 85,
+      "description": "Vite builds, PostCSS, Autoprefixer and modern dev workflows"
+    },
+    {
+      "icon": "mdi:cloud",
+      "name": "Cloudflare (Workers & KV)",
+      "color": "text-indigo-500",
+      "category": "Platform",
+      "proficiency": 75,
+      "description": "Edge functions, KV storage, low-latency primitives for realtime apps"
+    },
+    {
+      "icon": "mdi:server-network",
+      "name": "Supabase",
+      "color": "text-sky-600",
+      "category": "Platform",
+      "proficiency": 70,
+      "description": "Realtime Postgres, auth, and storage for prototypes and production"
+    },
+    {
+      "icon": "mdi:database",
+      "name": "WebSockets",
+      "color": "text-cyan-600",
+      "category": "Realtime",
+      "proficiency": 85,
+      "description": "Persistent connections for sub-second voice and realtime sync"
     },
     {
       "icon": "mdi:brain",
@@ -111,6 +199,13 @@
       "description": "Solid understanding of Node.js, Python, and databases. I handle server-side logic, API design, and data flow management."
     },
     {
+      "icon": "mdi:language-typescript",
+      "title": "TypeScript & Tooling",
+      "color": "text-sky-500",
+      "category": "Technical",
+      "description": "Designing typed interfaces, developer DX, and large-scale frontend apps with TypeScript and modern bundlers."
+    },
+    {
       "icon": "mdi:bug",
       "title": "Operational Resilience",
       "color": "text-red-500",
@@ -123,6 +218,20 @@
       "color": "text-blue-500",
       "category": "Leadership",
       "description": "Bridging the gap between technical complexity and business goals. I lead teams with clarity, empathy, and a focus on shipping."
+    },
+    {
+      "icon": "mdi:robot",
+      "title": "LLM Ops & Prompt Engineering",
+      "color": "text-purple-500",
+      "category": "Technical",
+      "description": "Operationalising large language models, building prompt libraries (SPARC), RAG pipelines, and deterministic agent handoffs for repeatable results."
+    },
+    {
+      "icon": "mdi:open-source",
+      "title": "Open Source & Community",
+      "color": "text-emerald-500",
+      "category": "Leadership",
+      "description": "Maintaining libraries, mentoring contributors, and growing organic adoption (Aometry, community plugins)."
     }
   ]
 }

@@ -1,44 +1,29 @@
 [
   {
-    "yearRange": "2025",
-    "company": "Axion",
-    "category": "technology",
+    "yearRange": "2020 – Present",
+    "company": "Axion Ventures",
+    "category": "systems-history",
     "roles": [
       {
-        "title": "Founder & Lead Engineer",
-        "period": "Oct 2025 – Present",
+        "title": "Founder & Lead Architect",
+        "period": "Oct 2020 – Present",
         "isCurrent": true,
-        "description": "Engineering AI-native systems via SPARC prompt architecture. Shipped Nexus (fintech platform) and the SPARC open-source library. Every deployment serves as a production testbed for high-speed, LLM-assisted development workflows."
+        "description": "Private venture studio. SPARC: 3,000+ lines, 12 agents, scaffolding from 2 days to 4 hours. ClawWarden: Rust-based AI executive assistant, least-privilege architecture. Zetto: sub-second Japanese voice AI, 75% cheaper than Gemini Live. Self-funded via retail operations — zero VC, 100% IP ownership."
       }
     ],
     "logoSrc": "images/axion.png",
-    "logoAlt": "Axion"
-  },
-  {
-    "yearRange": "2024 - 2025",
-    "company": "DataAnnotation",
-    "category": "technology",
-    "roles": [
-      {
-        "title": "AI Code Analyst / Software Developer – AI Trainer",
-        "period": "May 2024 - Present",
-        "isCurrent": true,
-        "description": "Refactoring and auditing AI-generated logic across Python and JavaScript to enforce production standards. Evaluating LLM outputs against complex technical rubrics for accuracy and safety. Designing unit tests and adversarial coding challenges to evaluate model reasoning and API integration capabilities."
-      }
-    ],
-    "logoSrc": "images/dataannotation.jpeg",
-    "logoAlt": "DataAnnotation"
+    "logoAlt": "Axion Ventures"
   },
   {
     "yearRange": "2025",
     "company": "MagnetLab",
-    "category": "technology",
+    "category": "systems-history",
     "roles": [
       {
-        "title": "Lead Software Engineer | AI Systems",
-        "period": "March 2025 - September 2025",
+        "title": "Lead Software Engineer (AI Systems)",
+        "period": "Mar 2025 – May 2025",
         "isCurrent": false,
-        "description": "Architected the Magnet AI Agents platform, deploying voice and chat agents that automated client intake and qualifying logic. Built the Magnet CRM, a white-label sales OS deployed for clients in <7 days. Standardized the SPARC methodology, reducing build times for complex applications by 75% through systematic prompt engineering."
+        "description": "Architected the Magnet AI Agents platform — voice and chat agents that ripped manual client intake out of the workflow. Bolted SPARC across the engineering team. Build times dropped ~75%."
       }
     ],
     "logoSrc": "images/magnetlab.png",
@@ -47,53 +32,83 @@
   {
     "yearRange": "2025",
     "company": "ALDI Stores Australia",
-    "category": "operations",
+    "category": "systems-history",
     "roles": [
       {
-        "title": "Duty Store Manager",
-        "period": "October 2025 - Present",
+        "title": "Site Operations & Logistics",
+        "period": "October 2025 – Present",
         "isCurrent": true,
-        "description": "Directed daily logistics and inventory flow for high-volume grocery retail. Optimized team output and operational throughput in a time-critical environment."
+        "description": "Ran daily operations for a high-volume retail site. Inventory, staffing, logistics — tight margins, time pressure, no slack. Self-funded Axion R&D. Every bottleneck is a bug."
       }
     ],
     "logoSrc": "images/aldi.png",
     "logoAlt": "ALDI Stores Australia"
   },
   {
-    "yearRange": "2015 - 2025",
-    "company": "McDonald's",
-    "employer": "DirectWest Pty Ltd",
-    "category": "operations",
+    "yearRange": "2021 – 2024",
+    "company": "Aometry",
+    "category": "systems-history",
     "roles": [
       {
-        "title": "Operations Technology Platform (OTP) Manager",
-        "period": "March 2024 - October 2025",
+        "title": "Systems Architect (Open Source)",
+        "period": "Jan 2021 – Mar 2024",
         "isCurrent": false,
-        "description": "Maintained 99.9% uptime for POS and network infrastructure across high-volume restaurant sites. Performed monthly system audits and fault-resolution for critical hardware."
+        "description": "Modular Dockerized middleware platform for distributed community ops. Ripped out file-based loading, wired in manifest-driven GitHub sync. 46 stars, zero promotion. Contributors extended it without touching core."
+      }
+    ],
+    "logoSrc": "images/aometry.png",
+    "logoAlt": "Aometry"
+  },
+  {
+    "yearRange": "2015 – 2025",
+    "company": "McDonald's",
+    "employer": "DirectWest Pty Ltd",
+    "category": "systems-history",
+    "roles": [
+      {
+        "title": "Operations Technology Lead",
+        "period": "March 2024 – October 2025",
+        "isCurrent": false,
+        "description": "99.9% uptime across 100+ POS sites. If you think your staging environment is stressful, try a Friday night rush with a cascading network failure. I've seen it. I fixed it. Monthly audits, zero unplanned outages. Final shift: filed an Auror report on a $599 ORC exploit — manual systems are always the weakest link."
       },
       {
         "title": "Assistant Business Manager",
-        "period": "August 2015 - February 2024",
+        "period": "August 2015 – February 2024",
         "isCurrent": false,
-        "description": "Promoted from Crew to ABM over 9 years. Managed QSC&V standards, team P&L, and store-wide sales strategy."
+        "description": "Ran store P&L and logistics across a decade under margin pressure. Automated shift-swapping and labour allocation via custom Jotform platforms. Designed SOPs that scaled headcount without adding management overhead. Every dollar of margin funded Axion R&D."
       }
     ],
     "logoSrc": "images/mc_logo.png",
     "logoAlt": "McDonald's"
   },
   {
-    "yearRange": "2020 - 2022",
+    "yearRange": "2020 – 2022",
     "company": "Taco Bell Australia",
-    "category": "operations",
+    "category": "systems-history",
     "roles": [
       {
-        "title": "Assistant Restaurant Manager",
-        "period": "June 2020 - June 2022",
+        "title": "Site Operations & Logistics",
+        "period": "June 2020 – June 2022",
         "isCurrent": false,
-        "description": "Managed daily operations for the flagship Taco Bell site, hitting top-tier speed-of-service and labor efficiency targets. Launched two new locations, recruiting and training 70+ staff members. Reduced food waste by 15% through optimized inventory control."
+        "description": "Flagship rollout. Scaled headcount by 70. Ripped 15% waste out of inventory by refactoring supply-chain logic. Two new locations launched from scratch, both on time."
       }
     ],
     "logoSrc": "images/taco_bell.png",
     "logoAlt": "Taco Bell Australia"
+  },
+  {
+    "yearRange": "2013 – 2018",
+    "company": "Systems R&D",
+    "category": "systems-history",
+    "roles": [
+      {
+        "title": "Open Source & Design Research",
+        "period": "2013 – 2018",
+        "isCurrent": false,
+        "description": "Shipped early OSS contributions and built the visual language that became the Axion design system. Learned to code by breaking things that actually mattered. Foundation for everything since."
+      }
+    ],
+    "logoSrc": "images/axion.png",
+    "logoAlt": "Systems R&D"
   }
 ]
