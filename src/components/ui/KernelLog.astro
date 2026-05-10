@@ -97,7 +97,7 @@ const { className = "" } = Astro.props;
       reconnectBtn.classList.remove('hidden');
       const msg =
         err.message === 'RATE_LIMIT'
-          ? 'Rate limited — showing cached data when available.'
+          ? 'Rate limited. Using cached data if available.'
           : err.message === 'INVALID_RESPONSE'
             ? 'Received unexpected data format from GitHub.'
             : 'Could not fetch activity.';
