@@ -1,278 +1,345 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import experienceData from '../data/experience.json';
-import skillsData from '../data/skills.json';
 import educationItems from '../data/education.json';
+import { getCollection } from 'astro:content';
+import StackSection from '../components/ui/StackSection.astro';
 
-// Only keep most relevant roles (recent / current / significant)
-const techRoles = (experienceData as any[])
-  .filter(e => e.category === 'technology')
-  .map(e => ({
-    company: e.company,
-    employer: e.employer,
-    roles: e.roles.filter((r: any) => r.isCurrent || r.title.includes('Lead') || r.title.includes('Founder')).slice(0, 1),
-  }))
-  .filter(e => e.roles.length > 0);
+const systemsHistory = experienceData as any[];
 
-const opsRoles = (experienceData as any[])
-  .filter(e => e.category === 'operations')
-  .map(e => ({
-    company: e.company,
-    employer: e.employer,
-    roles: e.roles.slice(0, 2), // Latest 2 roles per company
-  }));
-
-// Top skills by proficiency
-const topTools = skillsData.tools
-  .sort((a, b) => b.proficiency - a.proficiency)
-  .slice(0, 14);
-
-// Group tools by category
-const toolsByCategory = topTools.reduce((acc: Record<string, string[]>, tool) => {
-  if (!acc[tool.category]) acc[tool.category] = [];
-  acc[tool.category].push(tool.name);
-  return acc;
-}, {} as Record<string, string[]>);
-
-// Key education only
 const keyEdu = educationItems.filter(e =>
   e.program.includes('Diploma') || e.program.includes('VCE')
 );
+
+const resumeProjects = (await getCollection('projects'))
+  .filter((entry) => entry.data.featured)
+  .sort((a, b) => b.data.date - a.data.date)
+  .slice(0, 6);
 ---
 
-<BaseLayout title="Resume — Ethan Cornwill" description="Professional resume of Ethan Cornwill, Technical Lead & AI Developer">
-  <div class="resume-page bg-cyber-bg min-h-screen py-8 px-4 print:bg-white print:py-0 print:px-0">
-    <div class="max-w-[210mm] mx-auto">
+<BaseLayout title="Resume — Ethan Cornwill" description="Technical Lead & AI Developer. Systems architecture, prompt engineering, operational leadership.">
+  <div class="resume-root bg-signal-black text-signal-white font-body">
 
-      <!-- Resume Grid -->
-      <div class="resume-grid">
-
-        <!-- ═══ HEADER ═══ -->
-        <div class="resume-cell col-span-full border-b-2 border-cyber-cyan print:border-black pb-4 mb-2">
-          <div class="flex flex-col md:flex-row justify-between items-start gap-2">
-            <div>
-              <h1 class="text-3xl md:text-4xl font-black uppercase tracking-tight text-white print:text-black">
-                Ethan Cornwill
-              </h1>
-              <p class="text-sm font-mono text-cyber-cyan print:text-gray-700 mt-1">
-                Technical Lead &amp; AI Developer
-              </p>
-            </div>
-            <div class="font-mono text-[10px] text-cyber-text-muted print:text-gray-600 text-right space-y-0.5">
-              <div>mail@finneh.xyz</div>
-              <div>finneh.xyz</div>
-              <div>Melbourne, Australia</div>
-              <div>github.com/finneh4249</div>
-              <div class="pt-1 border-t border-cyber-border/40 print:border-gray-300">
-                <span class="text-cyber-cyan print:text-gray-700">Findy ポートフォリオ</span> /
-                <a href="https://findy-code.io/skills-share/5saH9fgUEzb5o" class="text-cyber-cyan hover:underline print:text-gray-700" target="_blank" rel="noopener noreferrer">findy-code.io/skills-share/5saH9fgUEzb5o</a>
-              </div>
-            </div>
+    <!-- ── Header: full width ──────────────────────────────────────── -->
+    <header class="bg-signal-charcoal/30 border-b-4 border-signal-orange px-8 py-8">
+      <div class="resume-max">
+        <a href="/" class="print:hidden font-mono text-[10px] text-signal-white/30 hover:text-signal-white transition-colors tracking-widest uppercase mb-6 inline-block">← Back</a>
+        <div class="flex flex-col lg:flex-row justify-between items-start gap-6">
+          <div>
+            <p class="font-mono text-signal-orange text-[10px] uppercase tracking-[0.5em] mb-2 opacity-70">Resume</p>
+            <h1 class="text-signal-white font-black uppercase italic tracking-tighter leading-[0.9]" style="font-size:clamp(2.2rem,5vw,4rem)">
+              Ethan<br/><span class="text-signal-orange">Cornwill</span>
+            </h1>
+            <p class="mt-2 font-mono text-signal-white/40 text-[10px] tracking-[0.3em] uppercase not-italic font-normal">
+              Technical Lead · AI Systems · Operations
+            </p>
           </div>
-
-          <!-- Summary -->
-          <p class="text-xs text-cyber-text print:text-gray-700 mt-3 leading-relaxed max-w-3xl">
-            13+ years in software development, 10 years leading operations. I architect AI systems, design prompt frameworks (SPARC), and build production tools that ship. Dual background in technology and high-pressure operations management.
-          </p>
+          <div class="font-mono text-[11px] text-signal-white/50 space-y-1 leading-loose">
+            <div><a href="mailto:ethan@finneh.xyz" class="hover:text-signal-orange transition-colors">ethan@finneh.xyz</a></div>
+            <div><a href="https://finneh.xyz" class="hover:text-signal-orange transition-colors">finneh.xyz</a></div>
+            <div><a href="https://github.com/finneh4249" class="hover:text-signal-orange transition-colors">github.com/finneh4249</a></div>
+            <div><a href="https://linkedin.com/in/ethancornwill" class="hover:text-signal-orange transition-colors">linkedin.com/in/ethancornwill</a></div>
+            <div class="text-signal-white/25">Melbourne, VIC</div>
+          </div>
         </div>
+      </div>
+    </header>
 
-        <!-- ═══ LEFT COLUMN ═══ -->
+    <!-- ── Body: 2-column grid ────────────────────────────────────── -->
+    <div class="resume-max grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 pt-10 pb-12">
 
-        <!-- Tech Experience -->
-        <div class="resume-cell resume-left">
-          <h2 class="resume-section-title">Technology Experience</h2>
-          {techRoles.map(exp => (
-            <div class="mb-3">
-              <div class="flex items-baseline justify-between gap-2">
-                <h3 class="text-xs font-bold text-white print:text-black uppercase">{exp.company.split('—')[0].trim()}</h3>
+      <!-- ── LEFT column: Experience + Projects ───────────────────── -->
+      <div class="min-w-0">
+
+        <!-- Summary -->
+        <p class="resume-summary text-signal-white/70 leading-relaxed border-t-2 border-signal-orange/40 pt-5 mb-8">
+          Shipping systems since 2013. Retail operations funded the R&D; the R&D built the tools; the tools ship faster than your senior team. That's the loop. Open to high-output roles where the problem is actually hard.
+        </p>
+
+        <!-- Systems History -->
+        <section class="resume-section">
+          <div class="surface-cyan px-5 py-3 mb-6 flex items-baseline justify-between">
+            <h2 class="font-display font-black text-signal-black uppercase italic tracking-tighter leading-none" style="font-size:clamp(1.4rem,3vw,2.4rem)">Systems History</h2>
+            <span class="font-mono text-[9px] text-signal-black/50 uppercase tracking-widest print:hidden">2013 — 2026</span>
+          </div>
+          <div class="space-y-6">
+            {systemsHistory.map((exp: any) => (
+              <div class="resume-entry">
+                <div class="flex items-start gap-3 mb-2">
+                  {exp.logoSrc && (
+                    <div class="resume-logo shrink-0">
+                      <img src={`/assets/images/${exp.logoSrc.split('/').pop()}`} alt={exp.company} class="w-full h-full object-contain" onerror="this.parentElement.style.display='none'" />
+                    </div>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    <h4 class="font-black text-signal-white uppercase italic tracking-tight leading-tight text-signal-base">{exp.company}</h4>
+                    {exp.employer && <p class="font-mono text-[9px] text-signal-white/30 uppercase tracking-widest">{exp.employer}</p>}
+                  </div>
+                </div>
+                {exp.roles.map((role: any) => (
+                  <div class="pl-0 md:pl-10 mb-3 last:mb-0">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-0.5">
+                      <span class="font-black text-[11px] text-signal-cyan uppercase tracking-wide">{role.title}</span>
+                      <span class="font-mono text-[9px] text-signal-white/25 tracking-widest shrink-0">{role.period}</span>
+                    </div>
+                    {role.isCurrent && (
+                      <span class="inline-flex items-center gap-1.5 text-[9px] bg-signal-cyan text-signal-black px-2 py-0.5 font-black uppercase tracking-wide mb-1.5">
+                        <span class="w-1 h-1 bg-signal-black rounded-full animate-pulse"></span>Current
+                      </span>
+                    )}
+                    <p class="text-signal-white/55 text-[12px] leading-relaxed">{role.description}</p>
+                  </div>
+                ))}
               </div>
-              {exp.employer && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">{exp.employer}</p>}
-              {exp.roles.map((role: any) => (
-                <div class="mt-1">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <span class="text-[10px] font-bold text-cyber-cyan print:text-gray-800">{role.title}</span>
-                    <span class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500 whitespace-nowrap">{role.period}</span>
-                  </div>
-                  {role.description && (
-                    <div class="text-[9px] text-cyber-text print:text-gray-600 mt-1 leading-relaxed space-y-0.5">
-                      {role.description.split('\n').filter((l: string) => l.startsWith('- ')).slice(0, 3).map((line: string) => (
-                        <div class="flex items-start gap-1">
-                          <span class="text-cyber-cyan print:text-black mt-px">•</span>
-                          <span>{line.substring(2)}</span>
-                        </div>
-                      ))}
-                      {!role.description.includes('\n') && <p>{role.description.slice(0, 200)}{role.description.length > 200 ? '...' : ''}</p>}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
 
-        <!-- Ops Experience -->
-        <div class="resume-cell resume-right">
-          <h2 class="resume-section-title">Operations Experience</h2>
-          {opsRoles.map(exp => (
-            <div class="mb-3">
-              <h3 class="text-xs font-bold text-white print:text-black uppercase">{exp.company}</h3>
-              {exp.employer && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">{exp.employer}</p>}
-              {exp.roles.map((role: any) => (
-                <div class="mt-1">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <span class="text-[10px] font-bold text-cyber-magenta print:text-gray-800">{role.title}</span>
-                    <span class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500 whitespace-nowrap">{role.period}</span>
-                  </div>
-                  {role.description && (
-                    <div class="text-[9px] text-cyber-text print:text-gray-600 mt-1 leading-relaxed space-y-0.5">
-                      {role.description.split('\n').filter((l: string) => l.startsWith('- ')).slice(0, 2).map((line: string) => (
-                        <div class="flex items-start gap-1">
-                          <span class="text-cyber-magenta print:text-black mt-px">•</span>
-                          <span>{line.substring(2)}</span>
-                        </div>
-                      ))}
-                      {!role.description.includes('\n') && <p>{role.description.slice(0, 150)}{role.description.length > 150 ? '...' : ''}</p>}
-                    </div>
-                  )}
+        <!-- Projects -->
+        <section class="resume-section">
+          <div class="surface-amber px-5 py-3 mb-6 flex items-baseline justify-between">
+            <h2 class="font-display font-black text-signal-black uppercase italic tracking-tighter leading-none" style="font-size:clamp(1.4rem,3vw,2.4rem)">Projects</h2>
+            <a href="/#projects" class="print:hidden font-mono text-[9px] text-signal-black/50 uppercase tracking-widest hover:text-signal-black transition-colors">All →</a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-signal-white/5">
+            {resumeProjects.map((p) => (
+              <div class="bg-signal-black p-4 hover:bg-signal-charcoal/40 transition-colors duration-300">
+                <div class="flex justify-between items-start gap-3 mb-2">
+                  <h3 class="font-display font-black text-signal-white uppercase italic tracking-tight leading-tight text-[13px]">{p.data.title}</h3>
+                  <span class="font-mono text-[9px] text-signal-white/25 tracking-widest shrink-0">{new Date(p.data.date).getFullYear()}</span>
                 </div>
-              ))}
-            </div>
-          ))}
-        </div>
-
-        <!-- Skills -->
-        <div class="resume-cell resume-left">
-          <h2 class="resume-section-title">Skills &amp; Tools</h2>
-          <div class="space-y-2">
-            {Object.entries(toolsByCategory).map(([category, tools]) => (
-              <div>
-                <span class="text-[9px] font-mono font-bold text-cyber-cyan print:text-gray-800 uppercase tracking-wider">{category}</span>
-                <div class="flex flex-wrap gap-1 mt-0.5">
-                  {(tools as string[]).map(tool => (
-                    <span class="text-[9px] font-mono text-cyber-text print:text-gray-600 border border-cyber-border print:border-gray-300 px-1.5 py-0.5">{tool}</span>
+                <p class="text-signal-white/55 text-[11px] leading-relaxed mb-2">{p.data.description}</p>
+                <div class="flex flex-wrap gap-1">
+                  {(p.data.technologies || []).slice(0, 4).map(tech => (
+                    <span class="font-mono text-[8px] text-signal-cyan/60 bg-signal-cyan/5 border border-signal-cyan/15 px-1.5 py-0.5">{tech}</span>
                   ))}
                 </div>
+                {p.data.githubUrl && (
+                  <div class="mt-1.5">
+                    <a href={p.data.githubUrl} class="font-mono text-[8px] text-signal-white/25 hover:text-signal-cyan transition-colors uppercase tracking-widest">
+                      {p.data.githubUrl.replace('https://', '')}
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
           </div>
+        </section>
 
-          <!-- Core competencies -->
-          <div class="mt-3 pt-2 border-t border-cyber-border print:border-gray-300">
-            <div class="flex flex-wrap gap-1">
-              {skillsData.skills.slice(0, 6).map(skill => (
-                <span class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500 border border-cyber-border/50 print:border-gray-200 px-1.5 py-0.5">{skill.title}</span>
-              ))}
-            </div>
-          </div>
+        <!-- Print button -->
+        <div class="print:hidden mt-8 flex gap-4 pt-4 border-t border-signal-white/8">
+          <button onclick="window.print()" class="signal-btn">Print Resume</button>
+          <a href="/" class="inline-flex items-center font-mono text-[10px] text-signal-white/30 tracking-widest uppercase hover:text-signal-white transition-colors">← Portfolio</a>
         </div>
+
+      </div><!-- /left col -->
+
+      <!-- ── RIGHT column: Stack + Education ──────────────────────── -->
+      <div class="min-w-0">
+
+        <!-- Stack -->
+        <section class="resume-section">
+          <StackSection />
+        </section>
 
         <!-- Education -->
-        <div class="resume-cell resume-right">
-          <h2 class="resume-section-title">Education &amp; Certs</h2>
-          <div class="space-y-2">
+        <section class="resume-section">
+          <div class="surface-cyan px-5 py-3 mb-4">
+            <h2 class="font-display font-black text-signal-black uppercase italic tracking-tighter leading-none" style="font-size:clamp(1.2rem,2.5vw,2rem)">Education</h2>
+          </div>
+          <div class="space-y-4">
             {keyEdu.map(item => (
-              <div>
-                <div class="flex items-baseline justify-between gap-2">
-                  <h3 class="text-[10px] font-bold text-white print:text-black">{item.institution}</h3>
-                  <span class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">{item.year}</span>
+              <div class="border-t border-signal-white/8 pt-4">
+                <div class="flex justify-between items-baseline gap-3 mb-0.5">
+                  <h3 class="font-black text-signal-white uppercase italic tracking-tight text-[12px]">{item.institution}</h3>
+                  <span class="font-mono text-[9px] text-signal-white/25 shrink-0">{item.year}</span>
                 </div>
-                <p class="text-[9px] font-mono text-cyber-green print:text-gray-600">{item.program}</p>
-                {'gpa' in item && item.gpa && <p class="text-[9px] font-mono text-cyber-text-muted print:text-gray-500">GPA: {item.gpa}</p>}
+                <p class="font-mono text-[10px] text-signal-amber/60 uppercase tracking-wider">{item.program}</p>
+                {item.gpa && <p class="font-mono text-[9px] text-signal-white/25 mt-0.5">{item.gpa}</p>}
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-      </div>
+      </div><!-- /resume-right -->
 
-      <!-- Print-only footer -->
-      <div class="hidden print:block text-center text-[8px] text-gray-400 mt-4 pt-2 border-t border-gray-200">
-        Generated from finneh.xyz — {new Date().toISOString().slice(0, 10)}
-      </div>
-
-      <!-- Screen-only actions -->
-      <div class="flex justify-center gap-4 mt-8 print:hidden">
-        <button onclick="window.print()" class="cyber-btn-primary px-6 py-3 text-xs font-mono">
-          PRINT / SAVE PDF
-        </button>
-        <a href="/" class="cyber-btn px-6 py-3 text-xs font-mono">
-          ← BACK
-        </a>
-      </div>
-
-    </div>
+    </div><!-- /resume-body -->
   </div>
 </BaseLayout>
 
 <style>
-  .resume-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
+  /* ── Screen layout ──────────────────────────────────────────────── */
+  .resume-root {
+    min-height: 100vh;
   }
 
-  @media (min-width: 640px) {
-    .resume-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+  .resume-max {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
-  .resume-cell {
-    padding: 8px 0;
+  .resume-section {
+    margin-bottom: 2rem;
   }
 
-  .resume-left { grid-column: 1; }
-  .resume-right { grid-column: 1; }
-
-  @media (min-width: 640px) {
-    .resume-left { grid-column: 1; }
-    .resume-right { grid-column: 2; }
+  .resume-entry {
+    border-top: 1px solid oklch(96% 0.005 258 / 0.08);
+    padding-top: 1rem;
   }
 
-  .col-span-full { grid-column: 1 / -1; }
-
-  .resume-section-title {
-    font-size: 11px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(0, 255, 245, 0.3);
-    padding-bottom: 4px;
-    margin-bottom: 8px;
-    color: #fff;
-    font-family: monospace;
+  .resume-logo {
+    width: 32px;
+    height: 32px;
+    background: oklch(18% 0.01 258);
+    border: 1px solid oklch(96% 0.005 258 / 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    flex-shrink: 0;
   }
 
+  .resume-summary {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  }
+
+  /* ── Print ──────────────────────────────────────────────────────── */
   @media print {
-    .resume-page {
-      background: white !important;
-      padding: 0 !important;
-      min-height: auto !important;
-    }
-
-    .resume-grid {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 6px !important;
-    }
-
-    .resume-cell {
-      padding: 4px 0 !important;
-    }
-
-    .resume-section-title {
-      color: #000 !important;
-      border-bottom-color: #000 !important;
-      font-size: 10px !important;
-    }
-
-    * {
-      color-adjust: exact;
-      -webkit-print-color-adjust: exact;
-    }
-
     @page {
-      size: A4;
-      margin: 1.2cm 1.5cm;
+      size: A4 portrait;
+      margin: 0.6cm 0.9cm;
     }
+
+    /* Force color rendering */
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      animation: none !important;
+      transition: none !important;
+    }
+
+    /* Hide chrome */
+    .print\:hidden, nav, .scan-line, .signal-grid-bg {
+      display: none !important;
+    }
+
+    /* Root */
+    .resume-root {
+      background: oklch(9% 0.01 258) !important;
+      color: oklch(96% 0.005 258) !important;
+    }
+
+    /* Container: flush to page margins */
+    .resume-max {
+      max-width: 100% !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* Header */
+    header {
+      background: oklch(13% 0.01 258 / 0.3) !important;
+      border-bottom: 3pt solid oklch(68% 0.21 46) !important;
+      padding: 8pt 0 !important;
+    }
+    header h1 {
+      font-size: 22pt !important;
+      line-height: 1 !important;
+      color: oklch(96% 0.005 258) !important;
+    }
+    header h1 span { color: oklch(68% 0.21 46) !important; font-size: inherit !important; }
+    header p, header div, header a {
+      color: oklch(96% 0.005 258 / 0.5) !important;
+      font-size: 7pt !important;
+    }
+
+    /* Body grid: same 2fr/1fr, just tighter */
+    .resume-max.grid {
+      gap: 8pt !important;
+      padding-top: 6pt !important;
+      padding-bottom: 0 !important;
+      grid-template-columns: 2fr 1fr !important;
+    }
+
+    /* Section spacing */
+    .resume-section { margin-bottom: 6pt !important; }
+    .resume-entry {
+      padding-top: 4pt !important;
+      break-inside: avoid;
+    }
+    .resume-logo {
+      width: 24px !important;
+      height: 24px !important;
+    }
+    .resume-summary {
+      font-size: 8pt !important;
+      margin-bottom: 5pt !important;
+      padding-top: 4pt !important;
+    }
+
+    /* Section header bands */
+    .surface-cyan  { background: oklch(72% 0.18 195) !important; padding: 3pt 6pt !important; margin-bottom: 4pt !important; }
+    .surface-amber { background: oklch(78% 0.16 72)  !important; padding: 3pt 6pt !important; margin-bottom: 4pt !important; }
+    .surface-cyan h2, .surface-amber h2 { color: oklch(9% 0.01 258) !important; font-size: 11pt !important; }
+
+    /* Type scale */
+    h3, h4  { font-size: 8pt !important; break-after: avoid; color: oklch(96% 0.005 258) !important; }
+    p, li   { font-size: 7.5pt !important; }
+    .font-mono { font-size: 6.5pt !important; }
+
+    /* Accent colors */
+    .text-signal-cyan   { color: oklch(72% 0.18 195) !important; }
+    .text-signal-amber  { color: oklch(78% 0.16 72)  !important; }
+    .text-signal-orange { color: oklch(68% 0.21 46)  !important; }
+    .text-signal-white\/55, .text-signal-white\/70 { color: oklch(96% 0.005 258 / 0.65) !important; }
+    .text-signal-white\/25, .text-signal-white\/30 { color: oklch(96% 0.005 258 / 0.4)  !important; }
+    .text-signal-white  { color: oklch(96% 0.005 258) !important; }
+    .text-signal-cyan\/60 { color: oklch(72% 0.18 195 / 0.7) !important; }
+    .text-signal-amber\/60 { color: oklch(78% 0.16 72 / 0.75) !important; }
+
+    /* Tech tag */
+    .bg-signal-cyan\/5   { background: oklch(72% 0.18 195 / 0.06) !important; }
+    .border-signal-cyan\/15 { border-color: oklch(72% 0.18 195 / 0.2) !important; }
+    .bg-signal-white\/5  { background: oklch(96% 0.005 258 / 0.04) !important; }
+    .bg-signal-black { background: oklch(9% 0.01 258) !important; }
+
+    /* Spacing */
+    .space-y-6 > * + * { margin-top: 4pt !important; }
+    .space-y-4 > * + * { margin-top: 3pt !important; }
+    .gap-px { gap: 0.5pt !important; }
+    .p-4   { padding: 4pt !important; }
+    .mb-2  { margin-bottom: 1.5pt !important; }
+    .mb-6  { margin-bottom: 4pt !important; }
+    .mb-0\.5 { margin-bottom: 1pt !important; }
+    .mb-1\.5  { margin-bottom: 1pt !important; }
+    .mt-1\.5  { margin-top: 1pt !important; }
+    .pt-4   { padding-top: 3pt !important; }
+    .pt-5   { padding-top: 4pt !important; }
+    .px-5   { padding-left: 0 !important; padding-right: 0 !important; }
+    .gap-3  { gap: 2pt !important; }
+    .gap-1  { gap: 1pt !important; }
+
+    /* Page breaks — never force entire sections to a new page */
+    h2 { break-after: avoid; }
+
+    /* Links */
+    a[href] { color: oklch(96% 0.005 258 / 0.5) !important; text-decoration: none !important; }
+
+    /* Misc */
+    * { box-shadow: none !important; text-shadow: none !important; overflow-wrap: break-word !important; }
+    .overflow-hidden { overflow: visible !important; }
+    .border-t { border-color: oklch(96% 0.005 258 / 0.1) !important; }
+
+    /* Scroll reveal fix */
+    .scroll-reveal, .scroll-reveal-stagger .scroll-reveal {
+      opacity: 1 !important; transform: none !important; animation: none !important;
+    }
+
+    /* Stack bento: component handles its own print (flex tag-cloud) */
+    .stack-bento { break-inside: avoid; }
   }
 </style>

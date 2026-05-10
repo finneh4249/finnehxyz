@@ -2,73 +2,295 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BootSequence from '../components/ui/BootSequence.astro';
 import CommandPalette from '../components/ui/CommandPalette.astro';
-import ScrollReveal from '../components/ui/ScrollReveal.astro';
 import ScrollProgressBar from '../components/ScrollProgressBar.astro';
 import BackToTop from '../components/ui/BackToTop.astro';
 
-// Bento cells
-import IdentityCell from '../components/cells/IdentityCell.astro';
-import TerminalCell from '../components/cells/TerminalCell.astro';
-import FeaturedProjectCell from '../components/cells/FeaturedProjectCell.astro';
-import StatsCell from '../components/cells/StatsCell.astro';
-import SocialCell from '../components/cells/SocialCell.astro';
-import AboutCell from '../components/cells/AboutCell.astro';
-import ProjectGridCell from '../components/cells/ProjectGridCell.astro';
-import ExperienceCell from '../components/cells/ExperienceCell.astro';
-import SkillsCell from '../components/cells/SkillsCell.astro';
-import EducationCell from '../components/cells/EducationCell.astro';
-import StatusCell from '../components/cells/StatusCell.astro';
-import ContactCell from '../components/cells/ContactCell.astro';
-import FindyCell from '../components/cells/FindyCell.astro';
+import SplitFlap from '../components/ui/SplitFlap.astro';
+import KernelLog from '../components/ui/KernelLog.astro';
+import DiagnosticGrid from '../components/ui/DiagnosticGrid.astro';
+import ExperienceSection from '../components/ui/ExperienceSection.astro';
+import StackSection from '../components/ui/StackSection.astro';
 ---
 
 <BaseLayout>
   <BootSequence />
   <CommandPalette />
-  <ScrollReveal />
-  <ScrollProgressBar className="fixed top-0 left-0 right-0" />
+  <ScrollProgressBar className="fixed top-0 left-0 right-0 z-[60]" />
+  <div class="signal-grid-bg" aria-hidden="true"></div>
+  <div class="scan-line" aria-hidden="true"></div>
 
-  <!-- Minimal navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-4 py-2 bg-cyber-bg/80 backdrop-blur-sm border-b border-cyber-border/30">
-    <a href="/" class="font-mono font-bold text-sm text-cyber-cyan hover:text-white transition-colors">EC://</a>
-    <div class="flex items-center gap-3">
-      <a href="/blog" class="font-mono text-[10px] uppercase tracking-widest text-cyber-text-muted hover:text-cyber-cyan transition-colors">Blog</a>
-      <kbd class="text-[10px] font-mono text-cyber-text-muted border border-cyber-border px-1.5 py-0.5 cursor-pointer hover:border-cyber-cyan hover:text-cyber-cyan transition-colors" id="cmd-trigger" title="Command palette">/</kbd>
+  <!-- B: scroll progress track on nav border -->
+  <div class="nav-progress-line fixed top-0 left-0 right-0 h-[2px] bg-signal-orange z-[59] origin-left" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex flex-col md:flex-row justify-between items-center px-6 md:px-12 py-3 bg-signal-black/95 border-b border-signal-white/8 backdrop-blur-sm" role="navigation" aria-label="Main Navigation">
+    <a href="/" class="font-display font-black text-lg md:text-xl text-signal-white tracking-tighter uppercase flex items-center focus-visible:outline-signal-orange mb-3 md:mb-0 border-2 border-signal-orange px-4 py-1 hover:bg-signal-orange hover:text-signal-black transition-colors duration-200">
+      ETHAN CORNWILL
+    </a>
+    <div class="flex items-center gap-8 md:gap-12">
+      <a href="/resume" class="font-mono text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-signal-white/50 hover:text-signal-white transition-colors">Resume</a>
+      <a href="/blog" class="font-mono text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-signal-white/50 hover:text-signal-white transition-colors">Blog</a>
+      <button class="font-mono text-[10px] uppercase tracking-widest text-signal-black bg-signal-orange px-6 py-2 font-black hover:-translate-y-px hover:shadow-signal-md transition-all duration-200 outline-none focus-visible:ring-2 ring-signal-cyan" id="cmd-trigger" aria-label="Open Command Palette">
+        Terminal
+      </button>
     </div>
   </nav>
 
-  <!-- Full page bento grid -->
-  <main class="bento-grid pt-12 pb-6 min-h-screen">
-    <IdentityCell />
-    <TerminalCell />
-    <FeaturedProjectCell />
-    <StatsCell />
-    <SocialCell />
-    <AboutCell />
-    <ProjectGridCell />
-    <ExperienceCell category="technology" />
-    <ExperienceCell category="operations" />
-    <SkillsCell />
-    <EducationCell />
-    <StatusCell />
-    <FindyCell />
-    <ContactCell />
-  </main>
+  <main class="min-h-screen" id="main-content">
 
-  <!-- Minimal footer -->
-  <footer class="text-center py-4 border-t border-cyber-border/30 bg-cyber-surface/50">
-    <p class="font-mono text-[10px] text-cyber-text-muted">
-      &copy; {new Date().getFullYear()} Ethan Cornwill // Built with Astro // <a href="https://github.com/finneh4249/finnehxyz" class="text-cyber-cyan hover:underline">src</a>
-    </p>
-  </footer>
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO — Direction A+B+C combined
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="relative min-h-screen flex flex-col justify-center overflow-x-hidden pt-28 md:pt-[72px] pb-8" aria-labelledby="hero-heading">
+
+      <!-- C: Glows — increased to 25% -->
+      <div class="absolute top-1/4 left-1/4 w-[400px] md:w-[700px] h-[400px] md:h-[700px] signal-glow-orange -z-10" aria-hidden="true"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] signal-glow-cyan -z-10" aria-hidden="true"></div>
+
+      <!-- Stripe: skewed orange panel, right side of hero -->
+      <div
+        aria-hidden="true"
+        style="
+          position: absolute;
+          top: 0; right: 0;
+          width: 50%;
+          height: 100%;
+          transform: skewX(-8deg);
+          transform-origin: top right;
+          background: oklch(75% 0.22 45 / 0.38);
+          border-left: 3px solid oklch(75% 0.22 45 / 0.9);
+          pointer-events: none;
+          z-index: 0;
+        "
+      ></div>
+
+      <div class="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10 w-full py-8 md:py-0">
+
+        <!-- SplitFlap nameplate -->
+        <div class="parallax-layer mb-4 md:mb-8" data-depth="0.1">
+          <div class="md:hidden space-y-1">
+            <SplitFlap text="ETHAN" className="max-w-none" />
+            <SplitFlap text="CORNWILL" className="max-w-none" />
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-8 h-[3px] bg-signal-orange"></div>
+              <p class="font-mono text-signal-orange/80 uppercase tracking-[0.35em] text-[10px] font-black">Systems Architect · AI Ops</p>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <SplitFlap
+              text="ETHAN_CORNWILL"
+              subtext="SYSTEMS_ARCHITECT // LEAD_AI_OPERATIONS"
+            />
+          </div>
+        </div>
+
+        <!-- B: Hero headline — staggered heroEnter animation -->
+        <div id="hero-heading">
+          <div class="parallax-layer hero-line" data-depth="0.2" style="animation-delay:0.05s">
+            <h1 class="text-signal-white uppercase tracking-tighter leading-[0.82]" style="font-size:clamp(2.4rem,8vw,13rem); filter:drop-shadow(12px 12px 0px rgba(0,0,0,0.9))">
+              BUILDING
+            </h1>
+          </div>
+          <div class="parallax-layer hero-line" data-depth="0.4" style="animation-delay:0.2s">
+            <h1 class="text-signal-orange italic tracking-tighter leading-[0.82] ml-[5%] md:ml-[8%]" style="font-size:clamp(2.4rem,8vw,13rem); filter:drop-shadow(12px 12px 0px rgba(0,0,0,0.9))">
+              HARDENED
+            </h1>
+          </div>
+          <div class="parallax-layer hero-line" data-depth="0.3" style="animation-delay:0.35s">
+            <h1 class="text-signal-white uppercase tracking-tighter leading-[0.82]" style="font-size:clamp(2.4rem,8vw,13rem); filter:drop-shadow(12px 12px 0px rgba(0,0,0,0.9))">
+              INFRASTRUCTURE.
+            </h1>
+          </div>
+        </div>
+
+        <!-- Sub-content -->
+        <div class="mt-10 md:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-end">
+
+          <!-- A: tagline — no side-stripe ban. Plain text, weighted spans. -->
+          <div class="lg:col-span-7 space-y-8">
+            <div class="parallax-layer hero-line" data-depth="0.15" style="animation-delay:0.5s">
+              <p class="font-body text-signal-lg md:text-signal-xl text-signal-white/75 leading-relaxed max-w-[60ch]">
+                13 years managing systems where downtime isn't an error code — it's a riot. I build infrastructure that treats 10x load as a baseline.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6 md:gap-10 hero-line" style="animation-delay:0.65s">
+              <a href="#projects" class="signal-btn group focus-visible:ring-4 ring-signal-cyan outline-none">
+                View my work
+                <span class="ml-4 group-hover:translate-x-2 transition-transform duration-300 inline-block">→</span>
+              </a>
+              <div class="flex items-center gap-3 font-mono text-[10px] text-signal-white/40 tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-signal-cyan animate-pulse"></span>
+                Open for high-output engineering roles.
+              </div>
+            </div>
+          </div>
+
+          <!-- KernelLog -->
+          <div class="lg:col-span-5 relative animate-reveal-slow">
+            <!-- Corner marks — structural, not side-stripe accents -->
+            <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-signal-cyan/50 pointer-events-none"></div>
+            <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-signal-orange/50 pointer-events-none"></div>
+            <KernelLog />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PROJECTS — Direction B+C: cyan surface header, scroll reveals
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="projects" class="relative overflow-hidden" aria-labelledby="projects-heading">
+
+      <!-- C: Cyan surface section header band -->
+      <div class="surface-cyan px-6 md:px-12 py-8 md:py-10 scroll-reveal">
+        <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h2 id="projects-heading" class="text-signal-black tracking-tighter leading-none italic" style="font-size:clamp(2.2rem,6vw,7rem)">
+              What I've built
+            </h2>
+          </div>
+          <p class="text-signal-black/60 font-body text-signal-sm max-w-sm leading-relaxed font-normal not-italic">
+            Production deployments across AI systems, political tech, and infrastructure tools.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project grid on dark surface -->
+      <div class="bg-signal-black py-12 md:py-20">
+        <div class="max-w-[1800px] mx-auto px-6 md:px-12">
+          <DiagnosticGrid />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         EXPERIENCE — Direction C: amber surface header
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="experience" class="relative overflow-hidden" aria-labelledby="experience-heading">
+
+      <!-- C: Amber surface section header band -->
+      <div class="surface-amber px-6 md:px-12 py-8 md:py-10 scroll-reveal">
+        <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h2 id="experience-heading" class="text-signal-black tracking-tighter leading-none italic" style="font-size:clamp(2.2rem,6vw,7rem)">
+              Experience
+            </h2>
+          </div>
+          <p class="text-signal-black/60 font-body text-signal-sm max-w-sm leading-relaxed font-normal not-italic">
+            Self-funded R&D since 2015. Retail operations covered the burn rate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content on dark surface -->
+      <div class="bg-signal-black py-12 md:py-20">
+        <div class="max-w-[1800px] mx-auto px-6 md:px-12">
+          <ExperienceSection />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         STACK — Tools in rotation, ranked by proficiency
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="stack" class="relative overflow-hidden bg-signal-black py-12 md:py-20" aria-label="Technology stack">
+      <div class="max-w-[1800px] mx-auto px-6 md:px-12">
+        <StackSection />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FOOTER — Direction C: orange-drenched surface
+         ═══════════════════════════════════════════════════════════════ -->
+    <footer id="contact" class="surface-orange py-16 md:py-24 relative overflow-hidden">
+      <!-- Diagonal texture on orange -->
+      <div class="absolute top-0 right-0 w-[45%] h-full -skew-x-6 translate-x-[20%] bg-signal-black/10 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+
+          <div class="font-display font-black text-signal-black italic tracking-tighter leading-none" style="font-size:clamp(2.4rem,6vw,8rem)">
+            Ethan<br/>Cornwill
+          </div>
+
+          <div class="flex flex-col gap-6">
+            <p class="font-mono text-signal-black/60 text-xs uppercase tracking-widest">Get in touch</p>
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-8">
+              <a href="https://github.com/finneh4249" class="font-mono text-sm font-black text-signal-black tracking-widest uppercase underline-offset-4 hover:underline transition-all">GitHub</a>
+              <a href="https://linkedin.com/in/ethancornwill" class="font-mono text-sm font-black text-signal-black tracking-widest uppercase underline-offset-4 hover:underline transition-all">LinkedIn</a>
+              <a href="mailto:ethan@finneh.xyz" class="font-mono text-sm font-black text-signal-black tracking-widest uppercase underline-offset-4 hover:underline transition-all">Email</a>
+            </div>
+          </div>
+
+          <div class="font-body text-[11px] text-signal-black/50 leading-loose">
+            &copy; {new Date().getFullYear()} Ethan Cornwill<br/>
+            Systems Architect · Stealth Founder.<br/>
+            Shipping systems that don't crack under load.
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
 
   <BackToTop />
 </BaseLayout>
 
 <script>
+  // Terminal trigger
   document.getElementById('cmd-trigger')?.addEventListener('click', () => {
-    if (typeof (window as any).__openCmdPalette === 'function') {
-      (window as any).__openCmdPalette();
-    }
+    (window as any).__openCmdPalette?.();
+  });
+
+  // B: IntersectionObserver for scroll reveals (fallback for non-scroll-timeline browsers)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.animate-reveal, .animate-reveal-slow, .scroll-reveal').forEach(el => io.observe(el));
+
+  // Release hero-line transforms from CSS animation so JS parallax can take over.
+  // CSS animation fill-mode:forwards wins the cascade over inline styles — we must
+  // clear the animation once it completes to let el.style.transform work.
+  document.querySelectorAll('.hero-line').forEach(el => {
+    el.addEventListener('animationend', () => {
+      const h = el as HTMLElement;
+      h.style.animation = 'none';
+      h.style.opacity = '1';
+      h.style.transform = '';
+    }, { once: true });
+  });
+
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  let rafId: number;
+
+  document.addEventListener('mousemove', (e) => {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const xOffset = (e.clientX - window.innerWidth / 2) / window.innerWidth;
+      const yOffset = (e.clientY - window.innerHeight / 2) / window.innerHeight;
+
+      parallaxLayers.forEach((layer) => {
+        const el = layer as HTMLElement;
+        const depth = parseFloat(el.dataset.depth || '0');
+        el.style.transform = `translate3d(${xOffset * depth * 80}px, ${yOffset * depth * 80}px, 0)`;
+      });
+    });
   });
 </script>
+
+<style>
+  :root {
+    --step-hero-reduced: clamp(3rem, 0.5rem + 9vw, 10rem);
+  }
+
+  /* Ensure hero-line animation is immediate (no JS needed) */
+  .hero-line {
+    /* animation defined in index.css */
+  }
+</style>

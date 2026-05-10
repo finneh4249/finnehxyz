@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "antislop": {
+      "source": "aplaceforallmystuff/the-antislop",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "2ba166ef7e466a6ed4570dcf5a00395a9cafd40bdaa14cc78d33eb753ce72a9b"
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": "skill/SKILL.md",
+      "computedHash": "8cdf2e788eaca3af7d02026ef9cec55b506100a00d130f938e3fb1ad669c0ad0"
+    }
+  }
+}

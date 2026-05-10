@@ -1,5 +1,3 @@
-import daisyui from "daisyui";
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -7,90 +5,46 @@ export default {
   theme: {
     extend: {
       colors: {
-        cyber: {
-          bg: "#0a0a0f",
-          surface: "#12121a",
-          "surface-light": "#1a1a2e",
-          border: "#2a2a3a",
-          "border-light": "#3a3a4a",
-          text: "#e0e0e8",
-          "text-muted": "#8888a0",
-          // Neon accents
-          cyan: "#00fff5",
-          magenta: "#ff00ff",
-          yellow: "#f0ff00",
-          green: "#39ff14",
-          orange: "#ff6600",
-          pink: "#ff2d7b",
-          blue: "#00b4d8",
-          purple: "#b75cff",
-        },
+        // High-stakes industrial palette
+        "signal-orange": "oklch(75% 0.22 45)", /* High-visibility orange */
+        "signal-orange-dim": "oklch(40% 0.15 45)",
+        "signal-black": "oklch(14% 0.01 258)", /* Greased metal */
+        "signal-charcoal": "oklch(18% 0.01 258)",
+        "signal-white": "oklch(96% 0.005 258)", /* Clean paper */
+        "signal-cyan": "oklch(80% 0.15 190)", /* Diagnostic cyan */
+        "signal-cyan-dim": "oklch(25% 0.08 190)",
+        "signal-amber": "oklch(85% 0.2 85)", /* Warning amber */
+        "signal-amber-dim": "oklch(30% 0.1 85)",
+        "signal-red": "oklch(65% 0.25 25)", /* Alert red */
+      },
+      fontSize: {
+        "signal-xs": ["clamp(0.64rem, 0.61rem + 0.15vw, 0.72rem)", "1.4"],
+        "signal-sm": ["clamp(0.8rem, 0.75rem + 0.25vw, 0.94rem)", "1.4"],
+        "signal-base": ["clamp(1rem, 0.92rem + 0.4vw, 1.25rem)", "1.5"],
+        "signal-lg": ["clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem)", "1.3"],
+        "signal-xl": ["clamp(1.4rem, 1.2rem + 1vw, 1.8rem)", "1.2"],
+        "signal-2xl": ["clamp(1.75rem, 1.5rem + 1.5vw, 2.5rem)", "1"],
+        "signal-3xl": ["clamp(2.2rem, 1.8rem + 2.5vw, 3.2rem)", "0.95"],
+        "signal-4xl": ["clamp(2.8rem, 2.2rem + 3.5vw, 4.2rem)", "0.9"],
+        "signal-hero": ["clamp(3.8rem, 1rem + 12vw, 13rem)", "0.8"],
       },
       boxShadow: {
-        "brutal-sm": "3px 3px 0px 0px #2a2a3a",
-        "brutal-md": "5px 5px 0px 0px #2a2a3a",
-        "brutal-lg": "8px 8px 0px 0px #2a2a3a",
-        "brutal-xl": "12px 12px 0px 0px #2a2a3a",
-        brutal: "5px 5px 0px 0px #2a2a3a",
-        // Neon glow shadows
-        "glow-cyan": "0 0 15px rgba(0, 255, 245, 0.4), 0 0 30px rgba(0, 255, 245, 0.1)",
-        "glow-magenta": "0 0 15px rgba(255, 0, 255, 0.4), 0 0 30px rgba(255, 0, 255, 0.1)",
-        "glow-green": "0 0 15px rgba(57, 255, 20, 0.4), 0 0 30px rgba(57, 255, 20, 0.1)",
-        "glow-yellow": "0 0 15px rgba(240, 255, 0, 0.4), 0 0 30px rgba(240, 255, 0, 0.1)",
-        "glow-cyan-lg": "0 0 25px rgba(0, 255, 245, 0.5), 0 0 50px rgba(0, 255, 245, 0.15)",
-        "glow-magenta-lg": "0 0 25px rgba(255, 0, 255, 0.5), 0 0 50px rgba(255, 0, 255, 0.15)",
-      },
-      borderWidth: {
-        1: "1px",
-        2: "2px",
-        3: "3px",
-        6: "6px",
-        brutal: "3px",
-        "brutal-thick": "4px",
+        "signal-sm": "2px 2px 0px 0px #000000",
+        "signal-md": "4px 4px 0px 0px #000000",
+        "signal-lg": "8px 8px 0px 0px #000000",
+        "signal-orange": "4px 4px 0px 0px oklch(75% 0.22 45)",
+        "signal-cyan": "4px 4px 0px 0px oklch(80% 0.15 190)",
+        "signal-amber": "4px 4px 0px 0px oklch(85% 0.2 85)",
       },
       borderRadius: {
         DEFAULT: "0px",
       },
       fontFamily: {
-        display: ["Space Grotesk", "Noto Sans JP", "system-ui", "sans-serif"],
-        body: ["Space Grotesk", "Noto Sans JP", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Space Mono", "monospace"],
-      },
-      transitionTimingFunction: {
-        brutal: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-      },
-      animation: {
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "scan-line": "scan-line 8s linear infinite",
-        "flicker": "flicker 3s linear infinite",
-        "float": "float 6s ease-in-out infinite",
-        "blink": "blink 1s step-end infinite",
-      },
-      keyframes: {
-        "pulse-glow": {
-          "0%, 100%": { opacity: 0.4 },
-          "50%": { opacity: 1 },
-        },
-        "scan-line": {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100vh)" },
-        },
-        "flicker": {
-          "0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%": { opacity: 1 },
-          "20%, 21.999%, 63%, 63.999%, 65%, 69.999%": { opacity: 0.33 },
-        },
-        "float": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        "blink": {
-          "50%": { opacity: 0 },
-        },
+        display: ["'Space Grotesk'", "Noto Sans JP", "sans-serif"],
+        body: ["'B612'", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
     },
   },
-  plugins: [daisyui],
-  daisyui: {
-    themes: ["dark"],
-  },
+  plugins: [],
 };

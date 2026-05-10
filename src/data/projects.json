@@ -113,8 +113,8 @@
   },
   {
     "title": "Aometry",
-    "description": "Discord bot built at 16. 46 GitHub stars, 5 forks, active contributor community. Built with discord.js v14.",
-    "detailedDescription": "Aometry is a modular Discord bot framework built at 16 as a personal project for the CityLoopers community server. It abstracts command registration, event routing, and config management so new bots only need to implement the business logic — no setup boilerplate. Built with Node.js and discord.js v14. Accumulated 46 GitHub stars without any promotion, picked up by other developers building their own community bots.",
+    "description": "Discord bot built at 21. 46 GitHub stars, 5 forks, active contributor community. Built with discord.js v14.",
+    "detailedDescription": "Aometry is a modular Discord bot framework built at 21 as a personal project for the CityLoopers community server. It abstracts command registration, event routing, and config management so new bots only need to implement the business logic — no setup boilerplate. Built with Node.js and discord.js v14. Accumulated 46 GitHub stars without any promotion, picked up by other developers building their own community bots.",
     "challenges": "Abstracting discord.js into a reusable architecture that could support wildly different bot types without the framework becoming too opinionated. Dynamic command registration required a consistent naming and file structure convention that contributors could follow without reading the internals. Keeping the framework current as discord.js itself moved through major API versions.",
     "outcomes": "46 GitHub stars and an active fork/contributor community, all organic. The abstraction layer worked: contributors could add commands and event handlers without touching the framework core. Still maintained and used in the CityLoopers server.",
     "image": "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
@@ -219,6 +219,48 @@
       { "name": "Visual Basic", "badgeClass": "badge-warning" },
       { "name": "Legacy", "badgeClass": "badge-neutral" },
       { "name": "Desktop App", "badgeClass": "badge-info" }
+    ]
+  },
+  {
+    "title": "finneh.xyz (Portfolio)",
+    "description": "Personal portfolio and blog showcasing projects, ADRs, and writing about AI engineering.",
+    "detailedDescription": "A custom Astro v5 site built with a Neo‑Brutalist / cyberpunk aesthetic. The site uses an Astro + React islands architecture, Tailwind CSS, MDX for blog content, and a JSON data layer to drive project and experience pages. It documents the SPARC framework, project case studies, and architectural decision records.",
+    "image": "images/portfolio.png",
+    "githubUrl": "https://github.com/finneh4249/finnehxyz",
+    "featured": true,
+    "date": 1760000000000,
+    "technologies": ["Astro v5", "TypeScript", "Tailwind CSS", "MDX", "Vite", "React"],
+    "tags": [
+      { "name": "Portfolio", "badgeClass": "badge-primary" },
+      { "name": "Astro", "badgeClass": "badge-accent" }
+    ]
+  },
+  {
+    "title": "SPARC-Engine",
+    "description": "Programmatic engine and tooling around the SPARC prompt library for deterministic multi-agent development workflows.",
+    "detailedDescription": "SPARC-Engine is the implementation and orchestration layer that runs the SPARC prompt library: scheduling narrow-purpose agents, validating handoffs, and producing test-first code artifacts. It automates spec-to-commit workflows and integrates with Git for deterministic outputs.",
+    "image": "images/sparc-engine.png",
+    "githubUrl": "https://github.com/finneh4249/SPARC-Engine",
+    "featured": false,
+    "date": 1730000000000,
+    "technologies": ["Node.js", "TypeScript", "LLM Agents", "Testing"],
+    "tags": [
+      { "name": "AI", "badgeClass": "badge-secondary" },
+      { "name": "Tooling", "badgeClass": "badge-primary" }
+    ]
+  },
+  {
+    "title": "stop-slop",
+    "description": "A small skill for detecting and removing AI-generated writing patterns ('slop').",
+    "detailedDescription": "stop-slop contains heuristics and editor helpers to identify AI tells in prose and offer rewrites that humanise the voice. It's published as a small open-source skill and used to audit drafts before publishing.",
+    "image": "images/stop-slop.png",
+    "githubUrl": "https://github.com/finneh4249/stop-slop",
+    "featured": false,
+    "date": 1710000000000,
+    "technologies": ["JavaScript", "NLP heuristics"],
+    "tags": [
+      { "name": "AI", "badgeClass": "badge-secondary" },
+      { "name": "Open Source", "badgeClass": "badge-success" }
     ]
   }
 ]

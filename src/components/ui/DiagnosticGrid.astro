@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import ProjectCardHero from './ProjectCardHero.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.date - a.data.date);
+
+interface Props {
+  id?: string;
+  className?: string;
+}
+
+const { id, className = "" } = Astro.props;
+const featuredProjects = projects.filter((p) => p.data.featured);
+const [heroProject, ...subProjects] = featuredProjects;
+---
+
+<section id={id} class={`project-grid-section ${className}`}>
+
+  {/* Hero — full width, primary weight */}
+  {heroProject && (
+    <div class="mb-6 md:mb-8 animate-reveal">
+      <ProjectCardHero project={heroProject.data} />
+    </div>
+  )}
+
+  {/* Sub-grid: 3-col, second card spans 2 cols for width (not height) emphasis */}
+  {subProjects.length > 0 && (
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 items-start">
+      {subProjects.slice(0, 4).map((project, i) => (
+        <div
+          class:list={[
+            'animate-reveal',
+            // Second card (i=0 in subProjects, which is featuredProjects[1]) gets col-span-2
+            i === 0 ? 'sm:col-span-2 lg:col-span-2' : ''
+          ]}
+          style={`animation-delay: ${(i + 1) * 100}ms`}
+        >
+          <ProjectCard project={project.data} className={i === 0 ? 'project-card--wide' : ''} />
+        </div>
+      ))}
+    </div>
+  )}
+
+  {/* CTA */}
+  <div class="mt-12 md:mt-16 flex justify-start">
+    <a href="/projects" class="signal-btn group">
+      All Projects
+      <span class="ml-4 group-hover:translate-x-2 transition-transform duration-300">→</span>
+    </a>
+  </div>
+
+
+</section>
+
+<style>
+  /* Wide card: spans 2 cols, image is naturally wider but not taller */
+  .project-card--wide :global(.signal-card > div:first-child + div) {
+    height: 220px;
+  }
+</style>

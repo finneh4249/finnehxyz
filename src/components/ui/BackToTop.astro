@@ -7,13 +7,13 @@ interface Props {
   bottom?: number;
 }
 
-const { threshold = 300, right = 6, bottom = 6 } = Astro.props;
+const { threshold = 300, right = 24, bottom = 24 } = Astro.props;
 ---
 
 <button
   id="back-to-top"
-  class="fixed bg-cyber-magenta border-2 border-cyber-magenta text-white font-black uppercase p-3 z-50 opacity-0 scale-50 pointer-events-none transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-transparent hover:text-cyber-magenta rounded-none"
-  style={{ right: `${right}px`, bottom: `${bottom}px`, boxShadow: '0 0 15px rgba(255, 0, 255, 0.3), 3px 3px 0px 0px #2a2a3a' }}
+  class="fixed bg-signal-orange border-2 border-signal-black text-signal-black font-black uppercase p-3 z-50 opacity-0 scale-50 pointer-events-none transition-all duration-300 hover:scale-110 active:scale-90 hover:bg-signal-charcoal hover:text-signal-orange rounded-none"
+  style={{ right: `${right}px`, bottom: `${bottom}px`, boxShadow: '4px 4px 0px 0px #000000' }}
   aria-label="Back to top"
 >
   <Icon name="mdi:arrow-up" class="text-2xl" />

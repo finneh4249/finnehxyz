@@ -5,6 +5,13 @@
    ========================================================================== */
 
 @media print {
+  /* Kill viewport-height constraints — min-h-screen on body creates a blank page */
+  html,
+  body {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
   /* Hide interactive/decorative elements globally */
   nav,
   .boot-overlay,

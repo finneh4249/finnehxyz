@@ -2,21 +2,25 @@
 ---
 
 <div id="cmd-palette" class="cmd-palette" style="display: none;">
-  <div class="cmd-palette-box">
-    <div class="p-3 border-b border-cyber-border">
-      <div class="flex items-center gap-2">
-        <span class="text-cyber-text-muted font-mono text-sm">&gt;</span>
+  <div class="cmd-palette-box border-2 border-signal-orange">
+    <div class="p-4 border-b border-signal-white/10 bg-signal-charcoal">
+      <div class="flex items-center gap-3">
+        <span class="text-signal-orange font-mono text-lg font-black">&gt;</span>
         <input 
           id="cmd-input"
           type="text"
-          class="bg-transparent border-none outline-none font-mono text-sm text-cyber-cyan w-full placeholder-cyber-text-muted"
-          placeholder="Type to navigate..."
+          class="bg-transparent border-none outline-none font-mono text-sm text-signal-white w-full placeholder-signal-white/30"
+          placeholder="System_Navigate: Type_Query..."
           autocomplete="off"
         />
-        <kbd class="text-[10px] font-mono text-cyber-text-muted border border-cyber-border px-1.5 py-0.5 cursor-pointer" id="cmd-esc">ESC</kbd>
+        <kbd class="text-[10px] font-mono text-signal-white/40 border border-signal-white/20 px-2 py-1" id="cmd-esc">ESC</kbd>
       </div>
     </div>
-    <div id="cmd-results" class="max-h-64 overflow-y-auto"></div>
+    <div id="cmd-results" class="max-h-64 overflow-y-auto bg-signal-black"></div>
+    <div class="p-2 border-t border-signal-white/5 bg-signal-charcoal/50 flex justify-between items-center px-4">
+      <span class="font-mono text-[9px] text-signal-white/20 uppercase tracking-widest">Operator_Link_Secure</span>
+      <span class="font-mono text-[9px] text-signal-orange/40 uppercase">v5.0_CMD</span>
+    </div>
   </div>
 </div>
 
@@ -26,16 +30,12 @@
     window.__cmdPaletteInit = true;
     
     const commands = [
-      { label: 'Identity', desc: 'Name & profile', target: 'identity' },
-      { label: 'Projects', desc: 'View all projects', target: 'projects' },
-      { label: 'Featured Project', desc: 'Featured showcase', target: 'featured' },
-      { label: 'About', desc: 'Bio & background', target: 'about' },
-      { label: 'Technology Experience', desc: 'Tech roles', target: 'exp-tech' },
-      { label: 'Operations Experience', desc: 'Ops roles', target: 'exp-ops' },
-      { label: 'Skills & Tools', desc: 'Languages & frameworks', target: 'skills' },
-      { label: 'Education', desc: 'Learning & certs', target: 'education' },
-      { label: 'Contact', desc: 'Get in touch', target: 'contact' },
-      { label: 'Status', desc: 'Availability', target: 'status' },
+      { label: 'Terminal_Home', desc: 'Return to start', target: 'top' },
+      { label: 'Cargo_Manifest', desc: 'Featured projects', target: 'projects' },
+      { label: 'System_Logs', desc: 'Recent blog posts', target: '/blog' },
+      { label: 'Operational_History', desc: 'Experience timeline', target: 'history' },
+      { label: 'Personnel_File', desc: 'Full resume', target: '/resume' },
+      { label: 'Comms_Link', desc: 'Contact operator', target: 'contact' },
     ];
     
     let activeIndex = 0;
@@ -56,16 +56,32 @@
       r.innerHTML = '';
       filtered.forEach((cmd, i) => {
         const item = document.createElement('div');
-        item.className = `cmd-palette-item ${i === activeIndex ? 'active' : ''}`;
-        item.innerHTML = `<span class="text-white font-bold">${cmd.label}</span><span class="text-cyber-text-muted ml-2 text-xs">${cmd.desc}</span>`;
+        item.className = `cmd-palette-item px-4 py-3 font-mono text-sm cursor-pointer transition-all border-b border-signal-white/5 ${i === activeIndex ? 'bg-signal-orange text-signal-black' : 'text-signal-white/60 hover:bg-signal-white/5'}`;
+        item.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="font-bold">${cmd.label.toUpperCase()}</span>
+            <span class="text-[10px] opacity-60">${cmd.desc}</span>
+          </div>
+        `;
         item.addEventListener('click', () => navigate(cmd.target));
         r.appendChild(item);
       });
     }
     
     function navigate(target: string) {
-      const el = document.querySelector(`[style*="grid-area: ${target}"]`);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (target.startsWith('/')) {
+        window.location.href = target;
+        return;
+      }
+      
+      const el = target === 'top' ? document.body : document.getElementById(target) || document.querySelector(`[id="${target}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+         // Fallback to sections
+         const section = document.querySelector(`section:has(h2:contains("${target.toUpperCase()}"))`);
+         section?.scrollIntoView({ behavior: 'smooth' });
+      }
       closePalette();
     }
     
@@ -137,3 +153,23 @@
     (window as any).__openCmdPalette = openPalette;
   })();
 </script>
+
+<style>
+  .cmd-palette {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15vh;
+  }
+
+  .cmd-palette-box {
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 20px 20px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+</style>

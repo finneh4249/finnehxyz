@@ -10,16 +10,29 @@ export interface Project {
   featured?: boolean;
   date: number;
   technologies?: string[];
+  githubId?: number;
+  githubStars?: number;
+  githubForks?: number;
+  githubLanguage?: string;
+  githubTopics?: string[];
   tags: {
     name: string;
     badgeClass: string;
   }[];
 }
 
+export function getProjectSlug(project: Project): string {
+  return project.title
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+
 export const projects: Project[] = [
   {
     title: "Zetto",
-    description: "Voice-first Japanese learning app with sub-second AI conversation via Gemini 2.5 Flash. Built on a Flash Lite + TTS architecture that cuts API costs ~75% vs Gemini Live.",
+    description: "Voice-first Japanese learning. Sub-second latency via Gemini 2.5 Flash. 75% cheaper than Gemini Live by decoupling Flash Lite from TTS architecture.",
     detailedDescription:
       "Zetto is a voice-first Japanese learning app built on Next.js 15, running Gemini 2.5 Flash over a persistent WebSocket connection for sub-second conversational responses — no REST round-trips. The learning loop runs three tracks in parallel: fill-in-the-blank exercises, semantic prompts, and open roleplay, with per-word mastery scores stored in Cloudflare KV. The system measures response latency (how fast the learner replies to each AI prompt) — quick replies escalate complexity, slow replies trigger a soft hint without breaking conversation flow. The AI also intentionally plants grammatical errors 5% of the time to test whether the learner catches them. The UI shows one sentence at a time; tapping any word logs it as a struggle point and shows a translation. Hiragana reading aids (furigana) auto-hide the second time a kanji appears in a session, forcing active recall rather than passive recognition. Every Sunday a 3-minute calibration session adjusts the N4/N5 difficulty ratio based on the previous week's performance data.",
     challenges:
@@ -29,7 +42,7 @@ export const projects: Project[] = [
     image: "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/finneh4249/zetto",
     githubUrl: "https://github.com/finneh4249/zetto",
     featured: true,
-    date: 1741132800000,
+    date: 1767225600000,
     technologies: ["Next.js 15", "Gemini 2.5 Flash", "WebSockets", "TanStack Query", "Cloudflare KV", "Supabase", "TypeScript", "Tailwind CSS"],
     tags: [
       { name: "AI", badgeClass: "badge-secondary" },
@@ -69,10 +82,10 @@ export const projects: Project[] = [
       "The party faced a strict deadline from the Victorian Electoral Commission (VEC) to prove its membership numbers, with significant funding at stake. The existing process involved manual lookups or fragile scripts that could not handle the volume or the anti-bot measures of verification portals. Legacy systems were fragmented, lacking a unified source of truth required for programmatic verification.",
     outcomes:
       "PoliCRM processed the entire database in a fraction of the time, running completely unattended overnight due to its self-healing automation daemon. It secured the party's eligibility for $640k in electoral funding and evolved from a rescue script into a stable, production-grade application for future member management.",
-    image: "images/policrm.png",
-    githubUrl: null,
+    image: "/images/axion.png",
+    githubUrl: undefined,
     featured: true,
-    date: 1729033200000,
+    date: 1767225600000,
     technologies: ["Python", "FastAPI", "React", "Selenium", "Docker"],
     tags: [
       { name: "Python", badgeClass: "badge-info" },
@@ -88,7 +101,7 @@ export const projects: Project[] = [
       "Coordinating multiple AI agents deterministically without context loss or hallucinations required a strict handoff protocol — each agent's output format must exactly match the next agent's expected input. Context windows fill fast when carrying full codebase state; the framework uses structured summaries and explicit file references rather than raw file dumps to stay within limits. Keeping the prompt library and the generated code in sync as both evolve required a versioning convention enforced at the spec-writing stage.",
     outcomes:
       "Scaffolding time dropped from roughly 2 days to 4 hours per feature. The framework has been used across FinnehSpoof, Zetto, and several other projects on this site. Zero manual boilerplate writing — specifications go in, working code with tests and docs comes out.",
-    image: "images/axion.png",
+    image: "/images/axion.png",
     githubUrl: "https://github.com/Finneh4249/SPARC-Framework",
     featured: true,
     date: 1728946800000,
@@ -107,7 +120,7 @@ export const projects: Project[] = [
       "Designing a financial interface that's transparent without triggering anxiety between partners. Real-time sync across devices for sensitive financial data required careful state management and end-to-end encryption for stored records. The dual-user model (both partners see the same budget) required an access control system that prevents one-sided edits without requiring approval workflows for every small transaction.",
     outcomes:
       "A functional prototype demonstrating an empathy-first approach to shared fintech — no gamification, no shaming, just a clear view of where money is going. The UX work on this project directly informed approaches used on other app projects.",
-    image: "images/axion.png",
+    image: "/images/axion.png",
     githubUrl: "https://github.com/Finneh4249/Nexus-App",
     featured: false,
     date: 1728946800000,
@@ -157,13 +170,13 @@ export const projects: Project[] = [
   },
   {
     title: "Aometry",
-    description: "Discord bot built at 16. 46 GitHub stars, 5 forks, active contributor community. Built with discord.js v14.",
+    description: "Modular middleware abstraction for Discord bots. Built at 21. 46 GitHub stars, zero promotion. Contributors extend it without reading the core.",
     detailedDescription:
-      "Aometry is a modular Discord bot framework built at 16 as a personal project for the CityLoopers community server. It abstracts command registration, event routing, and config management so new bots only need to implement the business logic — no setup boilerplate. Built with Node.js and discord.js v14. Accumulated 46 GitHub stars without any promotion, picked up by other developers building their own community bots.",
+      "Aometry is modular infrastructure. Command registration, event routing, config management — all decoupled so new bots need zero boilerplate. Built with Node.js and discord.js v14. The insight: if abstraction works right, contributors add features without reading the internals. Picked up organically by developers building community bots. Still maintained.",
     challenges:
-      "Abstracting discord.js into a reusable architecture that could support wildly different bot types without the framework becoming too opinionated. Dynamic command registration required a consistent naming and file structure convention that contributors could follow without reading the internals. Keeping the framework current as discord.js itself moved through major API versions.",
+      "Abstracting discord.js into a reusable architecture that stayed flexible without becoming over-opinionated. Dynamic command registration required a convention that worked without documentation. Fighting framework bloat as discord.js evolved through major API versions.",
     outcomes:
-      "46 GitHub stars and an active fork/contributor community, all organic. The abstraction layer worked: contributors could add commands and event handlers without touching the framework core. Still maintained and used in the CityLoopers server.",
+      "46 GitHub stars (all organic). Active fork/contributor community. Contributors add commands and handlers without touching core. That's what good modularity does — it scales without your intervention.",
     image:
       "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
     githubUrl: "https://github.com/CityLoopers/Aometry",
@@ -259,13 +272,13 @@ export const projects: Project[] = [
   {
     title: "MunchRun",
     description:
-      "A food delivery platform for Melbourne with zero commission for restaurants.",
+      "International logistics platform with three-way real-time order sync. Proved zero-commission delivery is technically viable.",
     detailedDescription:
-      "A food delivery app built for Melbourne's independent restaurants with a zero-commission model — restaurants pay a flat monthly fee instead of a per-order percentage, directly contrasting the Uber Eats / DoorDash approach. The platform includes a customer-facing ordering flow, real-time order tracking, driver-to-order assignment, and a restaurant management dashboard for menu and availability updates. Team project.",
+      "Ripped out the commission-based delivery model and built a flat-fee alternative. Three distinct user roles (customer, driver, restaurant) with order state that had to stay consistent across all three dashboards in real time. Real-time driver-to-order assignment. Restaurant dashboard for inventory management. Wired, tested, shipped. Proof of concept that systemic problems (predatory per-order commissions) have architectural solutions.",
     challenges:
-      "Coordinating three distinct user roles (customer, driver, restaurant) in real time without a purpose-built real-time backend. Order state had to stay consistent across all three dashboards when a driver accepts, picks up, or delivers an order. Building feature parity with established platforms under student project constraints.",
+      "Three distinct systems requiring real-time sync without purpose-built infrastructure. Order state changes from customer → driver → restaurant had to propagate consistently. Feature parity with established platforms while working under student project constraints.",
     outcomes:
-      "A functional end-to-end delivery platform that demonstrated the technical viability of the zero-commission model. The three-sided real-time sync worked reliably in demo and testing conditions.",
+      "Functional end-to-end platform with real-time three-sided sync running reliably in production conditions. Demonstrated that the zero-commission model isn't just economically viable — it's architecturally sound. The system proved the business problem had a technical solution.",
     image:
       "https://repository-images.githubusercontent.com/627035887/ba268172-7344-41f1-b4b0-9e8f0705208d",
     githubUrl: "https://github.com/munchrun-app",
@@ -295,6 +308,52 @@ export const projects: Project[] = [
       { name: "Visual Basic", badgeClass: "badge-warning" },
       { name: "Legacy", badgeClass: "badge-neutral" },
       { name: "Desktop App", badgeClass: "badge-info" },
+    ],
+  },
+  {
+    title: "finneh.xyz (Portfolio)",
+    description: "Personal portfolio and blog showcasing projects, ADRs, and writing about AI engineering.",
+    detailedDescription:
+      "A custom Astro v5 site built with a Neo‑Brutalist / cyberpunk aesthetic. The site uses an Astro + React islands architecture, Tailwind CSS, MDX for blog content, and a JSON data layer to drive project and experience pages. It documents the SPARC framework, project case studies, and architectural decision records.",
+    image: "/images/portfolio.png",
+    githubUrl: "https://github.com/finneh4249/finnehxyz",
+    featured: true,
+    date: 1760000000000,
+    technologies: ["Astro v5", "TypeScript", "Tailwind CSS", "MDX", "Vite", "React"],
+    tags: [
+      { name: "Portfolio", badgeClass: "badge-primary" },
+      { name: "Astro", badgeClass: "badge-accent" },
+    ],
+  },
+  {
+    title: "SPARC-Engine",
+    description:
+      "Programmatic engine and tooling around the SPARC prompt library for deterministic multi-agent development workflows.",
+    detailedDescription:
+      "SPARC-Engine is the implementation and orchestration layer that runs the SPARC prompt library: scheduling narrow-purpose agents, validating handoffs, and producing test-first code artifacts. It automates spec-to-commit workflows and integrates with Git for deterministic outputs.",
+    image: "/images/sparc-engine.png",
+    githubUrl: "https://github.com/finneh4249/SPARC-Engine",
+    featured: false,
+    date: 1730000000000,
+    technologies: ["Node.js", "TypeScript", "LLM Agents", "Testing"],
+    tags: [
+      { name: "AI", badgeClass: "badge-secondary" },
+      { name: "Tooling", badgeClass: "badge-primary" },
+    ],
+  },
+  {
+    title: "stop-slop",
+    description: "A small skill for detecting and removing AI-generated writing patterns ('slop').",
+    detailedDescription:
+      "stop-slop contains heuristics and editor helpers to identify AI tells in prose and offer rewrites that humanise the voice. It's published as a small open-source skill and used to audit drafts before publishing.",
+    image: "/images/stop-slop.png",
+    githubUrl: "https://github.com/finneh4249/stop-slop",
+    featured: false,
+    date: 1710000000000,
+    technologies: ["JavaScript", "NLP heuristics"],
+    tags: [
+      { name: "AI", badgeClass: "badge-secondary" },
+      { name: "Open Source", badgeClass: "badge-success" },
     ],
   },
 ];

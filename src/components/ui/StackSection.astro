@@ -1,0 +1,216 @@
+---
+import { Icon } from 'astro-icon/components';
+import skillsData from '../../data/skills.json';
+
+const tools = (skillsData.tools || []) as Array<{
+  icon: string;
+  name: string;
+  color: string;
+  category: string;
+  proficiency: number;
+  description: string;
+}>;
+
+// Stable sort: proficiency desc; JSON insertion order preserved for ties.
+const sorted = [...tools].sort((a, b) => b.proficiency - a.proficiency);
+
+// Category badge styles — mapped to the three signal accent colours.
+const categoryConfig: Record<string, { label: string; badgeClass: string }> = {
+  'Core Stack':    { label: 'CORE',        badgeClass: 'bg-signal-cyan  text-signal-black' },
+  'Frontend':      { label: 'FRONTEND',    badgeClass: 'bg-signal-cyan  text-signal-black' },
+  'Content':       { label: 'CONTENT',     badgeClass: 'bg-signal-cyan  text-signal-black' },
+  'Infrastructure':{ label: 'INFRA',       badgeClass: 'bg-signal-amber text-signal-black' },
+  'Tooling':       { label: 'TOOLING',     badgeClass: 'bg-signal-amber text-signal-black' },
+  'Realtime':      { label: 'REALTIME',    badgeClass: 'bg-signal-amber text-signal-black' },
+  'AI/LLM Tools': { label: 'AI+LLM',      badgeClass: 'bg-signal-orange text-signal-black' },
+  'Platform':      { label: 'PLATFORM',    badgeClass: 'bg-signal-orange text-signal-black' },
+};
+
+// ── Masonry size hierarchy (index into sorted array) ────────────────
+// i=0:    2×2 hero anchor
+// i=1:    2×1 wide (+ description subtitle)
+// i=2,3:  1×2 tall
+// i=4:    2×1 wide
+// i=5–7:  1×1 standard
+// i=8:    1×2 tall
+// i=9:    2×1 wide
+// i=10+:  1×1 standard
+function colSpan(i: number) {
+  if (i === 0) return 'col-span-2';
+  if (i === 1 || i === 4 || i === 9) return 'col-span-2';
+  return 'col-span-1';
+}
+function rowSpan(i: number) {
+  if (i === 0) return 'row-span-2';
+  if (i === 2 || i === 3 || i === 8) return 'row-span-2';
+  return 'row-span-1';
+}
+function cardSize(i: number): 'hero' | 'wide' | 'tall' | 'standard' {
+  if (i === 0) return 'hero';
+  if (i === 1 || i === 4 || i === 9) return 'wide';
+  if (i === 2 || i === 3 || i === 8) return 'tall';
+  return 'standard';
+}
+
+const dimCategories = new Set(['AI/LLM Tools', 'Platform']);
+function isDimmed(tool: typeof sorted[0], i: number) {
+  return dimCategories.has(tool.category) && i !== 0;
+}
+---
+
+<div class="stack-bento">
+
+  <!-- Orange title card — no separate section header needed -->
+  <div class="stack-title surface-orange p-5 md:p-6 flex flex-col justify-end">
+    <span class="font-display font-black text-signal-black uppercase italic tracking-tighter leading-none"
+          style="font-size:clamp(1.6rem,3vw,2.8rem)">Stack</span>
+    <span class="font-mono text-signal-black/55 text-[9px] uppercase tracking-[0.3em] mt-1.5 block">
+      Tools in rotation
+    </span>
+  </div>
+
+  {sorted.length > 0 ? sorted.map((tool, i) => {
+    const cat = categoryConfig[tool.category] ?? {
+      label: tool.category.toUpperCase().slice(0, 8),
+      badgeClass: 'bg-signal-white/15 text-signal-white',
+    };
+    const dimmed = isDimmed(tool, i);
+    const size   = cardSize(i);
+
+    return (
+      <div
+        class={`stack-card stack-card--${size} ${colSpan(i)} ${rowSpan(i)} group cursor-default transition-colors duration-150 flex flex-col justify-between`}
+        style={dimmed ? 'background-color:oklch(22% 0.09 45)' : undefined}
+        title={tool.description}
+      >
+        <div class="flex items-start justify-between gap-2">
+          <span class={`${cat.badgeClass} font-mono font-black tracking-wider px-2 py-0.5 uppercase whitespace-nowrap shrink-0 stack-badge`}
+                style="font-size:7px">
+            {cat.label}
+          </span>
+          <Icon
+            name={tool.icon}
+            class={`shrink-0 text-signal-white/20 group-hover:text-signal-white/65 transition-colors duration-150 stack-icon
+                    ${size === 'hero' ? 'text-5xl md:text-[4.5rem] mt-2'
+                    : size === 'wide' || size === 'tall' ? 'text-2xl md:text-3xl'
+                    : 'text-xl md:text-2xl'}`}
+            aria-hidden="true"
+          />
+        </div>
+
+        <div>
+          <span class={`font-display font-black text-signal-white tracking-tight leading-none block mt-3
+                        ${size === 'hero'     ? 'text-signal-2xl md:text-signal-3xl'
+                        : size === 'wide' || size === 'tall' ? 'text-signal-lg md:text-signal-xl'
+                        : 'text-signal-base md:text-signal-lg'}`}>
+            {tool.name}
+          </span>
+          {size === 'wide' && (
+            <span class="font-mono text-signal-white/35 mt-1 block leading-snug stack-desc">
+              {tool.description}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  }) : (
+    <div class="col-span-4 p-5 font-mono text-signal-white/25 text-[10px] tracking-widest uppercase flex items-center bg-signal-charcoal" role="alert">
+      NO STACK DATA // CHECK CONFIGURATION
+    </div>
+  )}
+</div>
+
+<style>
+  /* ── Grid container ─────────────────────────────────────────────── */
+  .stack-bento {
+    display: grid;
+    gap: 2px;
+    background-color: oklch(14% 0.01 258);
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(110px, auto);
+    grid-auto-flow: row dense;
+  }
+
+  /* ── Title card ─────────────────────────────────────────────────── */
+  .stack-title {
+    background-color: oklch(75% 0.22 45) !important;
+    color: oklch(14% 0.01 258) !important;
+  }
+
+  /* ── Tool cards: base + hover ────────────────────────────────────── */
+  .stack-card {
+    background-color: oklch(18% 0.01 258);
+  }
+  .stack-card:hover {
+    background-color: oklch(40% 0.15 45);
+  }
+  .stack-card[style*="oklch(22%"]:hover {
+    background-color: oklch(33% 0.13 45) !important;
+  }
+
+  /* ── Size-specific padding ──────────────────────────────────────── */
+  .stack-card--hero     { padding: 1.25rem; }
+  .stack-card--wide     { padding: 1rem 1.25rem; }
+  .stack-card--tall     { padding: 1rem; }
+  .stack-card--standard { padding: 0.75rem; }
+
+  @media (min-width: 768px) {
+    .stack-card--hero     { padding: 1.5rem; }
+    .stack-card--wide     { padding: 1.25rem 1.5rem; }
+    .stack-card--tall     { padding: 1.25rem; }
+    .stack-card--standard { padding: 1rem; }
+  }
+
+  /* Description text on wide cards */
+  .stack-desc { font-size: 9px; }
+  @media (min-width: 768px) { .stack-desc { font-size: 10px; } }
+
+  /* ── Tablet: 2-col ──────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .stack-bento {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: minmax(88px, auto);
+    }
+  }
+
+  /* ── Print: flat tag-cloud ──────────────────────────────────────── */
+  @media print {
+    .stack-bento {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 2pt;
+      background: transparent;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .stack-title {
+      flex: 0 0 100%;
+      min-height: unset !important;
+      padding: 3pt 6pt !important;
+      margin-bottom: 3pt;
+    }
+    .stack-card {
+      flex: 0 0 auto;
+      min-height: unset !important;
+      padding: 2pt 5pt !important;
+      flex-direction: row;
+      align-items: center;
+      gap: 3pt;
+      background-color: oklch(18% 0.01 258) !important;
+    }
+    .stack-card[style*="oklch(22%"] {
+      background-color: oklch(22% 0.09 45) !important;
+    }
+    .stack-card:hover {
+      background-color: oklch(18% 0.01 258) !important;
+    }
+    .stack-icon  { display: none !important; }
+    .stack-desc  { display: none !important; }
+    .stack-card .font-display {
+      font-size: 7pt !important;
+      margin-top: 0 !important;
+    }
+    .stack-badge { font-size: 5.5pt !important; }
+    .col-span-2, .row-span-2 { flex: 0 0 auto !important; }
+  }
+</style>

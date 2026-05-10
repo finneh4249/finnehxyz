@@ -1,0 +1,68 @@
+---
+import type { Project } from '../../data/projects';
+import { getProjectSlug } from '../../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const displayDate = new Date(project.date).getFullYear() || "2024";
+const slug = getProjectSlug(project);
+---
+
+<a
+  href={`/projects/${slug}`}
+  class="group relative overflow-hidden bg-signal-black border border-signal-white/10 shadow-signal-lg hover:border-signal-cyan/40 transition-all duration-700 block"
+  aria-labelledby={`hero-project-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`}
+>
+  <!-- Image background, full bleed -->
+  <div class="relative h-[280px] md:h-[380px] overflow-hidden">
+    <img
+      src={project.image}
+      alt={`${project.title} preview`}
+      class="w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-70 transition-all duration-1000 scale-105 group-hover:scale-100"
+      loading="eager"
+      onerror="this.style.display='none'"
+    />
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-signal-black via-signal-black/60 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-signal-black via-transparent to-transparent"></div>
+
+    <!-- Content pinned over image -->
+    <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+      <!-- Tags row -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        {project.tags.slice(0, 4).map((tag, ti) => (
+          <span class={`px-3 py-1 font-mono text-[9px] font-black uppercase tracking-widest ${
+            ti === 0 ? 'bg-signal-cyan text-signal-black' :
+            ti === 1 ? 'bg-signal-orange text-signal-black' :
+            'bg-signal-white/10 text-signal-white/70'
+          }`}>
+            {tag.name}
+          </span>
+        ))}
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <div class="font-mono text-[9px] text-signal-cyan/60 uppercase tracking-[0.4em] mb-2">Featured</div>
+          <h3
+            id={`hero-project-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`}
+            class="font-display font-black text-signal-white uppercase tracking-tight italic text-signal-2xl md:text-signal-3xl leading-tight group-hover:text-signal-cyan transition-colors"
+          >
+            {project.title}
+          </h3>
+          <p class="text-signal-white/60 text-signal-sm md:text-signal-base leading-relaxed mt-3 max-w-2xl">
+            {project.description}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="font-mono text-[10px] text-signal-white/30 uppercase tracking-widest">{displayDate}</span>
+          <span class="text-signal-cyan text-xl font-black group-hover:translate-x-2 transition-transform duration-500">>>></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
