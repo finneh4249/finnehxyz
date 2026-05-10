@@ -9,7 +9,7 @@ import SplitFlap from '../components/ui/SplitFlap.astro';
 import KernelLog from '../components/ui/KernelLog.astro';
 import DiagnosticGrid from '../components/ui/DiagnosticGrid.astro';
 import ExperienceSection from '../components/ui/ExperienceSection.astro';
-import EducationSection from '../components/ui/EducationSection.astro';
+import StackSection from '../components/ui/StackSection.astro';
 ---
 
 <BaseLayout>
@@ -41,7 +41,7 @@ import EducationSection from '../components/ui/EducationSection.astro';
     <!-- ═══════════════════════════════════════════════════════════════
          HERO — Direction A+B+C combined
          ═══════════════════════════════════════════════════════════════ -->
-    <section class="relative min-h-screen flex flex-col justify-center overflow-x-hidden pt-[52px] pb-8" aria-labelledby="hero-heading">
+    <section class="relative min-h-screen flex flex-col justify-center overflow-x-hidden pt-28 md:pt-[72px] pb-8" aria-labelledby="hero-heading">
 
       <!-- C: Glows — increased to 25% -->
       <div class="absolute top-1/4 left-1/4 w-[400px] md:w-[700px] h-[400px] md:h-[700px] signal-glow-orange -z-10" aria-hidden="true"></div>
@@ -57,7 +57,7 @@ import EducationSection from '../components/ui/EducationSection.astro';
           height: 100%;
           transform: skewX(-8deg);
           transform-origin: top right;
-          background: oklch(75% 0.22 45 / 0.16);
+          background: oklch(75% 0.22 45 / 0.38);
           border-left: 3px solid oklch(75% 0.22 45 / 0.9);
           pointer-events: none;
           z-index: 0;
@@ -93,7 +93,7 @@ import EducationSection from '../components/ui/EducationSection.astro';
           </div>
           <div class="parallax-layer hero-line" data-depth="0.4" style="animation-delay:0.2s">
             <h1 class="text-signal-orange italic tracking-tighter leading-[0.82] ml-[5%] md:ml-[8%]" style="font-size:clamp(2.4rem,8vw,13rem); filter:drop-shadow(12px 12px 0px rgba(0,0,0,0.9))">
-              RELIABLE
+              HARDENED
             </h1>
           </div>
           <div class="parallax-layer hero-line" data-depth="0.3" style="animation-delay:0.35s">
@@ -110,7 +110,7 @@ import EducationSection from '../components/ui/EducationSection.astro';
           <div class="lg:col-span-7 space-y-8">
             <div class="parallax-layer hero-line" data-depth="0.15" style="animation-delay:0.5s">
               <p class="font-body text-signal-lg md:text-signal-xl text-signal-white/75 leading-relaxed max-w-[60ch]">
-                I combine <span class="text-signal-cyan font-black not-italic">operational leadership</span> and <span class="text-signal-orange font-black not-italic">software engineering</span> to ship systems that survive the real world.
+                13 years managing systems where downtime isn't an error code — it's a riot. I build infrastructure that treats 10x load as a baseline.
               </p>
             </div>
 
@@ -121,7 +121,7 @@ import EducationSection from '../components/ui/EducationSection.astro';
               </a>
               <div class="flex items-center gap-3 font-mono text-[10px] text-signal-white/40 tracking-widest uppercase">
                 <span class="w-2 h-2 rounded-full bg-signal-cyan animate-pulse"></span>
-                Available for work
+                Open for high-output engineering roles.
               </div>
             </div>
           </div>
@@ -164,9 +164,6 @@ import EducationSection from '../components/ui/EducationSection.astro';
       </div>
     </section>
 
-    <!-- Education — self-contained with its own header band -->
-    <EducationSection />
-
     <!-- ═══════════════════════════════════════════════════════════════
          EXPERIENCE — Direction C: amber surface header
          ═══════════════════════════════════════════════════════════════ -->
@@ -181,7 +178,7 @@ import EducationSection from '../components/ui/EducationSection.astro';
             </h2>
           </div>
           <p class="text-signal-black/60 font-body text-signal-sm max-w-sm leading-relaxed font-normal not-italic">
-            A decade across operations leadership and software engineering, building the same discipline into both.
+            Self-funded R&D since 2015. Retail operations covered the burn rate.
           </p>
         </div>
       </div>
@@ -191,6 +188,15 @@ import EducationSection from '../components/ui/EducationSection.astro';
         <div class="max-w-[1800px] mx-auto px-6 md:px-12">
           <ExperienceSection />
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         STACK — Tools in rotation, ranked by proficiency
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="stack" class="relative overflow-hidden bg-signal-black py-12 md:py-20" aria-label="Technology stack">
+      <div class="max-w-[1800px] mx-auto px-6 md:px-12">
+        <StackSection />
       </div>
     </section>
 
@@ -219,7 +225,8 @@ import EducationSection from '../components/ui/EducationSection.astro';
 
           <div class="font-body text-[11px] text-signal-black/50 leading-loose">
             &copy; {new Date().getFullYear()} Ethan Cornwill<br/>
-            Available for contract and full-time roles.
+            Systems Architect · Stealth Founder.<br/>
+            Shipping systems that don't crack under load.
           </div>
         </div>
       </div>

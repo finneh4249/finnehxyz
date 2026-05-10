@@ -1,19 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { projects, getProjectSlug } from '../../data/projects';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  return projects.map(project => ({
-    params: { slug: getProjectSlug(project) },
-    props: { project },
+  const allProjects = (await getCollection('projects')).sort((a, b) => b.data.date - a.data.date);
+  return allProjects.map((project) => ({
+    params: { slug: project.id },
+    props: { project: project.data, id: project.id, allProjectsSorted: allProjects },
   }));
 }
 
-const { project } = Astro.props;
+const { project, id, allProjectsSorted: allProjects } = Astro.props as any;
 const year = new Date(project.date).getFullYear();
-const allProjects = projects;
-const currentSlug = getProjectSlug(project);
-const currentIndex = allProjects.findIndex(p => getProjectSlug(p) === currentSlug);
+const currentIndex = allProjects.findIndex((entry) => entry.id === id);
 const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
 const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
 ---
@@ -172,19 +171,19 @@ const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentI
         <!-- Prev / Next navigation -->
         <div class="mt-16 md:mt-24 pt-8 border-t border-signal-white/8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prevProject ? (
-            <a href={`/projects/${getProjectSlug(prevProject)}`} class="project-nav-link group text-left">
+            <a href={`/projects/${prevProject.id}`} class="project-nav-link group text-left">
               <span class="font-mono text-[9px] text-signal-white/25 uppercase tracking-widest block mb-1">← Previous</span>
               <span class="font-display font-black text-signal-white/70 italic text-sm group-hover:text-signal-white transition-colors">
-                {prevProject.title}
+                {prevProject.data.title}
               </span>
             </a>
           ) : <div />}
 
           {nextProject && (
-            <a href={`/projects/${getProjectSlug(nextProject)}`} class="project-nav-link group text-right sm:col-start-2">
+            <a href={`/projects/${nextProject.id}`} class="project-nav-link group text-right sm:col-start-2">
               <span class="font-mono text-[9px] text-signal-white/25 uppercase tracking-widest block mb-1">Next →</span>
               <span class="font-display font-black text-signal-white/70 italic text-sm group-hover:text-signal-white transition-colors">
-                {nextProject.title}
+                {nextProject.data.title}
               </span>
             </a>
           )}

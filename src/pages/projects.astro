@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { projects, getProjectSlug } from '../data/projects';
+import { getCollection } from 'astro:content';
 
-const allProjects = [...projects].sort((a, b) => b.date - a.date);
-const allTags = Array.from(new Set(projects.flatMap(p => p.tags.map(t => t.name)))).sort();
+const projectEntries = (await getCollection('projects')).sort((a, b) => b.data.date - a.data.date);
+
+const allProjects = projectEntries.map((project) => ({ id: project.id, ...project.data }));
+const allTags = Array.from(new Set(allProjects.flatMap(p => p.tags.map(t => t.name)))).sort();
 ---
 
 <BaseLayout title="Projects | Ethan Cornwill" description="All projects by Ethan Cornwill — AI systems, infrastructure tooling, political tech, and more.">
@@ -68,10 +70,9 @@ const allTags = Array.from(new Set(projects.flatMap(p => p.tags.map(t => t.name)
         <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {allProjects.map((project) => {
             const year = new Date(project.date).getFullYear();
-            const slug = getProjectSlug(project);
             return (
               <a
-                href={`/projects/${slug}`}
+                href={`/projects/${project.id}`}
                 class="project-item signal-card-item group"
                 data-title={project.title.toLowerCase()}
                 data-description={project.description.toLowerCase()}
