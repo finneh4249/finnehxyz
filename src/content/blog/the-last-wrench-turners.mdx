@@ -1,0 +1,62 @@
+---
+title: "The Last Generation of the Wrench-Turners"
+pubDate: 2026-05-26
+description: "Anton Felich asked where the next generation of senior engineers comes from if we all stop typing code. As someone who learned to build before the shortcuts existed but adapted instantly to leverage, I think I have the answer."
+tags:
+  [
+    "Engineering",
+    "AI",
+    "Workflow",
+    "Personal",
+    "Software",
+  ]
+featured: true
+---
+
+I read [Anton Felich’s post about "vibe coding"](https://www.linkedin.com/pulse/am-i-vibe-coder-anton-felich-x4usc/) the other day, and it hit a nerve.
+
+He asked a terrifying question for the software industry: *If the keyboard is where engineering judgment used to be earned, and we’ve all put it down—where does the next senior come from?*
+
+I think I know the answer, because I am living in the crack between the two eras.
+
+I joined software at a highly specific, bizarre friction point in tech history. I caught the tail end of the purely manual era, meaning I learned how to build before the shortcuts existed.
+
+When I started using AI tools in 2021, it wasn't a daily driver. It was basic, context-aware autocomplete—glorified linting that saved a few keystrokes. By 2023, the models matured enough that I could tab-complete entire functions and generate clean docstrings on the fly. I wasn't abdicating the writing; I was speeding up the syntax.
+
+It wasn't until late 2024 that the paradigm completely shifted. That was the moment AI became a true daily driver, moving from an inline assistant to an architectural partner.
+
+Because I watched that progression line by line, I didn't just wake up one day and start prompting software into existence. I built my way up to it. By the time the models were powerful enough to handle complex logic, I had already engineered SPARC to act as the pipeline. I didn't stumble into an automated workflow; I orchestrated it because I knew exactly where the manual bottlenecks used to live.
+
+### Earned Scar Tissue
+
+Vibe coding is the total abdication of engineering judgment. It is a junior developer pushing a button in an IDE, watching an agent vomit out 400 lines of unvetted boilerplate, seeing that the localhost page renders without a 500 error, and calling it a day. It is software engineering by vibes and prayer.
+
+It produces absolute slop because the person running the prompt cannot audit the output. They do not have the scar tissue to know when a model is hallucinating a clever-looking but deeply fragile architecture that will cave in the moment three real users hit the database.
+
+To write the guardrails, you have to know how the machine breaks.
+
+My earliest public repository dates back to 2021. It was vanilla JavaScript. It was messy, it had configuration debt, and it required manual plumbing. Last year, I dragged that same legacy codebase kicking and screaming into strict TypeScript. That process —wrestling with type safety, manual refactoring, and tracing architectural bottlenecks— is where judgment is forged.
+
+You cannot coordinate a fleet of AI agents if you do not understand the underlying primitives of the code they are writing.
+
+### Welded into the Seam
+
+When I build now, I do not spend four hours fighting with syntax or writing boilerplate. I use SPARC, a custom 3,000-line multi-agent orchestration framework I built to automate my project scaffolding. It cuts my MVP ramp-up time from two days to four hours.
+
+That is not vibe coding. That is scaling my own judgment.
+
+I am acting as the senior engineer welded into the seams of my own automated assembly line. The agents are fast, but I dictate what "good" means. I review the abstractions, I audit the state management, and I refuse to trade away maintainability or security just because an LLM can generate a feature in thirty seconds.
+
+I am a conductor directing an orchestra, not a spectator watching a player piano.
+
+### The Missing Decade
+
+But Anton’s existential crisis is still correct.
+
+My generation got lucky. We caught the tail end of the manual era. We learned how to turn the wrenches just before the automated factory was switched on. We developed the intuition required to look at an AI-generated block of async code and immediately spot the race condition.
+
+If the industry moves entirely to high-level prompting tomorrow, the next generation will bypass the wrench-turning entirely. They will start as managers of agents without ever being soldiers in the terminal.
+
+I don't know how we train the next cohort of seniors when the entry-level grunt work has been completely automated away. But for those of us who learned to code manually and adapted instantly to leverage, we hold a strange, temporary monopoly.
+
+We are the last engineers who know exactly how the engine works, and the first who know how to make the robots build it.
