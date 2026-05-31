@@ -5,14 +5,35 @@
     "category": "systems-history",
     "roles": [
       {
-        "title": "Founder & Lead Architect",
-        "period": "Oct 2020 – Present",
+        "title": "Founder & Principal Engineer",
+        "period": "January 2020 – Present",
         "isCurrent": true,
-        "description": "Private venture studio. SPARC: 3,000+ lines, 12 agents, scaffolding from 2 days to 4 hours. ClawWarden: Rust-based AI executive assistant, least-privilege architecture. Zetto: sub-second Japanese voice AI, 75% cheaper than Gemini Live. Self-funded via retail operations — zero VC, 100% IP ownership."
+        "description": "Private venture studio. Architected and leading development of Nexus, a multi-tenant financial wellness platform (Next.js/TypeScript/PostgreSQL) with secure Python/FastAPI backends. Built the SPARC framework (3,000+ lines, 12 agents, cutting scaffolding time from 2 days to 4 hours). Shipped Zetto (sub-second Japanese voice AI, 75% cheaper than Gemini Live). Self-funded via retail operations — zero VC, 100% IP ownership."
       }
     ],
-    "logoSrc": "images/axion.png",
-    "logoAlt": "Axion Ventures"
+    "logoSrc": "images/axion-logo.png",
+    "logoAlt": "Axion"
+  },
+  {
+    "yearRange": "2024 – 2026",
+    "company": "DataAnnotation",
+    "category": "systems-history",
+    "roles": [
+      {
+        "title": "Senior AI Evaluation Engineer & Systems Benchmarker",
+        "period": "March 2025 – May 2026",
+        "isCurrent": false,
+        "description": "Architected and executed advanced benchmarking environments to test autonomous coding agents. Designed multi-layered software vulnerabilities, state-sabotage vectors in containerised sandboxes (e.g. Rust/Axum), and audited complex asynchronous codebases to validate agent reasoning. Built strict Docker footprints with defensive blanket-deny patterns and immutable dependency trees to guarantee total runtime isolation."
+      },
+      {
+        "title": "AI Code Analyst & Software Developer",
+        "period": "May 2024 – March 2025",
+        "isCurrent": false,
+        "description": "Evaluated and refactored AI-generated code across Python, JavaScript, and other languages to enforce correctness and design best practices. Developed targeted coding challenges, unit tests, and runtime environment validations to stress-test LLM reasoning capabilities."
+      }
+    ],
+    "logoSrc": "images/dataannotation.jpeg",
+    "logoAlt": "DataAnnotation"
   },
   {
     "yearRange": "2025",
@@ -20,44 +41,29 @@
     "category": "systems-history",
     "roles": [
       {
-        "title": "Lead Software Engineer (AI Systems)",
-        "period": "Mar 2025 – May 2025",
+        "title": "Senior Software Engineer",
+        "period": "March 2025 – September 2025",
         "isCurrent": false,
-        "description": "Architected the Magnet AI Agents platform — voice and chat agents that ripped manual client intake out of the workflow. Bolted SPARC across the engineering team. Build times dropped ~75%."
+        "description": "Architected and built the 'Magnet AI Agents' platform, deploying bespoke voice and chat agents that automated client intake and lead qualification. Led development of 'Magnet CRM'—a white-label sales OS deployed in under 7 days. Engineered and implemented the SPARC development workflow, cutting build times by 75% across the team."
       }
     ],
     "logoSrc": "images/magnetlab.png",
     "logoAlt": "MagnetLab"
   },
   {
-    "yearRange": "2025",
+    "yearRange": "2025 – Present",
     "company": "ALDI Stores Australia",
     "category": "systems-history",
     "roles": [
       {
-        "title": "Site Operations & Logistics",
+        "title": "Operations Shift Manager",
         "period": "October 2025 – Present",
         "isCurrent": true,
-        "description": "Ran daily operations for a high-volume retail site. Inventory, staffing, logistics — tight margins, time pressure, no slack. Self-funded Axion R&D. Every bottleneck is a bug."
+        "description": "Directed end-to-end operations for high-volume retail units. Managed cross-functional teams to maintain inventory integrity, cost controls, and tight-margin targets under intense operational pressure. Self-funded Axion R&D — every operational bottleneck is a bug."
       }
     ],
     "logoSrc": "images/aldi.png",
     "logoAlt": "ALDI Stores Australia"
-  },
-  {
-    "yearRange": "2021 – 2024",
-    "company": "Aometry",
-    "category": "systems-history",
-    "roles": [
-      {
-        "title": "Systems Architect (Open Source)",
-        "period": "Jan 2021 – Mar 2024",
-        "isCurrent": false,
-        "description": "Modular Dockerized middleware platform for distributed community ops. Ripped out file-based loading, wired in manifest-driven GitHub sync. 46 stars, zero promotion. Contributors extended it without touching core."
-      }
-    ],
-    "logoSrc": "images/aometry.png",
-    "logoAlt": "Aometry"
   },
   {
     "yearRange": "2015 – 2025",
@@ -66,20 +72,35 @@
     "category": "systems-history",
     "roles": [
       {
-        "title": "Operations Technology Lead",
+        "title": "Operations Technology Platform Manager",
         "period": "March 2024 – October 2025",
         "isCurrent": false,
-        "description": "99.9% uptime across 100+ POS sites. If you think your staging environment is stressful, try a Friday night rush with a cascading network failure. I've seen it. I fixed it. Monthly audits, zero unplanned outages. Final shift: filed an Auror report on a $599 ORC exploit — manual systems are always the weakest link."
+        "description": "Defended 99.9% uptime across 100+ high-volume POS sites. Conducted monthly OTP Tech Travel Path audits, troubleshooting network latency and hardware/software faults under heavy Friday night rush pressure. Last shift: field-audited and filed an Auror report on a $599 manual system ORC exploit."
       },
       {
         "title": "Assistant Business Manager",
-        "period": "August 2015 – February 2024",
+        "period": "August 2015 – March 2024",
         "isCurrent": false,
-        "description": "Ran store P&L and logistics across a decade under margin pressure. Automated shift-swapping and labour allocation via custom Jotform platforms. Designed SOPs that scaled headcount without adding management overhead. Every dollar of margin funded Axion R&D."
+        "description": "Managed store P&L, logistics, and team performance under intense margin pressure. Automated labour allocation and shift scheduling. Designed operational SOPs that scaled headcount without management bloat. Every dollar of margin funded early Axion R&D."
       }
     ],
     "logoSrc": "images/mc_logo.png",
     "logoAlt": "McDonald's"
+  },
+  {
+    "yearRange": "2021 – 2024",
+    "company": "Aometry",
+    "category": "systems-history",
+    "roles": [
+      {
+        "title": "Systems Architect (Open Source)",
+        "period": "January 2021 – March 2024",
+        "isCurrent": false,
+        "description": "Modular Dockerized middleware platform for distributed community ops. Ripped out file-based loading, wired in manifest-driven GitHub sync. 46 stars, zero promotion. Contributors extended it without touching core."
+      }
+    ],
+    "logoSrc": "images/aometry.png",
+    "logoAlt": "Aometry"
   },
   {
     "yearRange": "2020 – 2022",
@@ -87,10 +108,10 @@
     "category": "systems-history",
     "roles": [
       {
-        "title": "Site Operations & Logistics",
+        "title": "Assistant Restaurant Manager",
         "period": "June 2020 – June 2022",
         "isCurrent": false,
-        "description": "Flagship rollout. Scaled headcount by 70. Ripped 15% waste out of inventory by refactoring supply-chain logic. Two new locations launched from scratch, both on time."
+        "description": "Managed daily operations for the brand's busiest national location. Directed recruitment, onboarding, and training of 70+ crew members for two new restaurant launches. Implemented tight inventory control loops that slashed food waste by 15%."
       }
     ],
     "logoSrc": "images/taco_bell.png",
@@ -108,7 +129,7 @@
         "description": "Shipped early OSS contributions and built the visual language that became the Axion design system. Learned to code by breaking things that actually mattered. Foundation for everything since."
       }
     ],
-    "logoSrc": "images/axion.png",
+    "logoSrc": "images/axion-logo.png",
     "logoAlt": "Systems R&D"
   }
 ]
