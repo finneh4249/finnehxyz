@@ -75,37 +75,39 @@ export const projects: Project[] = [
   {
     title: "PoliCRM",
     description:
-      "Automated political compliance infrastructure built in 48 hours to verify 911 members against electoral rolls.",
+      "Automated AEC enrollment verification and member CRM for Australian political campaigns.",
     detailedDescription:
-      "Facing a critical regulatory deadline with potentially $640k in public funding at stake, the Fusion Party needed to verify the electoral enrollment status of 911 members within a tight timeframe. PoliCRM was architected, built, and deployed in under 48 hours, providing a unified 'source of truth' that programmatically interfaced with electoral tools while maintaining data privacy.",
+      "PoliCRM is an automated member management and Australian Electoral Commission (AEC) enrollment verification system built for political campaigns. It provides two verification methods: Electoral Roll Access (ERA) file processing for instant local matching, and a Selenium-automated check against check.aec.gov.au. The application features both an interactive TUI for command-line operations and a Django/Wagtail web CRM for day-to-day management. A recent Rust rewrite stores records in SQLite with AES-256-GCM encryption on PII fields and SHA-256 blind indexing for secure, queryable email search.",
     challenges:
-      "The party faced a strict deadline from the Victorian Electoral Commission (VEC) to prove its membership numbers, with significant funding at stake. The existing process involved manual lookups or fragile scripts that could not handle the volume or the anti-bot measures of verification portals. Legacy systems were fragmented, lacking a unified source of truth required for programmatic verification.",
+      "Securing highly sensitive personally identifiable information (PII) at rest while keeping it queryable for campaign workflows, normalising unstructured and inconsistent address formats to match AEC databases, and handling anti-bot measures, VPN blocks, and CAPTCHAs during fallback Selenium checks on check.aec.gov.au.",
     outcomes:
-      "PoliCRM processed the entire database in a fraction of the time, running completely unattended overnight due to its self-healing automation daemon. It secured the party's eligibility for $640k in electoral funding and evolved from a rescue script into a stable, production-grade application for future member management.",
-    image: "/images/axion.png",
+      "Successfully secured $640k in public funding for campaigns by automating mass membership verification. Implemented a zero-trust encryption model with blind indexing that prevents cleartext PII storage. Evolved from an emergency python-based automation script into a robust local-first CRM with soft-delete capabilities and role hierarchies.",
+    image: "https://axionventures.com.au/images/policrm-banner-transparent.png",
     githubUrl: undefined,
     featured: true,
     date: 1767225600000,
-    technologies: ["Python", "FastAPI", "React", "Selenium", "Docker"],
+    technologies: ["Rust", "Python", "SQLite", "Selenium", "AES-256-GCM", "Wagtail", "Django"],
     tags: [
       { name: "Python", badgeClass: "badge-info" },
       { name: "Automation", badgeClass: "badge-warning" },
+      { name: "Rust", badgeClass: "badge-secondary" },
+      { name: "Security", badgeClass: "badge-error" },
     ],
   },
   {
     title: "SPARC Framework",
-    description: "Prompt library of 3,000+ lines orchestrating 12 specialized agents across a full dev cycle. Cuts scaffolding from 2 days to 4 hours.",
+    description: "Multi-agent AI development framework for the full software lifecycle.",
     detailedDescription:
-      "SPARC is a prompt library of 3,000+ lines that coordinates 12 specialized AI agents — each responsible for a distinct phase of software development: spec writing, architecture, test authoring, implementation, security review, and git operations. Rather than one monolithic AI session, each agent receives a narrow, deterministic brief and returns a structured output that feeds the next agent. A feature goes from a plain-English description to tested, documented, version-controlled code in about 4 hours rather than the typical 2-day cycle. Used on every personal project on this site.",
+      "SPARC is a multi-agent development framework that orchestrates a suite of specialist AI agents through a structured five-phase development workflow: Specification, Planning, Auto-Coding & Testing, Refinement & Review, and Completion & Versioning. Giving the orchestrator a goal sequences these phases and delegates to agents (like architect, tdd, security-review, and docs-writer). Git operations are handled through a dedicated git-expert agent, ensuring code is validated and tests pass before committing. The system enforces strict security guidelines, ensuring no credentials or secrets are ever checked in.",
     challenges:
-      "Coordinating multiple AI agents deterministically without context loss or hallucinations required a strict handoff protocol — each agent's output format must exactly match the next agent's expected input. Context windows fill fast when carrying full codebase state; the framework uses structured summaries and explicit file references rather than raw file dumps to stay within limits. Keeping the prompt library and the generated code in sync as both evolve required a versioning convention enforced at the spec-writing stage.",
+      "Coordinating multiple agents without context drift or hallucinations during long runs, designing strict handoff contracts via structured tag boundaries, and managing package-level documentation retrieval without overwhelming context windows.",
     outcomes:
-      "Scaffolding time dropped from roughly 2 days to 4 hours per feature. The framework has been used across FinnehSpoof, Zetto, and several other projects on this site. Zero manual boilerplate writing — specifications go in, working code with tests and docs comes out.",
-    image: "/images/axion.png",
-    githubUrl: "https://github.com/Finneh4249/SPARC-Framework",
+      "Drastically reduces software scaffolding and development cycles from days to hours. Ensures all implementations are validated via a test-driven development loop (TDD always runs before writing code) and that code remains secure, clean, and version-controlled automatically.",
+    image: "https://axionventures.com.au/images/sparc-banner.png",
+    githubUrl: undefined,
     featured: true,
     date: 1728946800000,
-    technologies: ["AI Agents", "React", "Node.js", "SPARC Methodology"],
+    technologies: ["AI Agents", "SPARC Methodology", "TDD", "Git Automation"],
     tags: [
       { name: "AI", badgeClass: "badge-secondary" },
       { name: "Framework", badgeClass: "badge-primary" },
@@ -120,7 +122,7 @@ export const projects: Project[] = [
       "Designing a financial interface that's transparent without triggering anxiety between partners. Real-time sync across devices for sensitive financial data required careful state management and end-to-end encryption for stored records. The dual-user model (both partners see the same budget) required an access control system that prevents one-sided edits without requiring approval workflows for every small transaction.",
     outcomes:
       "A functional prototype demonstrating an empathy-first approach to shared fintech — no gamification, no shaming, just a clear view of where money is going. The UX work on this project directly informed approaches used on other app projects.",
-    image: "/images/axion.png",
+    image: "https://axionventures.com.au/images/axion-logo.png",
     githubUrl: "https://github.com/Finneh4249/Nexus-App",
     featured: false,
     date: 1728946800000,
@@ -170,21 +172,21 @@ export const projects: Project[] = [
   },
   {
     title: "Aometry",
-    description: "Modular middleware abstraction for Discord bots. Built at 21. 46 GitHub stars, zero promotion. Contributors extend it without reading the core.",
+    description: "A module-agnostic, modular Discord bot platform built with Discord.js v14 and TypeScript.",
     detailedDescription:
-      "Aometry is modular infrastructure. Command registration, event routing, config management — all decoupled so new bots need zero boilerplate. Built with Node.js and discord.js v14. The insight: if abstraction works right, contributors add features without reading the internals. Picked up organically by developers building community bots. Still maintained.",
+      "Aometry is a modular Discord bot platform designed to decouple core system infrastructure from functional modules. Developers write and share reusable commands and event handlers as standalone git repositories, which are installed dynamically using an info.json manifest contract. Features an automated first-run setup wizard, a central management dashboard (aometry.finneh.xyz) following a secure Jellyfin-style API token architecture, and an automatic update heartbeat that checks for and applies hot-reloads every 6 hours.",
     challenges:
-      "Abstracting discord.js into a reusable architecture that stayed flexible without becoming over-opinionated. Dynamic command registration required a convention that worked without documentation. Fighting framework bloat as discord.js evolved through major API versions.",
+      "Architecting a platform with zero compile-time knowledge of its installed modules, hot-reloading extensions without restarting the primary Node process, securing the remote dashboard API, and handling NAT traversal/tunneling for self-hosted instances.",
     outcomes:
-      "46 GitHub stars (all organic). Active fork/contributor community. Contributors add commands and handlers without touching core. That's what good modularity does — it scales without your intervention.",
+      "Created an active developer ecosystem with 46 organic GitHub stars where contributors extend bot features without reading or touching the platform core. Successfully migrated the entire codebase to TypeScript for robust type safety.",
     image:
-      "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/CityLoopers/Aometry",
-    githubUrl: "https://github.com/CityLoopers/Aometry",
+      "https://opengraph.githubassets.com/ac2cc951a3b599eef902e862b97033a4576240e1447ca579b4505d41778eb107/Aometry/Aometry",
+    githubUrl: "https://github.com/Aometry/Aometry",
     featured: true,
     date: 1625270400000,
-    technologies: ["JavaScript", "discord.js v14", "Node.js"],
+    technologies: ["TypeScript", "Node.js", "discord.js v14", "Docker", "REST API"],
     tags: [
-      { name: "JavaScript", badgeClass: "badge-primary" },
+      { name: "TypeScript", badgeClass: "badge-primary" },
       { name: "Discord", badgeClass: "badge-accent" },
       { name: "Open Source", badgeClass: "badge-success" },
     ],

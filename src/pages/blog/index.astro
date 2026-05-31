@@ -1,12 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSectionMeta } from '../../utils/seo';
 
-const seoMeta = getSectionMeta('blog');
+const seoMeta = getSectionMeta('blog') as { title: string; description: string };
 
 const posts = await getCollection('blog');
-const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const sortedPosts = posts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const [heroPost, ...remainingPosts] = sortedPosts;
 
 function isoDate(date: Date) {
   return date.toISOString().slice(0, 10);
@@ -48,7 +49,7 @@ function isoDate(date: Date) {
       </div>
     </div>
 
-    <!-- Posts grid -->
+    <!-- Content -->
     <div class="px-6 md:px-12 py-12">
       <div class="max-w-[1800px] mx-auto">
 
@@ -59,62 +60,85 @@ function isoDate(date: Date) {
             </p>
           </div>
         ) : (
-          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {sortedPosts.map((post) => (
-              <article class="bg-signal-charcoal border border-signal-white/10 hover:-translate-y-0.5 hover:shadow-signal-orange transition-all duration-200 group flex flex-col">
-                <a href={`/blog/${post.id}`} class="block p-6 flex flex-col flex-1">
+          <>
+            <!-- Hero: latest dispatch -->
+            <article class="border border-signal-white/12 border-t-4 border-t-signal-orange bg-signal-charcoal hover:shadow-signal-lg transition-all duration-300 group mb-10">
+              <a href={`/blog/${heroPost.id}`} class="block p-8 md:p-12">
 
-                  <!-- Date + primary tag -->
-                  <div class="flex items-center justify-between mb-4">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                  <span class="font-mono text-[9px] uppercase tracking-[0.45em] text-signal-orange">latest dispatch</span>
+                  <span class="text-signal-white/20 font-mono">·</span>
+                  <time
+                    class="font-mono text-[10px] uppercase tracking-[0.3em] text-signal-white/40"
+                    datetime={heroPost.data.pubDate.toISOString()}
+                  >
+                    {isoDate(heroPost.data.pubDate)}
+                  </time>
+                  {heroPost.data.tags?.[0] && (
+                    <span class="committed-cyan text-[9px] font-mono uppercase tracking-[0.2em] text-signal-cyan px-2 py-0.5">
+                      {heroPost.data.tags[0]}
+                    </span>
+                  )}
+                </div>
+
+                <h2
+                  class="text-signal-white group-hover:text-signal-orange transition-colors leading-tight not-italic mb-6 max-w-4xl"
+                  style="font-size:clamp(2rem,5vw,4.5rem)"
+                >
+                  {heroPost.data.title}
+                </h2>
+
+                <p class="text-signal-white/65 leading-relaxed mb-8 max-w-2xl" style="font-size:clamp(0.95rem,1.3vw,1.1rem)">
+                  {heroPost.data.description}
+                </p>
+
+                <span class="signal-btn pointer-events-none">OPEN TRANSMISSION →</span>
+
+              </a>
+            </article>
+
+            <!-- Departure log: remaining posts -->
+            {remainingPosts.length > 0 && (
+              <div>
+                <p class="font-mono text-[9px] uppercase tracking-[0.5em] text-signal-white/20 pb-3 border-b border-signal-white/8">
+                  — previous dispatches ({remainingPosts.length}) —
+                </p>
+
+                {remainingPosts.map((post: CollectionEntry<'blog'>) => (
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="flex items-center gap-4 md:gap-8 py-4 border-b border-signal-white/8 hover:bg-signal-charcoal group transition-colors"
+                  >
                     <time
-                      class="font-mono text-[10px] uppercase tracking-[0.35em] text-signal-white/40"
+                      class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.2em] shrink-0 hidden md:block w-28"
                       datetime={post.data.pubDate.toISOString()}
                     >
                       {isoDate(post.data.pubDate)}
                     </time>
+
                     {post.data.tags?.[0] && (
-                      <span class="committed-cyan text-[9px] font-mono uppercase tracking-[0.2em] text-signal-cyan px-2 py-0.5">
+                      <span class="committed-cyan text-[9px] font-mono uppercase tracking-[0.15em] text-signal-cyan px-2 py-0.5 shrink-0 hidden sm:block">
                         {post.data.tags[0]}
                       </span>
                     )}
-                  </div>
 
-                  <!-- Title -->
-                  <h2 class="text-signal-white group-hover:text-signal-orange transition-colors mb-3 leading-tight not-italic" style="font-size:clamp(1.05rem,1.8vw,1.35rem)">
-                    {post.data.title}
-                  </h2>
+                    <span
+                      class="font-display font-black uppercase italic tracking-tight text-signal-white group-hover:text-signal-orange transition-colors flex-1 leading-tight"
+                      style="font-size:clamp(0.9rem,1.4vw,1.1rem)"
+                    >
+                      {post.data.title}
+                    </span>
 
-                  <!-- Description -->
-                  <p class="text-signal-white/55 text-sm leading-relaxed line-clamp-3 mb-5 flex-1">
-                    {post.data.description}
-                  </p>
-
-                  <!-- Secondary tags -->
-                  {post.data.tags && post.data.tags.length > 1 && (
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                      {post.data.tags.slice(1, 4).map((tag: string) => (
-                        <span class="text-[9px] font-mono uppercase tracking-wider text-signal-white/35 border border-signal-white/12 px-1.5 py-0.5">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  <!-- CTA -->
-                  <div class="flex items-center gap-2 font-mono text-xs text-signal-orange group-hover:gap-3 transition-all">
-                    <span>→</span>
-                    <span>read_entry()</span>
-                  </div>
-
-                </a>
-              </article>
-            ))}
-          </div>
+                    <span class="text-signal-orange font-black text-base shrink-0 group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
-        <!-- Back -->
         <div class="mt-12 text-center">
-          <a href="/" class="font-mono text-xs text-signal-white/40 hover:text-signal-orange transition-colors">
+          <a href="/" class="font-mono text-xs text-signal-white/30 hover:text-signal-orange transition-colors">
             ← back to home
           </a>
         </div>
@@ -124,12 +148,3 @@ function isoDate(date: Date) {
 
   </main>
 </BaseLayout>
-
-<style>
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
