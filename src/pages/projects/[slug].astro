@@ -79,15 +79,50 @@ const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentI
           <!-- Main content -->
           <div class="space-y-10">
 
+            {/* Public name + positioning line */}
+            {(project.publicName || project.positioningLine) && (
+              <div class="border-l-2 border-signal-orange/60 pl-4">
+                {project.publicName && (
+                  <p class="font-mono text-[10px] text-signal-white/40 uppercase tracking-[0.3em] mb-1">
+                    Publicly branded as {project.publicName}
+                  </p>
+                )}
+                {project.positioningLine && (
+                  <p class="font-body text-signal-white/60 text-sm md:text-base italic leading-relaxed max-w-[65ch]">
+                    {project.positioningLine}
+                  </p>
+                )}
+              </div>
+            )}
+
             {/* Description */}
             <div>
-              <p class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.4em] mb-4">// Overview</p>
+              <p class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.4em] mb-4">// What it is</p>
               <p class="font-body text-signal-white/70 text-base md:text-lg leading-relaxed max-w-[65ch]">
                 {project.detailedDescription || project.description}
               </p>
             </div>
 
-            {/* Challenges */}
+            {/* Why it's hard */}
+            {project.whyItsHard && project.whyItsHard.length > 0 && (
+              <div>
+                <p class="font-mono text-[10px] text-signal-orange/70 uppercase tracking-[0.4em] mb-5">// Why it's hard</p>
+                <div class="space-y-6">
+                  {project.whyItsHard.map((item) => (
+                    <div>
+                      <h3 class="font-display font-black text-signal-white text-sm md:text-base uppercase tracking-tight italic mb-1.5">
+                        {item.title}
+                      </h3>
+                      <p class="font-body text-signal-white/65 text-sm md:text-base leading-relaxed max-w-[65ch]">
+                        {item.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Challenges (legacy field, still supported for other project pages) */}
             {project.challenges && (
               <div>
                 <p class="font-mono text-[10px] text-signal-orange/70 uppercase tracking-[0.4em] mb-4">// Challenges</p>
@@ -97,7 +132,44 @@ const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentI
               </div>
             )}
 
-            {/* Outcomes */}
+            {/* Architecture */}
+            {project.architecture && (
+              <div>
+                <p class="font-mono text-[10px] text-signal-cyan/70 uppercase tracking-[0.4em] mb-4">// Architecture</p>
+                <p class="font-body text-signal-white/65 text-base leading-relaxed max-w-[65ch] mb-4">
+                  {project.architecture}
+                </p>
+                {project.architectureSteps && project.architectureSteps.length > 0 && (
+                  <div class="flex flex-wrap items-center gap-2 font-mono text-[10px] text-signal-white/50 uppercase tracking-widest">
+                    {project.architectureSteps.map((step, si) => (
+                      <>
+                        <span class="border border-signal-white/15 px-3 py-1.5">{step}</span>
+                        {si < (project.architectureSteps?.length ?? 0) - 1 && (
+                          <span class="text-signal-cyan/50">→</span>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Impact */}
+            {project.impact && project.impact.length > 0 && (
+              <div>
+                <p class="font-mono text-[10px] text-signal-cyan/70 uppercase tracking-[0.4em] mb-4">// Impact</p>
+                <ul class="space-y-3 max-w-[65ch]">
+                  {project.impact.map((line) => (
+                    <li class="font-body text-signal-white/65 text-base leading-relaxed flex gap-3">
+                      <span class="text-signal-cyan shrink-0">›</span>
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Outcomes (legacy field, still supported for other project pages) */}
             {project.outcomes && (
               <div>
                 <p class="font-mono text-[10px] text-signal-cyan/70 uppercase tracking-[0.4em] mb-4">// Outcomes</p>
@@ -108,7 +180,7 @@ const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentI
             )}
 
             {/* Links */}
-            {(project.githubUrl || project.liveDemoUrl) && (
+            {(project.githubUrl || project.liveDemoUrl || project.methodologyUrl) && (
               <div class="flex flex-wrap gap-4 pt-2">
                 {project.liveDemoUrl && (
                   <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" class="signal-btn group">
@@ -116,11 +188,26 @@ const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentI
                     <span class="ml-3 group-hover:translate-x-1 transition-transform inline-block">→</span>
                   </a>
                 )}
+                {project.methodologyUrl && (
+                  <a href={project.methodologyUrl} target="_blank" rel="noopener noreferrer" class="project-link-ghost">
+                    Methodology
+                  </a>
+                )}
                 {project.githubUrl && (
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="project-link-ghost">
                     View Source
                   </a>
                 )}
+              </div>
+            )}
+
+            {/* Provenance */}
+            {project.provenance && (
+              <div class="border-t border-signal-white/8 pt-6">
+                <p class="font-mono text-[10px] text-signal-white/30 uppercase tracking-[0.4em] mb-3">// Provenance</p>
+                <p class="font-body text-signal-white/50 text-sm leading-relaxed max-w-[65ch]">
+                  {project.provenance}
+                </p>
               </div>
             )}
           </div>
@@ -150,7 +237,13 @@ const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentI
                   <span class="text-signal-white/30 uppercase tracking-widest">Year</span>
                   <span class="text-signal-white/60">{year}</span>
                 </div>
-                {project.featured && (
+                {project.status && (
+                  <div class="flex justify-between text-[10px] font-mono">
+                    <span class="text-signal-white/30 uppercase tracking-widest">Status</span>
+                    <span class="text-signal-cyan uppercase tracking-wider">{project.status}</span>
+                  </div>
+                )}
+                {!project.status && project.featured && (
                   <div class="flex justify-between text-[10px] font-mono">
                     <span class="text-signal-white/30 uppercase tracking-widest">Status</span>
                     <span class="text-signal-orange uppercase tracking-wider">Featured</span>

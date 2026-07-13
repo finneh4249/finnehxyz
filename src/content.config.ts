@@ -31,6 +31,22 @@ const projectSchema = z.object({
       badgeClass: z.string(),
     })
   ),
+  publicName: z.string().optional(),
+  status: z.string().optional(),
+  positioningLine: z.string().optional(),
+  whyItsHard: z
+    .array(
+      z.object({
+        title: z.string(),
+        body: z.string(),
+      })
+    )
+    .optional(),
+  architecture: z.string().optional(),
+  architectureSteps: z.array(z.string()).optional(),
+  impact: z.array(z.string()).optional(),
+  provenance: z.string().optional(),
+  methodologyUrl: z.string().url().optional(),
 });
 
 type GitHubRepo = {

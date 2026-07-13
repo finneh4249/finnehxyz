@@ -19,6 +19,18 @@ export interface Project {
     name: string;
     badgeClass: string;
   }[];
+  publicName?: string;
+  status?: string;
+  positioningLine?: string;
+  whyItsHard?: {
+    title: string;
+    body: string;
+  }[];
+  architecture?: string;
+  architectureSteps?: string[];
+  impact?: string[];
+  provenance?: string;
+  methodologyUrl?: string;
 }
 
 export function getProjectSlug(project: Project): string {
@@ -30,6 +42,70 @@ export function getProjectSlug(project: Project): string {
 
 
 export const projects: Project[] = [
+  {
+    title: "Transport Inequality Engine",
+    publicName: "Fusion Transport Score",
+    status: "Live / Production",
+    description:
+      "Every Melbourne public transport stop scored 0 to 100 from the full PTV GTFS corpus. Live public tool with a fully reproducible methodology, deployed as Fusion Transport Score. Rust pipeline, TypeScript frontend, client-side geocoding so no address ever touches a server.",
+    positioningLine: "Built independently, deployed under Fusion Party branding as a public advocacy tool.",
+    detailedDescription:
+      "A public tool that scores every Melbourne suburb and every individual stop from 0 to 100 on public transport frequency, coverage, and reliability, computed directly from the published PTV GTFS timetable. Users enter their address and get an explainable score. The site also ranks the 20 worst-served suburbs and publishes the full methodology so every number is reproducible.",
+    whyItsHard: [
+      {
+        title: "Full-corpus GTFS processing",
+        body: "The entire Melbourne PTV GTFS dataset is ingested and scored per stop in a Rust pipeline, covering every train, tram, and bus service in the network. Per-stop scoring is the correct starting unit because it captures the timetable a rider actually experiences at that location, not a rounded average across a wider area. Suburb and route scores are derived from the stop-level data afterward, not the other way around.",
+      },
+      {
+        title: "Suburb-level aggregation failures",
+        body: "Naive averaging of stop scores misrepresents suburbs where population and stops don't overlap. A suburb with one excellent stop at its edge and no service everywhere else can average out to a misleadingly high score. The fix weights stop scores by where residents actually live instead of treating every stop as equally representative of the suburb.",
+      },
+      {
+        title: "Population staleness and dasymetric modelling",
+        body: "Census population data is stale by the time it's published and coarse at the suburb level. Dasymetric modelling redistributes that population to the land people actually occupy, using finer-grained residential data instead of treating a suburb as a uniform block. Scores end up weighted by where residents live, not by raw land area.",
+      },
+      {
+        title: "Route-level scoring",
+        body: "Scores also attach to individual routes, not only to stops and suburbs. That makes it possible to isolate which specific bus route is under-serving an area, rather than reporting a vague area-level score a resident can't act on.",
+      },
+      {
+        title: "Orbital accessibility",
+        body: "Melbourne's public transport network is built radially around the CBD. The tool measures suburb-to-suburb accessibility directly, which surfaces the orbital gaps that a CBD-radial view of the network hides.",
+      },
+      {
+        title: "Privacy by architecture",
+        body: "Address geocoding runs entirely in the browser via OpenStreetMap Nominatim. No address is transmitted to or stored on the server. Lookups are counted per suburb, never per person, and the site carries no cookies and no ad pixels.",
+      },
+      {
+        title: "Reproducibility as a requirement",
+        body: "Every published number traces back to the methodology page and a versioned GTFS snapshot, for example processed 2026-07-12 against methodology version 2026.07. The scores are politically load-bearing, so they have to survive hostile scrutiny rather than just casual review.",
+      },
+    ],
+    architecture:
+      "Rust handles GTFS ingestion and scoring. TypeScript drives the frontend. Output is a static site with pre-computed scores, and address geocoding happens client-side in the browser.",
+    architectureSteps: ["GTFS feed", "Rust pipeline", "Scored dataset", "Static site", "Browser geocoding"],
+    impact: [
+      "Live public tool under a registered political party's domain, carrying the formal electoral authorisation line required by law.",
+      "Used as the analytical backbone for transport policy work and public advocacy.",
+      "Functions as a working example of explainable scoring: every score decomposes into frequency, coverage, and reliability components a layperson can follow.",
+    ],
+    provenance:
+      "Conceived, architected, and built independently. Deployed and branded as Fusion Transport Score under Fusion Party Australia, where I serve as National Secretary.",
+    image: "/images/tie-map.png",
+    githubUrl: undefined,
+    liveDemoUrl: "https://transportscore.fusionparty.org.au",
+    methodologyUrl: "https://transportscore.fusionparty.org.au/methodology",
+    featured: true,
+    date: 1783814400000,
+    technologies: ["Rust", "TypeScript", "GTFS", "OpenStreetMap Nominatim", "Static Hosting"],
+    tags: [
+      { name: "Rust", badgeClass: "badge-secondary" },
+      { name: "TypeScript", badgeClass: "badge-primary" },
+      { name: "Data Engineering", badgeClass: "badge-info" },
+      { name: "GIS", badgeClass: "badge-success" },
+      { name: "Featured", badgeClass: "badge-warning" },
+    ],
+  },
   {
     title: "Zetto",
     description: "Voice-first Japanese learning. Sub-second latency via Gemini 2.5 Flash. 75% cheaper than Gemini Live by decoupling Flash Lite from TTS architecture.",
@@ -319,7 +395,7 @@ export const projects: Project[] = [
       "A custom Astro v5 site built with a Neo‑Brutalist / cyberpunk aesthetic. The site uses an Astro + React islands architecture, Tailwind CSS, MDX for blog content, and a JSON data layer to drive project and experience pages. It documents the SPARC framework, project case studies, and architectural decision records.",
     image: "/images/portfolio.png",
     githubUrl: "https://github.com/finneh4249/finnehxyz",
-    featured: true,
+    featured: false,
     date: 1760000000000,
     technologies: ["Astro v5", "TypeScript", "Tailwind CSS", "MDX", "Vite", "React"],
     tags: [
